@@ -2,11 +2,12 @@ const express = require("express");
 
 const usersRouter = express.Router();
 
-// const { addToCart, getProduct, deleteProduct } = require("../controllers/cart");
-// const authentication = require("../../routers/middlewares/authentication");
+const {createUser} = require("../controllers/users")
 
-// cartRouter.post("/", authentication, addToCart);
-// cartRouter.get("/", authentication, getProduct);
-// cartRouter.put("/", authentication, deleteProduct);
+
+
+
+usersRouter.post("/",createUser)
+
 
 module.exports = usersRouter;
