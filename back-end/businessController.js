@@ -31,4 +31,17 @@ const updateBusiness = (req,res)=>{
     })
 }
 
-module.exports = {addBusiness,updateBusiness}
+const deleteBusiness = (req,res)=>{
+    const business_id = req.params.business_id;
+    const query = 'UPDATE businesses SET is_deleted = 1 WHERE business_id=?';
+    const deleteData= [business_id];
+    connection.query(query,deleteData,(err,result)=>{
+        if (err) {
+            console.log(err)
+            res.json(err)
+        }
+        res.status(201).json("deleted successfully")
+    })
+}
+
+module.exports = {addBusiness,updateBusiness,deleteBusiness};
