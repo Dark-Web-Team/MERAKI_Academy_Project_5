@@ -44,4 +44,18 @@ const deleteBusiness = (req,res)=>{
     })
 }
 
-module.exports = {addBusiness,updateBusiness,deleteBusiness};
+const getBusinessByType = (req,res)=>{
+    const type = req.params.type;
+    const query = 'SELECT * FROM businesses WHERE type=?';
+    const businessType = [type]
+
+    connection.query(query,businessType,(err,result)=>{
+        if (err) {
+            console.log(err)
+            res.json(err)
+        }
+        res.status(201).json(result)
+    })
+}
+
+module.exports = {addBusiness,updateBusiness,deleteBusiness, getBusinessByType};
