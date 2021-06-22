@@ -28,3 +28,5 @@ const createUser = async (req, res) => {
 module.exports = {
     createUser,
 };
+
+// `INSERT INTO businesses  (type, displayName, main_img, city, owner_id, booking_price, average_rating,number_rating) VALUES (aa,aa,aa,aa,1,3,4,5);
