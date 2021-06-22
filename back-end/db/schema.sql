@@ -45,6 +45,16 @@ CREATE TABLE businesses (
     PRIMARY KEY (image_id)
 );
 
+CREATE TABLE rating  (
+    rating_id INT AUTO_INCREMENT NOT NULL,
+    rate INT(3),
+    user_id   INT,
+    FOREIGN KEY (user_id ) REFERENCES users(user_id),
+    business_id INT,
+    FOREIGN KEY (business_id ) REFERENCES businesses(business_id),
+    is_deleted TINYINT DEFAULT 0,
+    PRIMARY KEY (rating_id)
+);
 
 
 
