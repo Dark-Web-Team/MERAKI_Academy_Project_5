@@ -2,11 +2,11 @@ const express = require("express");
 
 const loginRouter = express.Router();
 
-// const { addToCart, getProduct, deleteProduct } = require("../controllers/cart");
-// const authentication = require("../../routers/middlewares/authentication");
+const { login } = require("../controllers/login");
 
-// cartRouter.post("/", authentication, addToCart);
-// cartRouter.get("/", authentication, getProduct);
-// cartRouter.put("/", authentication, deleteProduct);
+
+loginRouter.post("/", login);
+
+
 
 module.exports = loginRouter;
