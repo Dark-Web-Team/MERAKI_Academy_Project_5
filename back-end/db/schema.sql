@@ -21,7 +21,14 @@ CREATE TABLE users(
     PRIMARY KEY (user_id)
 );
 
-
+ CREATE TABLE image (
+    image_id INT  AUTO_INCREMENT NOT NULL,
+    image VARCHAR(255),
+    business_id  INT,
+    FOREIGN KEY (business_id) REFERENCES businesses(business_id)
+    is_deleted TINYINT DEFAULT 0,
+    PRIMARY KEY (image_id)
+);
 
 
 
