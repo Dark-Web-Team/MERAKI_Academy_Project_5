@@ -1,14 +1,36 @@
-USE db_name;
+USE Project_5;
 
-CREATE TABLE users (
-    id int  AUTO_INCREMENT NOT NULL,
-    name varchar(255),
-    email varchar(255),
-    country varchar(255),
-    city varchar(255),
-    created_at DATETIME,
+CREATE TABLE roles (
+    role_id INT AUTO_INCREMENT NOT NULL,
+    role VARCHAR(255) NOT NULL,
     is_deleted TINYINT DEFAULT 0,
-    PRIMARY KEY (id)
+    PRIMARY KEY (role_id)
 );
 
- SELECT * FROM users
+CREATE TABLE users(
+    user_id INT AUTO_INCREMENT NOT NULL,
+    displayName VARCHAR(255),
+    city VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    age INT(3),
+    gender VARCHAR(255),
+    role_id INT,
+    FOREIGN KEY (role_id) REFERENCES roles(role_id),
+    is_deleted TINYINT DEFAULT 0,
+    PRIMARY KEY (user_id)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
