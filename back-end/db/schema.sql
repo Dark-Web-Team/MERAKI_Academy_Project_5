@@ -21,6 +21,8 @@ CREATE TABLE users(
     PRIMARY KEY (user_id)
 );
 
+ 
+
  CREATE TABLE image (
     image_id INT  AUTO_INCREMENT NOT NULL,
     image VARCHAR(255),
