@@ -1,12 +1,9 @@
 const express = require("express");
 
+const { addRole } = require('./../controllers/role');
+
 const roleRouter = express.Router();
 
-// const { addToCart, getProduct, deleteProduct } = require("../controllers/cart");
-// const authentication = require("../../routers/middlewares/authentication");
-
-// cartRouter.post("/", authentication, addToCart);
-// cartRouter.get("/", authentication, getProduct);
-// cartRouter.put("/", authentication, deleteProduct);
+roleRouter.post('/',addRole)
 
 module.exports = roleRouter;
