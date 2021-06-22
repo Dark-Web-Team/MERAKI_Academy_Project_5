@@ -2,11 +2,14 @@ const express = require("express");
 
 const creditCardsRouter = express.Router();
 
-const {AddCreditCard} = require("../controllers/creditCards")
+const {
+  AddCreditCard,
+  getCreditCardByUser,
+} = require("../controllers/creditCards");
 
-const {authentication} = require("../middlewares/authentication")
+const { authentication } = require("../middlewares/authentication");
 
-creditCardsRouter.post("/",authentication, AddCreditCard)
-
+creditCardsRouter.post("/", authentication, AddCreditCard);
+creditCardsRouter.get("/", authentication, getCreditCardByUser);
 
 module.exports = creditCardsRouter;
