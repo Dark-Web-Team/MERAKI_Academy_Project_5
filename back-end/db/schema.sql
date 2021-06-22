@@ -45,7 +45,16 @@ CREATE TABLE businesses (
     PRIMARY KEY (image_id)
 );
 
-
+CREATE TABLE creditCards (
+   card_id INT AUTO_INCREMENT NOT NULL,
+   cardNumber INT NOT NULL ,
+   cardHolder VARCHAR(255) NOT NULL,
+   expiryDate VARCHAR(255) NOT NULL,
+   user_id INT, 
+   FOREIGN KEY (user_id) REFERENCES users(user_id),
+   is_deleted TINYINT DEFAULT 0,
+   PRIMARY KEY (card_id)
+);
 
 
 
