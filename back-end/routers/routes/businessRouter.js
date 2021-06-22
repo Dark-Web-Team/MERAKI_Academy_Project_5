@@ -2,11 +2,8 @@ const express = require("express");
 
 const businessRouter = express.Router();
 
-// const { addToCart, getProduct, deleteProduct } = require("../controllers/cart");
-// const authentication = require("../../routers/middlewares/authentication");
+const {addBusiness} = require('./../../businessController')
 
-// cartRouter.post("/", authentication, addToCart);
-// cartRouter.get("/", authentication, getProduct);
-// cartRouter.put("/", authentication, deleteProduct);
+businessRouter.post('/',addBusiness)
 
 module.exports = businessRouter;
