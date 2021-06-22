@@ -2,11 +2,10 @@ const express = require("express");
 
 const imageRouter = express.Router();
 
-// const { addToCart, getProduct, deleteProduct } = require("../controllers/cart");
-// const authentication = require("../../routers/middlewares/authentication");
+const { addImage ,getImageByBusinessId } = require('./../controllers/image');
 
-// cartRouter.post("/", authentication, addToCart);
-// cartRouter.get("/", authentication, getProduct);
-// cartRouter.put("/", authentication, deleteProduct);
+
+imageRouter.post('/:id',addImage)
+imageRouter.get('/:id',getImageByBusinessId)
 
 module.exports = imageRouter;
