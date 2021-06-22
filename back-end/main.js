@@ -16,7 +16,7 @@ const businessRouter = require("./routers/routes/businessRouter")
 const imageRouter = require("./routers/routes/imageRouter")
 const commentsRouter = require("./routers/routes/commentsRouter")
 const ratingRouter = require("./routers/routes/ratingRouter")
-
+const creditCardsRouter = require("./routers/routes/creditCardsRouter")
 /* ==================== */
 app.use("/role",roleRouter)
 app.use("/users",usersRouter)
@@ -25,6 +25,7 @@ app.use("/business",businessRouter)
 app.use("/image",imageRouter)
 app.use("/comments",commentsRouter)
 app.use("/rating",ratingRouter)
+app.use("/creditCards",creditCardsRouter)
 
 
 /* ==================== */

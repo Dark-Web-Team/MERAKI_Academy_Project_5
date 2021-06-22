@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const login = (req, res) => {
     const { email, password } = req.body;
     const SECRET = process.env.SECRET
-    const query = `SELECT * FROM users WHERE email=?`
+    const query = `SELECT * FROM users INNER JOIN roles ON users.role_id = roles.role_id  WHERE email=? `
     const data = [email]
     let hashedPassword
     db.query(query,data,async(err,result)=>{
@@ -27,7 +27,7 @@ const login = (req, res) => {
       }
       const payload = {
           user_id: result[0].user_id,
-          role: result[0].role_id
+          role: result[0].role
         };
         const  options =  { expiresIn: '60h' }
         const token = jwt.sign(payload, SECRET, options);
