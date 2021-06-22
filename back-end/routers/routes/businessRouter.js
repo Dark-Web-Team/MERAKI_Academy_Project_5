@@ -2,11 +2,11 @@ const express = require("express");
 
 const businessRouter = express.Router();
 
-// const { addToCart, getProduct, deleteProduct } = require("../controllers/cart");
-// const authentication = require("../../routers/middlewares/authentication");
+const {addBusiness,updateBusiness,deleteBusiness,getBusinessByType} = require('./../../businessController')
 
-// cartRouter.post("/", authentication, addToCart);
-// cartRouter.get("/", authentication, getProduct);
-// cartRouter.put("/", authentication, deleteProduct);
+businessRouter.post('/',addBusiness);
+businessRouter.put('/:business_id', updateBusiness);
+businessRouter.delete('/:business_id',deleteBusiness);
+businessRouter.get('/type/:type', getBusinessByType)
 
 module.exports = businessRouter;
