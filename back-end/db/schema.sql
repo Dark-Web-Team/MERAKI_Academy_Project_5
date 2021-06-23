@@ -74,6 +74,7 @@ CREATE TABLE rating  (
     is_deleted TINYINT DEFAULT 0,
     PRIMARY KEY (rating_id)
 );
+
 CREATE TABLE creditCards (
    card_id INT AUTO_INCREMENT NOT NULL,
    cardNumber INT NOT NULL ,
@@ -83,6 +84,18 @@ CREATE TABLE creditCards (
    FOREIGN KEY (user_id) REFERENCES users(user_id),
    is_deleted TINYINT DEFAULT 0,
    PRIMARY KEY (card_id)
+);
+
+CREATE TABLE reservations(
+    reservation_id INT AUTO_INCREMENT NOT NULL,
+    reservation_date DATE NOT NULL,
+    reservation_time VARCHAR(255) NOT NULL,
+    reservation_maker INT,
+    FOREIGN KEY (reservation_maker) REFERENCES users(user_id),
+    reserved_business INT,
+    FOREIGN KEY (reserved_business) REFERENCES businesses(business_id),
+    is_deleted TINYINT DEFAULT 0,
+    PRIMARY KEY (reservation_id)
 );
 
 

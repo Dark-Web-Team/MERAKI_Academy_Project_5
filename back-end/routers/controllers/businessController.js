@@ -20,14 +20,23 @@ const updateBusiness = (req,res)=>{
     const business_id= JSON.parse( req.params.business_id)
     const query = 'UPDATE businesses SET displayName=?, city=?, booking_price=?, average_rating=?, number_rating=?, main_img=?,description=?,opening_time=?,closing_time=? WHERE business_id=?';
     const updateData = [displayName, city, booking_price, average_rating, number_rating,business_id,main_img,description,opening_time,closing_time]
-    console.log(updateData);
 
     connection.query(query,updateData,(err,result)=>{
         if (err) {
             console.log(err)
             return res.send(err)
         }
-        res.status(200).json("updated successfully")
+        const query_2 = 'SELECT * FROM businesses LEFT JOIN users ON businesses.owner_id = users.user_id WHERE owner_id =?'
+        const owner_id = [req.token.user_id]
+        console.log(req.token.user_id)
+        connection.query(query_2,owner_id,(err,result)=>{
+            if (err) {
+                console.log(err)
+                return res.send(err)
+            }
+            
+            res.status(200).json(result)
+        })
     })
 }
 
