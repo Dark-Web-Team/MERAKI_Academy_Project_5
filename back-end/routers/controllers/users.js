@@ -37,7 +37,24 @@ const getUser =  (req, res) => {
   });
 }
 
+const updateUser = async (req, res) => {
+  const id = req.params.user_id;
+  const { displayName, city, email, password, age, gender, role_id } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const query = `UPDATE users 
+  SET displayName = ?, city =  ? , email = ? ,password = ?, age =  ? , gender = ? , role_id = ? 
+   WHERE user_id = ?`;
+  const data = [displayName, city, email, hashedPassword, age, gender, role_id ,id ];
+  db.query(query,data,(err,result)=>{
+	  if (err) throw err;
+    console.log('RESULT: ', result);
+    res.json(result)
+  });
+   };
+
 module.exports = {
     createUser,
-    getUser
+    getUser,
+    updateUser
 };
