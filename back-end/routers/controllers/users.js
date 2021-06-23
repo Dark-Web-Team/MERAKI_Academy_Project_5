@@ -1,5 +1,6 @@
 const db = require("../../db/db");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken") ;
 
 const createUser = async (req, res) => {
   let { displayName, city, email, password, age, gender, role_id } = req.body;
@@ -25,6 +26,18 @@ const createUser = async (req, res) => {
   });
 }
 
+const getUser =  (req, res) => {
+ const token  = jwt.decode(req.headers.authorization.split(" ")[1])
+  const query = `SELECT * FROM users WHERE user_id=?;`
+  const data = [token.user_id];
+  db.query(query,data,(err,result)=>{
+	  if (err) throw err;
+    console.log('RESULT: ', result);
+    res.json(result)
+  });
+}
+
 module.exports = {
     createUser,
+    getUser
 };
