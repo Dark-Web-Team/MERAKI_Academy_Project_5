@@ -58,7 +58,7 @@ CREATE TABLE businesses (
 );
 CREATE TABLE rating  (
     rating_id INT AUTO_INCREMENT NOT NULL,
-    rate INT(3),
+    rate FLOAT(24),
     user_id   INT,
     FOREIGN KEY (user_id ) REFERENCES users(user_id),
     business_id INT,
@@ -76,12 +76,6 @@ CREATE TABLE creditCards (
    is_deleted TINYINT DEFAULT 0,
    PRIMARY KEY (card_id)
 );
-
-
-
-
-
-
 
 
 
