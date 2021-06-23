@@ -1,3 +1,7 @@
+DROP DATABASE Project_5;
+
+CREATE DATABASE project_5;
+
 USE Project_5;
 
 CREATE TABLE roles (
@@ -11,7 +15,7 @@ CREATE TABLE users(
     user_id INT AUTO_INCREMENT NOT NULL,
     displayName VARCHAR(255),
     city VARCHAR(255),
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
     password VARCHAR(255),
     age INT(3),
     gender VARCHAR(255),
@@ -23,7 +27,8 @@ CREATE TABLE users(
 CREATE TABLE businesses (
    business_id INT AUTO_INCREMENT NOT NULL,
    type varchar(255) NOT NULL,  
-   displayName varchar(255) NOT NULL,
+   displayName varchar(255) NOT NULL UNIQUE,
+   description VARCHAR(255),
    main_img varchar(255),
    city varchar(255) NOT NULL, 
    owner_id INT,
@@ -31,6 +36,8 @@ CREATE TABLE businesses (
    booking_price INT,
    average_rating INT ,
    number_rating INT ,
+   opening_time VARCHAR(255),
+   closing_time VARCHAR(255),
    is_deleted TINYINT DEFAULT 0,
    PRIMARY KEY (business_id)
 
@@ -79,8 +86,8 @@ CREATE TABLE creditCards (
 
 
 
-
-
+INSERT INTO roles (role) VALUES ('user');
+INSERT INTO roles (role) VALUES ('admin');
 
 
 

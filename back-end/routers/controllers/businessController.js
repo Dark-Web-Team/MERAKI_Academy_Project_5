@@ -1,10 +1,10 @@
-const connection = require('./db/db');
-const businessRouter = require('./routers/routes/businessRouter');
+const connection = require('../../db/db');
+const businessRouter = require('../routes/businessRouter');
 
 const addBusiness = (req,res)=>{
-    const {type, displayName, city, owner_id, booking_price,main_img} = req.body;
-    const query = 'INSERT INTO businesses (type, displayName, city, owner_id, booking_price,average_rating,number_rating,main_img) VALUES (?,?,?,?,?,0,0,?)'
-    const businessData = [type, displayName, city, owner_id, booking_price,main_img]
+    const {type, displayName, city, owner_id, booking_price,main_img,description,opening_time,closing_time} = req.body;
+    const query = 'INSERT INTO businesses (type, displayName, city, owner_id, booking_price,average_rating,number_rating,main_img,description, opening_time, closing_time) VALUES (?,?,?,?,?,0,0,?,?,?,?)'
+    const businessData = [type, displayName, city, owner_id, booking_price,main_img,description,opening_time,closing_time]
 
     connection.query(query,businessData,(err,result)=>{
         if (err) {
@@ -16,10 +16,10 @@ const addBusiness = (req,res)=>{
 }
 
 const updateBusiness = (req,res)=>{
-    const {displayName, city, booking_price, average_rating, number_rating,main_img} = req.body;
+    const {displayName, city, booking_price, average_rating, number_rating,main_img,description,opening_time,closing_time} = req.body;
     const business_id= JSON.parse( req.params.business_id)
-    const query = 'UPDATE businesses SET displayName=?, city=?, booking_price=?, average_rating=?, number_rating=?, main_img=? WHERE business_id=?';
-    const updateData = [displayName, city, booking_price, average_rating, number_rating,business_id,main_img]
+    const query = 'UPDATE businesses SET displayName=?, city=?, booking_price=?, average_rating=?, number_rating=?, main_img=?,description=?,opening_time=?,closing_time=? WHERE business_id=?';
+    const updateData = [displayName, city, booking_price, average_rating, number_rating,business_id,main_img,description,opening_time,closing_time]
     console.log(updateData);
 
     connection.query(query,updateData,(err,result)=>{
