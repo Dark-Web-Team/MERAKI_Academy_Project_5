@@ -12,8 +12,9 @@ const login = (req, res) => {
     const data = [email]
     let hashedPassword
     db.query(query,data,async(err,result)=>{
-      if (err){
-          res.send(err)
+      if (err) {
+        res.send(err);
+        return
       }
     if (!result.length){
         res.status(404).json("email not exists")

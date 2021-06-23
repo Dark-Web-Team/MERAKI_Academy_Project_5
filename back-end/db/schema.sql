@@ -1,5 +1,6 @@
 DROP DATABASE Project_5;
 
+
 CREATE DATABASE project_5;
 
 USE Project_5;
@@ -34,7 +35,7 @@ CREATE TABLE businesses (
    owner_id INT,
    FOREIGN KEY (owner_id) REFERENCES users(user_id),
    booking_price INT,
-   average_rating INT ,
+   average_rating FLOAT(24) ,
    number_rating INT ,
    opening_time VARCHAR(255),
    closing_time VARCHAR(255),

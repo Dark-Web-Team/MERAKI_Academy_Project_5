@@ -9,7 +9,7 @@ const addBusiness = (req,res)=>{
     connection.query(query,businessData,(err,result)=>{
         if (err) {
             console.log(err)
-            res.json(err)
+            return res.send(err)
         }
         res.status(201).json("created successfully")
     })
@@ -25,7 +25,7 @@ const updateBusiness = (req,res)=>{
     connection.query(query,updateData,(err,result)=>{
         if (err) {
             console.log(err)
-            res.json(err)
+            return res.send(err)
         }
         res.status(200).json("updated successfully")
     })
@@ -38,7 +38,7 @@ const deleteBusiness = (req,res)=>{
     connection.query(query,deleteData,(err,result)=>{
         if (err) {
             console.log(err)
-            res.json(err)
+            return res.send(err)
         }
         res.status(200).json("deleted successfully")
     })
@@ -52,7 +52,7 @@ const getBusinessByType = (req,res)=>{
     connection.query(query,businessType,(err,result)=>{
         if (err) {
             console.log(err)
-            res.json(err)
+            return res.send(err)
         }
         res.status(200).json(result)
     })
@@ -66,7 +66,7 @@ const getBusinessById = (req,res)=>{
     connection.query(query,id,(err,result)=>{
         if (err) {
             console.log(err)
-            res.json(err)
+            return res.send(err)
         }
         res.status(200).json(result)
     })
@@ -80,7 +80,7 @@ const getBusinessByTypeByPrice = (req,res)=>{
     connection.query(query,paramaters,(err,result)=>{
         if (err) {
             console.log(err)
-            res.json(err)
+            return res.send(err)
         }
         res.status(200).json(result)
     })

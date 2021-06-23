@@ -12,6 +12,7 @@ const createUser = async (req, res) => {
   db.query(query,arr,(err,result)=>{
     if (err) {
       res.send(err);
+      return
     }
 	  newId = result.insertId
     const query_2 = `SELECT * FROM users WHERE user_id=?;`
@@ -19,6 +20,7 @@ const createUser = async (req, res) => {
     db.query(query_2,data,(err,response)=>{
       if (err) {
         res.send(err);
+        return
       }
       res.status(201).json(response)
     })
@@ -31,7 +33,10 @@ const getUser =  (req, res) => {
   const query = `SELECT * FROM users WHERE user_id=?;`
   const data = [user_id];
   db.query(query,data,(err,result)=>{
-	  if (err) throw err;
+	  if (err) {
+      res.send(err);
+      return
+    }
     console.log('RESULT: ', result);
     res.json(result)
   });
@@ -49,12 +54,14 @@ const updateUser = async (req, res) => {
   db.query(query,arr,(err,result)=>{
     if (err) {
       res.send(err);
+      return
     }
     const query_2 = `SELECT * FROM users WHERE user_id=?;`
     const data=[user_id]
     db.query(query_2,data,(err,response)=>{
       if (err) {
         res.send(err);
+        return
       }
       res.status(201).json(response)
     })
