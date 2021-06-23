@@ -27,9 +27,9 @@ const createUser = async (req, res) => {
 }
 
 const getUser =  (req, res) => {
- const token  = jwt.decode(req.headers.authorization.split(" ")[1])
+  const { user_id } = req.token;
   const query = `SELECT * FROM users WHERE user_id=?;`
-  const data = [token.user_id];
+  const data = [user_id];
   db.query(query,data,(err,result)=>{
 	  if (err) throw err;
     console.log('RESULT: ', result);
@@ -38,18 +38,27 @@ const getUser =  (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-  const id = req.params.user_id;
+  const { user_id } = req.token;
   const { displayName, city, email, password, age, gender, role_id } = req.body;
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const query = `UPDATE users 
   SET displayName = ?, city =  ? , email = ? ,password = ?, age =  ? , gender = ? , role_id = ? 
    WHERE user_id = ?`;
-  const data = [displayName, city, email, hashedPassword, age, gender, role_id ,id ];
-  db.query(query,data,(err,result)=>{
-	  if (err) throw err;
-    console.log('RESULT: ', result);
-    res.json(result)
+  const arr = [displayName, city, email, hashedPassword, age, gender, role_id ,user_id ];
+  db.query(query,arr,(err,result)=>{
+    if (err) {
+      res.send(err);
+    }
+    const query_2 = `SELECT * FROM users WHERE user_id=?;`
+    const data=[user_id]
+    db.query(query_2,data,(err,response)=>{
+      if (err) {
+        res.send(err);
+      }
+      res.status(201).json(response)
+    })
+	
   });
    };
 
