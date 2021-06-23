@@ -2,11 +2,11 @@ const express = require("express");
 
 const ratingRouter = express.Router();
 
-// const { addToCart, getProduct, deleteProduct } = require("../controllers/cart");
-// const authentication = require("../../routers/middlewares/authentication");
+const { addRating ,getUserRating} = require('./../controllers/rating');
+const { authentication } = require("../middlewares/authentication");
 
-// cartRouter.post("/", authentication, addToCart);
-// cartRouter.get("/", authentication, getProduct);
-// cartRouter.put("/", authentication, deleteProduct);
+
+ratingRouter.post('/:business_id',authentication,addRating)
+ratingRouter.get('/:business_id',authentication,getUserRating)
 
 module.exports = ratingRouter;
