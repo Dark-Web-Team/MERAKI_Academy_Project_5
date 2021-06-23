@@ -2,7 +2,7 @@ const express = require("express");
 
 const businessRouter = express.Router();
 
-const {addBusiness,updateBusiness,deleteBusiness,getBusinessByType,getBusinessById,getBusinessByTypeByPrice} = require('./../../businessController')
+const {addBusiness,updateBusiness,deleteBusiness,getBusinessByType,getBusinessById,getBusinessByTypeByPrice} = require('./../controllers/businessController')
 
 businessRouter.post('/',addBusiness);
 businessRouter.put('/:business_id', updateBusiness);
