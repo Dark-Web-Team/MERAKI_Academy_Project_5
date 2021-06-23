@@ -2,11 +2,10 @@ const express = require("express");
 
 const commentsRouter = express.Router();
 
-// const { addToCart, getProduct, deleteProduct } = require("../controllers/cart");
-// const authentication = require("../../routers/middlewares/authentication");
+const {addComment} = require("../controllers/comments")
+const { authentication } = require("../middlewares/authentication");
 
-// cartRouter.post("/", authentication, addToCart);
-// cartRouter.get("/", authentication, getProduct);
-// cartRouter.put("/", authentication, deleteProduct);
+
+commentsRouter.post("/:business_id",authentication,addComment)
 
 module.exports = commentsRouter;
