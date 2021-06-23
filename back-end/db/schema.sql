@@ -1,3 +1,7 @@
+DROP DATABASE Project_5;
+
+CREATE DATABASE Project_5;
+
 USE Project_5;
 
 CREATE TABLE roles (
@@ -27,9 +31,9 @@ CREATE TABLE businesses (
    main_img varchar(255),
    city varchar(255) NOT NULL, 
    owner_id INT,
-   FOREIGN KEY (owner_id) REFERENCES users(user_id),
+--    FOREIGN KEY (owner_id) REFERENCES users(user_id),
    booking_price INT,
-   average_rating INT ,
+   average_rating FLOAT(24) ,
    number_rating INT ,
    is_deleted TINYINT DEFAULT 0,
    PRIMARY KEY (business_id)
