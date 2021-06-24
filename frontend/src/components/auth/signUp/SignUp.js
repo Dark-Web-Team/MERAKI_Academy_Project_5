@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,  } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import "./signUp.css";
-require('dotenv').config();
-
-
+require("dotenv").config();
 
 export default function SignUp() {
-    const history = useHistory();
+  const history = useHistory();
   const [displayName, setDisplayName] = useState("");
   const [city, setCity] = useState("");
   const [email, setEmail] = useState("");
@@ -15,40 +13,28 @@ export default function SignUp() {
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
   const [role_id, setRole_id] = useState(0);
-  const [errMessage, setErrMessage] = useState("")
+  const [errMessage, setErrMessage] = useState("");
   const register = () => {
-    console.log({
-      displayName,
-      city,
-      email,
-      password,
-      age,
-      gender,
-      role_id,
-    });
-
-    console.log("url",process.env.REACT_APP_BACKEND_SERVER);
-    if (!displayName){
-        setErrMessage("you must enter you name ")
-        return
+    if (!displayName) {
+      setErrMessage("you must enter you name ");
+      return;
     }
-    if (!city){
-        setErrMessage("you must enter your city ")
-        return
+    if (!city) {
+      setErrMessage("you must enter your city ");
+      return;
     }
 
-    if(password.length<8){
-        setErrMessage("the password must be longer than 8  ")
-        return
+    if (password.length < 8) {
+      setErrMessage("the password must be longer than 8  ");
+      return;
     }
-    if (age==0){
-        setErrMessage("you must enter your age ")
-        return
+    if (age === 0) {
+      setErrMessage("you must enter your age ");
+      return;
     }
-    
-   
-    
-    axios.post(process.env.REACT_APP_BACKEND_SERVER+"users",{
+
+    axios
+      .post(process.env.REACT_APP_BACKEND_SERVER + "users", {
         displayName,
         city,
         email,
@@ -56,16 +42,17 @@ export default function SignUp() {
         age,
         gender,
         role_id,
-      }).then(result=>{
-          if (result.status==201){
-            history.push("/login")
-            return
-          }
-         
-      }).catch((err)=>{
-          setErrMessage(err.response.data.sqlMessage)
       })
- };
+      .then((result) => {
+        if (result.status === 201) {
+          history.push("/login");
+          return;
+        }
+      })
+      .catch((err) => {
+        setErrMessage(err.response.data.sqlMessage);
+      });
+  };
 
   return (
     <div>
@@ -133,7 +120,7 @@ export default function SignUp() {
       <div className="sign-up-button">
         <button onClick={register}>Sing Up</button>
       </div>
-      {errMessage?<p>{errMessage}</p>:""}
+      {errMessage ? <p>{errMessage}</p> : ""}
     </div>
   );
 }
