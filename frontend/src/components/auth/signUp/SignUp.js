@@ -1,6 +1,7 @@
-import React, { useState,  } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { FormControl ,Button,Alert} from "react-bootstrap";
 import "./signUp.css";
 require("dotenv").config();
 
@@ -55,48 +56,55 @@ export default function SignUp() {
   };
 
   return (
-    <div>
+    <div className="container">
+     
+
       <div className="sign-up-input">
-        <input
-          className="registerInput"
-          type="text"
+        <FormControl
           placeholder="display Name"
-          required={true}
+          type="text"
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-sm"
           onChange={(e) => {
             setDisplayName(e.target.value);
           }}
         />
-        <input
-          className="registerInput"
+        <FormControl
+          placeholder="your city"
           type="text"
-          placeholder="city"
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-sm"
           onChange={(e) => {
             setCity(e.target.value);
           }}
         />
-        <input
-          className="registerInput"
+        <FormControl
+          placeholder="your Email"
           type="text"
-          placeholder="email"
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-sm"
           onChange={(e) => {
             setEmail(e.target.value);
           }}
         />
-        <input
-          className="registerInput"
+        <FormControl
+          placeholder="your Password"
           type="password"
-          placeholder="password"
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-sm"
           onChange={(e) => {
             setPassword(e.target.value);
           }}
         />
-        <input
-          className="registerInput"
+         <FormControl
+          placeholder="your Age"
           type="number"
-          placeholder="age"
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-sm"
           onChange={(e) => {
             setAge(parseInt(e.target.value));
           }}
+          
         />
         <select
           onChange={(e) => {
@@ -116,11 +124,14 @@ export default function SignUp() {
           <option value={1}>user</option>
           <option value={3}>owner</option>
         </select>
+        <div className="sign-up-button">
+        <Button className="singUpButton" variant="outline-primary" onClick={register}>Sing Up</Button>{' '}
       </div>
-      <div className="sign-up-button">
-        <button onClick={register}>Sing Up</button>
+      {errMessage ? <div className="errMessage"><Alert key={1} variant="danger">
+    {errMessage}
+  </Alert> </div> : ""}
       </div>
-      {errMessage ? <p>{errMessage}</p> : ""}
     </div>
   );
 }
+
