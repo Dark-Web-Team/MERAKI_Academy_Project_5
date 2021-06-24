@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 
-// import provider
+ //import provider
 import { Provider } from "react-redux";
-// import store
+ //import store
 import store from "./reducers";
 
 ReactDOM.render(
@@ -14,6 +14,7 @@ ReactDOM.render(
 	<Router>
 		<App />
 	</Router>
-  </Provider>,
+  </Provider>
+  ,
   document.getElementById("root")
 );
