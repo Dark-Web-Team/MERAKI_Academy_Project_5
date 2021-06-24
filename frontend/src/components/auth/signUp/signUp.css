@@ -1,11 +1,22 @@
-.container{
-    width: 75%;
-    margin: auto;
-    margin-top: 5%;
+.container {
+  width: 75%;
+  margin: auto;
+  margin-top: 5%;
 }
-
 
 .sign-up-input {
-    box-shadow: 5px 10px #888888;    
+  box-shadow: 5px 10px #888888;
+}
+.sign-up-button {
+  width: 10%;
+  margin-left: 3%;
+}
+.singUpButton {
+  margin: auto;
+  margin-top: 20%;
+  margin-bottom: 10%;
 }
 
+.errMessage {
+  width: 50%;
+}

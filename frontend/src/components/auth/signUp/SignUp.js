@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { FormControl } from "react-bootstrap";
+import { FormControl ,Button,Alert} from "react-bootstrap";
 import "./signUp.css";
 require("dotenv").config();
 
@@ -125,9 +125,11 @@ export default function SignUp() {
           <option value={3}>owner</option>
         </select>
         <div className="sign-up-button">
-        <button onClick={register}>Sing Up</button>
+        <Button className="singUpButton" variant="outline-primary" onClick={register}>Sing Up</Button>{' '}
       </div>
-      {errMessage ? <p>{errMessage}</p> : ""}
+      {errMessage ? <div className="errMessage"><Alert key={1} variant="danger">
+    {errMessage}
+  </Alert> </div> : ""}
       </div>
     </div>
   );
