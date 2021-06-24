@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
   const arr = [displayName, city, email, password, age, gender, role_id];
   db.query(query,arr,(err,result)=>{
     if (err) {
-      res.send(err);
+      res.status(403).json(err)
       return
     }
 	  newId = result.insertId

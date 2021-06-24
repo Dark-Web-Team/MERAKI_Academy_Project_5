@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
+import "./signUp.css";
+require('dotenv').config();
+
+
 
 export default function SignUp() {
+    const history = useHistory();
   const [displayName, setDisplayName] = useState("");
   const [city, setCity] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
-  const [role_id, setRole_id] = useState(1);
+  const [role_id, setRole_id] = useState(0);
+  const [errMessage, setErrMessage] = useState("")
   const register = () => {
     console.log({
       displayName,
@@ -20,23 +27,45 @@ export default function SignUp() {
       role_id,
     });
 
-    const url = process.env.REACT_APP_BACKEND_SERVER
-    console.log(url);
+    console.log("url",process.env.REACT_APP_BACKEND_SERVER);
+    if (!displayName){
+        setErrMessage("you must enter you name ")
+        return
+    }
+    if (!city){
+        setErrMessage("you must enter your city ")
+        return
+    }
+
+    if(password.length<8){
+        setErrMessage("the password must be longer than 8  ")
+        return
+    }
+    if (age==0){
+        setErrMessage("you must enter your age ")
+        return
+    }
     
-    // axios.post("http://localhost:5000/users",{
-    //     displayName,
-    //     city,
-    //     email,
-    //     password,
-    //     age,
-    //     gender,
-    //     role_id,
-    //   }).then(result=>{
-    //       console.log(result);
-    //   }).catch(err=>{
-    //       console.log(err.response.data);
-    //   })
-  };
+   
+    
+    axios.post(process.env.REACT_APP_BACKEND_SERVER+"users",{
+        displayName,
+        city,
+        email,
+        password,
+        age,
+        gender,
+        role_id,
+      }).then(result=>{
+          if (result.status==201){
+            history.push("/login")
+            return
+          }
+         
+      }).catch((err)=>{
+          setErrMessage(err.response.data.sqlMessage)
+      })
+ };
 
   return (
     <div>
@@ -45,6 +74,7 @@ export default function SignUp() {
           className="registerInput"
           type="text"
           placeholder="display Name"
+          required={true}
           onChange={(e) => {
             setDisplayName(e.target.value);
           }}
@@ -67,7 +97,7 @@ export default function SignUp() {
         />
         <input
           className="registerInput"
-          type="text"
+          type="password"
           placeholder="password"
           onChange={(e) => {
             setPassword(e.target.value);
@@ -103,6 +133,7 @@ export default function SignUp() {
       <div className="sign-up-button">
         <button onClick={register}>Sing Up</button>
       </div>
+      {errMessage?<p>{errMessage}</p>:""}
     </div>
   );
 }
