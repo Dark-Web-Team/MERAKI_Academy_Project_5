@@ -29,6 +29,8 @@ const Navigation = () => {
       <Button variant="outline-info">Search</Button>
     </Form>
   </Navbar>
+  
+  
 	</div>
 };
 

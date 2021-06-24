@@ -1,3 +1,11 @@
-.sign-up-input {
-    border: 5px seagreen solid;
+.container{
+    width: 75%;
+    margin: auto;
+    margin-top: 5%;
 }
+
+
+.sign-up-input {
+    box-shadow: 5px 10px #888888;    
+}
+
