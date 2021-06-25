@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import axios from "axios";
 import {useDispatch, useSelector} from 'react-redux';
 import {setToken} from '../../../reducers/login'
-import { useHistory } from 'react-router';
+import { Link, useHistory  } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button,Container,InputGroup,FormControl,Alert} from "react-bootstrap"
 import './login.css'
@@ -67,6 +67,7 @@ const Login = ()=>{
         {errPresent && <div><br/> <Alert variant='danger' style={{width:"35vw", textAlign:'center'}}>
     {errMessage}
   </Alert></div>}
+  <p className='signUp_text'>Don't have an account?<Link to="/signUp">Sign Up</Link></p>
     </Container>
     
     </div>
