@@ -60,6 +60,7 @@ export default function SignUp() {
      
 
       <div className="sign-up-input">
+      <p className="login_text">SignUp</p> <br/>
         <FormControl
           placeholder="display Name"
           type="text"
