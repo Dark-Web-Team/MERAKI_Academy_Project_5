@@ -1,11 +1,17 @@
 .container {
-  width: 75%;
-  margin: auto;
-  margin-top: 5%;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 87vh;
 }
 
 .sign-up-input {
-  box-shadow: 5px 10px #888888;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 35vw;
+    box-shadow: 20px 20px 20px 10px #f5f6f9;
 }
 .sign-up-button {
   width: 10%;
