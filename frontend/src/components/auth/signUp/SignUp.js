@@ -126,13 +126,12 @@ export default function SignUp() {
           <option value={3}>owner</option>
         </select>
         <div className="sign-up-button">
-        <Button className="singUpButton" variant="outline-primary" onClick={register}>Sing Up</Button>{' '}
+        <Button className="singUpButton"  onClick={register}>Sing Up</Button>{' '}
       </div>
       {errMessage ? <div className="errMessage"><Alert key={1} variant="danger">
     {errMessage}
   </Alert> </div> : ""}
       </div>
-      {errMessage ? <p>{errMessage}</p> : ""}
     </div>
   );
 }
