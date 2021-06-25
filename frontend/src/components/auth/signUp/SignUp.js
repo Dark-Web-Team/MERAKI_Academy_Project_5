@@ -131,6 +131,7 @@ export default function SignUp() {
     {errMessage}
   </Alert> </div> : ""}
       </div>
+      {errMessage ? <p>{errMessage}</p> : ""}
     </div>
   );
 }
