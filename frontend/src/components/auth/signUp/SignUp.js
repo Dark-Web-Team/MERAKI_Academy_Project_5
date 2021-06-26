@@ -116,19 +116,20 @@ export default function SignUp() {
             setGender(e.target.value);
           }}
         >
-          <option>select a gender...</option>
+          <option>Select a gender...</option>
           <option value="male">male</option>
           <option value="female">female</option>
         </FormControl>
-        <select
+        <FormControl
+          as="select"
           onChange={(e) => {
             setRole_id(parseInt(e.target.value));
           }}
         >
-          <option>you are user or owner ...</option>
+          <option>Select your usage...</option>
           <option value={1}>user</option>
           <option value={3}>owner</option>
-        </select>
+        </FormControl>
         <div className="sign-up-button">
           <Button className="singUpButton" onClick={register}>
             Sing Up
