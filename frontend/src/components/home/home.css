@@ -1,0 +1,17 @@
+.slide-container{
+   height: 100vh;
+   width: 100%; 
+
+}
+
+.each-slide {
+    height: 500px;
+    width: 100%;
+}
+
+.imageSlider{
+    height: 100vh;
+    width:100%; 
+    background-size: cover;
+   
+}
