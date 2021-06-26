@@ -35,7 +35,7 @@ export default function SignUp() {
     }
 
     axios
-      .post(process.env.REACT_APP_BACKEND_SERVER + "users", {
+      .post(process.env.REACT_APP_BACKEND_SERVER +"users", {
         displayName,
         city,
         email,
