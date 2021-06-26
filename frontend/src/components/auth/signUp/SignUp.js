@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { FormControl ,Button,Alert} from "react-bootstrap";
+import {
+  FormControl,
+  Button,
+  Alert,
+  FormGroup,
+  FormLabel,
+} from "react-bootstrap";
 import "./signUp.css";
 require("dotenv").config();
 
@@ -35,7 +41,7 @@ export default function SignUp() {
     }
 
     axios
-      .post(process.env.REACT_APP_BACKEND_SERVER +"users", {
+      .post(process.env.REACT_APP_BACKEND_SERVER + "users", {
         displayName,
         city,
         email,
@@ -57,10 +63,8 @@ export default function SignUp() {
 
   return (
     <div className="container">
-     
-
       <div className="sign-up-input">
-      <p className="login_text">SignUp</p> <br/>
+        <p className="login_text">SignUp</p> <br />
         <FormControl
           placeholder="display Name"
           type="text"
@@ -97,7 +101,7 @@ export default function SignUp() {
             setPassword(e.target.value);
           }}
         />
-         <FormControl
+        <FormControl
           placeholder="your Age"
           type="number"
           aria-label="Large"
@@ -105,9 +109,9 @@ export default function SignUp() {
           onChange={(e) => {
             setAge(parseInt(e.target.value));
           }}
-          
         />
-        <select
+        <FormControl
+          as="select"
           onChange={(e) => {
             setGender(e.target.value);
           }}
@@ -115,7 +119,7 @@ export default function SignUp() {
           <option>select a gender...</option>
           <option value="male">male</option>
           <option value="female">female</option>
-        </select>
+        </FormControl>
         <select
           onChange={(e) => {
             setRole_id(parseInt(e.target.value));
@@ -126,13 +130,20 @@ export default function SignUp() {
           <option value={3}>owner</option>
         </select>
         <div className="sign-up-button">
-        <Button className="singUpButton"  onClick={register}>Sing Up</Button>{' '}
-      </div>
-      {errMessage ? <div className="errMessage"><Alert key={1} variant="danger">
-    {errMessage}
-  </Alert> </div> : ""}
+          <Button className="singUpButton" onClick={register}>
+            Sing Up
+          </Button>{" "}
+        </div>
+        {errMessage ? (
+          <div className="errMessage">
+            <Alert key={1} variant="danger">
+              {errMessage}
+            </Alert>{" "}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
 }
-
