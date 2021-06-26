@@ -18,20 +18,33 @@ export default function Home() {
         <Slide>
           <div className="each-slide">
             <div className="imageSlider" style={{'backgroundImage': `url(${slideImages[0]})`}}>
-              <span>Slide 1</span>
+              
             </div>
           </div>
           <div className="each-slide">
             <div className ="imageSlider" style={{'backgroundImage': `url(${slideImages[1]})`}}>
-              <span>Slide 2</span>
             </div>
           </div>
           <div className="each-slide">
             <div className="imageSlider" style={{'backgroundImage': `url(${slideImages[2]})`}}>
-              <span>Slide 3</span>
             </div>
           </div>
         </Slide>
+      </div>
+
+      <div className= "parintcatgory">
+          <div className="ch">
+              <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/>
+
+          </div>
+          <div className="ch">
+          <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/> 
+          </div>
+          <div className="ch">
+
+          <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/>
+              
+          </div>
       </div>
         
         </>
