@@ -50,11 +50,23 @@ const Navigation = () => {
           {state.token ? (
             <Nav.Link
               onClick={() => {
-                localStorage.clear();
-                dispatch(setToken(""));
+                history.push("/profile")
               }}
             >
-              sign out
+              My Profile
+            </Nav.Link>
+          ) : (
+            ""
+          )}
+          {state.token ? (
+            <Nav.Link
+              onClick={() => {
+                localStorage.clear();
+                dispatch(setToken(""));
+                history.push("/")
+              }}
+            >
+              Sign Out
             </Nav.Link>
           ) : (
             ""
