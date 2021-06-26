@@ -35,14 +35,23 @@ export default function Home() {
       <div className= "parintcatgory">
           <div className="ch">
               <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/>
+              <div class="overlay">
+         <div class="text">Hello World</div>
+         </div>
 
           </div>
           <div className="ch">
           <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/> 
+          <div class="overlay">
+         <div class="text">Hello World</div>
+         </div>
           </div>
           <div className="ch">
 
           <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/>
+          <div class="overlay">
+         <div class="text">Hello World</div>
+         </div>
               
           </div>
       </div>
