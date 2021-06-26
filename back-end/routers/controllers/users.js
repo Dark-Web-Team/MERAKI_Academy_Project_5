@@ -37,8 +37,7 @@ const getUser =  (req, res) => {
       res.send(err);
       return
     }
-    console.log('RESULT: ', result);
-    res.json(result)
+    res.status(200).json(result)
   });
 }
 
