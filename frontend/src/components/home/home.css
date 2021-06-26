@@ -1,0 +1,30 @@
+.slide-container{
+   width: 100%; 
+   margin-top: 2%;
+
+}
+
+.each-slide {
+    height: 500px;
+    width: 100%;
+}
+
+.imageSlider{
+    height: 100vh;
+    width:100%; 
+    background-size: cover;
+   
+}
+
+.parintcatgory{
+    display: grid;
+    grid-template-columns: 30% 30%  30%  ;
+     justify-content:space-around;
+     margin-top: 2%;
+    
+
+}
+.ch img{
+    width: 100%;
+}
+
