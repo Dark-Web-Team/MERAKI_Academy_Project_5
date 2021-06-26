@@ -1,0 +1,11 @@
+.businesses{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    width: 100vw;
+    justify-content: center;
+    border: solid red 2px;
+}
+
+.businessCard:hover{
+    cursor: pointer;
+}
