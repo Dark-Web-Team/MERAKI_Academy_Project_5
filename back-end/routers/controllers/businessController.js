@@ -84,9 +84,9 @@ const getBusinessById = (req,res)=>{
 const getBusinessByTypeByPrice = (req,res)=>{
     const {type,lowPrice,highPrice}=req.params;
     const query = 'SELECT * FROM businesses WHERE type=? AND booking_price BETWEEN ? AND ?'
-    const paramaters=[type,lowPrice,highPrice];
+    const parameters=[type,lowPrice,highPrice];
 
-    connection.query(query,paramaters,(err,result)=>{
+    connection.query(query,parameters,(err,result)=>{
         if (err) {
             console.log(err)
             return res.send(err)
