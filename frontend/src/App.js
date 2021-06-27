@@ -8,6 +8,7 @@ import Category from "./components/category/index"
 import Profile from "./components/profile"
 import EditProfile from "./components/profile/EditProfile"
 import Busnisses from "./components/busnisses/index"
+import AddBusiness from "./components/add_business";
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,7 +27,7 @@ const App = () => {
       <Route exact path="/edit-profile" component={EditProfile} />
       <Route exact path="/category/:type" component={Category} />
       <Route exact path="/business/:id" component={Busnisses} />
-
+      <Route exact path="/:id/addBusiness" component={AddBusiness}/>
     </div>
   );
 };
