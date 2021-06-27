@@ -15,7 +15,9 @@ const Category = () => {
 
   const [businesses, setBusinesses] = useState([]);
   const [errMessage, setErrMessage] = useState("");
-  const [priceRange, setPriceRange] = useState();
+  const [priceRange, setPriceRange] = useState("10000");
+  const [city, setCity] = useState("");
+
 
   const getBusinessByType = async () => {
     dispatch(setPath(location.pathname));
@@ -48,7 +50,7 @@ const Category = () => {
 
     useEffect(() => {
       filterBusinesses();
-    }, [priceRange]);
+    }, [priceRange,city]);
 
   return (
     <div>
@@ -65,6 +67,21 @@ const Category = () => {
             <option value="30">20-40</option>
             <option value="50">40-60</option>
             <option value="10000">All Prices</option>
+          </Form.Control>
+        </Form>
+
+        <Form style={{ width: "15vw" }}>
+          <Form.Control
+            as="select"
+            onChange={(e) => {
+              setCity(e.target.value);
+            }}
+          >
+            <option >choose a city</option>
+            <option value="zarqa">Zarqa</option>
+            <option value="amman">Amman</option>
+            <option value="irbid">Irbid</option>
+            {/* <option value="10000">All Prices</option> */}
           </Form.Control>
         </Form>
 
