@@ -5,6 +5,12 @@
     align-items: center;
 }
 
+.information-edit{
+  margin: auto;
+    margin-top: 5%;
+    align-items: center;
+}
+
 #your-information{
     text-align: center;
     margin-top: 10px;
@@ -28,3 +34,8 @@
   #email-input{
     cursor:not-allowed
   }
+
+  #editButton {
+margin: auto;
+
+}

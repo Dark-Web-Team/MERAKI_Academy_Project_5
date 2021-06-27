@@ -54,9 +54,9 @@ export default function EditProfile() {
     })
   };
   return (
-    <div>
+    <div className="information-edit">
       {userInfo ? (
-        <div className="sign-up-input">
+        <div className="information">
           <p className="login_text">Edit Your Info..</p> <br />
           <FormControl
             placeholder={`Your Name : ${userInfo[0].displayName}`}
