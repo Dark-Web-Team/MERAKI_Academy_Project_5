@@ -9,3 +9,8 @@ margin-left: 13px;
 .information{
 
 }
+
+.rate {
+    display: flex;
+    gap: 2%;
+}

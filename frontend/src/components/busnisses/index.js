@@ -3,12 +3,13 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
 import ImageGallery from "react-image-gallery";
+import ShowRating from "../category/ShowRating";
 import "react-image-gallery/styles/css/image-gallery.css";
 
 export default function Busnisses() {
   const [pictures, setPictures] = useState([]);
   const [errMessage, setErrMessage] = useState("");
-  const [business, setBusiness] = useState("")
+  const [business, setBusiness] = useState("");
   const { id } = useParams();
   let arr;
   const getimages = async () => {
@@ -19,18 +20,18 @@ export default function Busnisses() {
       });
       setPictures(arr);
     } catch (error) {
-        setErrMessage(error.data);
+      setErrMessage(error.data);
     }
   };
 
   const getDetails = async () => {
     try {
-      const details = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER}business/id/${id}`);
-      console.log("details",details);
-      setBusiness(details.data[0])
-      
+      const details = await axios.get(
+        `${process.env.REACT_APP_BACKEND_SERVER}business/id/${id}`
+      );
+      setBusiness(details.data[0]);
     } catch (error) {
-        setErrMessage(error.data);
+      setErrMessage(error.data);
     }
   };
   useEffect(() => {
@@ -39,20 +40,28 @@ export default function Busnisses() {
   }, []);
   return (
     <>
-      <div className="parent">
-        <div className="gallery">
-          <ImageGallery items={pictures} />
-          {errMessage}
+      {business ? (
+        <div className="parent">
+          <div className="gallery">
+            <ImageGallery items={pictures} />
+            {errMessage}
+          </div>
+          <div className="information">
+            <h1>{business.displayName}</h1>
+            <p>{business.description}</p>
+            <p>{business.city}</p>
+            <p>
+              {" "}
+              <div className= "rate">
+              <ShowRating rate={business.average_rating} /> From {" "}
+              {business.number_rating} User
+              </div>
+            </p>
+          </div>
         </div>
-        <div className="information">
-        <h1>{business.displayName}</h1>
-        <p>{business.description}</p>
-        <p>{business.city}</p>
-        <p>{business.number_rating}</p>
-
-
-        </div>
-      </div>
+      ) : (
+        ""
+      )}
     </>
   );
 }
