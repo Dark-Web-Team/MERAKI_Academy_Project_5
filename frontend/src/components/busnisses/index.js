@@ -48,6 +48,7 @@ export default function Busnisses() {
         <h1>{business.displayName}</h1>
         <p>{business.description}</p>
         <p>{business.city}</p>
+        <p>{business.number_rating}</p>
 
 
         </div>
