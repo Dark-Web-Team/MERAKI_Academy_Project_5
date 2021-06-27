@@ -41,7 +41,7 @@ export default function EditProfile() {
   const updateInfo = () => {
     axios.put(
       `${process.env.REACT_APP_BACKEND_SERVER}users`,
-      { displayName, city, email, password, age, gender, role_id },
+      { displayName, city, email,  age, gender, role_id },
       {
         headers: {
           authorization: "Bearer " + thisToken,

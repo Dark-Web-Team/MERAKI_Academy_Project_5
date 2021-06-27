@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./category.css";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import ShowRating from "./ShowRating"
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
@@ -124,7 +125,8 @@ console.log(error);
               <Card.Body>
                 <Card.Title>{elem.displayName}</Card.Title>
                 <Card.Title>Price:{elem.booking_price}</Card.Title>
-                <Card.Subtitle>{elem.average_rating}</Card.Subtitle>
+                <Card.Title> <ShowRating rate={elem.average_rating} /></Card.Title>
+                <Card.Subtitle> </Card.Subtitle>
               </Card.Body>
             </Card>
           );
