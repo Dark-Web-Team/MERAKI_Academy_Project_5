@@ -43,13 +43,12 @@ const getUser =  (req, res) => {
 
 const updateUser = async (req, res) => {
   const { user_id } = req.token;
-  const { displayName, city, email, password, age, gender, role_id } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const { displayName, city, email, age, gender, role_id } = req.body;
 
   const query = `UPDATE users 
-  SET displayName = ?, city =  ? , email = ? ,password = ?, age =  ? , gender = ? , role_id = ? 
+  SET displayName = ?, city =  ? , email = ? , age =  ? , gender = ? , role_id = ? 
    WHERE user_id = ?`;
-  const arr = [displayName, city, email, hashedPassword, age, gender, role_id ,user_id ];
+  const arr = [displayName, city, email, age, gender, role_id ,user_id ];
   db.query(query,arr,(err,result)=>{
     if (err) {
       res.send(err);
