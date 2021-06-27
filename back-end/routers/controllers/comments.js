@@ -26,7 +26,7 @@ const addComment = (req, res) => {
 
 const getComments = (req, res) => {
   const business_id = req.params.business_id;
-  const query = "SELECT * FROM comments WHERE business_id = ?";
+  const query = `SELECT * FROM comments INNER JOIN users ON comments.commenter = users.user_id WHERE business_id = ?;`
   const id = [business_id];
 
   db.query(query, id, (err, result) => {

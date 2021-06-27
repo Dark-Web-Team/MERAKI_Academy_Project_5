@@ -10,6 +10,9 @@ export default function Busnisses() {
   const [pictures, setPictures] = useState([]);
   const [errMessage, setErrMessage] = useState("");
   const [business, setBusiness] = useState("");
+  const [commints, setCommints] = useState([]);
+  const [userComment, setUserComment] = useState("")
+  const thisToken = localStorage.getItem("token")
   const { id } = useParams();
   let arr;
   const getimages = async () => {
@@ -34,10 +37,38 @@ export default function Busnisses() {
       setErrMessage(error.data);
     }
   };
+
+  const getCommit = async () => {
+    try {
+      const details = await axios.get(
+        `${process.env.REACT_APP_BACKEND_SERVER}comments/${id}`
+      );
+      setCommints(details.data);
+    } catch (error) {
+      setErrMessage(error.data);
+    }
+  };
   useEffect(() => {
     getimages();
     getDetails();
+    getCommit();
   }, []);
+  const addComment  = ()=>{
+    axios.post(
+      `${process.env.REACT_APP_BACKEND_SERVER}comments/${id}`,
+      {comment: userComment },
+      {
+        headers: {
+          authorization: "Bearer " + thisToken,
+        },
+      }
+    ).then((result)=>{
+      console.log("result",result.data);
+    }).catch((err)=>{
+      console.log(err);
+    })
+      
+  }
   return (
     <>
       {business ? (
@@ -52,9 +83,9 @@ export default function Busnisses() {
             <p>{business.city}</p>
             <p>
               {" "}
-              <div className= "rate">
-              <ShowRating rate={business.average_rating} /> From {" "}
-              {business.number_rating} User
+              <div className="rate">
+                <ShowRating rate={business.average_rating} /> From{" "}
+                {business.number_rating} User
               </div>
             </p>
           </div>
@@ -62,6 +93,30 @@ export default function Busnisses() {
       ) : (
         ""
       )}
+
+      <div className="comments">
+        {commints.map((element) => {
+          return (
+            <div className="comment">
+              <div className="commenter">
+                <p>{element.displayName}</p>
+              </div>
+
+              <div className="comment">
+                <p>{element.comment}</p>
+              </div>
+              
+            </div>
+          );
+        })}
+        <div>
+          <input type="text" onChange={(e)=>{
+            setUserComment(e.target.value)
+          }} />
+          <button onClick ={addComment} >add Comment</button>
+        </div>
+      </div>
+
     </>
   );
 }
