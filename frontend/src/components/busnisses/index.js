@@ -12,6 +12,7 @@ export default function Busnisses() {
   const [business, setBusiness] = useState("");
   const [commints, setCommints] = useState([]);
   const [userComment, setUserComment] = useState("")
+  const [info, setInfo] = useState(false)
   const thisToken = localStorage.getItem("token")
   const { id } = useParams();
   let arr;
@@ -52,7 +53,7 @@ export default function Busnisses() {
     getimages();
     getDetails();
     getCommit();
-  }, []);
+  }, [info]);
   const addComment  = ()=>{
     axios.post(
       `${process.env.REACT_APP_BACKEND_SERVER}comments/${id}`,
@@ -63,8 +64,12 @@ export default function Busnisses() {
         },
       }
     ).then((result)=>{
-      console.log("result",result.data);
-    }).catch((err)=>{
+      if (info){
+        setInfo(false)
+      }else{
+        setInfo(true)
+      }
+        }).catch((err)=>{
       console.log(err);
     })
       
