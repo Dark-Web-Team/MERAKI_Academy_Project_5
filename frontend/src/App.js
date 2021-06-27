@@ -25,7 +25,7 @@ const App = () => {
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/edit-profile" component={EditProfile} />
       <Route exact path="/category/:type" component={Category} />
-      <Route exact path="/busnisses/:id" component={Busnisses} />
+      <Route exact path="/business/:id" component={Busnisses} />
 
     </div>
   );
