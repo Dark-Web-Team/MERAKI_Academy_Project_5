@@ -8,6 +8,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 export default function Busnisses() {
   const [pictures, setPictures] = useState([]);
   const [errMessage, setErrMessage] = useState("");
+  const [business, setBusiness] = useState("")
   const { id } = useParams();
   let arr;
   const getimages = async () => {
@@ -21,8 +22,20 @@ export default function Busnisses() {
         setErrMessage(error.data);
     }
   };
+
+  const getDetails = async () => {
+    try {
+      const details = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER}business/id/${id}`);
+      console.log("details",details);
+      setBusiness(details.data[0])
+      
+    } catch (error) {
+        setErrMessage(error.data);
+    }
+  };
   useEffect(() => {
     getimages();
+    getDetails();
   }, []);
   return (
     <>
@@ -31,7 +44,14 @@ export default function Busnisses() {
           <ImageGallery items={pictures} />
           {errMessage}
         </div>
-        <div className="information">kkkkkk</div>
+        <div className="information">
+        <h1>{business.displayName}</h1>
+        <p>{business.description}</p>
+        <p>{business.city}</p>
+        <p>{business.number_rating}</p>
+
+
+        </div>
       </div>
     </>
   );
