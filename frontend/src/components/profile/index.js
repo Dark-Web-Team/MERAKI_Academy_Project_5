@@ -56,7 +56,7 @@ export default function Profile() {
                 <span>city:</span> {userInfo[0].city}
               </p>
             </div>
-            <Button  onClick={()=>{history.push("edit-profile")}} >edit profile</Button>
+           <div> <Button id="editButton" onClick={()=>{history.push("edit-profile")}} >edit profile</Button> </div>
 
           </div>
         </div>
