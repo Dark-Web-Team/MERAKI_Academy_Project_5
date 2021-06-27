@@ -67,7 +67,7 @@ export default function Busnisses() {
     }).catch((err)=>{
       console.log(err);
     })
-
+      
   }
   return (
     <>
@@ -118,7 +118,6 @@ export default function Busnisses() {
         </div>
       </div>
 
-      {/* <div>{commints.length?<p>{commints[0].comment}</p>:""}</div> */}
     </>
   );
 }
