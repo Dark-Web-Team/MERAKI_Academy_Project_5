@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-
+import jwt from "jsonwebtoken"
 import { Button } from "react-bootstrap";
-
 import axios from "axios";
 import "./profile.css";
 
@@ -10,6 +9,7 @@ export default function Profile() {
   const [userInfo, setUserInfo] = useState("");
   let thisToken = localStorage.getItem("token");
   const history = useHistory();
+
 
   useEffect(() => {
     axios
@@ -56,8 +56,9 @@ export default function Profile() {
                 <span>city:</span> {userInfo[0].city}
               </p>
             </div>
-           <div> <Button id="editButton" onClick={()=>{history.push("edit-profile")}} >edit profile</Button> </div>
-
+           <div> <Button id="editButton" onClick={()=>{history.push("edit-profile")}} >edit profile</Button> 
+           <Button id="addBusinessButton" onClick={()=>{history.push("/3/addBusiness")}} >Add a business</Button>
+           </div>
           </div>
         </div>
       ) : (
