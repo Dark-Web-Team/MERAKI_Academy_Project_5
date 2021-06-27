@@ -105,7 +105,6 @@ export default function Busnisses() {
               <div className="comment">
                 <p>{element.comment}</p>
               </div>
-
               
             </div>
           );
