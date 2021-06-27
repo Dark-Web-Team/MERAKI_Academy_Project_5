@@ -27,7 +27,7 @@ const Category = () => {
   }
 
   const nextPage = ()=>{
-    if(businesses.length === 16){
+    if(businesses.length === 8){
     setPage(page+1)
     }
   }
