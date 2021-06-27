@@ -6,6 +6,11 @@ width: 45%;
 padding: 40px 20px 0px 20px;
 margin-left: 13px;
 }
+.image-gallery-image {
+   
+    width: 500px;
+    height: 500px;
+}
 .information{
 
 }
@@ -14,3 +19,4 @@ margin-left: 13px;
     display: flex;
     gap: 2%;
 }
+
