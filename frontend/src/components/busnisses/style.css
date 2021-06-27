@@ -1,0 +1,11 @@
+.parent{
+    display: flex;
+}
+.gallery{
+width: 45%;
+padding: 40px 20px 0px 20px;
+margin-left: 13px;
+}
+.information{
+
+}
