@@ -47,6 +47,7 @@ export default function Busnisses() {
         <div className="information">
         <h1>{business.displayName}</h1>
         <p>{business.description}</p>
+        <p>{business.city}</p>
 
 
         </div>
