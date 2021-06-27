@@ -16,7 +16,7 @@ const Category = () => {
   const [businesses, setBusinesses] = useState([]);
   const [errMessage, setErrMessage] = useState("");
   const [priceRange, setPriceRange] = useState("10000");
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("all");
 
 
   const getBusinessByType = async () => {
@@ -32,16 +32,38 @@ const Category = () => {
   };
 
   const filterBusinesses = async ()=>{
-    if(priceRange === "10000"){
+    if(priceRange === "10000" && city ==="all"){
       getBusinessByType()
-    }else{
+      return
+    }
+
+    if (priceRange === "10000"){
       try {
-          const filterResult = await axios.get(`http://localhost:5000/business/filter/${type}/${Number(priceRange)-10}/${Number(priceRange)+10}`);
+        const filterResult = await axios.get(`http://localhost:5000/business/filter1/${type}/${city}`);
+        setBusinesses(filterResult.data);
+    } catch (error) {
+console.log(error);
+    }
+    return
+    }
+
+    if (city === "all"){
+      try {
+        const filterResult = await axios.get(`http://localhost:5000/business/filter/${type}/${Number(priceRange)-10}/${Number(priceRange)+10}`);
+        setBusinesses(filterResult.data);
+    } catch (error) {
+
+    }
+    return
+    }
+      
+      try {
+          const filterResult = await axios.get(`http://localhost:5000/business/filter2/${type}/${Number(priceRange)-10}/${Number(priceRange)+10}/${city}`);
           setBusinesses(filterResult.data);
       } catch (error) {
 
       }
-    }
+    
   }
 
   useEffect(() => {
@@ -77,7 +99,7 @@ const Category = () => {
               setCity(e.target.value);
             }}
           >
-            <option >choose a city</option>
+            <option value="all" >choose a city</option>
             <option value="zarqa">Zarqa</option>
             <option value="amman">Amman</option>
             <option value="irbid">Irbid</option>
