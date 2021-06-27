@@ -95,5 +95,18 @@ const getBusinessByTypeByPrice = (req,res)=>{
     })
 }
 
+const getBusinessByTypeByPriceByCity = (req,res)=>{
+    const {type,lowPrice,highPrice,city}=req.params;
+    const query = 'SELECT * FROM businesses WHERE type=? AND city=? AND booking_price BETWEEN ? AND ?'
+    const parameters=[type,city,lowPrice,highPrice];
 
-module.exports = {addBusiness,updateBusiness,deleteBusiness, getBusinessByType,getBusinessById,getBusinessByTypeByPrice};
+    connection.query(query,parameters,(err,result)=>{
+        if (err) {
+            console.log(err)
+            return res.send(err)
+        }
+        res.status(200).json(result)
+    })
+}
+
+module.exports = {addBusiness,updateBusiness,deleteBusiness, getBusinessByType,getBusinessById,getBusinessByTypeByPrice,getBusinessByTypeByPriceByCity};
