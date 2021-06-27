@@ -18,13 +18,26 @@ const Category = () => {
   const [errMessage, setErrMessage] = useState("");
   const [priceRange, setPriceRange] = useState("10000");
   const [city, setCity] = useState("all");
+  const [page, setPage] = useState(1);
+
+  const previousPage = ()=>{
+    if(page>1){
+      setPage(page-1)
+    }
+  }
+
+  const nextPage = ()=>{
+    if(businesses.length === 16){
+    setPage(page+1)
+    }
+  }
 
 
   const getBusinessByType = async () => {
     dispatch(setPath(location.pathname));
     try {
       const category_businesses = await axios.get(
-        `http://localhost:5000/business/type/${type}`
+        `http://localhost:5000/business/type/${type}/${page}`
       );
       setBusinesses(category_businesses.data);
     } catch (error) {
@@ -40,7 +53,7 @@ const Category = () => {
 
     if (priceRange === "10000"){
       try {
-        const filterResult = await axios.get(`http://localhost:5000/business/filter1/${type}/${city}`);
+        const filterResult = await axios.get(`http://localhost:5000/business/filter1/${type}/${city}/${page}`);
         setBusinesses(filterResult.data);
     } catch (error) {
 console.log(error);
@@ -50,7 +63,7 @@ console.log(error);
 
     if (city === "all"){
       try {
-        const filterResult = await axios.get(`http://localhost:5000/business/filter/${type}/${Number(priceRange)-10}/${Number(priceRange)+10}`);
+        const filterResult = await axios.get(`http://localhost:5000/business/filter/${type}/${Number(priceRange)-10}/${Number(priceRange)+10}/${page}`);
         setBusinesses(filterResult.data);
     } catch (error) {
 
@@ -59,7 +72,7 @@ console.log(error);
     }
       
       try {
-          const filterResult = await axios.get(`http://localhost:5000/business/filter2/${type}/${Number(priceRange)-10}/${Number(priceRange)+10}/${city}`);
+          const filterResult = await axios.get(`http://localhost:5000/business/filter2/${type}/${Number(priceRange)-10}/${Number(priceRange)+10}/${city}/${page}`);
           setBusinesses(filterResult.data);
       } catch (error) {
 
@@ -73,7 +86,7 @@ console.log(error);
 
     useEffect(() => {
       filterBusinesses();
-    }, [priceRange,city]);
+    }, [priceRange,city,page]);
 
   return (
     <div>
@@ -132,6 +145,21 @@ console.log(error);
           );
         })}
       </div>
+      <div className="paginationButtons">
+          <a
+            href="#"
+            className="pagination"
+            id="previous"
+            onClick={() => previousPage()}
+          >
+            ❮
+          </a>
+          <a href="#" className="pagination" id="next" 
+          onClick={() => nextPage()}
+          >
+            ❯
+          </a>
+        </div>
       {errMessage}
     </div>
   );

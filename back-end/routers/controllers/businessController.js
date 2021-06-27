@@ -98,10 +98,11 @@ const deleteBusiness = (req, res) => {
 };
 
 const getBusinessByType = (req, res) => {
-  const type = req.params.type;
-  const query = "SELECT * FROM businesses WHERE type=?";
-  const businessType = [type];
+  const {type, page} = req.params;
+  const query = "SELECT * FROM businesses WHERE type=? LIMIT 16 OFFSET ?";
+  const businessType = [type,((page-1)*16)];
 
+  
   connection.query(query, businessType, (err, result) => {
     if (err) {
       console.log(err);
@@ -126,10 +127,10 @@ const getBusinessById = (req, res) => {
 };
 
 const getBusinessByTypeByPrice = (req, res) => {
-  const { type, lowPrice, highPrice } = req.params;
+  const { type, lowPrice, highPrice,page } = req.params;
   const query =
-    "SELECT * FROM businesses WHERE type=? AND booking_price BETWEEN ? AND ?";
-  const parameters = [type, lowPrice, highPrice];
+    "SELECT * FROM businesses WHERE type=? AND booking_price BETWEEN ? AND ? LIMIT 16 OFFSET ?";
+  const parameters = [type, lowPrice, highPrice,(page-1)*16];
 
   connection.query(query, parameters, (err, result) => {
     if (err) {
@@ -141,10 +142,10 @@ const getBusinessByTypeByPrice = (req, res) => {
 };
 
 const getBusinessByTypeByPriceByCity = (req, res) => {
-  const { type, lowPrice, highPrice, city } = req.params;
+  const { type, lowPrice, highPrice, city,page } = req.params;
   const query =
-    "SELECT * FROM businesses WHERE type=? AND city=? AND booking_price BETWEEN ? AND ?";
-  const parameters = [type, city, lowPrice, highPrice];
+    "SELECT * FROM businesses WHERE type=? AND city=? AND booking_price BETWEEN ? AND ? LIMIT 16 OFFSET ?";
+  const parameters = [type, city, lowPrice, highPrice,(page-1)*16];
 
   connection.query(query, parameters, (err, result) => {
     if (err) {
@@ -156,10 +157,10 @@ const getBusinessByTypeByPriceByCity = (req, res) => {
 };
 
 const getBusinessByCity = (req, res) => {
-  const { type, city } = req.params;
+  const { type, city, page } = req.params;
   const query =
-    "SELECT * FROM businesses WHERE type=? AND city=? ";
-  const parameters = [type, city];
+    "SELECT * FROM businesses WHERE type=? AND city=? LIMIT 16 OFFSET ?";
+  const parameters = [type, city,(page-1)*16];
 
   connection.query(query, parameters, (err, result) => {
     if (err) {
