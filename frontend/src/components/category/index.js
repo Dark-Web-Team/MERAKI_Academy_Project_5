@@ -29,22 +29,26 @@ const Category = () => {
     }
   };
 
-  // const filterBusinesses = async ()=>{
-  //     try {
-  //         const filterResult = await axios.get(`http://localhost:5000/business/filter/${type}/${Number(priceRange)-10}/${Number(priceRange)+10}`);
-  //         setBusinesses(filterResult.data);
-  //     } catch (error) {
+  const filterBusinesses = async ()=>{
+    if(priceRange === "10000"){
+      getBusinessByType()
+    }else{
+      try {
+          const filterResult = await axios.get(`http://localhost:5000/business/filter/${type}/${Number(priceRange)-10}/${Number(priceRange)+10}`);
+          setBusinesses(filterResult.data);
+      } catch (error) {
 
-  //     }
-  // }
+      }
+    }
+  }
 
   useEffect(() => {
     getBusinessByType();
   }, []);
 
-  //   useEffect(() => {
-  //     filterBusinesses();
-  //   }, [priceRange]);
+    useEffect(() => {
+      filterBusinesses();
+    }, [priceRange]);
 
   return (
     <div>
@@ -56,13 +60,14 @@ const Category = () => {
               setPriceRange(e.target.value);
             }}
           >
-            <option>choose a price range</option>
+            <option value="10000">choose a price range</option>
             <option value="10">0-20</option>
             <option value="30">20-40</option>
             <option value="50">40-60</option>
             <option value="10000">All Prices</option>
           </Form.Control>
         </Form>
+
       </div>
       <div className="businesses">
         {businesses.map((elem, i) => {
@@ -71,6 +76,7 @@ const Category = () => {
               key={i}
               style={{ width: `18rem` }}
               className="businessCard bg-dark text-white box"
+              id="businessCard"
               onClick={(e) => {
                 history.push(`/business/${elem.business_id}`);
               }}
