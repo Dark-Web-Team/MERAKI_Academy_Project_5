@@ -44,6 +44,22 @@
     width: 100vw;
 }
 
+.paginationButtons{
+    position: relative;
+    left: 46vw;
+}
+
+.pagination{
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    transition: background-color .3s;
+    border: #ddd solid 2px;
+}
+.pagination:hover{
+    cursor: pointer;
+}
+
 @media screen and (min-width:890px) and (max-width:1200px){
     .businesses{
         grid-template-columns: repeat(3,1fr);
