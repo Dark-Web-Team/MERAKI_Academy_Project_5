@@ -63,26 +63,76 @@
     font-size: 30px;
   }
 
-  .parant_contaner{
-    display: flex;
+  .footer 
+  {
+    height: 200px;
+    background-color: #131921 ;
+    margin-top: 10px;
+   
   }
 
-  .abou_us {width: 40%;}
+  .footerparent{
+    display: flex;
+    justify-content: space-around;
+  }
+  .footerparent > div {
+    width: 30%;
+    
+  }
+  .footerch p {
+    color:white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  #numper_email{
+    font-size: 15px;
+    color: white;
+  }
+
+  .footerch ul 
+  {
+    text-align: center;
+
+  }
+  .footerch ul  li 
+  {
+    list-style-type: none ;
+    color: white;
+    cursor: pointer;
+
+  }
+
+   
+  .footerch ul  li:hover {
+    color: wheat;
+  }
+  #text_booking 
+  {
+    
+    font-size: 30px;
+    margin-top: 50px;
+  }
+
+  .iconsparant
+  {
+    text-align: center;
+    margin-top: 25px;
+  }
+
+  .icons 
+  {
+    font-size: 30px;
+    color: white;
+    margin-left: 30px;
+    cursor: pointer;
+
+  }
+
   
 
-  .paraint_aboutUs{
-    width: 60%;
-    display: grid;
-    grid-template-columns: 30% 30%   ;
-    grid-row-gap: 50px;
-    grid-column-gap: 50px;
-     
-
-  }
-
-  .aboutus_ch {
-    width: 100%;
-  }
+  
 
 
 
