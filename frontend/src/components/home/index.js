@@ -99,7 +99,7 @@ export default function Home() {
 
         <div className="aboutus_ch">
 
-        {/* <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '18rem' }}>
   <Card.Img variant="top" src="holder.js/100px180" />
   <Card.Body>
     <Card.Title>Card Title</Card.Title>
@@ -109,7 +109,7 @@ export default function Home() {
     </Card.Text>
     <Button variant="primary">Go somewhere</Button>
   </Card.Body>
-</Card> */}
+</Card>
         </div>
 
         <div className="aboutus_ch">
