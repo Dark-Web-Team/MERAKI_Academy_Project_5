@@ -40,7 +40,7 @@ export default function Home() {
       </div>
 
       <div className= "parintcatgory" onClick={()=>{
-        history.push("/category/Sport")
+        history.push("/category/sport")
       }}>
           <div className="ch">
               <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/>
