@@ -1,5 +1,5 @@
 import React, {  useEffect } from "react";
-import {  useHistory } from "react-router-dom";
+import {  useHistory  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../reducers/login";
 import {
@@ -15,13 +15,11 @@ import "./navigation.css";
 const Navigation = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  useEffect(()=>{
-    dispatch(setToken(localStorage.getItem("token")));
-  },[])
   const state = useSelector((state) => {
     return {
       token: state.login.token,
     };
+   
   });
   return (
     <div className="nav-container">
