@@ -16,6 +16,7 @@ export default function Busnisses() {
   const [business, setBusiness] = useState("");
   const [commints, setCommints] = useState([]);
   const [userComment, setUserComment] = useState("");
+  const [userRate, setUserRate] = useState(false);
   const [info, setInfo] = useState(false);
   const thisToken = localStorage.getItem("token");
   const { id } = useParams();
@@ -59,11 +60,27 @@ export default function Busnisses() {
       setErrMessage(error.data);
     }
   };
+  const getUserrate = () => {
+    axios.get(`${process.env.REACT_APP_BACKEND_SERVER}rating/${id}`,{
+      headers: {
+        authorization: "Bearer " + thisToken,
+      },
+    }).then((result)=>{
+      setUserRate(result.data[0].rate)
+    }).catch(err=>{
+      if (err.response.data == "not found"){
+        setUserRate(false)      }
+    })
+  };
+
+  ///////////////////////////useEffect/////////////////
   useEffect(() => {
     getimages();
     getDetails();
     getCommit();
+    getUserrate();
   }, [info]);
+  //////////////////////////////////////////////////////
   const addComment = () => {
     axios
       .post(
@@ -135,7 +152,8 @@ export default function Busnisses() {
       )}
 
       <div className="user-rate">
-        <Rating id={id} thisToken={thisToken} setInfo={setInfo} />
+        {!userRate ? <Rating id={id} thisToken={thisToken} setInfo={setInfo} />:
+        <ShowRating rate={userRate} />}
       </div>
       <div className="containers">
         {commints.map((element) => {
