@@ -21,6 +21,11 @@ const AddBusiness = () => {
   const { id } = useParams();
 
   const handleSubmit = async () => {
+      if (displayName === "" || description === "" || bookingPrice === "" || city === "" || openingTime === "" || closingTime === "" || type === "" || main_img === ""){
+        setErrPresent(true);
+        setErrMessage(`please fill all fileds`);
+        return
+      }
     try {
       const addConfirm = await axios.post(
         `${process.env.REACT_APP_BACKEND_SERVER}business`,
@@ -36,7 +41,10 @@ const AddBusiness = () => {
           owner_id: id,
         }
       );
-      console.log(addConfirm)
+      if (addConfirm.data.code === `ER_DUP_ENTRY`){
+        setErrPresent(true);
+        setErrMessage(`business name already exists`);
+      }
     } catch (err) {
       console.log(err.response);
       setErrPresent(true);
