@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./add_business.css";
 import Alert from "react-bootstrap/Alert";
 
@@ -17,15 +17,22 @@ const AddBusiness = () => {
   const [main_img, setMain_img] = useState("");
   const [errMessage, setErrMessage] = useState("");
   const [errPresent, setErrPresent] = useState(false);
+  const [businessCheck, setBusinessCheck] = useState('Please enter your business name')
 
-  const { id } = useParams();
+  const user_id = useSelector(state => state.login.user_id)
 
-  const handleSubmit = async () => {
-      if (displayName === "" || description === "" || bookingPrice === "" || city === "" || openingTime === "" || closingTime === "" || type === "" || main_img === ""){
-        setErrPresent(true);
-        setErrMessage(`please fill all fileds`);
-        return
-      }
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = async (event) => {
+      const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      return
+    } else {
+
+    setValidated(true);
+    event.preventDefault();
     try {
       const addConfirm = await axios.post(
         `${process.env.REACT_APP_BACKEND_SERVER}business`,
@@ -38,24 +45,24 @@ const AddBusiness = () => {
           closingTime,
           type,
           main_img,
-          owner_id: id,
+          owner_id: user_id,
         }
       );
       if (addConfirm.data.code === `ER_DUP_ENTRY`){
-        setErrPresent(true);
-        setErrMessage(`business name already exists`);
+        setBusinessCheck(`business name already exists`);
       }
     } catch (err) {
       console.log(err.response);
       setErrPresent(true);
       setErrMessage(err.response.data);
     }
+}
   };
 
   return (
     <>
       <div className="addBusinss">
-        <Form className="addForm">
+        <Form className="addForm" noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>Business Name</Form.Label>
             <Form.Control
@@ -64,7 +71,11 @@ const AddBusiness = () => {
               onChange={(e) => {
                 setDisplayName(e.target.value);
               }}
+              required
             />
+            <Form.Control.Feedback type="invalid">
+              {businessCheck}
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
             <Form.Label>Select Business Type</Form.Label>
@@ -73,10 +84,14 @@ const AddBusiness = () => {
               onChange={(e) => {
                 setType(e.target.value);
               }}
+              required
             >
               <option value="sport">Sport</option>
               <option value="entertainment">Entertainment</option>
             </Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Please choose your business type.
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
             <Form.Label>Select City</Form.Label>
@@ -85,6 +100,7 @@ const AddBusiness = () => {
               onChange={(e) => {
                 setCity(e.target.value);
               }}
+              required
             >
               <option value="amman">Amman</option>
               <option value="zarqa">Zarqa</option>
@@ -99,6 +115,9 @@ const AddBusiness = () => {
               <option value="madaba">Madaba</option>
               <option value="aqaba">Aqaba</option>
             </Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Please choose a city.
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
             <Form.Label>Booking Price</Form.Label>
@@ -108,7 +127,11 @@ const AddBusiness = () => {
               onChange={(e) => {
                 setBookingPrice(e.target.value);
               }}
+              required
             />
+            <Form.Control.Feedback type="invalid">
+              Please enter a booking price.
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
             <Form.Label>Opening Time</Form.Label>
@@ -118,7 +141,11 @@ const AddBusiness = () => {
               onChange={(e) => {
                 setOpeningTime(e.target.value);
               }}
+              required
             />
+            <Form.Control.Feedback type="invalid">
+              Please enter an opening time.
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
             <Form.Label>Closing Time</Form.Label>
@@ -128,7 +155,11 @@ const AddBusiness = () => {
               onChange={(e) => {
                 setClosingTime(e.target.value);
               }}
+              required
             />
+            <Form.Control.Feedback type="invalid">
+              Please enter a closing time.
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
             <Form.Label>Main Business Image</Form.Label>
@@ -138,7 +169,11 @@ const AddBusiness = () => {
               onChange={(e) => {
                 setMain_img(e.target.value);
               }}
+              required
             />
+             <Form.Control.Feedback type="invalid">
+              Please enter a main image URL.
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
             <Form.Label>Description of Business</Form.Label>
@@ -148,10 +183,13 @@ const AddBusiness = () => {
               onChange={(e) => {
                 setDescription(e.target.value);
               }}
+              required
             />
+             <Form.Control.Feedback type="invalid">
+              Please enter a brief description of your business.
+            </Form.Control.Feedback>
           </Form.Group>
-        </Form>
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
             Submit
           </Button>
           {errPresent && (
@@ -165,6 +203,7 @@ const AddBusiness = () => {
               </Alert>
             </div>
           )}
+        </Form>
       </div>
     </>
   );

@@ -35,7 +35,7 @@ const App = () => {
       <Route exact path="/edit-profile" component={EditProfile} />
       <Route exact path="/category/:type" component={Category} />
       <Route exact path="/business/:id" component={Busnisses} />
-      <Route exact path="/profile/:id/addBusiness" component={AddBusiness} />
+      <Route exact path="/profile/addBusiness" component={AddBusiness} />
     </div>
   );
 };

@@ -8,30 +8,15 @@ import { useSelector } from "react-redux";
 
 export default function Profile() {
   const [userInfo, setUserInfo] = useState("");
-  let thisToken = localStorage.getItem("token");
   const history = useHistory();
-  const token = useSelector(state => state.login.token)
-  let userId = ""
-
-  const getUserId = async ()=>{
-        const token1= token.split(' ').pop();
-        try{
-        const tokenPayload = await jwt.decode(token1);
-        console.log(tokenPayload)
-        userId = tokenPayload.user_id 
-        history.push(`/profile/${userId}/addBusiness`)
-        } catch(err){
-            console.log(err);
-            throw err
-        }
-  }
+  const token = useSelector(state => state.login.token);
 
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
         headers: {
-          authorization: "Bearer " + thisToken,
+          authorization: "Bearer " + token,
         },
       })
       .then((result) => {
@@ -73,7 +58,7 @@ export default function Profile() {
               </p>
             </div>
            <div> <Button id="editButton" onClick={()=>{history.push("edit-profile")}} >edit profile</Button> 
-           <Button id="addBusinessButton" onClick={getUserId} >Add a business</Button>
+           <Button id="addBusinessButton" onClick={()=>{history.push(`/profile/addBusiness`)}} >Add a business</Button>
            </div>
           </div>
         </div>
