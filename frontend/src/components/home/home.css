@@ -63,5 +63,26 @@
     font-size: 30px;
   }
 
+  .parant_contaner{
+    display: flex;
+  }
+
+  .abou_us {width: 40%;}
+  
+
+  .paraint_aboutUs{
+    width: 60%;
+    display: grid;
+    grid-template-columns: 30% 30%   ;
+    grid-row-gap: 50px;
+    grid-column-gap: 50px;
+     
+
+  }
+
+  .aboutus_ch {
+    width: 100%;
+  }
+
 
 
