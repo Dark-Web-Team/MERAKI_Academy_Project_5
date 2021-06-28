@@ -1,0 +1,12 @@
+.addBusinss{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 98vw;
+}
+
+.addForm{
+    width: 40vw;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

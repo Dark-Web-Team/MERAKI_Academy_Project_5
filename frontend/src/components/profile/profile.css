@@ -37,5 +37,10 @@
 
   #editButton {
 margin: auto;
+float: left;
+}
 
+#addBusinessButton{
+  margin:auto;
+  float: right;
 }
