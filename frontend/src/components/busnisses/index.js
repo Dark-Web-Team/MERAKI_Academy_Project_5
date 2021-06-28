@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import Rating from "../rating/rating";
 import "./style.css";
@@ -18,6 +19,12 @@ export default function Busnisses() {
   const [info, setInfo] = useState(false);
   const thisToken = localStorage.getItem("token");
   const { id } = useParams();
+  const state = useSelector((state) => {
+    return {
+      token: state.login.token,
+      user_id: state.login.user_id,
+    };
+  });
   let arr;
   const getimages = async () => {
     try {
@@ -142,13 +149,17 @@ export default function Busnisses() {
                 <p>{element.comment}</p>
               </div>
               <div>
-                <Button
-                  onClick={() => {
-                    deleteComment(element.comment_id);
-                  }}
-                >
-                  delete comment
-                </Button>
+                {state.user_id == element.user_id ? (
+                  <Button
+                    onClick={() => {
+                      deleteComment(element.comment_id);
+                    }}
+                  >
+                    delete comment
+                  </Button>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           );

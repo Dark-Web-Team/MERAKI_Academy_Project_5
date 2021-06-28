@@ -3,27 +3,20 @@ const initialState = {
   user_id :""
 };
 
-export const setToken = (token) => {
+export const setToken = (token,user_id) => {
   return {
     type: "SET_TOKEN",
-    payload: token,
+    payload: {token,user_id}
   };
 };
 
-export const setUser_id = (user_id) => {
-  return {
-    type: "SET_USER_ID",
-    payload: user_id,
-  };
-};
 
 const login = (state = initialState, { type, payload }) => {
   switch (type) {
     case "SET_TOKEN":
-      return { token: payload };
+      return { token: payload.token ,user_id:payload.user_id};
 
-      case "SET_USER_ID":
-      return { user_id: payload };
+     
 
     default:
       return state;
