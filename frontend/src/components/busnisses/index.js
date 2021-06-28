@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Rating from "../rating/rating";
 import "./style.css";
 import ImageGallery from "react-image-gallery";
 import ShowRating from "../category/ShowRating";
 import "react-image-gallery/styles/css/image-gallery.css";
+// import { deleteComment } from "../../../../back-end/routers/controllers/comments";
 
 export default function Busnisses() {
   const [pictures, setPictures] = useState([]);
@@ -75,28 +77,30 @@ export default function Busnisses() {
       .catch((err) => {
         console.log(err);
       });
-    const deleteComment = (comment_id) => {
-      axios
-        .delete(
-          `${process.env.REACT_APP_BACKEND_SERVER}comments/${comment_id}`,
+    
+  };
 
-          {
-            headers: {
-              authorization: "Bearer " + thisToken,
-            },
-          }
-        )
-        .then((result) => {
-          if (info) {
-            setInfo(false);
-          } else {
-            setInfo(true);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+  const deleteComment = (comment_id) => {
+    axios
+      .delete(
+        `${process.env.REACT_APP_BACKEND_SERVER}comments/${comment_id}`,
+
+        {
+          headers: {
+            authorization: "Bearer " + thisToken,
+          },
+        }
+      )
+      .then((result) => {
+        if (info) {
+          setInfo(false);
+        } else {
+          setInfo(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <>
@@ -119,9 +123,18 @@ export default function Busnisses() {
             </p>
           </div>
         </div>
+        
       ) : (
         ""
       )}
+
+      <div className="user-rate">
+      <Rating
+                id={id}
+                thisToken={thisToken}
+                setInfo={setInfo}
+              />
+      </div>
 
       <div className="comments">
         {commints.map((element) => {
@@ -137,25 +150,7 @@ export default function Busnisses() {
               <div>
                 <button
                   onClick={() => {
-                    axios
-                      .delete(
-                        `${process.env.REACT_APP_BACKEND_SERVER}comments/${element.comment_id}`,
-                        {
-                          headers: {
-                            authorization: "Bearer " + thisToken,
-                          },
-                        }
-                      )
-                      .then((result) => {
-                        if (info) {
-                          setInfo(false);
-                        } else {
-                          setInfo(true);
-                        }
-                      })
-                      .catch((err) => {
-                        console.log(err);
-                      });
+                   deleteComment(element.comment_id)
                   }}
                 >
                   delete comment
