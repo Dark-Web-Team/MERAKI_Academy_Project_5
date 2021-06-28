@@ -11,9 +11,9 @@ export default function Busnisses() {
   const [errMessage, setErrMessage] = useState("");
   const [business, setBusiness] = useState("");
   const [commints, setCommints] = useState([]);
-  const [userComment, setUserComment] = useState("")
-  const [info, setInfo] = useState(false)
-  const thisToken = localStorage.getItem("token")
+  const [userComment, setUserComment] = useState("");
+  const [info, setInfo] = useState(false);
+  const thisToken = localStorage.getItem("token");
   const { id } = useParams();
   let arr;
   const getimages = async () => {
@@ -54,28 +54,50 @@ export default function Busnisses() {
     getDetails();
     getCommit();
   }, [info]);
-  const addComment  = ()=>{
-    axios.post(
-      `${process.env.REACT_APP_BACKEND_SERVER}comments/${id}`,
-      {comment: userComment },
-      {
-        headers: {
-          authorization: "Bearer " + thisToken,
-        },
-      }
-    ).then((result)=>{
-      if (info){
-        setInfo(false)
-      }else{
-        setInfo(true)
-      }
-        }).catch((err)=>{
-      console.log(err);
-    })
+  const addComment = () => {
+    axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_SERVER}comments/${id}`,
+        { comment: userComment },
+        {
+          headers: {
+            authorization: "Bearer " + thisToken,
+          },
+        }
+      )
+      .then((result) => {
+        if (info) {
+          setInfo(false);
+        } else {
+          setInfo(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    const deleteComment = (comment_id) => {
+      axios
+        .delete(
+          `${process.env.REACT_APP_BACKEND_SERVER}comments/${comment_id}`,
 
-    
-      
-  }
+          {
+            headers: {
+              authorization: "Bearer " + thisToken,
+            },
+          }
+        )
+        .then((result) => {
+          if (info) {
+            setInfo(false);
+          } else {
+            setInfo(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+  };
   return (
     <>
       {business ? (
@@ -103,7 +125,6 @@ export default function Busnisses() {
 
       <div className="comments">
         {commints.map((element) => {
-          console.log("element",element);
           return (
             <div className="comment">
               <div className="commenter">
@@ -114,38 +135,45 @@ export default function Busnisses() {
                 <p>{element.comment}</p>
               </div>
               <div>
-                <button onClick={()=>{
-                  axios.delete(
-                    `${process.env.REACT_APP_BACKEND_SERVER}comments/${element.comment_id}`,
-                    
-                    {
-                      headers: {
-                        authorization: "Bearer " + thisToken,
-                      },
-                    }
-                  ).then((result)=>{
-                    if (info){
-                      setInfo(false)
-                    }else{
-                      setInfo(true)
-                    }
-                      }).catch((err)=>{
-                    console.log(err);
-                  })
-                }} >delete comment</button>
+                <button
+                  onClick={() => {
+                    axios
+                      .delete(
+                        `${process.env.REACT_APP_BACKEND_SERVER}comments/${element.comment_id}`,
+                        {
+                          headers: {
+                            authorization: "Bearer " + thisToken,
+                          },
+                        }
+                      )
+                      .then((result) => {
+                        if (info) {
+                          setInfo(false);
+                        } else {
+                          setInfo(true);
+                        }
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                      });
+                  }}
+                >
+                  delete comment
+                </button>
               </div>
-              
             </div>
           );
         })}
         <div>
-          <input type="text" onChange={(e)=>{
-            setUserComment(e.target.value)
-          }} />
-          <button onClick ={addComment} >add Comment</button>
+          <input
+            type="text"
+            onChange={(e) => {
+              setUserComment(e.target.value);
+            }}
+          />
+          <button onClick={addComment}>add Comment</button>
         </div>
       </div>
-
     </>
   );
 }
