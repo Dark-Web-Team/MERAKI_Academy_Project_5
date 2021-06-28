@@ -1,4 +1,5 @@
 import React from 'react'
+import {  useHistory  } from "react-router-dom";
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import { Card , Button } from 'react-bootstrap';
@@ -15,6 +16,8 @@ const slideImages = [
   ];
 
 export default function Home() {
+  const history = useHistory();
+
     return (
         <>
         
@@ -36,11 +39,13 @@ export default function Home() {
         </Slide>
       </div>
 
-      <div className= "parintcatgory">
+      <div className= "parintcatgory" onClick={()=>{
+        history.push("/category/Sport")
+      }}>
           <div className="ch">
               <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/>
               <div class="overlay">
-         <div class="text">Hello World</div>
+         <div class="text">Sport</div>
          </div>
 
           </div>

@@ -10,10 +10,10 @@ const AddBusiness = () => {
   const [displayName, setDisplayName] = useState("");
   const [description, setDescription] = useState("");
   const [bookingPrice, setBookingPrice] = useState(0);
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("amman");
   const [openingTime, setOpeningTime] = useState("");
   const [closingTime, setClosingTime] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState("sport");
   const [main_img, setMain_img] = useState("");
   const [errMessage, setErrMessage] = useState("");
   const [errPresent, setErrPresent] = useState(false);
@@ -48,6 +48,7 @@ const AddBusiness = () => {
           owner_id: user_id,
         }
       );
+      console.log(addConfirm.data);
       if (addConfirm.data.code === `ER_DUP_ENTRY`){
         setBusinessCheck(`business name already exists`);
       }
