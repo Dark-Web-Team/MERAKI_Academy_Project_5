@@ -72,6 +72,8 @@ export default function Busnisses() {
         }).catch((err)=>{
       console.log(err);
     })
+
+    
       
   }
   return (
@@ -101,6 +103,7 @@ export default function Busnisses() {
 
       <div className="comments">
         {commints.map((element) => {
+          console.log("element",element);
           return (
             <div className="comment">
               <div className="commenter">
@@ -109,6 +112,27 @@ export default function Busnisses() {
 
               <div className="comment">
                 <p>{element.comment}</p>
+              </div>
+              <div>
+                <button onClick={()=>{
+                  axios.delete(
+                    `${process.env.REACT_APP_BACKEND_SERVER}comments/${element.comment_id}`,
+                    
+                    {
+                      headers: {
+                        authorization: "Bearer " + thisToken,
+                      },
+                    }
+                  ).then((result)=>{
+                    if (info){
+                      setInfo(false)
+                    }else{
+                      setInfo(true)
+                    }
+                      }).catch((err)=>{
+                    console.log(err);
+                  })
+                }} >delete comment</button>
               </div>
               
             </div>
