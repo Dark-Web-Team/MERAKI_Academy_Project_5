@@ -1,6 +1,7 @@
 import React from 'react'
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
+import { Card , Button } from 'react-bootstrap';
 import "./home.css"
 
 
@@ -55,7 +56,78 @@ export default function Home() {
               
           </div>
       </div>
-        
+
+      <div className="parant_contaner">
+
+      <div className = "abou_us">
+       <h1>about us</h1>
+
+       <p>Our website is a specialized reservation system in more than one category, You can login and register on our website by creating an account and choosing the category available to you for the booking process </p>
+      </div>
+
+      <div className = "paraint_aboutUs">
+
+        <div className="aboutus_ch">
+
+        <Card style={{ width: '18rem' }}>
+  <Card.Img variant="top" src="holder.js/100px180" />
+  <Card.Body>
+    <Card.Title>Card Title</Card.Title>
+    <Card.Text>
+      Some quick example text to build on the card title and make up the bulk of
+      the card's content.
+    </Card.Text>
+    <Button variant="primary">Go somewhere</Button>
+  </Card.Body> 
+</Card>
+        </div>
+
+        <div className="aboutus_ch">
+
+        <Card style={{ width: '18rem' }}>
+  <Card.Img variant="top" src="holder.js/100px180" />
+  <Card.Body>
+    <Card.Title>Card Title</Card.Title>
+    <Card.Text>
+      Some quick example text to build on the card title and make up the bulk of
+      the card's content.
+    </Card.Text>
+    <Button variant="primary">Go somewhere</Button>
+  </Card.Body>
+</Card>
+        </div>
+
+        <div className="aboutus_ch">
+
+        <Card style={{ width: '18rem' }}>
+  <Card.Img variant="top" src="holder.js/100px180" />
+  <Card.Body>
+    <Card.Title>Card Title</Card.Title>
+    <Card.Text>
+      Some quick example text to build on the card title and make up the bulk of
+      the card's content.
+    </Card.Text>
+    <Button variant="primary">Go somewhere</Button>
+  </Card.Body>
+</Card>
+        </div>
+
+        <div className="aboutus_ch">
+
+        <Card style={{ width: '18rem' }}>
+  <Card.Img variant="top" src="holder.js/100px180" />
+  <Card.Body>
+    <Card.Title>Card Title</Card.Title>
+    <Card.Text>
+      Some quick example text to build on the card title and make up the bulk of
+      the card's content.
+    </Card.Text>
+    <Button variant="primary">Go somewhere</Button>
+  </Card.Body>
+</Card>
+        </div>
+      </div>
+      </div>
         </>
         
     )
