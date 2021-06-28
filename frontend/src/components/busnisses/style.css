@@ -1,26 +1,61 @@
 .parent{
     display: flex;
+gap: 50px;
+/* justify-content: space-between; */
 }
 .gallery{
-width: 45%;
-padding: 40px 20px 0px 20px;
-margin-left: 13px;
+    border: 2px solid black;
+width: 60%;
+padding: 30px 20px 0px 20px;
+margin-left: 6px;
+}
+.information{
+    border: 2px solid red;
+    width: 30%;
 }
 .image-gallery-image {
    
     width: 500px;
     height: 500px;
 }
-.information{
-
+.header{
+    font-family: "Basel Grotesk";
+    font-size: 24px;
+    line-height: 28px;
 }
 
+.description{
+    font-family: "Basel Grotesk";
+    font-size: 16px;
+    margin-bottom: 12px;
+    letter-spacing: .3px;
+    line-height: 24px;
+}
 .rate {
-    display: grid;
-    gap: 2%;
+    font-family: 'proxima-nova', Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 17px;
+}
+.price{
+    margin-top: 30px;
+    color: #000;
+    font: 600 18px/18px Arial,sans-serif;
+}
+
+.user-rate{
+    font-family: 'proxima-nova', Verdana, sans-serif;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
 }
 .containers {
     display: grid;
       justify-content: left;
+  }
+  .comments{
+    text-align: center;
+    color: black;
+    font-family: "Mukta", sans-serif;
+    text-shadow: 1px 1px #8e8e8e;
   }
 
