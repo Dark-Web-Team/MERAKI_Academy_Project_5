@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./add_business.css";
 import Alert from "react-bootstrap/Alert";
 
@@ -18,7 +18,7 @@ const AddBusiness = () => {
   const [errMessage, setErrMessage] = useState("");
   const [errPresent, setErrPresent] = useState(false);
 
-  const { id } = useParams();
+  const user_id = useSelector(state => state.login.user_id)
 
   const handleSubmit = async () => {
       if (displayName === "" || description === "" || bookingPrice === "" || city === "" || openingTime === "" || closingTime === "" || type === "" || main_img === ""){
@@ -38,7 +38,7 @@ const AddBusiness = () => {
           closingTime,
           type,
           main_img,
-          owner_id: id,
+          owner_id: user_id,
         }
       );
       if (addConfirm.data.code === `ER_DUP_ENTRY`){
