@@ -6,6 +6,7 @@ import "./style.css";
 import ImageGallery from "react-image-gallery";
 import ShowRating from "../category/ShowRating";
 import "react-image-gallery/styles/css/image-gallery.css";
+import { FormControl, Button, Alert } from "react-bootstrap";
 // import { deleteComment } from "../../../../back-end/routers/controllers/comments";
 
 export default function Busnisses() {
@@ -77,7 +78,6 @@ export default function Busnisses() {
       .catch((err) => {
         console.log(err);
       });
-    
   };
 
   const deleteComment = (comment_id) => {
@@ -123,20 +123,14 @@ export default function Busnisses() {
             </p>
           </div>
         </div>
-        
       ) : (
         ""
       )}
 
       <div className="user-rate">
-      <Rating
-                id={id}
-                thisToken={thisToken}
-                setInfo={setInfo}
-              />
+        <Rating id={id} thisToken={thisToken} setInfo={setInfo} />
       </div>
-
-      <div className="comments">
+      <div className="containers">
         {commints.map((element) => {
           return (
             <div className="comment">
@@ -148,27 +142,34 @@ export default function Busnisses() {
                 <p>{element.comment}</p>
               </div>
               <div>
-                <button
+                <Button
                   onClick={() => {
-                   deleteComment(element.comment_id)
+                    deleteComment(element.comment_id);
                   }}
                 >
                   delete comment
-                </button>
+                </Button>
               </div>
             </div>
           );
         })}
         <div>
-          <input
+          <FormControl
+            placeholder="your Comment"
+            type="text"
+            aria-label="Large"
+            aria-describedby="inputGroup-sizing-sm"
             type="text"
             onChange={(e) => {
               setUserComment(e.target.value);
             }}
           />
-          <button onClick={addComment}>add Comment</button>
+          <Button className="singUpButton" onClick={addComment}>
+            add Comment
+          </Button>
         </div>
       </div>
+      <div className="comments"></div>
     </>
   );
 }
