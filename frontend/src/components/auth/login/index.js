@@ -33,8 +33,11 @@ const Login = () => {
         password,
       })
       .then((result) => {
-        dispatch(setToken(result.data.token));
+        const token = result.data.token
+        const tokenPayload = jwt.decode(token);
+        dispatch(setToken(token, tokenPayload.user_id));
         localStorage.setItem("token", result.data.token);
+
         history.push("/");
       })
       .catch((err) => {
