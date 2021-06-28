@@ -44,3 +44,7 @@ float: left;
   margin:auto;
   float: right;
 }
+
+.editForm {
+  margin-top: 2%;
+}

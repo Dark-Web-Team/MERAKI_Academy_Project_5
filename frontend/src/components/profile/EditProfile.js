@@ -66,7 +66,7 @@ export default function EditProfile() {
       {userInfo ? (
         <div className="information">
           <p className="login_text">Edit Your Info..</p> <br />
-          <FormControl
+          <FormControl className="editForm"
             placeholder={`Your Name : ${userInfo[0].displayName}`}
             type="text"
             aria-label="Large"
@@ -75,7 +75,7 @@ export default function EditProfile() {
               setDisplayName(e.target.value);
             }}
           />
-          <FormControl
+          <FormControl className="editForm"
             placeholder={`Your City : ${userInfo[0].city}`}
             type="text"
             aria-label="Large"
@@ -84,14 +84,14 @@ export default function EditProfile() {
               setCity(e.target.value);
             }}
           />
-          <FormControl
+          <FormControl className="editForm"
             id="email-input"
             placeholder={userInfo[0].email}
             type="text"
             aria-label="Large"
             aria-describedby="inputGroup-sizing-sm"
           />
-          <FormControl
+          <FormControl className="editForm"
             placeholder={`Your Age : ${userInfo[0].age}`}
             type="number"
             aria-label="Large"
@@ -100,15 +100,16 @@ export default function EditProfile() {
               setAge(parseInt(e.target.value));
             }}
           />
-          <select
-            onChange={(e) => {
-              setGender(e.target.value);
-            }}
-          >
-            <option>select a gender...</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-          </select>
+          <FormControl  className="editForm"
+          as="select"
+          onChange={(e) => {
+            setGender(e.target.value);
+          }}
+        >
+          <option>Select a gender...</option>
+          <option value="male">male</option>
+          <option value="female">female</option>
+        </FormControl>
           <div className="sign-up-button">
             <Button className="singUpButton" onClick={updateInfo}>
               Update Your Info

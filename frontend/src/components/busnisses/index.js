@@ -8,8 +8,7 @@ import ImageGallery from "react-image-gallery";
 import ShowRating from "../category/ShowRating";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { FormControl, Button, Alert } from "react-bootstrap";
-// import { deleteComment } from "../../../../back-end/routers/controllers/comments";
-
+import {TiDelete} from "react-icons/ti"
 export default function Busnisses() {
   const [pictures, setPictures] = useState([]);
   const [errMessage, setErrMessage] = useState("");
@@ -18,7 +17,6 @@ export default function Busnisses() {
   const [userComment, setUserComment] = useState("");
   const [userRate, setUserRate] = useState(false);
   const [info, setInfo] = useState(false);
-  const thisToken = localStorage.getItem("token");
   const { id } = useParams();
   const state = useSelector((state) => {
     return {
@@ -63,11 +61,12 @@ export default function Busnisses() {
   const getUserrate = () => {
     axios.get(`${process.env.REACT_APP_BACKEND_SERVER}rating/${id}`,{
       headers: {
-        authorization: "Bearer " + thisToken,
+        authorization: "Bearer " + localStorage.getItem("token"),
       },
     }).then((result)=>{
       setUserRate(result.data[0].rate)
     }).catch(err=>{
+      console.log(err.response.data);
       if (err.response.data == "not found"){
         setUserRate(false)      }
     })
@@ -88,7 +87,7 @@ export default function Busnisses() {
         { comment: userComment },
         {
           headers: {
-            authorization: "Bearer " + thisToken,
+            authorization: "Bearer " + state.token,
           },
         }
       )
@@ -111,7 +110,7 @@ export default function Busnisses() {
 
         {
           headers: {
-            authorization: "Bearer " + thisToken,
+            authorization: "Bearer " + state.token,
           },
         }
       )
@@ -152,7 +151,7 @@ export default function Busnisses() {
       )}
 
       <div className="user-rate">
-        {!userRate ? <Rating id={id} thisToken={thisToken} setInfo={setInfo} />:
+        {!userRate ? <Rating id={id} thisToken={state.token} setInfo={setInfo} />:
         <ShowRating rate={userRate} />}
       </div>
       <div className="containers">
@@ -168,13 +167,10 @@ export default function Busnisses() {
               </div>
               <div>
                 {state.user_id == element.user_id ? (
-                  <Button
-                    onClick={() => {
-                      deleteComment(element.comment_id);
-                    }}
-                  >
-                    delete comment
-                  </Button>
+                  <TiDelete onClick={() => {
+                    deleteComment(element.comment_id);
+                  }} />
+                  
                 ) : (
                   ""
                 )}
@@ -198,6 +194,7 @@ export default function Busnisses() {
           </Button>
         </div>
       </div>
+      
       <div className="comments"></div>
     </>
   );
