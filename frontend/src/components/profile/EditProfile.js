@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { FormControl, Button, Alert } from "react-bootstrap";
+import { FormControl, Button } from "react-bootstrap";
+import {  useSelector } from "react-redux";
+
+
 import "./profile.css";
 
 export default function EditProfile() {
@@ -14,13 +17,17 @@ export default function EditProfile() {
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
   const [role_id, setRole_id] = useState(0);
-  let thisToken = localStorage.getItem("token");
 
+  const state = useSelector((state) => {
+    return {
+      token: state.login.token,
+    };
+  });
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
         headers: {
-          authorization: "Bearer " + thisToken,
+          authorization: "Bearer " + state.token,
         },
       })
       .then((result) => {
@@ -36,6 +43,7 @@ export default function EditProfile() {
       .catch((err) => {
         console.log(err.response.data);
       });
+      console.log("state.user_id",state.user_id);
   }, []);
 
   const updateInfo = () => {
@@ -44,7 +52,7 @@ export default function EditProfile() {
       { displayName, city, email,  age, gender, role_id },
       {
         headers: {
-          authorization: "Bearer " + thisToken,
+          authorization: "Bearer " + state.token,
         },
       }
     ).then((result)=>{

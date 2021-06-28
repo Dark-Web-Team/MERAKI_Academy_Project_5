@@ -10,7 +10,8 @@ import EditProfile from "./components/profile/EditProfile"
 import Busnisses from "./components/busnisses/index"
 import AddBusiness from "./components/add_business";
 import { useDispatch } from "react-redux";
-import { setToken } from "./reducers/login";
+import { setToken,setUser_id } from "./reducers/login";
+import jwt from "jsonwebtoken"
 import 'bootstrap/dist/css/bootstrap.min.css';
 require("dotenv").config();
 
@@ -18,8 +19,17 @@ require("dotenv").config();
 
 const App = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
+  useEffect(async() => {
     dispatch(setToken(localStorage.getItem("token")))
+    const token1= localStorage.getItem("token").split(' ').pop();
+    try{
+    const tokenPayload = await jwt.decode(token1);
+    dispatch(setUser_id(tokenPayload.user_id))
+    } catch(err){
+        console.log(err);
+        throw err
+    }
+
   }, [])
   return (
     <div className="App">
