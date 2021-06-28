@@ -61,16 +61,20 @@ export default function Busnisses() {
     }
   };
   const getUserrate = () => {
-    axios.get(`${process.env.REACT_APP_BACKEND_SERVER}rating/${id}`,{
-      headers: {
-        authorization: "Bearer " + thisToken,
-      },
-    }).then((result)=>{
-      setUserRate(result.data[0].rate)
-    }).catch(err=>{
-      if (err.response.data == "not found"){
-        setUserRate(false)      }
-    })
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_SERVER}rating/${id}`, {
+        headers: {
+          authorization: "Bearer " + thisToken,
+        },
+      })
+      .then((result) => {
+        setUserRate(result.data[0].rate);
+      })
+      .catch((err) => {
+        if (err.response.data == "not found") {
+          setUserRate(false);
+        }
+      });
   };
 
   ///////////////////////////useEffect/////////////////
@@ -95,8 +99,10 @@ export default function Busnisses() {
       .then((result) => {
         if (info) {
           setInfo(false);
+          setUserComment("");
         } else {
           setInfo(true);
+          setUserComment("");
         }
       })
       .catch((err) => {
@@ -135,16 +141,17 @@ export default function Busnisses() {
             {errMessage}
           </div>
           <div className="information">
-            <h1>{business.displayName}</h1>
-            <p>{business.description}</p>
+            <h1 className="header">{business.displayName}</h1>
+            <p className="description">{business.description}</p>
             <p>{business.city}</p>
             <p>
               {" "}
               <div className="rate">
-                <ShowRating rate={business.average_rating} /> From{" "}
+                <ShowRating rate={business.average_rating} /> Review from{" "}
                 {business.number_rating} User
               </div>
             </p>
+            <p className="price">${business.booking_price} JD</p>
           </div>
         </div>
       ) : (
@@ -152,8 +159,17 @@ export default function Busnisses() {
       )}
 
       <div className="user-rate">
-        {!userRate ? <Rating id={id} thisToken={thisToken} setInfo={setInfo} />:
-        <ShowRating rate={userRate} />}
+        <h1 className="comments">Comments </h1>
+        {!userRate ? (
+          <>
+            <p>Your rate</p>{" "}
+            <Rating id={id} thisToken={thisToken} setInfo={setInfo} />
+          </>
+        ) : (
+          <>
+            <p>Your rate</p> <ShowRating rate={userRate} />
+          </>
+        )}
       </div>
       <div className="containers">
         {commints.map((element) => {
@@ -189,6 +205,7 @@ export default function Busnisses() {
             aria-label="Large"
             aria-describedby="inputGroup-sizing-sm"
             type="text"
+            value={userComment}
             onChange={(e) => {
               setUserComment(e.target.value);
             }}
