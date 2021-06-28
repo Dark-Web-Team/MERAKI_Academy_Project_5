@@ -68,9 +68,6 @@ export default function Home() {
           <p>Contact Us</p>
           <p id="numper_email">055450500</p>
           <p id="numper_email">Dark-Web@Dark-Web.com</p>
-
-
-          
           </div>
           <div className="footerch">
           <p>Our servies</p>
