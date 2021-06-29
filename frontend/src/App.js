@@ -9,6 +9,7 @@ import Profile from "./components/profile";
 import EditProfile from "./components/profile/EditProfile";
 import Busnisses from "./components/busnisses/index";
 import AddBusiness from "./components/add_business";
+import AboutUs from "./components/aboutUs";
 import { useDispatch } from "react-redux";
 import { setToken } from "./reducers/login";
 import jwt from "jsonwebtoken";
@@ -36,6 +37,7 @@ const App = () => {
       <Route exact path="/category/:type" component={Category} />
       <Route exact path="/business/:id" component={Busnisses} />
       <Route exact path="/profile/addBusiness" component={AddBusiness} />
+      <Route exact path ="/about_us" component ={AboutUs}/>
     </div>
   );
 };

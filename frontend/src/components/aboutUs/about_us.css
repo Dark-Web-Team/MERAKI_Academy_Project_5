@@ -1,0 +1,46 @@
+
+
+.about_us_parant{
+    display: flex;
+    background-image: url("https://brewerimaging.com/wp-content/uploads/2018/03/about-us-background-1.jpg");
+    background-size: cover;
+    height: 400px;
+
+}
+
+.about_us_cheldren 
+{
+    width: 20%;
+    margin: 5% 0 0 15px ;
+}
+.about_us_cheldren2
+{
+    width: 40%;
+    margin-top: 5%;
+    background-color: #ffffff;
+    opacity: 0.3;
+    height: 70%;
+}
+
+.about_us_cheldren p 
+{
+    font-size: 70px;
+    font-weight: bolder;
+}
+.about_us_cheldren p span
+{
+    color:#FFC300;
+    
+}
+#us{
+    font-size: 50px;
+}
+
+.about_us_cheldren2 p {
+    text-align: center;
+    color: black;
+    margin-top: 20%;
+    font-family: cursive;
+    font-weight: bold;
+}
+    
