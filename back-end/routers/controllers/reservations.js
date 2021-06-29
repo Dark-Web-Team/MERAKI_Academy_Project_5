@@ -43,7 +43,21 @@ const getReservationsByDate = (req, res) => {
   });
 };
 
+const getUserReservation = (req, res) => {
+  const reservation_maker = req.token.user_id;
+  const query = `SELECT * FROM reservations WHERE reservation_maker=?;`;
+  const data = [reservation_maker];
+  db.query(query, data, (err, result) => {
+    if (err) {
+      res.send(err);
+      return;
+    }
+    res.status(200).json(result);
+  });
+};
+
 module.exports = {
   addReservations,
   getReservationsByDate,
+  getUserReservation,
 };
