@@ -177,7 +177,6 @@ export default function Busnisses() {
               <Button variant="primary" onClick={handleShow}>
                 Reserve
               </Button>
-
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>Modal heading</Modal.Title>
@@ -187,8 +186,62 @@ export default function Busnisses() {
                     selected={startDate}
                     dateFormat="yyyy/MM/dd"
                     onChange={(date) => {
+                      let array = date
+                        .toString()
+                        .split(" ")
+                        .splice(1, 3)
+                        .reverse();
+                      const array_move = (arr, old_index, new_index) => {
+                        if (new_index >= arr.length) {
+                          let k = new_index - arr.length + 1;
+                          while (k--) {
+                            arr.push(undefined);
+                          }
+                        }
+                        arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+                        return arr;
+                      };
+                      let orgArr = array_move(array, 1, 2);
+                      if (orgArr[1] === "Jan") {
+                        orgArr[1] = "01";
+                      }
+                      if (orgArr[1] === "Feb") {
+                        orgArr[1] = "02";
+                      }
+                      if (orgArr[1] === "Mar") {
+                        orgArr[1] = "03";
+                      }
+                      if (orgArr[1] === "Apr") {
+                        orgArr[1] = "04";
+                      }
+                      if (orgArr[1] === "May") {
+                        orgArr[1] = "05";
+                      }
+                      if (orgArr[1] === "Jun") {
+                        orgArr[1] = "06";
+                      }
+                      if (orgArr[1] === "Jul") {
+                        orgArr[1] = "07";
+                      }
+                      if (orgArr[1] === "Aug") {
+                        orgArr[1] = "08";
+                      }
+                      if (orgArr[1] === "Sep") {
+                        orgArr[1] = "09";
+                      }
+                      if (orgArr[1] === "Oct") {
+                        orgArr[1] = "10";
+                      }
+                      if (orgArr[1] === "Nov") {
+                        orgArr[1] = "11";
+                      }
+                      if (orgArr[1] === "Dec") {
+                        orgArr[1] = "12";
+                      }
+                      orgArr = orgArr.join("-");
+                      console.log(orgArr);
+                      setReservationDate(orgArr);
                       setStartDate(date);
-                      console.log(date);
                     }}
                   />
                 </Modal.Body>
