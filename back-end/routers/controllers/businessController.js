@@ -171,6 +171,19 @@ const getBusinessByCity = (req, res) => {
   });
 };
 
+const searchBusinessByName = (req,res)=>{
+  const {name} = req.parmas;
+  const query = 'SELECT * FROM businesses WHERE displayName LIKE %?%'
+
+  connection.query(query,name,(err,result)=>{
+    if (err) {
+      console.log(err);
+      return res.send(err);
+    }
+    res.status(200).json(result);
+  })
+}
+
 module.exports = {
   addBusiness,
   updateBusiness,
@@ -180,4 +193,5 @@ module.exports = {
   getBusinessByTypeByPrice,
   getBusinessByTypeByPriceByCity,
   getBusinessByCity,
+  searchBusinessByName,
 };
