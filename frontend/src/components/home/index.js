@@ -1,6 +1,8 @@
 import React from 'react'
 import {  useHistory  } from "react-router-dom";
 import { Slide } from 'react-slideshow-image';
+import { Link } from 'react-router-dom';
+
 import 'react-slideshow-image/dist/styles.css';
 import { Card , Button } from 'react-bootstrap';
 import {AiFillFacebook,AiFillTwitterCircle,AiFillYoutube} from 'react-icons/ai'
@@ -78,8 +80,8 @@ export default function Home() {
           <p>Our servies</p>
 
           <ul>
-            <li>Home</li>
-            <li>About US</li>
+            <li >Home</li>
+            <Link  to="/about_us" style={{ textDecoration: 'none', color: "white" }}> About Us </Link>
           </ul>
 
           
