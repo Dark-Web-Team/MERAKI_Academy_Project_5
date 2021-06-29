@@ -1,61 +1,74 @@
-.parent{
-    display: flex;
-gap: 50px;
-/* justify-content: space-between; */
+.parent {
+  display: flex;
+  gap: 50px;
+  /* justify-content: space-between; */
+  background-color: #ffffff;
 }
-.gallery{
-    border: 2px solid black;
-width: 60%;
-padding: 30px 20px 0px 20px;
-margin-left: 6px;
+.gallery {
+  width: 60%;
+  padding: 30px 20px 0px 20px;
+  margin-left: 6px;
+  background-color: #fafafa;
 }
-.information{
-    border: 2px solid red;
-    width: 30%;
+.information {
+  width: 30%;
+  background-color: #ddd;
 }
 .image-gallery-image {
-   
-    width: 500px;
-    height: 500px;
+  width: 500px;
+  height: 500px;
 }
-.header{
-    font-family: "Basel Grotesk";
-    font-size: 24px;
-    line-height: 28px;
+.header {
+  font-family: "Basel Grotesk";
+  font-size: 24px;
+  line-height: 28px;
 }
 
-.description{
-    font-family: "Basel Grotesk";
-    font-size: 16px;
-    margin-bottom: 12px;
-    letter-spacing: .3px;
-    line-height: 24px;
+.description {
+  font-family: "Basel Grotesk";
+  font-size: 16px;
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+  line-height: 24px;
 }
 .rate {
-    font-family: 'proxima-nova', Verdana, sans-serif;
-    font-size: 14px;
-    line-height: 17px;
+  font-family: "proxima-nova", Verdana, sans-serif;
+  font-size: 14px;
+  line-height: 17px;
 }
-.price{
-    margin-top: 30px;
-    color: #000;
-    font: 600 18px/18px Arial,sans-serif;
+.price {
+  margin-top: 30px;
+  color: #000;
+  font: 600 18px/18px Arial, sans-serif;
 }
 
-.user-rate{
-    font-family: 'proxima-nova', Verdana, sans-serif;
-    font-size: 14px;
-    line-height: 17px;
-    color: #000000;
+.user-rate {
+  font-family: "proxima-nova", Verdana, sans-serif;
+  font-size: 14px;
+
+  color: #000000;
 }
 .containers {
-    display: grid;
-      justify-content: left;
-  }
-  .comments{
-    text-align: center;
-    color: black;
-    font-family: "Mukta", sans-serif;
-    text-shadow: 1px 1px #8e8e8e;
-  }
-
+  border: 2px solid green;
+  display: grid;
+  justify-content: left;
+}
+.comments {
+  text-decoration: underline;
+  padding-top: 10px;
+  font-size: 20px;
+  text-align: left;
+  color: black;
+  font-family: "proxima-nova", Verdana, sans-serif;
+}
+.comment {
+  width: 200px;
+  border: 1px solid green;
+  position: relative;
+}
+.comment2 {
+  width: 20px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
