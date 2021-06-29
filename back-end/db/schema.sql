@@ -105,5 +105,5 @@ INSERT INTO roles (role) VALUES ('admin');
 INSERT INTO roles (role) VALUES ('owner');
 
 
-
+SELECT reservation_time FROM reservations WHERE reserved_business=3 AND reservation_date="2021-06-28";
 
