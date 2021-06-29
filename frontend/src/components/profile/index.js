@@ -30,7 +30,7 @@ export default function Profile() {
   return (
     <>
       {userInfo ? (
-        <div className="information">
+        <div className="profile-information">
           <p id="your-information">Profile Info</p>
           <div className="user-info">
             <div className="info">
