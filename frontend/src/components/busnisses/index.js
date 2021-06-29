@@ -8,6 +8,7 @@ import ImageGallery from "react-image-gallery";
 import ShowRating from "../category/ShowRating";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { FormControl, Button, Alert } from "react-bootstrap";
+import { AiOutlineDelete } from "react-icons/ai";
 // import { deleteComment } from "../../../../back-end/routers/controllers/comments";
 
 export default function Busnisses() {
@@ -152,15 +153,7 @@ export default function Busnisses() {
               </div>
             </p>
             <p className="price">${business.booking_price} JD</p>
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
-
-      <div className="user-rate">
-        <h1 className="comments">Comments </h1>
-        {!userRate ? (
+            {!userRate ? (
           <>
             <p>Your rate</p>{" "}
             <Rating id={id} thisToken={thisToken} setInfo={setInfo} />
@@ -170,8 +163,15 @@ export default function Busnisses() {
             <p>Your rate</p> <ShowRating rate={userRate} />
           </>
         )}
-      </div>
-      <div className="containers">
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+
+      <div className="user-rate">
+        <h1 className="comments">Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+        <div className="containers">
         {commints.map((element) => {
           return (
             <div className="comment">
@@ -179,18 +179,18 @@ export default function Busnisses() {
                 <p>{element.displayName}</p>
               </div>
 
-              <div className="comment">
+              <div >
                 <p>{element.comment}</p>
               </div>
-              <div>
+              <div className="comment2">
                 {state.user_id == element.user_id ? (
-                  <Button
+                  <AiOutlineDelete
                     onClick={() => {
                       deleteComment(element.comment_id);
                     }}
                   >
                     delete comment
-                  </Button>
+                  </AiOutlineDelete>
                 ) : (
                   ""
                 )}
@@ -215,6 +215,8 @@ export default function Busnisses() {
           </Button>
         </div>
       </div>
+      </div>
+     
       <div className="comments"></div>
     </>
   );
