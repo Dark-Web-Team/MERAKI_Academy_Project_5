@@ -1,4 +1,5 @@
-import React, {  useEffect } from "react";
+
+import React, {  useEffect ,useState } from "react";
 import { Link, useHistory  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../reducers/login";
@@ -15,12 +16,15 @@ import "./navigation.css";
 const Navigation = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [search, setSearch] = useState('');
+
   const state = useSelector((state) => {
     return {
       token: state.login.token,
     };
-   
   });
+
   return (
     <div className="nav-container">
       <Navbar bg="dark" variant="dark">
@@ -71,8 +75,12 @@ const Navigation = () => {
           )}
         </Nav>
         <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">Search</Button>
+          <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={(e)=>{
+            setSearch(e.target.value)
+          }} />
+          <Button variant="outline-info" onClick={()=>{
+            history.push(`/search/${search}`)
+          }}>Search</Button>
         </Form>
       </Navbar>
     </div>

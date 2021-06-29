@@ -7,13 +7,12 @@ import "./style.css";
 import ImageGallery from "react-image-gallery";
 import ShowRating from "../category/ShowRating";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { FormControl, Button, Alert } from "react-bootstrap";
+import { FormControl, Button, Alert, Modal } from "react-bootstrap";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
-
-
-// import { deleteComment } from "../../../../back-end/routers/controllers/comments";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Busnisses() {
   const [pictures, setPictures] = useState([]);
@@ -23,6 +22,12 @@ export default function Busnisses() {
   const [userComment, setUserComment] = useState("");
   const [userRate, setUserRate] = useState(false);
   const [info, setInfo] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [startDate, setStartDate] = useState(new Date());
+  const [reservationDate, setReservationDate] = useState("");
+
   const thisToken = localStorage.getItem("token");
   const { id } = useParams();
   const state = useSelector((state) => {
@@ -138,7 +143,6 @@ export default function Busnisses() {
       });
   };
 
- 
   return (
     <>
       {business ? (
@@ -160,15 +164,44 @@ export default function Busnisses() {
             </p>
             <p className="price">${business.booking_price} JD</p>
             {!userRate ? (
-          <>
-            <p>Your rate</p>{" "}
-            <Rating id={id} thisToken={thisToken} setInfo={setInfo} />
-          </>
-        ) : (
-          <>
-            <p>Your rate</p> <ShowRating rate={userRate} />
-          </>
-        )}
+              <>
+                <p>Your rate</p>{" "}
+                <Rating id={id} thisToken={thisToken} setInfo={setInfo} />
+              </>
+            ) : (
+              <>
+                <p>Your rate</p> <ShowRating rate={userRate} />
+              </>
+            )}
+            <>
+              <Button variant="primary" onClick={handleShow}>
+                Reserve
+              </Button>
+
+              <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <DatePicker
+                    selected={startDate}
+                    dateFormat="yyyy/MM/dd"
+                    onChange={(date) => {
+                      setStartDate(date);
+                      console.log(date);
+                    }}
+                  />
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={handleClose}>
+                    Save Changes
+                  </Button>
+                </Modal.Footer>
+              </Modal>
+            </>
           </div>
         </div>
       ) : (
@@ -178,52 +211,50 @@ export default function Busnisses() {
       <div className="user-rate">
         <h1 className="comments">Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
         <div className="containers">
-        {commints.map((element) => {
-          return (
-            <div className="comment">
-              <div className="commenter">
-              <FaUserCircle class="profilePic_2"/>
-                <p id ='name_2'>{element.displayName}</p>
-                <p class="answer">{element.comment}</p>
+          {commints.map((element) => {
+            return (
+              <div className="comment">
+                <div className="commenter">
+                  <FaUserCircle class="profilePic_2" />
+                  <p id="name_2">{element.displayName}</p>
+                  <p class="answer">{element.comment}</p>
+                </div>
+
+                <div className="comment2">
+                  {state.user_id == element.user_id ? (
+                    <AiOutlineDelete
+                      className="delete"
+                      onClick={() => {
+                        deleteComment(element.comment_id);
+                      }}
+                    >
+                      delete comment
+                    </AiOutlineDelete>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
-               
-              <div className="comment2">
-                {state.user_id == element.user_id ? (
-                  <AiOutlineDelete
-                  className = 'delete'
-                    onClick={() => {
-                      deleteComment(element.comment_id);
-                    
-                    }}
-                  >
-                    delete comment
-                  </AiOutlineDelete>
-                ) : (
-                  ""
-                )}
-              </div>
-            </div>
-          );
-        })}
-        <div>
-          <FormControl
-            placeholder="your Comment"
-            type="text"
-            aria-label="Large"
-            aria-describedby="inputGroup-sizing-sm"
-            type="text"
-            value={userComment}
-            onChange={(e) => {
-              setUserComment(e.target.value);
-            }}
-          />
-          <Button className="singUpButton" onClick={addComment}>
-            add Comment
-          </Button>
+            );
+          })}
+          <div>
+            <FormControl
+              placeholder="your Comment"
+              type="text"
+              aria-label="Large"
+              aria-describedby="inputGroup-sizing-sm"
+              type="text"
+              value={userComment}
+              onChange={(e) => {
+                setUserComment(e.target.value);
+              }}
+            />
+            <Button className="singUpButton" onClick={addComment}>
+              add Comment
+            </Button>
+          </div>
         </div>
       </div>
-      </div>
-     
       <div className="comments"></div>
     </>
   );

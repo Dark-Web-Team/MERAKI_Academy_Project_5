@@ -44,7 +44,7 @@ export default function EditProfile() {
         console.log(err.response.data);
       });
       console.log("state.user_id",state.user_id);
-  }, []);
+  }, [state]);
 
   const updateInfo = () => {
     axios.put(
