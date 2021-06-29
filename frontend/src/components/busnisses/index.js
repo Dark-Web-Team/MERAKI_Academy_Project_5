@@ -9,6 +9,10 @@ import ShowRating from "../category/ShowRating";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { FormControl, Button, Alert } from "react-bootstrap";
 import { AiOutlineDelete } from "react-icons/ai";
+import { FiSend } from "react-icons/fi";
+import { FaUserCircle } from "react-icons/fa";
+
+
 // import { deleteComment } from "../../../../back-end/routers/controllers/comments";
 
 export default function Busnisses() {
@@ -133,6 +137,8 @@ export default function Busnisses() {
         console.log(err);
       });
   };
+
+ 
   return (
     <>
       {business ? (
@@ -176,17 +182,18 @@ export default function Busnisses() {
           return (
             <div className="comment">
               <div className="commenter">
-                <p>{element.displayName}</p>
+              <FaUserCircle class="profilePic_2"/>
+                <p id ='name_2'>{element.displayName}</p>
+                <p class="answer">{element.comment}</p>
               </div>
-
-              <div >
-                <p>{element.comment}</p>
-              </div>
+               
               <div className="comment2">
                 {state.user_id == element.user_id ? (
                   <AiOutlineDelete
+                  className = 'delete'
                     onClick={() => {
                       deleteComment(element.comment_id);
+                    
                     }}
                   >
                     delete comment

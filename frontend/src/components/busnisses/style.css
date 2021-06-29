@@ -72,3 +72,38 @@
   top: 0px;
   right: 0px;
 }
+
+.profilePic_2 {
+    padding-left: 3px;
+    padding-top: 3px;
+    width: 30px;
+    height: 30px;
+    border-radius: 35px;
+  }
+  #name_2 {
+    position: absolute;
+    top: 0px;
+    /* right: 120px; */
+    left:35px ;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: "Mukta", sans-serif;
+    background-color: #dad6d6;
+    padding: 10px;
+    border-radius: 6px 6px 0px 6px;
+  }
+  
+  
+  .answer {
+    width: max-content;
+    margin: 4px;
+    margin-left: 35px;
+    padding: 10px;
+    font-size: 13px;
+    font-family: "Mukta", sans-serif;
+    background-color: #dad6d6;
+    border-radius: 0px 6px 6px 6px;
+  }
+  .delete{
+      cursor: pointer;
+  }
