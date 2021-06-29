@@ -172,10 +172,11 @@ const getBusinessByCity = (req, res) => {
 };
 
 const searchBusinessByName = (req,res)=>{
-  const {name} = req.parmas;
-  const query = 'SELECT * FROM businesses WHERE displayName LIKE %?%'
+  const {name} = req.params;
+  const query = 'SELECT * FROM businesses WHERE displayName LIKE ?'
+  const nameSearched = [`%${name}%`]
 
-  connection.query(query,name,(err,result)=>{
+  connection.query(query,nameSearched,(err,result)=>{
     if (err) {
       console.log(err);
       return res.send(err);
