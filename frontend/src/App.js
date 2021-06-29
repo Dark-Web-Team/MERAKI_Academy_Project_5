@@ -13,6 +13,8 @@ import { useDispatch } from "react-redux";
 import { setToken } from "./reducers/login";
 import jwt from "jsonwebtoken";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Search_results from "./components/search_results/index"
+
 require("dotenv").config();
 
 const App = () => {
@@ -36,6 +38,7 @@ const App = () => {
       <Route exact path="/category/:type" component={Category} />
       <Route exact path="/business/:id" component={Busnisses} />
       <Route exact path="/profile/addBusiness" component={AddBusiness} />
+      <Route exact path="/search/:search" component={Search_results} />
     </div>
   );
 };
