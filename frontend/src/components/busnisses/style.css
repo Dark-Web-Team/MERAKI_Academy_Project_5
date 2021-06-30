@@ -6,8 +6,8 @@
 }
 .gallery {
   width: 60%;
-  padding: 30px 20px 0px 20px;
-  margin-left: 6px;
+  padding: 5px 20px 0px 20px;
+  /* margin-left: 6px; */
   background-color: #fafafa;
 }
 .information {

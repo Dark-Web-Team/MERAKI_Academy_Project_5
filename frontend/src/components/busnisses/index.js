@@ -1,4 +1,4 @@
-import React, { useState, useEffect ,useRef} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -6,7 +6,7 @@ import Rating from "../rating/rating";
 import "./style.css";
 import ImageGallery from "react-image-gallery";
 import ShowRating from "../category/ShowRating";
-import TimeSelect from "../select"
+import TimeSelect from "../select";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { FormControl, Button, Alert, Modal } from "react-bootstrap";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -14,12 +14,11 @@ import { FiSend } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/splide/dist/css/themes/splide-sea-green.min.css';
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/splide/dist/css/themes/splide-sea-green.min.css";
 
 export default function Busnisses() {
-
-  // STATES 
+  // STATES
   const [pictures, setPictures] = useState([]);
   const [errMessage, setErrMessage] = useState("");
   const [business, setBusiness] = useState("");
@@ -33,7 +32,7 @@ export default function Busnisses() {
   const [startDate, setStartDate] = useState(new Date());
   const [reservationDate, setReservationDate] = useState("");
   const [staePrimaryRef, setStaePrimaryRef] = useState(null);
-const [stateSecondaryRef, setStateSecondaryRef] = useState(null)
+  const [stateSecondaryRef, setStateSecondaryRef] = useState(null);
 
   //TOKEN
   const thisToken = localStorage.getItem("token");
@@ -45,14 +44,13 @@ const [stateSecondaryRef, setStateSecondaryRef] = useState(null)
     };
   });
 
-
   // FUNCTIONS ---------------------------------------------------
   let arr;
   const getimages = async () => {
     try {
       const picture = await axios.get(`http://localhost:5000/image/${id}`);
       arr = picture.data.map((elem, i) => {
-        return   elem.image
+        return elem.image;
       });
       console.log(arr);
       setPictures(arr);
@@ -60,7 +58,6 @@ const [stateSecondaryRef, setStateSecondaryRef] = useState(null)
       setErrMessage(error.data);
     }
   };
- 
 
   const getDetails = async () => {
     try {
@@ -73,7 +70,6 @@ const [stateSecondaryRef, setStateSecondaryRef] = useState(null)
     }
   };
 
-
   const getCommit = async () => {
     try {
       const details = await axios.get(
@@ -84,7 +80,6 @@ const [stateSecondaryRef, setStateSecondaryRef] = useState(null)
       setErrMessage(error.data);
     }
   };
-
 
   const getUserrate = () => {
     axios
@@ -102,7 +97,6 @@ const [stateSecondaryRef, setStateSecondaryRef] = useState(null)
         }
       });
   };
-
 
   const addComment = () => {
     axios
@@ -151,89 +145,85 @@ const [stateSecondaryRef, setStateSecondaryRef] = useState(null)
         console.log(err);
       });
   };
-//-----------------------------------------------------
+  //-----------------------------------------------------
 
-  
-// GALLERY
-const primaryRef   = useRef();
-if (primaryRef.current){
-  if (!staePrimaryRef){
-  setStaePrimaryRef(true)}
-}
+  // GALLERY
+  const primaryRef = useRef();
+  if (primaryRef.current) {
+    if (!staePrimaryRef) {
+      setStaePrimaryRef(true);
+    }
+  }
 
-const secondaryRef = useRef();
-if (secondaryRef.current){
-  if (!stateSecondaryRef){
-  setStateSecondaryRef(true)}
-}
-
-
-  // useEffect(() => {
-	// 	// Set the sync target right after the component is mounted.
-	// 	primaryRef.current.sync( secondaryRef.current.splide );
-	// }, [])
+  const secondaryRef = useRef();
+  if (secondaryRef.current) {
+    if (!stateSecondaryRef) {
+      setStateSecondaryRef(true);
+    }
+  }
 
   const primaryOptions = {
-    type      : 'loop',
-    width     : 400,
-    perPage   : 1,
-    perMove   : 1,
-    gap       : '1rem',
+    type: "loop",
+    width: 900,
+    height:400,
+    perPage: 1,
+    perMove: 1,
+    gap: "1rem",
     pagination: false,
-    
-
   };
 
   const secondaryOptions = {
-    fixedWidth  : 100,
-    width     : 400,
-  height      : 60,
-  gap         : 10,
-  cover       : true,
-  pagination: false,
-  isNavigation: true,
-  focus       : 'center',
-  arrows:false,
+    fixedWidth: 100,
+    height: 60,
+    gap: 10,
+    cover: true,
+    pagination: false,
+    isNavigation: true,
+    focus: "center",
+    arrows: false,
 
-  breakpoints : {
-    '600': {
-      fixedWidth: 66,
-      height    : 40,
-    }
-  },
+    breakpoints: {
+      600: {
+        fixedWidth: 66,
+        height: 40,
+      },
+    },
   };
 
-// useEffect
+  // useEffect
 
-useEffect(() => {
-   getimages();
-  getDetails();
-  getCommit();
-  getUserrate();
-  if (primaryRef.current){
-  primaryRef.current.sync( secondaryRef.current.splide );
-  }
-}, [staePrimaryRef,info]);
+  useEffect(() => {
+    getimages();
+    getDetails();
+    getCommit();
+    getUserrate();
+    if (primaryRef.current) {
+      primaryRef.current.sync(secondaryRef.current.splide);
+    }
+  }, [staePrimaryRef, info]);
   return (
     <>
       {business ? (
         <div className="parent">
           <div className="gallery">
-            {/* <ImageGallery items={pictures} /> */}
-            <Splide options={ primaryOptions } ref={ primaryRef }>
-        {pictures.map((elem, i) => {
-        return ( <SplideSlide>
-          <img width="395"  height = '200' src={elem}/>
-        </SplideSlide>)
-      })}
-      </Splide>
-      <Splide options={ secondaryOptions } ref={ secondaryRef }>
-      {pictures.map((elem, i) => {
-        return ( <SplideSlide>
-          <img width="395" src={elem}/>
-        </SplideSlide>)
-      })}
-      </Splide>
+            <Splide options={primaryOptions} ref={primaryRef}>
+              {pictures.map((elem, i) => {
+                return (
+                  <SplideSlide>
+                    <img width="900" height = '450' src={elem} />
+                  </SplideSlide>
+                );
+              })}
+            </Splide>
+            <Splide options={secondaryOptions} ref={secondaryRef}>
+              {pictures.map((elem, i) => {
+                return (
+                  <SplideSlide>
+                    <img src={elem} />
+                  </SplideSlide>
+                );
+              })}
+            </Splide>
             {errMessage}
           </div>
           <div className="information">
@@ -328,9 +318,8 @@ useEffect(() => {
                       setStartDate(date);
                     }}
                   />
-                  <TimeSelect busnisses_id = {id} date = {reservationDate} />
+                  <TimeSelect busnisses_id={id} date={reservationDate} />
                 </Modal.Body>
-                
               </Modal>
             </>
           </div>
