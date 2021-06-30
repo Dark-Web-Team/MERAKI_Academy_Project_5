@@ -25,10 +25,22 @@ export default function Payment() {
     */
   return (
     <>
-      <div>
+
         <div className="h4">
           <h4>inter your credit Card details to continue with your payment</h4>
         </div>
+      <div className="parant-payment">
+      < div className = "cardchldren">
+          <Cards
+            number={number}
+            name={name}
+            expiry={expiry}
+            cvc={cvc}
+            focused={focused}
+          />
+          
+        </div>
+        
         <div className="payment-input">
           <div>
           <FormControl
@@ -91,20 +103,15 @@ export default function Payment() {
             />
           </div>
         </div>
-        <div>
-          <Cards
-            number={number}
-            name={name}
-            expiry={expiry}
-            cvc={cvc}
-            focused={focused}
-          />
-        </div>
-        <div className = "button">
+        
+        
+      </div>
+
+      <div className = "button">
+          <button>Confirm Payment</button>
           {/* {!pay?<button onClick={payNow}>Confirm Payment</button>:<div>Payment done</div>} */}
           
         </div>
-      </div>
     </>
   );
 }

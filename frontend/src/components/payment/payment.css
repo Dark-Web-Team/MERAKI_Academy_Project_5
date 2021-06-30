@@ -6,6 +6,25 @@
     
 }
 
+.parant-payment 
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    width: 95vw;
+    box-shadow: 20px 20px 20px 10px #f5f6f9;
+}
+
+.parant-payment > div 
+{
+    width: 30%;
+}
+
+.cardchldren
+{
+    margin-top: 45px;
+    
+}
 .payment-input {
 display: flex;
 flex-direction: column;
@@ -32,9 +51,7 @@ flex-direction: column;
 
 
 .button {
-    width: 400px;
-    margin: auto;
-    margin-top: 20px;
+    margin: 30px 0 0 30% ;
 }
 
 button {
@@ -46,4 +63,5 @@ button {
     font-size: 16px;
     background-color: #2e5d73;
     color: white;
+
 }
