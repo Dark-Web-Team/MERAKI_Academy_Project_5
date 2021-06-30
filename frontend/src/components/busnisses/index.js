@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useRef} from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -14,8 +14,12 @@ import { FiSend } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/splide/dist/css/themes/splide-sea-green.min.css';
 
 export default function Busnisses() {
+
+  // STATES 
   const [pictures, setPictures] = useState([]);
   const [errMessage, setErrMessage] = useState("");
   const [business, setBusiness] = useState("");
@@ -29,6 +33,8 @@ export default function Busnisses() {
   const [startDate, setStartDate] = useState(new Date());
   const [reservationDate, setReservationDate] = useState("");
 
+
+  //TOKEN
   const thisToken = localStorage.getItem("token");
   const { id } = useParams();
   const state = useSelector((state) => {
@@ -37,18 +43,23 @@ export default function Busnisses() {
       user_id: state.login.user_id,
     };
   });
+
+
+  // FUNCTIONS ---------------------------------------------------
   let arr;
   const getimages = async () => {
     try {
       const picture = await axios.get(`http://localhost:5000/image/${id}`);
       arr = picture.data.map((elem, i) => {
-        return { original: elem.image, thumbnail: elem.image };
+        return   elem.image
       });
+      console.log(arr);
       setPictures(arr);
     } catch (error) {
       setErrMessage(error.data);
     }
   };
+ 
 
   const getDetails = async () => {
     try {
@@ -61,6 +72,7 @@ export default function Busnisses() {
     }
   };
 
+
   const getCommit = async () => {
     try {
       const details = await axios.get(
@@ -71,6 +83,8 @@ export default function Busnisses() {
       setErrMessage(error.data);
     }
   };
+
+
   const getUserrate = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_SERVER}rating/${id}`, {
@@ -88,14 +102,7 @@ export default function Busnisses() {
       });
   };
 
-  ///////////////////////////useEffect/////////////////
-  useEffect(() => {
-    getimages();
-    getDetails();
-    getCommit();
-    getUserrate();
-  }, [info]);
-  //////////////////////////////////////////////////////
+
   const addComment = () => {
     axios
       .post(
@@ -143,13 +150,79 @@ export default function Busnisses() {
         console.log(err);
       });
   };
+//-----------------------------------------------------
 
+  
+// GALLERY
+const primaryRef   = useRef();
+const secondaryRef = useRef();
+
+
+  // useEffect(() => {
+	// 	// Set the sync target right after the component is mounted.
+	// 	primaryRef.current.sync( secondaryRef.current.splide );
+	// }, [])
+
+  const primaryOptions = {
+    type      : 'loop',
+    width     : 400,
+    perPage   : 1,
+    perMove   : 1,
+    gap       : '1rem',
+    pagination: false,
+    
+
+  };
+
+  const secondaryOptions = {
+    fixedWidth  : 100,
+    width     : 400,
+  height      : 60,
+  gap         : 10,
+  cover       : true,
+  pagination: false,
+  isNavigation: true,
+  focus       : 'center',
+  arrows:false,
+
+  breakpoints : {
+    '600': {
+      fixedWidth: 66,
+      height    : 40,
+    }
+  },
+  };
+
+// useEffect
+
+useEffect(() => {
+   getimages();
+  getDetails();
+  getCommit();
+  getUserrate();
+
+  primaryRef.current.sync( secondaryRef.current.splide );
+}, []);
   return (
     <>
       {business ? (
         <div className="parent">
           <div className="gallery">
-            <ImageGallery items={pictures} />
+            {/* <ImageGallery items={pictures} /> */}
+            <Splide options={ primaryOptions } ref={ primaryRef }>
+        {pictures.map((elem, i) => {
+        return ( <SplideSlide>
+          <img width="395"  height = '200' src={elem}/>
+        </SplideSlide>)
+      })}
+      </Splide>
+      <Splide options={ secondaryOptions } ref={ secondaryRef }>
+      {pictures.map((elem, i) => {
+        return ( <SplideSlide>
+          <img width="395" src={elem}/>
+        </SplideSlide>)
+      })}
+      </Splide>
             {errMessage}
           </div>
           <div className="information">
