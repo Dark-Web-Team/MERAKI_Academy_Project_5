@@ -29,6 +29,9 @@ export default function Busnisses() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [show2, setShow2] = useState(false);
+  const handleClose2 = () => setShow2(false);
+  const handleShow2 = () => setShow2(true);
   const [startDate, setStartDate] = useState(new Date());
   const [reservationDate, setReservationDate] = useState("");
   const [staePrimaryRef, setStaePrimaryRef] = useState(null);
@@ -161,6 +164,7 @@ export default function Busnisses() {
       }
     ).then(result=>{
       if (result.status === 201){
+        handleClose2()
         if (info) {
           setInfo(false);
         } else {
@@ -254,6 +258,12 @@ export default function Busnisses() {
 
             {business.owner_id === state.user_id ? (
               <div>
+                <Button onClick={handleShow2}> add photo </Button>
+                <Modal show={show2} onHide={handleClose2}>
+                <Modal.Header closeButton>
+                  <Modal.Title>Add Photo</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                 <FormControl
                   placeholder="add link for photo "
                   type="text"
@@ -265,6 +275,8 @@ export default function Busnisses() {
                   }}
                 />
                 <Button onClick={addPhotoToBusiness}> add photo </Button>
+                </Modal.Body>
+              </Modal>
               </div>
             ) : (
               ""
