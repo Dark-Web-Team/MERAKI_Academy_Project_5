@@ -1,5 +1,5 @@
 
-import React, {   useState } from "react";
+import React, {   useEffect, useState } from "react";
 import {  useHistory  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../reducers/login";
@@ -12,18 +12,59 @@ import {
   NavDropdown,
 } from "react-bootstrap";
 import "./navigation.css";
+import Autosuggest from "react-autosuggest"
+import theme from "./theme";
+
+const business = [
+  {name:`sports`}, {name:`entertainment`}
+]
+
+const getSuggestions = (value) => {
+  console.log('value',value)
+  const inputValue = value.trim().toLowerCase();
+  const inputLength = inputValue.length;
+
+  return inputLength === 0 ? [] : business.filter((elem) =>
+    elem.name.toLowerCase().slice(0, inputLength) === inputValue
+  );
+};
+
+const getSuggestionValue = suggestion => {
+  return suggestion
+};
+
+const renderSuggestion = suggestion => (
+  <div>
+    {suggestion.name}
+  </div>
+);
 
 const Navigation = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [search, setSearch] = useState('');
+  const [value, setValue] = useState('');
+  const [suggestion, setSuggestion] = useState([])
 
   const state = useSelector((state) => {
     return {
       token: state.login.token,
     };
   });
+
+  const onSuggestionsFetchRequested = ( {value} ) => {
+    setSuggestion(getSuggestions(value))
+  };
+
+  const onSuggestionsClearRequested = () => {
+    setSuggestion([])
+  };
+
+  const onChange = ( value ) => {
+    setValue(value)
+  };
+
 
   return (
     <div className="nav-container">
@@ -75,9 +116,18 @@ const Navigation = () => {
           )}
         </Nav>
         <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={(e)=>{
-            setSearch(e.target.value)
-          }} />
+        <Autosuggest
+        suggestions={suggestion}
+        onSuggestionsFetchRequested={(e)=>{onSuggestionsFetchRequested(e)}}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        inputProps={{placeholder: 'Type a business name',
+        value,
+        onChange: (e)=>{
+          onChange(e.target.value)}}}
+          theme={theme}
+      />
           <Button variant="outline-info" onClick={()=>{
             history.push(`/search/${search}`)
           }}>Search</Button>
