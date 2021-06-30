@@ -33,6 +33,7 @@ export default function Busnisses() {
   const [reservationDate, setReservationDate] = useState("");
   const [staePrimaryRef, setStaePrimaryRef] = useState(null);
   const [stateSecondaryRef, setStateSecondaryRef] = useState(null);
+  const [ownerImage, setOwnerImage] = useState("");
 
   //TOKEN
   const thisToken = localStorage.getItem("token");
@@ -64,6 +65,7 @@ export default function Busnisses() {
       const details = await axios.get(
         `${process.env.REACT_APP_BACKEND_SERVER}business/id/${id}`
       );
+      console.log("details.data[0]", details.data[0]);
       setBusiness(details.data[0]);
     } catch (error) {
       setErrMessage(error.data);
@@ -145,6 +147,30 @@ export default function Busnisses() {
         console.log(err);
       });
   };
+
+  const addPhotoToBusiness = () => {
+    axios.post(
+      `${process.env.REACT_APP_BACKEND_SERVER}image/${id}`,
+      {
+        image: ownerImage
+      },
+      {
+        headers: {
+          authorization: "Bearer " + thisToken,
+        },
+      }
+    ).then(result=>{
+      if (result.status === 201){
+        if (info) {
+          setInfo(false);
+        } else {
+          setInfo(true);
+        }
+      }
+    }).catch(err=>{
+      console.log(err);
+    })
+  };
   //-----------------------------------------------------
 
   // GALLERY
@@ -165,7 +191,7 @@ export default function Busnisses() {
   const primaryOptions = {
     type: "loop",
     width: 900,
-    height:400,
+    height: 400,
     perPage: 1,
     perMove: 1,
     gap: "1rem",
@@ -193,13 +219,13 @@ export default function Busnisses() {
   // useEffect
 
   useEffect(() => {
+    if (primaryRef.current) {
+      primaryRef.current.sync(secondaryRef.current.splide);
+    }
     getimages();
     getDetails();
     getCommit();
     getUserrate();
-    if (primaryRef.current) {
-      primaryRef.current.sync(secondaryRef.current.splide);
-    }
   }, [staePrimaryRef, info]);
   return (
     <>
@@ -210,7 +236,7 @@ export default function Busnisses() {
               {pictures.map((elem, i) => {
                 return (
                   <SplideSlide>
-                    <img width="900" height = '450' src={elem} />
+                    <img width="900" height="450" src={elem} />
                   </SplideSlide>
                 );
               })}
@@ -225,6 +251,24 @@ export default function Busnisses() {
               })}
             </Splide>
             {errMessage}
+
+            {business.owner_id === state.user_id ? (
+              <div>
+                <FormControl
+                  placeholder="add link for photo "
+                  type="text"
+                  aria-label="Large"
+                  aria-describedby="inputGroup-sizing-sm"
+                  type="text"
+                  onChange={(e) => {
+                    setOwnerImage(e.target.value);
+                  }}
+                />
+                <Button onClick={addPhotoToBusiness}> add photo </Button>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="information">
             <h1 className="header">{business.displayName}</h1>
