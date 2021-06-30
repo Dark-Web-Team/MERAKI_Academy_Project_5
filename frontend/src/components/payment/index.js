@@ -3,10 +3,10 @@ import axios from "axios";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import "./payment.css";
-import {
-    FormControl
-   
-  } from "react-bootstrap";
+import { FormControl} from "react-bootstrap";
+ import {FaCcVisa,FaCreditCard} from 'react-icons/fa'
+ import {GiPayMoney} from 'react-icons/gi'
+ import {FaCcApplePay} from 'react-icons/fa'
 
 export default function Payment() {
   let thisToken = localStorage.getItem("token");
@@ -102,16 +102,26 @@ export default function Payment() {
           }}
             />
           </div>
+
+          
         </div>
         
         
       </div>
 
+    
       <div className = "button">
           <button>Confirm Payment</button>
           {/* {!pay?<button onClick={payNow}>Confirm Payment</button>:<div>Payment done</div>} */}
           
         </div>
+        <div className = "iconspayment">
+         < FaCcVisa className="icons"/>
+         <FaCreditCard className="icons"/>
+         <GiPayMoney className="icons"/>
+        <FaCcApplePay className="icons"/>
+       </div>
+        
     </>
   );
 }
