@@ -10,7 +10,6 @@ import EditProfile from "./components/profile/EditProfile";
 import Busnisses from "./components/busnisses/index";
 import AddBusiness from "./components/add_business";
 import AboutUs from "./components/aboutUs";
-import Payment from "./components/payment" 
 import TimeSelect from "./components/select"
 import { useDispatch } from "react-redux";
 import { setToken } from "./reducers/login";
@@ -43,7 +42,6 @@ const App = () => {
       <Route exact path="/profile/addBusiness" component={AddBusiness} />
       <Route exact path ="/about_us" component ={AboutUs}/>
       <Route exact path="/search/:search" component={Search_results} />
-      <Route exact path="/payment" component = {Payment}/>
 
     </div>
   );
