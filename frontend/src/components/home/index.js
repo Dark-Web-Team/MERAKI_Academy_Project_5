@@ -41,20 +41,22 @@ export default function Home() {
         </Slide>
       </div>
 
-      <div className= "parintcatgory" onClick={()=>{
+      <div className= "parintcatgory" >
+          <div onClick={()=>{
         history.push("/category/sport")
-      }}>
-          <div className="ch">
+      }} className="ch">
               <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/>
               <div class="overlay">
          <div class="text">Sport</div>
          </div>
 
           </div>
-          <div className="ch">
-          <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/> 
+          <div className="ch" onClick={()=>{
+        history.push("/category/entertainment")
+      }}  >
+          <img src ='https://step.camera/file/2018/01/posh-club-viko-2016-step-camera-34.jpg'/> 
           <div class="overlay">
-         <div class="text">Hello World</div>
+         <div class="text">entertainment</div>
          </div>
           </div>
           <div className="ch">
