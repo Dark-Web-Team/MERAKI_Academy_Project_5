@@ -17,12 +17,19 @@ export default function EditProfile() {
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
   const [role_id, setRole_id] = useState(0);
+  const [Info, setInfo] = useState(false)
 
   const state = useSelector((state) => {
     return {
       token: state.login.token,
     };
   });
+
+  if (state.token){
+    if (!Info){
+      setInfo(true)
+    }
+  }
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
@@ -43,8 +50,7 @@ export default function EditProfile() {
       .catch((err) => {
         console.log(err.response.data);
       });
-      console.log("state.user_id",state.user_id);
-  }, [state]);
+  }, [Info]);
 
   const updateInfo = () => {
     axios.put(
