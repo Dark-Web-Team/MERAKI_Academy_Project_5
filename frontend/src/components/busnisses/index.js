@@ -32,7 +32,8 @@ export default function Busnisses() {
   const handleShow = () => setShow(true);
   const [startDate, setStartDate] = useState(new Date());
   const [reservationDate, setReservationDate] = useState("");
-
+  const [staePrimaryRef, setStaePrimaryRef] = useState(null);
+const [stateSecondaryRef, setStateSecondaryRef] = useState(null)
 
   //TOKEN
   const thisToken = localStorage.getItem("token");
@@ -155,7 +156,16 @@ export default function Busnisses() {
   
 // GALLERY
 const primaryRef   = useRef();
+if (primaryRef.current){
+  if (!staePrimaryRef){
+  setStaePrimaryRef(true)}
+}
+
 const secondaryRef = useRef();
+if (secondaryRef.current){
+  if (!stateSecondaryRef){
+  setStateSecondaryRef(true)}
+}
 
 
   // useEffect(() => {
@@ -200,9 +210,10 @@ useEffect(() => {
   getDetails();
   getCommit();
   getUserrate();
-
+  if (primaryRef.current){
   primaryRef.current.sync( secondaryRef.current.splide );
-}, []);
+  }
+}, [staePrimaryRef,info]);
   return (
     <>
       {business ? (
