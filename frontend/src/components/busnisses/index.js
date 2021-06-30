@@ -6,6 +6,7 @@ import Rating from "../rating/rating";
 import "./style.css";
 import ImageGallery from "react-image-gallery";
 import ShowRating from "../category/ShowRating";
+import TimeSelect from "../select"
 import "react-image-gallery/styles/css/image-gallery.css";
 import { FormControl, Button, Alert, Modal } from "react-bootstrap";
 import { AiOutlineDelete } from "react-icons/ai";
@@ -239,20 +240,13 @@ export default function Busnisses() {
                         orgArr[1] = "12";
                       }
                       orgArr = orgArr.join("-");
-                      console.log(orgArr);
                       setReservationDate(orgArr);
                       setStartDate(date);
                     }}
                   />
+                  <TimeSelect busnisses_id = {id} date = {reservationDate} />
                 </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
-                    Close
-                  </Button>
-                  <Button variant="primary" onClick={handleClose}>
-                    Save Changes
-                  </Button>
-                </Modal.Footer>
+                
               </Modal>
             </>
           </div>

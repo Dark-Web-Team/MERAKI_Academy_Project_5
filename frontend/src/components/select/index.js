@@ -3,10 +3,9 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { FormControl, Button } from "react-bootstrap";
 
-const date = "2021-07-2";
-const busnisses_id = 3
 
-export default function TimeSelect() {
+
+export default function TimeSelect({date,busnisses_id}) {
   const [time6pm, setTime6pm] = useState(true);
   const [time7pm, setTime7pm] = useState(true);
   const [time8pm, setTime8pm] = useState(true);
@@ -34,6 +33,13 @@ export default function TimeSelect() {
   };
 
   useEffect(() => {
+    setTime6pm(true)
+    setTime7pm(true)
+    setTime8pm(true)
+    setTime9pm(true)
+    setTime10pm(true)
+    setTime11pm(true)
+        
     axios
       .get(`http://localhost:5000/reservations/${busnisses_id}/${date}`)
       .then((result) => {
@@ -62,8 +68,7 @@ export default function TimeSelect() {
       .catch((err) => {
         console.log(err);
       });
-  }, [state]);
-
+  }, [date]);
   return (
     <div>
       <FormControl
@@ -72,7 +77,7 @@ export default function TimeSelect() {
           setUserTime(e.target.value);
         }}
       >
-        <option>Select a time...</option>
+        <option value = "" >Select a time...</option>
         {time6pm ? <option value="6pm - 7pm">6pm - 7pm</option> : ""}
         {time7pm ? <option value="7pm - 8pm">7pm - 8pm</option> : ""}
         {time8pm ? <option value="8pm - 9pm">8pm - 9pm</option> : ""}
@@ -80,9 +85,9 @@ export default function TimeSelect() {
         {time10pm ? <option value="10pm - 11pm">10pm - 11pm</option> : ""}
         {time11pm ? <option value="11pm - 12pm">11pm - 12pm</option> : ""}
       </FormControl>
-      <Button className="singUpButton" onClick={handileRes}>
-        Update Your Info
-      </Button>
+      {userTime ? <Button className="singUpButton" onClick={handileRes}>
+      reservation
+      </Button> :""}
     </div>
   );
 }
