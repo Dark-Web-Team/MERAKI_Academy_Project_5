@@ -3,6 +3,7 @@ import React, {   useEffect, useState } from "react";
 import {  useHistory  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../reducers/login";
+import axios from "axios";
 import {
   Navbar,
   Button,
@@ -15,29 +16,7 @@ import "./navigation.css";
 import Autosuggest from "react-autosuggest"
 import theme from "./theme";
 
-const business = [
-  {name:`sports`}, {name:`entertainment`}
-]
 
-const getSuggestions = (value) => {
-  console.log('value',value)
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-
-  return inputLength === 0 ? [] : business.filter((elem) =>
-    elem.name.toLowerCase().slice(0, inputLength) === inputValue
-  );
-};
-
-const getSuggestionValue = suggestion => {
-  return suggestion
-};
-
-const renderSuggestion = suggestion => (
-  <div>
-    {suggestion.name}
-  </div>
-);
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -46,12 +25,36 @@ const Navigation = () => {
   const [search, setSearch] = useState('');
   const [value, setValue] = useState('');
   const [suggestion, setSuggestion] = useState([])
+  const [businesses, setBusinesses] = useState([])
 
   const state = useSelector((state) => {
     return {
       token: state.login.token,
     };
   });
+
+  const business = [
+    {name:`sports`}, {name:`entertainment`}
+  ]
+  
+  const getSuggestions = (value) => {
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+  
+    return inputLength === 0 ? [] : businesses.filter((elem) =>
+      elem.displayName.toLowerCase().slice(0, inputLength) === inputValue
+    );
+  };
+  
+  const getSuggestionValue = suggestion => {
+    return suggestion
+  };
+  
+  const renderSuggestion = suggestion => (
+    <div>
+      {suggestion.displayName}
+    </div>
+  );
 
   const onSuggestionsFetchRequested = ( {value} ) => {
     setSuggestion(getSuggestions(value))
@@ -62,8 +65,19 @@ const Navigation = () => {
   };
 
   const onChange = ( value ) => {
+    setSearch(value)
     setValue(value)
   };
+
+  useEffect( async () => {
+    try{
+    const searchResult = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER}business/search/${search}`)
+        setBusinesses(searchResult.data)
+        
+       } catch (error) {
+       }
+    
+  }, [search])
 
 
   return (
