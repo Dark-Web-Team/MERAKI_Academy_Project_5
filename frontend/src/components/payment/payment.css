@@ -1,0 +1,81 @@
+.h4 {
+    width: 400px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+}
+
+.parant-payment 
+{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    width: 95vw;
+    box-shadow: 20px 20px 20px 10px #f5f6f9;
+}
+
+.parant-payment > div 
+{
+    width: 30%;
+}
+
+.cardchldren
+{
+    margin-top: 45px;
+    
+}
+.payment-input {
+display: flex;
+flex-direction: column;
+
+}
+
+.payment-input div {
+    margin: auto;
+    width: 400px;
+    margin-bottom: 10px;
+}
+
+
+.payment-input input  {
+    width: 400px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+  }
+
+
+.button {
+    margin: 30px 0 0 56.5% ;
+}
+
+button {
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    font-size: 16px;
+    background-color: #2e5d73;
+    color: white;
+
+}
+
+.iconspayment
+{
+  text-align: center;
+  margin: 20px 0 0 20.5% ;
+}
+
+.iconspayment .icons 
+{
+  font-size: 50px;
+  color:black;
+  cursor: pointer;
+
+}
