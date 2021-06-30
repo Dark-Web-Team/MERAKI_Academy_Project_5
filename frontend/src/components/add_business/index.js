@@ -33,13 +33,14 @@ const AddBusiness = () => {
 
     setValidated(true);
     event.preventDefault();
+    
     try {
       const addConfirm = await axios.post(
         `${process.env.REACT_APP_BACKEND_SERVER}business`,
         {
           displayName,
           description,
-          bookingPrice,
+          booking_price:bookingPrice,
           city,
           openingTime,
           closingTime,
@@ -126,7 +127,7 @@ const AddBusiness = () => {
               type="number"
               placeholder="Enter Booking Price"
               onChange={(e) => {
-                setBookingPrice(e.target.value);
+                setBookingPrice(parseInt(e.target.value));
               }}
               required
             />
