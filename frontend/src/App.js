@@ -43,7 +43,7 @@ const App = () => {
       <Route exact path="/profile/addBusiness" component={AddBusiness} />
       <Route exact path ="/about_us" component ={AboutUs}/>
       <Route exact path="/search/:search" component={Search_results} />
-      <Route exact path="/payment" component={Payment} />
+      <Route exact path="/payment/:busnisses_id" component={Payment} />
 
     </div>
   );

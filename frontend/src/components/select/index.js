@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import axios from "axios";
 import { FormControl, Button } from "react-bootstrap";
+import {  useHistory  } from "react-router-dom";
+import {setReservation} from "../../reducers/reservation"
+
 
 
 
@@ -13,6 +16,9 @@ export default function TimeSelect({date,busnisses_id}) {
   const [time10pm, setTime10pm] = useState(true);
   const [time11pm, setTime11pm] = useState(true);
   const [userTime, setUserTime] = useState("");
+  const history = useHistory();
+  const dispatch = useDispatch();
+
 
   const state = useSelector((state) => {
     return {
@@ -21,6 +27,7 @@ export default function TimeSelect({date,busnisses_id}) {
   });
 
   const handileRes = () => {
+    
     axios.post(
       `http://localhost:5000/reservations/${busnisses_id}`,
       { reservation_date: date, reservation_time: userTime },
@@ -39,6 +46,7 @@ export default function TimeSelect({date,busnisses_id}) {
     setTime9pm(true)
     setTime10pm(true)
     setTime11pm(true)
+
         
     axios
       .get(`http://localhost:5000/reservations/${busnisses_id}/${date}`)
@@ -85,7 +93,11 @@ export default function TimeSelect({date,busnisses_id}) {
         {time10pm ? <option value="10pm - 11pm">10pm - 11pm</option> : ""}
         {time11pm ? <option value="11pm - 12pm">11pm - 12pm</option> : ""}
       </FormControl>
-      {userTime ? <Button className="singUpButton" onClick={handileRes}>
+      {userTime ? <Button className="singUpButton"onClick={()=>{
+            dispatch(setReservation( date,userTime));
+           
+            history.push(`/payment/${busnisses_id}`)
+          }}>
       reservation
       </Button> :""}
     </div>

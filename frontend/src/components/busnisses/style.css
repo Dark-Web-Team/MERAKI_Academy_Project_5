@@ -10,6 +10,10 @@
   /* margin-left: 6px; */
   background-color: #fafafa;
 }
+.gallery button
+{
+  box-shadow: none;
+}
 .information {
   width: 30%;
   background-color: #ddd;
