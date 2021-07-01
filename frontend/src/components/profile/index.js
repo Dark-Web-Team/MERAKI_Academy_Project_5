@@ -110,6 +110,8 @@ export default function Profile() {
       {userReservations && kay === "reservation" ? (
         <div>
           {userReservations.map((element) => {
+            let date = element.reservation_date
+            date = date.split("T")[0].split("-").reverse().join("-")
             return (
               <>
                 
@@ -120,7 +122,7 @@ export default function Profile() {
       <Card.Text>
         <p> <span>Name: </span> {element.displayName}</p>
        <p><span>Price: </span>{element.booking_price}</p>
-       <p><span>Date: </span>{element.reservation_date}</p>
+       <p><span>Date: </span>{date}</p>
        <p><span>Time: </span>{element.reservation_time}</p>
       </Card.Text>
     </Card.Body>
