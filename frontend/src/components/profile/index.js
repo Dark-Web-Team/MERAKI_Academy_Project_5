@@ -115,13 +115,13 @@ export default function Profile() {
                 
      <div className="inf_reservation">
                 <Card>
-    <Card.Img variant="top" src={element.main_img} />
+    <Card.Img className="reservation-imag" variant="top" src={element.main_img} />
     <Card.Body>
       <Card.Text>
-       <p>{element.displayName}</p>
-       <p>{element.booking_price}</p>
-       <p>{element.reservation_time}</p>
-       <p>{element.reservation_date}</p>
+        <p> <span>Name: </span> {element.displayName}</p>
+       <p><span>Price: </span>{element.booking_price}</p>
+       <p><span>Date: </span>{element.reservation_date}</p>
+       <p><span>Time: </span>{element.reservation_time}</p>
       </Card.Text>
     </Card.Body>
   </Card>

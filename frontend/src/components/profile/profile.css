@@ -52,7 +52,9 @@ float: left;
 .inf_reservation
 {
   width: 50%;
-  height: 30%;
+  height: 25%;
   margin:auto;
+  margin-top: 50px;
   
 }
+
