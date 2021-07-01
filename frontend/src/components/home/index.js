@@ -46,8 +46,8 @@ export default function Home() {
         history.push("/category/sport")
       }} >
               <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/>
-              <div class="overlay">
-         <div class="text">Sport</div>
+              <div className="overlay">
+         <div className="text">Sport</div>
          </div>
 
           </div>
@@ -55,15 +55,15 @@ export default function Home() {
         history.push("/category/entertainment")
       }} >
           <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/> 
-          <div class="overlay">
-         <div class="text">Hello World</div>
+          <div className="overlay">
+         <div className="text">Hello World</div>
          </div>
           </div>
           <div className="ch">
 
           <img src ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvhNj6DYX96vHENP9mIUbQmuYc4VLnzLo7z9eqLbhT0VHQ7MsnMGBBHji-7JxrF-uhAmo&usqp=CAU'/>
-          <div class="overlay">
-         <div class="text">Hello World</div>
+          <div className="overlay">
+         <div className="text">Hello World</div>
          </div>
               
           </div>
