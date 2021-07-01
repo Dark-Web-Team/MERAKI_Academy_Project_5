@@ -30,7 +30,6 @@ const Search_results = ()=>{
 
     useEffect(async () => {
         dispatch(setPath(location.pathname))
-        console.log('search', search)
        try {
         const searchResult = await axios.get(`${process.env.REACT_APP_BACKEND_SERVER}business/search/${search}`)
         console.log('results', searchResult)
