@@ -30,7 +30,6 @@ export default function Payment() {
   });
 
   const reservation = ()=> {
-    
     axios.post(
       `http://localhost:5000/reservations/${busnisses_id}`,
       { reservation_date:state.reservation_date, reservation_time:state.reservation_time },
@@ -44,7 +43,6 @@ export default function Payment() {
     }).catch((err) => {
       console.log(err);
     });
-
   }
   
   /*
