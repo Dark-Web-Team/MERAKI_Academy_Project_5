@@ -7,6 +7,8 @@ import { FormControl} from "react-bootstrap";
  import {FaCcVisa,FaCreditCard} from 'react-icons/fa'
  import {GiPayMoney} from 'react-icons/gi'
  import {FaCcApplePay} from 'react-icons/fa'
+ import {  useSelector } from "react-redux";
+ import { useParams } from "react-router-dom";
 
 export default function Payment() {
   let thisToken = localStorage.getItem("token");
@@ -18,7 +20,32 @@ export default function Payment() {
   const [cvc, setCvc] = useState("");
   const [focused, setFocused] = useState("");
   const [pay, setPay] = useState(false)
+  const { busnisses_id } = useParams();
+  const state = useSelector((state) => {
+    return {
+      reservation_date: state.reservation.reservation_date,
+      reservation_time: state.reservation.reservation_time,
+      token:state.login.token
+    };
+  });
 
+  const reservation = ()=> {
+    
+    axios.post(
+      `http://localhost:5000/reservations/${busnisses_id}`,
+      { reservation_date:state.reservation_date, reservation_time:state.reservation_time },
+      {
+        headers: {
+          authorization: "Bearer " + state.token,
+        },
+      }
+    ).then(result=>{
+      console.log("result",result.data);
+    }).catch((err) => {
+      console.log(err);
+    });
+
+  }
   
   /*
     
@@ -111,7 +138,7 @@ export default function Payment() {
 
     
       <div className = "button">
-          <button>Confirm Payment</button>
+          <button onClick={reservation} >Confirm Payment</button>
           {/* {!pay?<button onClick={payNow}>Confirm Payment</button>:<div>Payment done</div>} */}
           
         </div>
