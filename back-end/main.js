@@ -18,6 +18,7 @@ const commentsRouter = require("./routers/routes/commentsRouter")
 const ratingRouter = require("./routers/routes/ratingRouter")
 const creditCardsRouter = require("./routers/routes/creditCardsRouter")
 const reservationsRouter = require("./routers/routes/reservationsRouter")
+const sendEmailRouter = require("./routers/routes/sendEmailRouter")
 
 /* ==================== */
 app.use("/role",roleRouter)
@@ -29,6 +30,7 @@ app.use("/comments",commentsRouter)
 app.use("/rating",ratingRouter)
 app.use("/creditCards",creditCardsRouter)
 app.use("/reservations",reservationsRouter)
+app.use("/sendEmail",sendEmailRouter)
 
 
 /* ==================== */

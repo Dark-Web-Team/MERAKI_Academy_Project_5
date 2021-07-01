@@ -9,16 +9,18 @@ const transporter = nodemailer.createTransport({
 });
 
 const Transporter = (req, res) => {
-  const { to } = req.body;
+  const { time , date} = req.body;
+  const to = req.token.email
+  
   const mailOptions = {
     from: "bookingwebsitee@gmail.com",
     to: to,
     subject: "New message from booking website",
     text: `Hello ,
-
-    You got a new message from booking website
     
-    your booking request is accepted in the time you choose it
+    your booking request is accepted and is set on ${date} at ${time}
+
+    please be there 10 minutes before reservation time 
     
     Best wishes,
 

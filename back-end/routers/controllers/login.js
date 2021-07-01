@@ -28,7 +28,8 @@ const login = (req, res) => {
       }
       const payload = {
           user_id: result[0].user_id,
-          role: result[0].role
+          role: result[0].role,
+          email:result[0].email
         };
         const  options =  { expiresIn: '60h' }
         const token = jwt.sign(payload, SECRET, options);
