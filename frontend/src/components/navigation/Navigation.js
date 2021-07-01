@@ -38,6 +38,7 @@ const Navigation = () => {
   ]
   
   const getSuggestions = (value) => {
+    console.log("value1",value)
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
   
@@ -47,16 +48,18 @@ const Navigation = () => {
   };
   
   const getSuggestionValue = suggestion => {
-    return suggestion
+    console.log('suggestion1',suggestion)
+    return suggestion.displayName;
   };
   
   const renderSuggestion = suggestion => (
-    <div>
+      <div>
       {suggestion.displayName}
     </div>
-  );
+    );
 
   const onSuggestionsFetchRequested = ( {value} ) => {
+    console.log('value2',value)
     setSuggestion(getSuggestions(value))
   };
 
@@ -65,6 +68,8 @@ const Navigation = () => {
   };
 
   const onChange = ( value ) => {
+    console.log('value3',value)
+
     setSearch(value)
     setValue(value)
   };
@@ -140,7 +145,9 @@ const Navigation = () => {
         value,
         onChange: (e)=>{
           onChange(e.target.value)}}}
-          theme={theme}
+        onSuggestionSelected={(e)=>{
+          onChange(e.target.innerText)}}
+        theme={theme}
       />
           <Button variant="outline-info" onClick={()=>{
             history.push(`/search/${search}`)
