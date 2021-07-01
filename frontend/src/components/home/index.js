@@ -12,8 +12,8 @@ import "./home.css"
 
 
 const slideImages = [
-    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/a46ca431492539.5653447fb71fc.png",
-    "https://cdn.mosoah.com/wp-content/uploads/2020/01/06174024/%D8%B5%D9%88%D8%B1-%D9%85%D9%84%D8%A7%D8%B9%D8%A821-825x510.jpg",
+    "http://ar.move2turkey.com/wp-content/uploads//2020/04/Istanbul-Ataturk-Olympic-Stadium-UEFA-Champions-League-Final-20202.jpg",
+    "https://www.hatkosport.com/wp-content/uploads/2020/01/ataturk-olimpiyat-stad-1280.jpg",
     "https://tritty.com/images/covers/pool_hall.jpg"
   ];
 
