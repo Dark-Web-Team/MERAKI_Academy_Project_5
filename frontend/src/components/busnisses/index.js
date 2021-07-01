@@ -68,7 +68,6 @@ export default function Busnisses() {
       const details = await axios.get(
         `${process.env.REACT_APP_BACKEND_SERVER}business/id/${id}`
       );
-      console.log("details.data[0]", details.data[0]);
       setBusiness(details.data[0]);
     } catch (error) {
       setErrMessage(error.data);

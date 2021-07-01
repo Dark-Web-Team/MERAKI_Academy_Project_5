@@ -51,7 +51,6 @@ export default function TimeSelect({date,busnisses_id}) {
     axios
       .get(`http://localhost:5000/reservations/${busnisses_id}/${date}`)
       .then((result) => {
-        console.log(result.data);
         result.data.forEach((element) => {
           if (element.reservation_time === "6pm - 7pm") {
             setTime6pm(false);
