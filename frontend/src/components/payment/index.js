@@ -3,12 +3,13 @@ import axios from "axios";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import "./payment.css";
-import { FormControl} from "react-bootstrap";
+import { FormControl,Form} from "react-bootstrap";
  import {FaCcVisa,FaCreditCard} from 'react-icons/fa'
  import {GiPayMoney} from 'react-icons/gi'
  import {FaCcApplePay} from 'react-icons/fa'
  import {  useSelector } from "react-redux";
  import { useParams } from "react-router-dom";
+
 
 export default function Payment() {
   let thisToken = localStorage.getItem("token");
@@ -41,6 +42,23 @@ export default function Payment() {
     ).then(result=>{
       console.log("result",result.data);
     }).catch((err) => {
+      console.log(err);
+    });
+
+    axios.post(`${process.env.REACT_APP_BACKEND_SERVER}sendEmail`, {
+      date:state.reservation_date,
+      time:state.reservation_time
+    },
+   {
+      headers: {
+      authorization: "Bearer " + state.token,
+    },
+  }
+    )
+    .then((result) => {
+      console.log("sent successfully");
+    })
+    .catch((err) => {
       console.log(err);
     });
   }
@@ -126,6 +144,10 @@ export default function Payment() {
             setFocused(e.target.name);
           }}
             />
+            <Form.Group >
+    <Form.Check type="checkbox" label="Check me out" />
+  </Form.Group>
+
           </div>
 
           
