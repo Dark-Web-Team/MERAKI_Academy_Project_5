@@ -45,7 +45,11 @@ const getReservationsByDate = (req, res) => {
 
 const getUserReservation = (req, res) => {
   const reservation_maker = req.token.user_id;
-  const query = `SELECT * FROM reservations WHERE reservation_maker=?;`;
+  const query = `SELECT reservation_time,reservation_date,displayName,main_img,booking_price FROM reservations 
+  INNER JOIN businesses ON businesses.business_id = reservations.reserved_business
+   WHERE reservation_maker=?
+   ORDER BY reservation_date DESC
+   ;`;
   const data = [reservation_maker];
   db.query(query, data, (err, result) => {
     if (err) {

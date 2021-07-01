@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import jwt from "jsonwebtoken"
-import { Button } from "react-bootstrap";
+import { Button,Tabs,Tab,Sonnet } from "react-bootstrap";
 import axios from "axios";
 import "./profile.css";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 export default function Profile() {
   const [userInfo, setUserInfo] = useState("");
   const history = useHistory();
+  const [kay, setKay] = useState("profile")
   const token = useSelector(state => state.login.token);
 
 
@@ -25,11 +26,31 @@ export default function Profile() {
       .catch((err) => {
         console.log(err.response.data);
       });
+      axios.get(`${process.env.REACT_APP_BACKEND_SERVER}reservations`,{
+        headers: {
+          authorization: "Bearer " + token,
+        },
+      }).then(result=>{
+        console.log(result.data);
+      }).catch((err)=>{
+        console.log(err);
+      })
   }, [token]);
 
   return (
     <>
-      {userInfo ? (
+    <Tabs  id="uncontrolled-tab-example" activeKey={kay}
+      onSelect={(k) => setKay(k)} >
+
+    <Tab eventKey="profile" title="Profile" >
+    {/* <Sonnet /> */}
+  </Tab>
+  <Tab eventKey="reservation" title="reservation">
+    {/* <Sonnet /> */}
+  </Tab>
+</Tabs>
+
+      {userInfo && kay==="profile" ? (
         <div className="profile-information">
           <p id="your-information">Profile Info</p>
           <div className="user-info">
@@ -65,6 +86,7 @@ export default function Profile() {
       ) : (
         ""
       )}
+
     </>
   );
 }
