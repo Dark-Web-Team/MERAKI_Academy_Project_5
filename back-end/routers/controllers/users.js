@@ -14,11 +14,10 @@ const createUser = async (req, res) => {
   try {
     const emailVerify = await axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=85bb4133d00746f2b831ee6f33f157b0&email=${email}`)
     if (emailVerify.data.deliverability === 'UNDELIVERABLE'){
-      res.json(`email doesn't exist`)
+      res.status(422).json(`email doesn't exist`)
       return
     }
   } catch (error) {
-    console.log(error);
         res.send(error);
         return
   }
