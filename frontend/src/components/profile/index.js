@@ -34,6 +34,7 @@ export default function Profile() {
         },
       })
       .then((result) => {
+        console.log(result);
         setUserReservations(result.data);
       })
       .catch((err) => {
