@@ -123,7 +123,7 @@ const Navigation = () => {
           {state.token ? (
             <Nav.Link
               onClick={() => {
-                localStorage.clear();
+                localStorage.removeItem('token');
                 dispatch(setToken(""));
                 history.push("/")
               }}
