@@ -31,25 +31,27 @@ export default function EditProfile() {
     }
   }
   useEffect(() => {
+   if (state.token){
     axios
-      .get(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
-        headers: {
-          authorization: "Bearer " + state.token,
-        },
-      })
-      .then((result) => {
-        setUserInfo(result.data);
-        setDisplayName(result.data[0].displayName);
-        setCity(result.data[0].city);
-        setEmail(result.data[0].email);
-        setPassword(result.data[0].password);
-        setAge(result.data[0].age);
-        setGender(result.data[0].gender);
-        setRole_id(result.data[0].role_id);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      });
+    .get(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
+      headers: {
+        authorization: "Bearer " + state.token,
+      },
+    })
+    .then((result) => {
+      setUserInfo(result.data);
+      setDisplayName(result.data[0].displayName);
+      setCity(result.data[0].city);
+      setEmail(result.data[0].email);
+      setPassword(result.data[0].password);
+      setAge(result.data[0].age);
+      setGender(result.data[0].gender);
+      setRole_id(result.data[0].role_id);
+    })
+    .catch((err) => {
+      console.log(err.response.data);
+    });
+   }
   }, [Info]);
 
   const updateInfo = () => {
