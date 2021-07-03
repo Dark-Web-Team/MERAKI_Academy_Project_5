@@ -14,7 +14,8 @@ export default function Profile() {
   const token = useSelector((state) => state.login.token);
 
   useEffect(() => {
-    axios
+    if (token){
+      axios
       .get(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
         headers: {
           authorization: "Bearer " + token,
@@ -33,11 +34,14 @@ export default function Profile() {
         },
       })
       .then((result) => {
+        console.log(result);
         setUserReservations(result.data);
       })
       .catch((err) => {
         console.log(err);
       });
+    }
+    
   }, [token]);
 
   return (

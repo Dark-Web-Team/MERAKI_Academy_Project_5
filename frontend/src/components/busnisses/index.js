@@ -89,7 +89,7 @@ export default function Busnisses() {
     axios
       .get(`${process.env.REACT_APP_BACKEND_SERVER}rating/${id}`, {
         headers: {
-          authorization: "Bearer " + thisToken,
+          authorization: "Bearer " + state.token,
         },
       })
       .then((result) => {
@@ -109,7 +109,7 @@ export default function Busnisses() {
         { comment: userComment },
         {
           headers: {
-            authorization: "Bearer " + thisToken,
+            authorization: "Bearer " + state.token,
           },
         }
       )
@@ -134,7 +134,7 @@ export default function Busnisses() {
 
         {
           headers: {
-            authorization: "Bearer " + thisToken,
+            authorization: "Bearer " + state.token,
           },
         }
       )
@@ -158,7 +158,7 @@ export default function Busnisses() {
       },
       {
         headers: {
-          authorization: "Bearer " + thisToken,
+          authorization: "Bearer " + state.token,
         },
       }
     ).then(result=>{
@@ -222,14 +222,16 @@ export default function Busnisses() {
   // useEffect
 
   useEffect(() => {
-    if (primaryRef.current) {
-      primaryRef.current.sync(secondaryRef.current.splide);
+    if (state.token){
+      if (primaryRef.current) {
+        primaryRef.current.sync(secondaryRef.current.splide);
+      }
+      getimages();
+      getDetails();
+      getCommit();
+      getUserrate();
     }
-    getimages();
-    getDetails();
-    getCommit();
-    getUserrate();
-  }, [staePrimaryRef, info]);
+  }, [staePrimaryRef, info,state.token]);
   return (
     <>
       {business ? (
@@ -296,7 +298,7 @@ export default function Busnisses() {
             {!userRate ? (
               <>
                 <p>Your rate</p>{" "}
-                <Rating id={id} thisToken={thisToken} setInfo={setInfo} />
+                <Rating id={id} thisToken={state.token} setInfo={setInfo} />
               </>
             ) : (
               <>
