@@ -1,6 +1,7 @@
 const db = require("../../db/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken") ;
+const axios = require('axios')
 
 const createUser = async (req, res) => {
   let { displayName, city, email, password, age, gender, role_id } = req.body;
@@ -9,6 +10,18 @@ const createUser = async (req, res) => {
   password = hashedPassword;
   const query = `INSERT INTO users  (displayName, city, email, password, age, gender, role_id) VALUES (?,?,?,?,?,?,?);`
   const arr = [displayName, city, email, password, age, gender, role_id];
+/*
+  try {
+    const emailVerify = await axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=85bb4133d00746f2b831ee6f33f157b0&email=${email}`)
+    if (emailVerify.data.deliverability === 'UNDELIVERABLE'){
+      res.status(422).json(`email doesn't exist`)
+      return
+    }
+  } catch (error) {
+        res.send(error);
+        return
+  }
+*/
   db.query(query,arr,(err,result)=>{
     if (err) {
       res.status(403).json(err)

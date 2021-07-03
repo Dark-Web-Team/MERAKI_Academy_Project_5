@@ -15,9 +15,5 @@ businessRouter.get('/filter/:type/:lowPrice/:highPrice/:page', getBusinessByType
 businessRouter.get('/filter1/:type/:city/:page', getBusinessByCity);
 businessRouter.get('/filter2/:type/:lowPrice/:highPrice/:city/:page', getBusinessByTypeByPriceByCity);
 businessRouter.get('/search/:name', searchBusinessByName);
-businessRouter.get('/search/', getAllBusinesses)
-
-
-
 
 module.exports = businessRouter;
