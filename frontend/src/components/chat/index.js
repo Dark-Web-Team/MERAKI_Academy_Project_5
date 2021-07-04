@@ -23,11 +23,11 @@ function Chat({ roomId, userId }) {
     axios
       .get(`${process.env.REACT_APP_BACKEND_SERVER}chat/${roomId}`)
       .then((result) => {
-        console.log(result);
+		setMessageList(result.data)
       }).catch((err)=>{
 		console.log(err);
 	})
-  }, [CONNECTION_PORT, state.token]);
+  }, [CONNECTION_PORT]);
 
   socket.on("receive_message", (data) => {
     setMessageList([...messageList, data]);
@@ -39,8 +39,8 @@ function Chat({ roomId, userId }) {
     const messageContent = {
       roomId,
       content: {
-        author: userId,
-        message,
+        user_id: userId,
+        chat_content:message,
       },
     };
 
@@ -68,7 +68,7 @@ function Chat({ roomId, userId }) {
         {messageList.map((val, i) => {
           return (
             <h1 key={i}>
-              {val.author} {val.message}
+              {val.user_id} {val.chat_content}
             </h1>
           );
         })}

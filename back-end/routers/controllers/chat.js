@@ -24,7 +24,7 @@ const addChat = (req, res) => {
   });
 };
 
-const getAllChat = () => {
+const getAllChat = (req,res) => {
   const business_id = JSON.parse(req.params.business_id);
   const query = `SELECT * FROM chat WHERE business_id=?;`;
   const data = [business_id];
@@ -33,7 +33,7 @@ const getAllChat = () => {
       res.send(err);
       return;
     }
-    res.status(201).json(response);
+    res.status(200).json(result);
   });
 };
 
