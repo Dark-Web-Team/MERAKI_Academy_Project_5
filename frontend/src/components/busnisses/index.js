@@ -3,6 +3,7 @@ import { useParams ,useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Rating from "../rating/rating";
+import Chat from "../chat"
 import "./style.css";
 import ImageGallery from "react-image-gallery";
 import ShowRating from "../category/ShowRating";
@@ -320,6 +321,7 @@ export default function Busnisses() {
                 <p>Your rate</p> <ShowRating rate={userRate} />
               </>
             )}
+            < Chat roomId ={id}  userId = {state.user_id} />
             <>
               <Button variant="primary" onClick={handleShow}>
                 Reserve
