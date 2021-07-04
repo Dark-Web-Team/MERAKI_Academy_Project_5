@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams ,useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Rating from "../rating/rating";
@@ -18,6 +18,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-sea-green.min.css";
 
 export default function Busnisses() {
+  const history = useHistory();
   // STATES
   const [pictures, setPictures] = useState([]);
   const [errMessage, setErrMessage] = useState("");
@@ -28,7 +29,6 @@ export default function Busnisses() {
   const [info, setInfo] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const [show2, setShow2] = useState(false);
   const handleClose2 = () => setShow2(false);
   const handleShow2 = () => setShow2(true);
@@ -47,6 +47,19 @@ export default function Busnisses() {
       user_id: state.login.user_id,
     };
   });
+
+  const handleShow = () => {
+    if (state.token){
+      setShow(true);
+    }else {
+      history.push("/login")
+    }
+  }
+
+
+
+
+
 
   // FUNCTIONS ---------------------------------------------------
   let arr;
@@ -103,7 +116,8 @@ export default function Busnisses() {
   };
 
   const addComment = () => {
-    axios
+    if (state.token){
+      axios
       .post(
         `${process.env.REACT_APP_BACKEND_SERVER}comments/${id}`,
         { comment: userComment },
@@ -125,6 +139,9 @@ export default function Busnisses() {
       .catch((err) => {
         console.log(err);
       });
+    }else{
+      history.push("/login")
+    }
   };
 
   const deleteComment = (comment_id) => {
@@ -222,15 +239,13 @@ export default function Busnisses() {
   // useEffect
 
   useEffect(() => {
-    if (state.token){
-      if (primaryRef.current) {
-        primaryRef.current.sync(secondaryRef.current.splide);
-      }
-      getimages();
-      getDetails();
-      getCommit();
-      getUserrate();
+    if (primaryRef.current) {
+      primaryRef.current.sync(secondaryRef.current.splide);
     }
+    getimages();
+    getDetails();
+    getCommit();
+    getUserrate();
   }, [staePrimaryRef, info,state.token]);
   return (
     <>
