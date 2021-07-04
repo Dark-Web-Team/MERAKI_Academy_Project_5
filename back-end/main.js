@@ -33,7 +33,7 @@ app.use("/rating", ratingRouter);
 app.use("/creditCards", creditCardsRouter);
 app.use("/reservations", reservationsRouter);
 app.use("/sendEmail", sendEmailRouter);
-app.use("chat", chatRouter);
+app.use("/chat", chatRouter);
 
 /* ==================== */
 const PORT = 5000;
