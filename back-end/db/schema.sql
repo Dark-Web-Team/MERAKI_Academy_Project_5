@@ -30,7 +30,7 @@ CREATE TABLE businesses (
    type varchar(255) NOT NULL,  
    displayName varchar(255) NOT NULL UNIQUE,
    description VARCHAR(255),
-   main_img varchar(255),
+   main_img varchar(2550),
    city varchar(255) NOT NULL, 
    owner_id INT,
    FOREIGN KEY (owner_id) REFERENCES users(user_id),
@@ -46,7 +46,7 @@ CREATE TABLE businesses (
 
  CREATE TABLE image (
     image_id INT  AUTO_INCREMENT NOT NULL,
-    image VARCHAR(255),
+    image VARCHAR(2550),
     business_id  INT,
     FOREIGN KEY (business_id) REFERENCES businesses(business_id),
     is_deleted TINYINT DEFAULT 0,
@@ -99,11 +99,22 @@ CREATE TABLE reservations(
 );
 
 
+CREATE TABLE chat(
+    chat_id INT AUTO_INCREMENT NOT NULL,
+    chat_content VARCHAR(255) NOT NULL,
+    user_id INT, 
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    business_id INT,
+    FOREIGN KEY (business_id ) REFERENCES businesses(business_id),
+    is_deleted TINYINT DEFAULT 0,
+    PRIMARY KEY (chat_id)
+);
+
+
 
 INSERT INTO roles (role) VALUES ('user');
 INSERT INTO roles (role) VALUES ('admin');
 INSERT INTO roles (role) VALUES ('owner');
 
 
-SELECT reservation_time FROM reservations WHERE reserved_business=3 AND reservation_date="2021-06-28";
 
