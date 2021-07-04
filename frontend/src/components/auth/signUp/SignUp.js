@@ -32,47 +32,47 @@ export default function SignUp() {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-      return;
-    } else {
-      setValidated(true);
-      event.preventDefault();
-
-      axios
-        .post(process.env.REACT_APP_BACKEND_SERVER + "users", {
-          displayName,
-          city,
-          email,
-          password,
-          age,
-          gender,
-          role_id,
-        })
-        .then((result) => {
-          if (result.status === 201) {
-            history.push("/login");
-            return;
-          }
-        })
-        .catch((err) => {
-          if (err.response.status === 422) {
-            setValidated(false)
-            setEmailInValid(true);
-            setEmailErr("Email doesn't exist");
-            return;
-          }
-          setErrMessage(err.response.data.sqlMessage);
-        });
+      
     }
-  };
+
+    setValidated(true);
+    event.preventDefault();
+
+    if (form.checkValidity()){
+      axios
+      .post(process.env.REACT_APP_BACKEND_SERVER + "users", {
+        displayName,
+        city,
+        email,
+        password,
+        age,
+        gender,
+        role_id,
+      })
+      .then((result) => {
+        if (result.status === 201) {
+          history.push("/login");
+          return;
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 422) {
+          setValidated(false)
+          setEmailInValid(true);
+          setEmailErr("Email doesn't exist");
+          return;
+        }
+        setErrMessage(err.response.data.sqlMessage);
+      });    }
+    
+  }
+  
 
   return (
     <div className="container">
       <p className="login_text">SignUp</p>
       <Form
-        className="sign-up-input"
-        noValidate
-        validated={validated}
-        onSubmit={register}
+        noValidate validated={validated} onSubmit={register}
       >
         <Form.Group>
           <Form.Label>Display Name</Form.Label>
@@ -191,10 +191,12 @@ export default function SignUp() {
             Please select age.
           </Form.Control.Feedback>
         </Form.Group>
-        <Button className="singUpButton" type="submit" onClick={register}>
+        <Button className="singUpButton" type="submit" >
           Sing Up
-        </Button>{" "}
-        {errMessage ? (
+        </Button>
+        
+      </Form>
+      {errMessage ? (
           <div className="errMessage">
             <Alert key={1} variant="danger">
               {errMessage}
@@ -203,7 +205,6 @@ export default function SignUp() {
         ) : (
           ""
         )}
-      </Form>
     </div>
   );
 }
