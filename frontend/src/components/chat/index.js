@@ -65,13 +65,13 @@ function Chat({ roomId, userId }) {
   return (
     <>
       <div>
-        {messageList.map((val, i) => {
+        {/* {messageList.map((val, i) => {
           return (
             <h1 key={i}>
               {val.user_id} {val.chat_content}
             </h1>
           );
-        })}
+        })} */}
       </div>
       <div>
         <input
