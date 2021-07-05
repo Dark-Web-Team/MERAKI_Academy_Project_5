@@ -423,11 +423,8 @@ export default function Busnisses() {
               <div className="comment">
                 <div className="commenter">
                   <FaUserCircle class="profilePic_2" />
+                  
                   <span >{element.displayName}</span>
-                  <p class="answer">{element.comment}</p>
-                </div>
-
-                <div className="comment2">
                   {state.user_id == element.user_id ? (
                     <AiOutlineDelete
                       className="delete"
@@ -440,6 +437,12 @@ export default function Busnisses() {
                   ) : (
                     ""
                   )}
+                
+                  <p class="answer">{element.comment}</p>
+                </div>
+
+                <div className="comment2">
+                  
                 </div>
               </div>
             );
