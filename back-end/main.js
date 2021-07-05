@@ -5,34 +5,36 @@ const cors = require("cors");
 const socket = require('socket.io');
 const db = require('./db/db');
 
+
 app.use(express.json());
 
 app.use(cors());
 
 /* ==================== */
-const roleRouter = require("./routers/routes/roleRouter")
-const usersRouter = require("./routers/routes/usersRouter")
-const loginRouter = require("./routers/routes/loginRouter")
-const businessRouter = require("./routers/routes/businessRouter")
-const imageRouter = require("./routers/routes/imageRouter")
-const commentsRouter = require("./routers/routes/commentsRouter")
-const ratingRouter = require("./routers/routes/ratingRouter")
-const creditCardsRouter = require("./routers/routes/creditCardsRouter")
-const reservationsRouter = require("./routers/routes/reservationsRouter")
-const sendEmailRouter = require("./routers/routes/sendEmailRouter")
+const roleRouter = require("./routers/routes/roleRouter");
+const usersRouter = require("./routers/routes/usersRouter");
+const loginRouter = require("./routers/routes/loginRouter");
+const businessRouter = require("./routers/routes/businessRouter");
+const imageRouter = require("./routers/routes/imageRouter");
+const commentsRouter = require("./routers/routes/commentsRouter");
+const ratingRouter = require("./routers/routes/ratingRouter");
+const creditCardsRouter = require("./routers/routes/creditCardsRouter");
+const reservationsRouter = require("./routers/routes/reservationsRouter");
+const sendEmailRouter = require("./routers/routes/sendEmailRouter");
+const paymentRouter = require('./routers/routes/paymentRouter');
 
 /* ==================== */
-app.use("/role",roleRouter)
-app.use("/users",usersRouter)
-app.use("/login",loginRouter)
-app.use("/business",businessRouter)
-app.use("/image",imageRouter)
-app.use("/comments",commentsRouter)
-app.use("/rating",ratingRouter)
-app.use("/creditCards",creditCardsRouter)
-app.use("/reservations",reservationsRouter)
-app.use("/sendEmail",sendEmailRouter)
-
+app.use("/role",roleRouter);
+app.use("/users",usersRouter);
+app.use("/login",loginRouter);
+app.use("/business",businessRouter);
+app.use("/image",imageRouter);
+app.use("/comments",commentsRouter);
+app.use("/rating",ratingRouter);
+app.use("/creditCards",creditCardsRouter);
+app.use("/reservations",reservationsRouter);
+app.use("/sendEmail",sendEmailRouter);
+app.use('/create-payment-intent',paymentRouter);
 
 /* ==================== */
 const PORT = 5000;

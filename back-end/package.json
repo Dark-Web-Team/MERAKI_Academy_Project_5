@@ -19,6 +19,7 @@
     "mysql2": "^2.2.5",
     "nodemailer": "^6.6.2",
     "nodemon": "^2.0.9",
-    "socket.io": "^4.1.2"
+    "socket.io": "^4.1.2",
+    "stripe": "^8.160.0"
   }
 }
