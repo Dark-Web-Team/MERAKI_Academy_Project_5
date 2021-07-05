@@ -3,9 +3,10 @@ const db = require("../../db/db");
 const addChat = (req, res) => {
   const business_id = JSON.parse(req.params.business_id);
   const { user_id } = req.token;
-  const { chat_content } = req.body;
-  const query = `INSERT INTO chat (chat_content,user_id, business_id) VALUES (?,?,?);`;
-  const data = [chat_content, user_id, business_id];
+  const { chat_content,user_name } = req.body;
+  const date = Date().slice(0,24).split(2021 ).reverse().join(" ")
+  const query = `INSERT INTO chat (chat_content,user_id, business_id,user_name,date) VALUES (?,?,?,?,?);`;
+  const data = [chat_content, user_id, business_id,user_name,date];
   db.query(query, data, (err, result) => {
     if (err) {
       res.send(err);

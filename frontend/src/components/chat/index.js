@@ -17,6 +17,8 @@ function Chat({ roomId, userId }) {
     return {
       token: state.login.token,
       user_id: state.login.user_id,
+      user_name : state.login.user_name,
+
     };
   });
   useEffect(() => {
@@ -41,16 +43,20 @@ function Chat({ roomId, userId }) {
     const messageContent = {
       roomId,
       content: {
-        user_id: userId,
+        user_id: state.user_id,
         chat_content:message,
+        user_name : state.user_name,
+        date : Date().slice(0,24).split(2021 ).reverse().join(" ")
+        
       },
     };
 
     socket.emit("send_message", messageContent); //raise event
     setMessageList([...messageList, messageContent.content]);
+    console.log(messageList);
     axios.post(
       `${process.env.REACT_APP_BACKEND_SERVER}chat/${roomId}`,
-      {chat_content:message },
+      {chat_content:message , user_name:state.user_name },
       {
         headers: {
           authorization: "Bearer " + state.token,
@@ -68,11 +74,14 @@ function Chat({ roomId, userId }) {
     <>
       <div className="chat-conant">
         {messageList.map((val, i) => {
-          return (
+          return (<>
 
             <p key={i}>
-              {val.user_id} {val.chat_content}
+              {val.user_name} {val.chat_content}
             </p>
+            <p>{val.date}</p>
+
+            </>
           );
         })}
       </div>
