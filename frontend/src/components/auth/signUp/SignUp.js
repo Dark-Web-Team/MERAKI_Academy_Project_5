@@ -200,7 +200,7 @@ export default function SignUp() {
         )}
 
 <p className="signUp_text">
-            Already have an account? <Link to="/login">Sign in</Link>
+            Already have an account ? <Link to="/login">Sign in</Link>
           </p>
     </div>
   );

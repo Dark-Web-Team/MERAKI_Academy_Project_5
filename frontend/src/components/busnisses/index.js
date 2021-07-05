@@ -413,7 +413,7 @@ export default function Busnisses() {
         ""
       )}
 
-      <div className="parant_coment-chat">
+      <div className="parent_comment-chat">
       <div className="comments">
 
       <h1 >Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
