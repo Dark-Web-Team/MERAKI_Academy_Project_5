@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   FormControl,
   Button,
@@ -19,12 +19,14 @@ export default function SignUp() {
   const [city, setCity] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [conformPass, setConformPass] = useState("");
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
   const [role_id, setRole_id] = useState(0);
   const [errMessage, setErrMessage] = useState("");
   const [emailErr, setEmailErr] = useState("please enter an email");
   const [emailInValid, setEmailInValid] = useState(false);
+  const [passwordInvalid, setPasswordInvalid] = useState(false)
   const [validated, setValidated] = useState(false);
 
   const register = (event) => {
@@ -39,7 +41,8 @@ export default function SignUp() {
     event.preventDefault();
 
     if (form.checkValidity()){
-      axios
+      if (password === conformPass){
+        axios
       .post(process.env.REACT_APP_BACKEND_SERVER + "users", {
         displayName,
         city,
@@ -63,18 +66,24 @@ export default function SignUp() {
           return;
         }
         setErrMessage(err.response.data.sqlMessage);
-      });    }
+      });
+      }else{
+        setErrMessage("Those passwords didn’t match. Try again.")
+        setPasswordInvalid(true)
+      }
+    }
     
   }
   
 
   return (
-    <div className="container">
+    <div className="sign-up-container">
       <p className="login_text">SignUp</p>
       <Form
+      className = "input-sign-up-container"
         noValidate validated={validated} onSubmit={register}
       >
-        <Form.Group>
+        <Form.Group >
           <Form.Label>Display Name</Form.Label>
           <Form.Control
             type="text"
@@ -135,6 +144,21 @@ export default function SignUp() {
           </Form.Control.Feedback>
         </Form.Group>
         <Form.Group>
+          <Form.Label>Conform Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter Password again"
+            onChange={(e) => {
+              setConformPass(e.target.value);
+            }}
+            required
+            isInvalid={passwordInvalid}
+          />
+          <Form.Control.Feedback type="invalid">
+          Those passwords didn’t match. Try again.
+          </Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group>
           <Form.Label>Select City</Form.Label>
           <Form.Control
             as="select"
@@ -160,37 +184,6 @@ export default function SignUp() {
             Please choose a city.
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group>
-          <Form.Label>Age</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Enter your age"
-            onChange={(e) => {
-              setAge(e.target.value);
-            }}
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Please enter your age.
-          </Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Select your gender</Form.Label>
-          <Form.Control
-            as="select"
-            onChange={(e) => {
-              setGender(parseInt(e.target.value));
-            }}
-            required
-          >
-            <option>Select a gender...</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-          </Form.Control>
-          <Form.Control.Feedback type="invalid">
-            Please select age.
-          </Form.Control.Feedback>
-        </Form.Group>
         <Button className="singUpButton" type="submit" >
           Sing Up
         </Button>
@@ -205,6 +198,10 @@ export default function SignUp() {
         ) : (
           ""
         )}
+
+<p className="signUp_text">
+            Already have an account? <Link to="/login">Sign in</Link>
+          </p>
     </div>
   );
 }

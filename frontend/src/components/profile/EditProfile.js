@@ -76,6 +76,9 @@ export default function EditProfile() {
       {userInfo ? (
         <div className="your-information">
           <p className="login_text">Edit Your Info..</p> <br />
+          <h3 className="email-edit-info">
+          Email : {userInfo[0].email}
+          </h3>
           <FormControl
             className="editForm"
             placeholder={`Your Name : ${userInfo[0].displayName}`}
@@ -110,14 +113,6 @@ export default function EditProfile() {
             <option value="madaba">Madaba</option>
             <option value="aqaba">Aqaba</option>
           </FormControl>
-          <FormControl
-            className="editForm"
-            id="email-input"
-            placeholder={userInfo[0].email}
-            type="text"
-            aria-label="Large"
-            aria-describedby="inputGroup-sizing-sm"
-          />
           <FormControl
             className="editForm"
             placeholder={`Your Age : ${userInfo[0].age}`}
