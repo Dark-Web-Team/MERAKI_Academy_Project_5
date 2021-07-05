@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import {AiOutlineSend} from 'react-icons/ai'
 
 let socket;
 const CONNECTION_PORT = "http://localhost:5000";
@@ -55,9 +56,9 @@ function Chat({ roomId, userId }) {
         },
       }
     ).then(result=>{
-		console.log(result);
-		setMessage("");
-	}).catch((err)=>{
+      document.getElementById("textArea-chat").value = "";
+      setMessage("")
+    	}).catch((err)=>{
 		console.log(err);
 	})
   };
@@ -75,11 +76,20 @@ function Chat({ roomId, userId }) {
       </div>
       <div>
         <input
+        id = "textArea-chat"
           type="text"
           placeholder="Write your message here ..."
           onChange={(e) => setMessage(e.target.value)}
+          onKeyDown = {(e)=>{
+            if (e.key === 'Enter') {
+              sendMessage()
+              
+            }
+          }}
+          
         />
-        <button onClick={sendMessage}>Send</button>
+        < AiOutlineSend color="green" onClick={sendMessage} />
+       
       </div>
     </>
   );
