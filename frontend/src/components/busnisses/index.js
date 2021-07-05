@@ -258,8 +258,11 @@ export default function Busnisses() {
   return (
     <>
       {business ? (
+        <div>
+         <h1 className="header">{business.displayName}</h1>
         <div className="parent">
           <div className="gallery">
+
             <Splide options={primaryOptions} ref={primaryRef}>
               {pictures.map((elem, i) => {
                 return (
@@ -307,7 +310,6 @@ export default function Busnisses() {
             )}
           </div>
           <div className="information">
-            <h1 className="header">{business.displayName}</h1>
             <p className="description">{business.description}</p>
             <p>{business.city}</p>
             <p>
@@ -328,7 +330,6 @@ export default function Busnisses() {
                 <p>Your rate</p> <ShowRating rate={userRate} />
               </>
             )}
-            < Chat roomId ={id}  userId = {state.user_id} />
             <>
               <Button variant="primary" onClick={handleShow}>
                 Reserve
@@ -407,19 +408,22 @@ export default function Busnisses() {
    
           </div>
         </div>
+        </div>
       ) : (
         ""
       )}
 
-      <div className="user-rate">
-        <h1 className="comments">Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+      <div className="parant_coment-chat">
+      <div className="comments">
+
+      <h1 >Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
         <div className="containers">
           {commints.map((element) => {
             return (
               <div className="comment">
                 <div className="commenter">
                   <FaUserCircle class="profilePic_2" />
-                  <p id="name_2">{element.displayName}</p>
+                  <span >{element.displayName}</span>
                   <p class="answer">{element.comment}</p>
                 </div>
 
@@ -458,7 +462,11 @@ export default function Busnisses() {
           </div>
         </div>
       </div>
-      <div className="comments"></div>
+
+      <div className="chat">
+       < Chat roomId ={id}  userId = {state.user_id} />
+      </div>
+      </div>
     </>
   );
 }

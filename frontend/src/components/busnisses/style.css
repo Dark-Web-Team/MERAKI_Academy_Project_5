@@ -57,18 +57,30 @@
   display: grid;
   justify-content: left;
 }
-.comments {
-  text-decoration: underline;
-  padding-top: 10px;
+
+.parant_coment-chat
+  {
+    display: flex;
+    justify-content: space-around;
+    
+  }
+
+  .parant_coment-chat > div
+  {
+    width: 45%;
+
+  }
+
+ 
+.comments h1 {
+  margin-top: 10px;
   font-size: 20px;
-  text-align: left;
+  text-align: center;
   color: black;
   font-family: "proxima-nova", Verdana, sans-serif;
 }
 .comment {
-  width: 200px;
-  border: 1px solid green;
-  position: relative;
+  width: 90%;
 }
 .comment2 {
   width: 20px;
@@ -84,30 +96,21 @@
     height: 30px;
     border-radius: 35px;
   }
-  #name_2 {
-    position: absolute;
-    top: 0px;
-    /* right: 120px; */
-    left:35px ;
-    font-size: 12px;
+  .commenter span{
+    font-size: 20px;
     font-weight: bold;
     font-family: "Mukta", sans-serif;
-    background-color: #dad6d6;
-    padding: 10px;
-    border-radius: 6px 6px 0px 6px;
+    padding-left:  15px ;
+    margin-top: 5px;
   }
   
   
   .answer {
-    width: max-content;
-    margin: 4px;
-    margin-left: 35px;
-    padding: 10px;
-    font-size: 13px;
+    font-size: 18px;
     font-family: "Mukta", sans-serif;
-    background-color: #dad6d6;
-    border-radius: 0px 6px 6px 6px;
   }
   .delete{
       cursor: pointer;
   }
+
+  
