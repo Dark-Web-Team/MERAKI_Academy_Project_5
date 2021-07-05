@@ -57,11 +57,23 @@
   display: grid;
   justify-content: left;
 }
-.comments {
-  text-decoration: underline;
-  padding-top: 10px;
+
+.parant_coment-chat
+  {
+    display: flex;
+    justify-content: space-around;
+    
+  }
+
+  .parant_coment-chat > div
+  {
+    width: 45%;
+
+  }
+.comments h1 {
+  margin-top: 10px;
   font-size: 20px;
-  text-align: left;
+  text-align: center;
   color: black;
   font-family: "proxima-nova", Verdana, sans-serif;
 }
@@ -111,3 +123,5 @@
   .delete{
       cursor: pointer;
   }
+
+  

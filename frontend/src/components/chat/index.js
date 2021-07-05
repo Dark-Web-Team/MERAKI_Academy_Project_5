@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import {AiOutlineSend} from 'react-icons/ai'
+import "./chat.css";
 
 let socket;
 const CONNECTION_PORT = "http://localhost:5000";
@@ -65,16 +66,17 @@ function Chat({ roomId, userId }) {
 
   return (
     <>
-      <div>
+      <div className="chat-conant">
         {messageList.map((val, i) => {
           return (
-            <h1 key={i}>
+
+            <p key={i}>
               {val.user_id} {val.chat_content}
-            </h1>
+            </p>
           );
         })}
       </div>
-      <div>
+      <div className="input-chat">
         <input
         id = "textArea-chat"
           type="text"
@@ -88,7 +90,7 @@ function Chat({ roomId, userId }) {
           }}
           
         />
-        < AiOutlineSend color="green" onClick={sendMessage} />
+        < AiOutlineSend color="green" size={30} onClick={sendMessage}  />
        
       </div>
     </>

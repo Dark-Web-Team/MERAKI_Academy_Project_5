@@ -1,0 +1,12 @@
+.chat-conant 
+{
+    height:400px;
+    width: 90%;
+    overflow-y: scroll; 
+    
+}
+
+.input-chat input
+{
+    width: 80%;
+}
