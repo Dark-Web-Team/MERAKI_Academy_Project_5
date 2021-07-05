@@ -93,7 +93,7 @@ const Login = () => {
             </div>
           )}
           <p className="signUp_text">
-            Don't have an account?<Link to="/signUp">Sign Up</Link>
+            Don't have an account ? <Link to="/signUp">Sign Up</Link>
           </p>
         </Container>
       </div>

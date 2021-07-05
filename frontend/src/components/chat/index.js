@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import {AiOutlineSend} from 'react-icons/ai'
+import {Button} from "react-bootstrap";
 import "./chat.css";
 
 let socket;
@@ -11,6 +12,7 @@ const CONNECTION_PORT = "http://localhost:5000";
 socket = io(CONNECTION_PORT);
 
 function Chat({ roomId, userId }) {
+  const [enterRoom, setEnterRoom] = useState(false)
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const state = useSelector((state) => {
@@ -22,7 +24,8 @@ function Chat({ roomId, userId }) {
     };
   });
   useEffect(() => {
-    socket = io(CONNECTION_PORT);
+    if (enterRoom ){
+      socket = io(CONNECTION_PORT);
     socket.emit("join_room", roomId);
     axios
       .get(`${process.env.REACT_APP_BACKEND_SERVER}chat/${roomId}`)
@@ -31,7 +34,8 @@ function Chat({ roomId, userId }) {
       }).catch((err)=>{
 		console.log(err);
 	})
-  }, []);
+    }
+  }, [enterRoom]);
 
   socket.on("receive_message", (data) => {
     setMessageList([...messageList, data]);
@@ -72,7 +76,8 @@ function Chat({ roomId, userId }) {
 
   return (
     <>
-      <div className="chat-conant">
+      {enterRoom ? <div>
+        <div className="chat-conant">
         {messageList.map((val, i) => {
           return (<>
             <div className="chat-info1">
@@ -103,6 +108,9 @@ function Chat({ roomId, userId }) {
         < AiOutlineSend color="green" size={30} onClick={sendMessage}  />
        
       </div>
+      </div>:<div className="join-chat">
+        <Button className="join-chat-button" onClick={(e)=>{setEnterRoom(true)}} > Join The Chat  </Button>
+        </div>}
     </>
   );
 }

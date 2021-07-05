@@ -53,16 +53,17 @@
   color: #000000;
 }
 
-.parant_coment-chat
+.parent_comment-chat
   {
     display: flex;
     justify-content: space-around;
     
   }
 
-  .parant_coment-chat > div
+  .parent_comment-chat > div
   {
     width: 45%;
+    margin: auto;
 
   }
 
