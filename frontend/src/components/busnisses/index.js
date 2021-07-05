@@ -423,7 +423,7 @@ export default function Busnisses() {
               <div className="comment">
                 <div className="commenter">
                   <FaUserCircle class="profilePic_2" />
-                  <p id="name_2">{element.displayName}</p>
+                  <span >{element.displayName}</span>
                   <p class="answer">{element.comment}</p>
                 </div>
 
