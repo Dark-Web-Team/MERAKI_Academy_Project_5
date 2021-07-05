@@ -17,7 +17,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-sea-green.min.css";
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import Map from './../googleMap/index';
 
 
 export default function Busnisses() {
@@ -197,23 +197,7 @@ export default function Busnisses() {
   //-----------------------------------------------------
 
 
-  //MAP -------------------------------------------------
-
-  const containerStyle = {
-    width: '405px',
-    height: '325px'
-  };
-  
-  const position = {
-    lat: -3.745,
-    lng: -38.523
-  };
-  
-  const onLoad = marker => {
-      console.log('marker: ', marker)
-    }
-
-
+ 
   // GALLERY
   const primaryRef = useRef();
   if (primaryRef.current) {
@@ -268,6 +252,9 @@ export default function Busnisses() {
     getCommit();
     getUserrate();
   }, [staePrimaryRef, info,state.token]);
+
+
+
   return (
     <>
       {business ? (
@@ -416,18 +403,8 @@ export default function Busnisses() {
                 </Modal.Body>
               </Modal>
             </>
-            <LoadScript
-    googleMapsApiKey="AIzaSyCKGYO8byfTrwrbLGw7zy8HdrQFh1SYPKo"
-  >
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      center={position}
-      zoom={10}
-    >
-      <Marker  onLoad={onLoad} position={position}   />
-
-      </GoogleMap>
-    </LoadScript>
+            <Map lat = {32.060662}  lng = { 36.093064} />
+   
           </div>
         </div>
       ) : (
