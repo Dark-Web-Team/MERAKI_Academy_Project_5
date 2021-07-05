@@ -5,6 +5,7 @@ const cors = require("cors");
 const socket = require("socket.io");
 const db = require("./db/db");
 
+
 app.use(express.json());
 
 app.use(cors());
@@ -21,21 +22,24 @@ const creditCardsRouter = require("./routers/routes/creditCardsRouter");
 const reservationsRouter = require("./routers/routes/reservationsRouter");
 const sendEmailRouter = require("./routers/routes/sendEmailRouter");
 const chatRouter = require("./routers/routes/chatRouter");
+const paymentRouter = require('./routers/routes/paymentRouter');
 
-/* ==================== */
-app.use("/role", roleRouter);
-app.use("/users", usersRouter);
-app.use("/login", loginRouter);
-app.use("/business", businessRouter);
-app.use("/image", imageRouter);
-app.use("/comments", commentsRouter);
-app.use("/rating", ratingRouter);
-app.use("/creditCards", creditCardsRouter);
-app.use("/reservations", reservationsRouter);
-app.use("/sendEmail", sendEmailRouter);
+
+
+
+app.use("/role",roleRouter);
+app.use("/users",usersRouter);
+app.use("/login",loginRouter);
+app.use("/business",businessRouter);
+app.use("/image",imageRouter);
+app.use("/comments",commentsRouter);
+app.use("/rating",ratingRouter);
+app.use("/creditCards",creditCardsRouter);
+app.use("/reservations",reservationsRouter);
+app.use("/sendEmail",sendEmailRouter);
+app.use('/create-payment-intent',paymentRouter);
 app.use("/chat", chatRouter);
 
-/* ==================== */
 const PORT = 5000;
 
 const server = app.listen(PORT, () => {

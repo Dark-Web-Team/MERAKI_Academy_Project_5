@@ -16,7 +16,8 @@ import { useDispatch } from "react-redux";
 import { setToken } from "./reducers/login";
 import jwt from "jsonwebtoken";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Search_results from "./components/search_results/index"
+import Search_results from "./components/search_results/index";
+import PaymentConfirm from "./components/payment_confirmed"
 
 require("dotenv").config();
 
@@ -44,6 +45,7 @@ const App = () => {
       <Route exact path ="/about_us" component ={AboutUs}/>
       <Route exact path="/search/:search" component={Search_results} />
       <Route exact path="/payment/:busnisses_id" component={Payment} />
+      <Route exact path="/paymentConfirmed" component={PaymentConfirm} />
 
     </div>
   );

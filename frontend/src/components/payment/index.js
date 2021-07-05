@@ -9,6 +9,11 @@ import { GiPayMoney } from "react-icons/gi";
 import { FaCcApplePay } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from './checkoutForm';
+
+const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 export default function Payment() {
   let thisToken = localStorage.getItem("token");
@@ -22,6 +27,7 @@ export default function Payment() {
   const [pay, setPay] = useState(false);
   const { busnisses_id } = useParams();
   const [saveCard, setSaveCard] = useState(false);
+
 
 
   const state = useSelector((state) => {
@@ -99,9 +105,9 @@ export default function Payment() {
   return (
     <>
       <div className="h4">
-        <h4>inter your credit Card details to continue with your payment</h4>
+        <h4>enter your credit Card details to continue with your payment</h4>
       </div>
-      <div className="parant-payment">
+      {/* <div className="parant-payment">
         <div className="cardchldren">
           <Cards
             number={number}
@@ -180,12 +186,18 @@ export default function Payment() {
             </Form.Group>
           </Form.Group>
         </Form>
-      </div>
+      </div> */}
 
-      <div className="button">
+      {/* <div className="button">
         <button onClick={reservation}>Confirm Payment</button>
-        {/* {!pay?<button onClick={payNow}>Confirm Payment</button>:<div>Payment done</div>} */}
-      </div>
+      </div> */}
+      <div className='parant-payment'>
+      <div className='online_payment'>
+            <Elements stripe = {promise}>
+                <CheckoutForm businessId={busnisses_id} />
+            </Elements>
+        </div>
+        </div>
       <div className="iconspayment">
         <FaCcVisa className="icons" />
         <FaCreditCard className="icons" />
