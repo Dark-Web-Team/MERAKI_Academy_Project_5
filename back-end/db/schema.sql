@@ -102,6 +102,8 @@ CREATE TABLE reservations(
 CREATE TABLE chat(
     chat_id INT AUTO_INCREMENT NOT NULL,
     chat_content VARCHAR(255) NOT NULL,
+    user_name  VARCHAR(255) NOT NULL,
+    date VARCHAR(255) NOT NULL,
     user_id INT, 
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     business_id INT,
