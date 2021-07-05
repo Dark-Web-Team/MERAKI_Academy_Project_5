@@ -9,7 +9,7 @@ import ImageGallery from "react-image-gallery";
 import ShowRating from "../category/ShowRating";
 import TimeSelect from "../select";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { FormControl, Button, Alert, Modal } from "react-bootstrap";
+import { FormControl, Button, Alert, Modal,Form } from "react-bootstrap";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
@@ -448,17 +448,15 @@ export default function Busnisses() {
             );
           })}
           <div className="input-commet">
-            <FormControl
-              placeholder="your Comment"
-              type="text"
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-              type="text"
-              value={userComment}
-              onChange={(e) => {
-                setUserComment(e.target.value);
-              }}
-            />
+           
+<Form>
+<Form.Group controlId="exampleForm.ControlTextarea1">
+    <Form.Control as="textarea" rows={4}  onChange={(e) => {
+  setUserComment(e.target.value); }} /> 
+   
+             
+  </Form.Group>
+  </Form>
             <Button className="singUpButton" onClick={addComment}>
               add Comment
             </Button>

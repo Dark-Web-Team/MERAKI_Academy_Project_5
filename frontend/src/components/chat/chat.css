@@ -10,3 +10,30 @@
 {
     width: 80%;
 }
+
+.chat-info1
+{
+    /* box-shadow: 20px 20px 20px 10px #1741bd; */
+    border-bottom: 2px solid rgb(228, 222, 222);
+    margin-top: 30px;
+
+
+}
+.chat-name
+{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Mukta", sans-serif;  
+}
+
+.chat-content
+{
+    margin-left: 15px;
+}
+ .chat-date
+{
+    font-size: 13px;
+    margin-right: 5px;
+    float: right;
+    
+}
