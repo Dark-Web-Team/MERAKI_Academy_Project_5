@@ -9,7 +9,7 @@ import ImageGallery from "react-image-gallery";
 import ShowRating from "../category/ShowRating";
 import TimeSelect from "../select";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { FormControl, Button, Alert, Modal } from "react-bootstrap";
+import { FormControl, Button, Alert, Modal,Form } from "react-bootstrap";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FiSend } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
@@ -17,6 +17,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-sea-green.min.css";
+import Map from './../googleMap/index';
+
 
 export default function Busnisses() {
   const history = useHistory();
@@ -194,6 +196,8 @@ export default function Busnisses() {
   };
   //-----------------------------------------------------
 
+
+ 
   // GALLERY
   const primaryRef = useRef();
   if (primaryRef.current) {
@@ -248,11 +252,17 @@ export default function Busnisses() {
     getCommit();
     getUserrate();
   }, [staePrimaryRef, info,state.token]);
+
+
+
   return (
     <>
       {business ? (
+        <div>
+         <h1 className="header">{business.displayName}</h1>
         <div className="parent">
           <div className="gallery">
+
             <Splide options={primaryOptions} ref={primaryRef}>
               {pictures.map((elem, i) => {
                 return (
@@ -300,7 +310,6 @@ export default function Busnisses() {
             )}
           </div>
           <div className="information">
-            <h1 className="header">{business.displayName}</h1>
             <p className="description">{business.description}</p>
             <p>{business.city}</p>
             <p>
@@ -321,7 +330,6 @@ export default function Busnisses() {
                 <p>Your rate</p> <ShowRating rate={userRate} />
               </>
             )}
-            < Chat roomId ={id}  userId = {state.user_id} />
             <>
               <Button variant="primary" onClick={handleShow}>
                 Reserve
@@ -396,25 +404,27 @@ export default function Busnisses() {
                 </Modal.Body>
               </Modal>
             </>
+            <Map lat = {32.060662}  lng = { 36.093064} />
+   
           </div>
+        </div>
         </div>
       ) : (
         ""
       )}
 
-      <div className="user-rate">
-        <h1 className="comments">Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+      <div className="parent_comment-chat">
+      <div className="comments">
+
+      <h1 >Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
         <div className="containers">
           {commints.map((element) => {
             return (
               <div className="comment">
                 <div className="commenter">
                   <FaUserCircle class="profilePic_2" />
-                  <p id="name_2">{element.displayName}</p>
-                  <p class="answer">{element.comment}</p>
-                </div>
-
-                <div className="comment2">
+                  
+                  <span >{element.displayName}</span>
                   {state.user_id == element.user_id ? (
                     <AiOutlineDelete
                       className="delete"
@@ -427,29 +437,37 @@ export default function Busnisses() {
                   ) : (
                     ""
                   )}
+                
+                  <p class="answer">{element.comment}</p>
+                </div>
+
+                <div className="comment2">
+                  
                 </div>
               </div>
             );
           })}
-          <div>
-            <FormControl
-              placeholder="your Comment"
-              type="text"
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-              type="text"
-              value={userComment}
-              onChange={(e) => {
-                setUserComment(e.target.value);
-              }}
-            />
+          <div className="input-commet">
+           
+<Form>
+<Form.Group controlId="exampleForm.ControlTextarea1">
+    <Form.Control as="textarea" rows={4}  onChange={(e) => {
+  setUserComment(e.target.value); }} /> 
+   
+             
+  </Form.Group>
+  </Form>
             <Button className="singUpButton" onClick={addComment}>
               add Comment
             </Button>
           </div>
         </div>
       </div>
-      <div className="comments"></div>
+
+      <div className="chat">
+       < Chat roomId ={id}  userId = {state.user_id} />
+      </div>
+      </div>
     </>
   );
 }

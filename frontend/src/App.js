@@ -27,7 +27,7 @@ const App = () => {
     const token = localStorage.getItem("token");
     if (token) {
       const tokenPayload = jwt.decode(token);
-      dispatch(setToken(token,tokenPayload.user_id));
+      dispatch(setToken(token,tokenPayload.user_id,tokenPayload.user_name));
     }
   }, []);
 

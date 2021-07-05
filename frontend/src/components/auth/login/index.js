@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -35,7 +35,7 @@ const Login = () => {
       .then((result) => {
         const token = result.data.token
         const tokenPayload = jwt.decode(token);
-        dispatch(setToken(token, tokenPayload.user_id));
+        dispatch(setToken(token, tokenPayload.user_id,tokenPayload.user_name));
         localStorage.setItem("token", result.data.token);
 
         history.push("/");
@@ -93,7 +93,7 @@ const Login = () => {
             </div>
           )}
           <p className="signUp_text">
-            Don't have an account?<Link to="/signUp">Sign Up</Link>
+            Don't have an account ? <Link to="/signUp">Sign Up</Link>
           </p>
         </Container>
       </div>
