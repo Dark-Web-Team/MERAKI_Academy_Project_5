@@ -75,12 +75,13 @@ function Chat({ roomId, userId }) {
       <div className="chat-conant">
         {messageList.map((val, i) => {
           return (<>
-
-            <p key={i}>
-              {val.user_name} {val.chat_content}
+            <div className="chat-info1">
+            <p className="chat-name" key={i}>
+              {val.user_name} 
             </p>
-            <p>{val.date}</p>
-
+            <p className="chat-content" key={i}>{val.chat_content}</p>
+            <p className="chat-date" key={i} >{val.date}</p>
+            </div>
             </>
           );
         })}
