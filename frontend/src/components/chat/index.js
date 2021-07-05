@@ -27,7 +27,7 @@ function Chat({ roomId, userId }) {
       }).catch((err)=>{
 		console.log(err);
 	})
-  }, [CONNECTION_PORT]);
+  }, []);
 
   socket.on("receive_message", (data) => {
     setMessageList([...messageList, data]);
@@ -48,7 +48,7 @@ function Chat({ roomId, userId }) {
     setMessageList([...messageList, messageContent.content]);
     axios.post(
       `${process.env.REACT_APP_BACKEND_SERVER}chat/${roomId}`,
-      {chat_content:message,user_id:userId,business_id:roomId   },
+      {chat_content:message },
       {
         headers: {
           authorization: "Bearer " + state.token,
@@ -65,13 +65,13 @@ function Chat({ roomId, userId }) {
   return (
     <>
       <div>
-        {/* {messageList.map((val, i) => {
+        {messageList.map((val, i) => {
           return (
             <h1 key={i}>
               {val.user_id} {val.chat_content}
             </h1>
           );
-        })} */}
+        })}
       </div>
       <div>
         <input
