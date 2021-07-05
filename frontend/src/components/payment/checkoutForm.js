@@ -6,7 +6,8 @@ import {
   } from "@stripe/react-stripe-js";
 import axios from "axios";
 import Form from "react-bootstrap/Form"
-import './stripe_payment.css'
+import './stripe_payment.css';
+import { useSelector } from 'react-redux';
 
 
 const CheckoutForm = ({businessId}) =>{
@@ -19,7 +20,13 @@ const CheckoutForm = ({businessId}) =>{
     const stripe = useStripe();
     const elements = useElements();
 
-    console.log('business2', businessId)
+    const state = useSelector((state) => {
+      return {
+        reservation_date: state.reservation.reservation_date,
+        reservation_time: state.reservation.reservation_time,
+        token: state.login.token,
+      };
+    });
 
     useEffect(() => {
         axios.post(`${process.env.REACT_APP_BACKEND_SERVER}create-payment-intent`,{
@@ -74,6 +81,45 @@ const CheckoutForm = ({businessId}) =>{
           setError(null);
           setProcessing(false);
           setSucceeded(true);
+          axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_SERVER}reservations/${businessId}`,
+        {
+          reservation_date: state.reservation_date,
+          reservation_time: state.reservation_time,
+        },
+        {
+          headers: {
+            authorization: "Bearer " + state.token,
+          },
+        }
+      )
+      .then((result) => {
+        console.log("result", result.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .post(
+        `${process.env.REACT_APP_BACKEND_SERVER}sendEmail`,
+        {
+          date: state.reservation_date,
+          time: state.reservation_time,
+        },
+        {
+          headers: {
+            authorization: "Bearer " + state.token,
+          },
+        }
+      )
+      .then((result) => {
+        console.log("sent successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
         }
     };
 
@@ -100,13 +146,7 @@ const CheckoutForm = ({businessId}) =>{
       )}
       {/* Show a success message upon completion */}
       <p className={succeeded ? "result-message" : "result-message hidden"}>
-        Payment succeeded, see the result in your
-        <a
-          href={`https://dashboard.stripe.com/test/payments`}
-        >
-          {" "}
-          Stripe dashboard.
-        </a> Refresh the page to pay again.
+        Payment succeeded
       </p>
             </Form>
         </div>

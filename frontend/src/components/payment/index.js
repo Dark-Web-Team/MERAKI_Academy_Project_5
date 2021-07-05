@@ -105,7 +105,7 @@ export default function Payment() {
   return (
     <>
       <div className="h4">
-        <h4>inter your credit Card details to continue with your payment</h4>
+        <h4>enter your credit Card details to continue with your payment</h4>
       </div>
       {/* <div className="parant-payment">
         <div className="cardchldren">
@@ -188,14 +188,15 @@ export default function Payment() {
         </Form>
       </div> */}
 
-      <div className="button">
+      {/* <div className="button">
         <button onClick={reservation}>Confirm Payment</button>
-        {/* {!pay?<button onClick={payNow}>Confirm Payment</button>:<div>Payment done</div>} */}
-      </div>
-      <div>
+      </div> */}
+      <div className='parant-payment'>
+      <div className='online_payment'>
             <Elements stripe = {promise}>
                 <CheckoutForm businessId={busnisses_id} />
             </Elements>
+        </div>
         </div>
       <div className="iconspayment">
         <FaCcVisa className="icons" />
