@@ -447,7 +447,7 @@ export default function Busnisses() {
               </div>
             );
           })}
-          <div>
+          <div className="input-commet">
             <FormControl
               placeholder="your Comment"
               type="text"
