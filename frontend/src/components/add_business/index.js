@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {  useHistory } from "react-router-dom";
+
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -20,10 +22,10 @@ const AddBusiness = () => {
   const [errPresent, setErrPresent] = useState(false);
   const [businessCheck, setBusinessCheck] = useState('Please enter your business name')
   const [marker, setMarker] = useState([]);
-
   const user_id = useSelector(state => state.login.user_id)
-
   const [validated, setValidated] = useState(false);
+
+  const history = useHistory()
 
   const handleSubmit = async (event) => {
       const form = event.currentTarget;
@@ -53,9 +55,14 @@ const AddBusiness = () => {
           lng:marker[0].lng
         }
       );
-      console.log(addConfirm.data);
+
+      if (addConfirm.status === 201 ){
+        history.push(`/business/${addConfirm.data.id}`)
+      }
+      
       if (addConfirm.data.code === `ER_DUP_ENTRY`){
         setBusinessCheck(`business name already exists`);
+        
       }
     }
      catch (err) {
