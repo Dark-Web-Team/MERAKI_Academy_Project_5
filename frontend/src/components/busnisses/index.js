@@ -308,10 +308,13 @@ export default function Busnisses() {
             ) : (
               ""
             )}
+            <h2>Description</h2>
+            <p className="description">{business.description}</p>
           </div>
           <div className="information">
-            <p className="description">{business.description}</p>
             <p className="city-info"><span>city :</span> {business.city}</p>
+            <p  className="price"><span>price :</span> {business.booking_price} JD</p>
+
               <div className="rate-container">
               <div className="rate">
                 <div className="FaStar">
@@ -340,10 +343,8 @@ export default function Busnisses() {
               </div>
               </div>
           
-            <p  className="price"><span>price :</span> {business.booking_price} JD</p>
-            
             <>
-              <Button variant="primary" onClick={handleShow}>
+              <Button id="Button-Reserve" variant="primary" onClick={handleShow}>
                 Reserve
               </Button>
               <Modal show={show} onHide={handleClose}>
@@ -416,7 +417,9 @@ export default function Busnisses() {
                 </Modal.Body>
               </Modal>
             </>
+            <div className="information-map">
             <ShowMap lat = {business.lat} lng = {business.lng} />
+            </div>
    
           </div>
         </div>
