@@ -41,7 +41,7 @@ export default function Rating({ id, thisToken, setInfo }) {
                 }}
               />
               <FaStar
-                size={30}
+                size={22}
                 color={
                   ratingValue <= (hover || rating) ? "rgb(231, 231, 9)" : "gray"
                 }

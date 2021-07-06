@@ -24,10 +24,14 @@
   
 
 }
-.image-gallery-image {
-  width: 500px;
-  height: 500px;
+
+.city-info span ,.price span 
+
+{
+  font-weight: bold;
 }
+
+
 .header {
   font-family: "Basel Grotesk";
   font-size: 24px;
@@ -44,25 +48,55 @@
 .rate {
   font-family: "proxima-nova", Verdana, sans-serif;
   font-size: 14px;
-  line-height: 17px;
-}
-.price {
-  margin-top: 30px;
-  color: #000;
-  font: 600 18px/18px Arial, sans-serif;
 }
 
-.user-rate {
+.rate-container
+{
+  display: flex;
+  justify-content: space-around;
+}
+.rate-container > div
+{
+  width: 40%;
+}
+
+.user-rating {
   font-family: "proxima-nova", Verdana, sans-serif;
-  font-size: 14px;
-
-  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
 }
 
+.rate
+{
+  margin-top: 16px;
+}
+
+.FaStar sup 
+{
+  font-size: 18px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+.rate sub
+{
+
+  font-size: 13px;
+  margin-left: 33px;
+  font-weight: bold;
+
+}
+
+.price ,.city-info
+{
+  font-size: 18px;
+  margin-left: 25px;
+
+}
 .parent_comment-chat
   {
     display: flex;
     justify-content: space-around;
+    height: 500px;
     
   }
 
@@ -73,6 +107,7 @@
 
   }
 
+  
  .comment
  {
    border-bottom: 2px solid rgb(211, 206, 202);

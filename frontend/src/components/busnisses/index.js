@@ -11,8 +11,7 @@ import TimeSelect from "../select";
 import "react-image-gallery/styles/css/image-gallery.css";
 import { FormControl, Button, Alert, Modal,Form } from "react-bootstrap";
 import { AiOutlineDelete } from "react-icons/ai";
-import { FiSend } from "react-icons/fi";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle,FaStar } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -312,18 +311,25 @@ export default function Busnisses() {
           </div>
           <div className="information">
             <p className="description">{business.description}</p>
-            <p>{business.city}</p>
-            <p>
-              {" "}
+            <p className="city-info"><span>city :</span> {business.city}</p>
+              <div className="rate-container">
               <div className="rate">
-                <ShowRating rate={business.average_rating} /> Review from{" "}
-                {business.number_rating} User
+                <div className="FaStar">
+                <FaStar size={26}  />
+                <sup>{business.average_rating} / 5 </sup>
+                
+                </div>
+              <div>  
+              <sub> from {business.number_rating} users</sub>
+                  </div>
+
+                
+                
               </div>
-            </p>
-            <p className="price">${business.booking_price} JD</p>
-            {!userRate ? (
+              <div className = "user-rating">
+              {!userRate ? (
               <>
-                <p>Your rate</p>{" "}
+                <p> Rate this </p>
                 <Rating id={id} thisToken={state.token} setInfo={setInfo} />
               </>
             ) : (
@@ -331,6 +337,11 @@ export default function Busnisses() {
                 <p>Your rate</p> <ShowRating rate={userRate} />
               </>
             )}
+              </div>
+              </div>
+          
+            <p  className="price"><span>price :</span> {business.booking_price} JD</p>
+            
             <>
               <Button variant="primary" onClick={handleShow}>
                 Reserve
