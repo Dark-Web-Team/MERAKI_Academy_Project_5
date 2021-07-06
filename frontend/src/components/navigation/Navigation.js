@@ -1,7 +1,8 @@
 
-import React, {   useEffect, useState } from "react";
-import {  useHistory  } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {  useHistory,Link  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import {FaBars} from "react-icons/fa"
 import { setToken } from "../../reducers/login";
 import axios from "axios";
 import {
@@ -87,55 +88,17 @@ const Navigation = () => {
 
   return (
     <div className="nav-container">
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link
-            onClick={() => {
-              history.push("/");
-            }}
-          >
-            {" "}
-            Home
-          </Nav.Link>
-          {!state.token ? (
-            <Nav.Link
-              onClick={() => {
-                history.push("/login");
-              }}
-            >
-              Login
-            </Nav.Link>
-          ) : (
-            ""
-          )}
-          {state.token ? (
-            <Nav.Link
-              onClick={() => {
-                history.push("/profile")
-              }}
-            >
-              My Profile
-            </Nav.Link>
-          ) : (
-            ""
-          )}
-          {state.token ? (
-            <Nav.Link
-              onClick={() => {
-                localStorage.removeItem('token');
-                dispatch(setToken(""));
-                history.push("/")
-              }}
-            >
-              Sign Out
-            </Nav.Link>
-          ) : (
-            ""
-          )}
-        </Nav>
-        <Form inline>
-        <Autosuggest
+      <nav className="navbar-container">
+     
+      
+      <div className = "cxcxc">
+
+        <div className="web-name-app">
+        our web 
+        </div>
+
+      <div className = "search-nav-bar">
+        <div><Autosuggest
         suggestions={suggestion}
         onSuggestionsFetchRequested={(e)=>{onSuggestionsFetchRequested(e)}}
         onSuggestionsClearRequested={onSuggestionsClearRequested}
@@ -148,15 +111,67 @@ const Navigation = () => {
         onSuggestionSelected={(e)=>{
           onChange(e.target.innerText)}}
         theme={theme}
-      />
-      &nbsp;&nbsp;
-          <Button className = 'searchButton' style={{ padding: '0', width: '60px' ,  height:'30px',fontSize:'small'}} onClick={()=>{
+      /></div>
+      <div>
+      <Button variant="outline-info" onClick={()=>{
             history.push(`/search/${search}`)
           }}>Search</Button>
-        </Form>
-      </Navbar>
+      </div>
+        </div>
+        
+      <div className = "ul-navbar">
+      <input type="checkbox" id="check" />
+      <label for="check" class="checkbtn">
+        <FaBars />
+      </label>
+      
+      <ul>
+        <li><Link to="/">Home</Link></li>
+        {!state.token ?<li><Link to="/login">Login</Link></li> :""}
+        {state.token ?<li><Link to="/profile">profile</Link></li> :""}
+        {state.token ?<li><Link onClick={() => {
+                localStorage.removeItem('token');
+                dispatch(setToken(""));
+                history.push("/")
+              }}
+               >Sign Out</Link></li> :""}   
+      </ul>
+      </div>
+      
+      
+      </div>
+      
+    </nav>
     </div>
   );
 };
 
 export default Navigation;
+/*
+<li><div className = "search-nav-bar">
+        <div><Autosuggest
+        suggestions={suggestion}
+        onSuggestionsFetchRequested={(e)=>{onSuggestionsFetchRequested(e)}}
+        onSuggestionsClearRequested={onSuggestionsClearRequested}
+        getSuggestionValue={getSuggestionValue}
+        renderSuggestion={renderSuggestion}
+        inputProps={{placeholder: 'Type a business name',
+        value,
+        onChange: (e)=>{
+          onChange(e.target.value)}}}
+        onSuggestionSelected={(e)=>{
+          onChange(e.target.innerText)}}
+        theme={theme}
+      /></div>
+      <div>
+      <Button variant="outline-info" onClick={()=>{
+            history.push(`/search/${search}`)
+          }}>Search</Button>
+      </div>
+        </div>
+          </li>
+
+
+
+
+*/
