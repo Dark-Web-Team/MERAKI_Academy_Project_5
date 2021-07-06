@@ -2,7 +2,7 @@ const express = require("express");
 
 const businessRouter = express.Router();
 
-const {addBusiness,updateBusiness,deleteBusiness,getBusinessByType,getBusinessById,getBusinessByTypeByPrice,getBusinessByTypeByPriceByCity,getBusinessByCity, searchBusinessByName, getAllBusinesses} = require('./../controllers/businessController')
+const {addBusiness,updateBusiness,deleteBusiness,getBusinessByType,getBusinessById,getBusinessByTypeByPrice,getBusinessByTypeByPriceByCity,getBusinessByCity, searchBusinessByName, getBusinessByUserId} = require('./../controllers/businessController')
 
 const {authentication} = require('../middlewares/authentication')
 
@@ -15,5 +15,6 @@ businessRouter.get('/filter/:type/:lowPrice/:highPrice/:page', getBusinessByType
 businessRouter.get('/filter1/:type/:city/:page', getBusinessByCity);
 businessRouter.get('/filter2/:type/:lowPrice/:highPrice/:city/:page', getBusinessByTypeByPriceByCity);
 businessRouter.get('/search/:name', searchBusinessByName);
+businessRouter.get('/user',authentication,getBusinessByUserId);
 
 module.exports = businessRouter;
