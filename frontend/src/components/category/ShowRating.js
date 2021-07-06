@@ -17,9 +17,9 @@ export default function ShowRating({ rate }) {
     <div>
       <div className="rating">
         {[...Array(Math.floor(rate))].map((element, i) => {
-          return <FaStar size={17} color={"gold"} />;
+          return <FaStar size={22} color={"gold"} />;
         })}
-        {halfStar ? <BsStarHalf size={17} color={"gold"} /> : ""}
+        {halfStar ? <BsStarHalf size={22} color={"gold"} /> : ""}
       </div>
     </div>
   );
