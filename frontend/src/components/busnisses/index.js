@@ -404,7 +404,7 @@ export default function Busnisses() {
                 </Modal.Body>
               </Modal>
             </>
-            <Map lat = {32.060662}  lng = { 36.093064} />
+            <Map />
    
           </div>
         </div>
