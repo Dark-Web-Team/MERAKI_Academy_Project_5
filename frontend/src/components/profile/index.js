@@ -9,39 +9,55 @@ import { useSelector } from "react-redux";
 export default function Profile() {
   const [userInfo, setUserInfo] = useState("");
   const [userReservations, setUserReservations] = useState([]);
-  const history = useHistory();
+  const [userBusiness, setUserBusiness] = useState([]);
   const [kay, setKay] = useState("profile");
+
+  const history = useHistory();
+
   const token = useSelector((state) => state.login.token);
 
   useEffect(() => {
-    if (token){
+    if (token) {
       axios
-      .get(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
-        headers: {
-          authorization: "Bearer " + token,
-        },
-      })
-      .then((result) => {
-        setUserInfo(result.data);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      });
-    axios
-      .get(`${process.env.REACT_APP_BACKEND_SERVER}reservations`, {
-        headers: {
-          authorization: "Bearer " + token,
-        },
-      })
-      .then((result) => {
-        console.log(result);
-        setUserReservations(result.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .get(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
+          headers: {
+            authorization: "Bearer " + token,
+          },
+        })
+        .then((result) => {
+          setUserInfo(result.data);
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+        });
+      axios
+        .get(`${process.env.REACT_APP_BACKEND_SERVER}reservations`, {
+          headers: {
+            authorization: "Bearer " + token,
+          },
+        })
+        .then((result) => {
+          console.log(result);
+          setUserReservations(result.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      axios
+        .get(`${process.env.REACT_APP_BACKEND_SERVER}business/user`, {
+          headers: {
+            authorization: "Bearer " + token,
+          },
+        })
+        .then((result) => {
+          console.log(result);
+          setUserBusiness(result.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
-    
   }, [token]);
 
   return (
@@ -51,12 +67,9 @@ export default function Profile() {
         activeKey={kay}
         onSelect={(k) => setKay(k)}
       >
-        <Tab eventKey="profile" title="Profile">
-          {/* <Sonnet /> */}
-        </Tab>
-        <Tab eventKey="reservation" title="reservation">
-          {/* <Sonnet /> */}
-        </Tab>
+        <Tab eventKey="profile" title="Profile"></Tab>
+        <Tab eventKey="reservation" title="reservation"></Tab>
+        <Tab eventKey="business" title="My Business"></Tab>
       </Tabs>
 
       {userInfo && kay === "profile" ? (
@@ -97,14 +110,6 @@ export default function Profile() {
               >
                 edit profile
               </Button>
-              <Button
-                id="addBusinessButton"
-                onClick={() => {
-                  history.push(`/profile/addBusiness`);
-                }}
-              >
-                Add a business
-              </Button>
             </div>
           </div>
         </div>
@@ -114,32 +119,88 @@ export default function Profile() {
       {userReservations && kay === "reservation" ? (
         <div>
           {userReservations.map((element) => {
-            let date = element.reservation_date
-            date = date.split("T")[0].split("-").reverse().join("-")
+            let date = element.reservation_date;
+            date = date.split("T")[0].split("-").reverse().join("-");
             return (
               <>
-                
-     <div className="inf_reservation">
-                <Card>
-    <Card.Img className="reservation-imag" variant="top" src={element.main_img} />
-    <Card.Body>
-      <Card.Text>
-        <p> <span>Name: </span> {element.displayName}</p>
-       <p><span>Price: </span>{element.booking_price}</p>
-       <p><span>Date: </span>{date}</p>
-       <p><span>Time: </span>{element.reservation_time}</p>
-      </Card.Text>
-    </Card.Body>
-  </Card>
-  </div>                
-                 
-               
+                <div className="inf_reservation">
+                  <Card>
+                    <Card.Img
+                      className="reservation-imag"
+                      variant="top"
+                      src={element.main_img}
+                    />
+                    <Card.Body>
+                      <Card.Text>
+                        <p>
+                          {" "}
+                          <span>Name: </span> {element.displayName}
+                        </p>
+                        <p>
+                          <span>Price: </span>
+                          {element.booking_price}
+                        </p>
+                        <p>
+                          <span>Date: </span>
+                          {date}
+                        </p>
+                        <p>
+                          <span>Time: </span>
+                          {element.reservation_time}
+                        </p>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
               </>
             );
           })}
         </div>
       ) : (
         ""
+      )}
+
+      {userBusiness && kay === "business" ? (
+        <div>
+          {userBusiness.map((element, i) => {
+            return (
+              <>
+                <div key={i} className="inf_reservation">
+                  <Card>
+                    <Card.Img
+                      className="reservation-imag"
+                      variant="top"
+                      src={element.main_img}
+                    />
+                    <Card.Body>
+                      <Card.Text>
+                        <p>
+                          {" "}
+                          <span>Name: </span> {element.displayName}
+                        </p>
+                        <p>
+                          <span>Price: </span>
+                          {element.booking_price}
+                        </p>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
+              </>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="noBusiness">
+          <Button
+                id="addBusinessButton"
+                onClick={() => {
+                  history.push(`/profile/addBusiness`);
+                }}
+              >
+                Add a business
+              </Button>
+        </div>
       )}
     </>
   );

@@ -42,7 +42,14 @@ float: left;
 
 #addBusinessButton{
   margin:auto;
-  float: right;
+}
+
+.noBusiness{
+  width: 100vw;
+  height: 87vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .editForm {

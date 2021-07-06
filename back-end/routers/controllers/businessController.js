@@ -126,6 +126,20 @@ const getBusinessById = (req, res) => {
   });
 };
 
+const getBusinessByUserId = (req, res) => {
+  const owner_id = req.token.user_id;
+  const query = "SELECT * FROM businesses WHERE owner_id = ?";
+  const id = [owner_id];
+
+  connection.query(query, id, (err, result) => {
+    if (err) {
+      console.log(err);
+      return res.send(err);
+    }
+    res.status(200).json(result);
+  });
+};
+
 const getBusinessByTypeByPrice = (req, res) => {
   const { type, lowPrice, highPrice,page } = req.params;
   const query =
@@ -196,4 +210,5 @@ module.exports = {
   getBusinessByTypeByPriceByCity,
   getBusinessByCity,
   searchBusinessByName,
+  getBusinessByUserId,
 };
