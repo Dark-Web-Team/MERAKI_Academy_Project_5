@@ -141,18 +141,18 @@
     max-height: 1em;
   }
   
-  img {
+  .businesses img {
     max-width: 100%;
   }
   
-  body {
+  .businesses {
     background: #f0f0f0;
     font-size: 17px;
     line-height: 1.4;
     font-family: "Jaldi", sans-serif;
   }
   
-  * {
+  .card-summary {
     -moz-transition-property: background-color, border-color, box-shadow, color, opacity, text-shadow, -moz-transform;
     -o-transition-property: background-color, border-color, box-shadow, color, opacity, text-shadow, -o-transform;
     -webkit-transition-property: background-color, border-color, box-shadow, color, opacity, text-shadow, -webkit-transform;

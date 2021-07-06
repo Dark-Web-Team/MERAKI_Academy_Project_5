@@ -5,6 +5,7 @@ import { Button, Tabs, Tab, Card } from "react-bootstrap";
 import axios from "axios";
 import "./profile.css";
 import { useSelector } from "react-redux";
+import ShowMap from "../googleMap/showMap";
 
 export default function Profile() {
   const [userInfo, setUserInfo] = useState("");
@@ -165,42 +166,53 @@ export default function Profile() {
           {userBusiness.map((element, i) => {
             return (
               <>
-                <div key={i} className="inf_reservation">
-                  <Card>
-                    <Card.Img
-                      className="reservation-imag"
-                      variant="top"
+                <div key={i} className="inf_business">
+                  <div className="business_img">
+                    <img
                       src={element.main_img}
-                    />
-                    <Card.Body>
-                      <Card.Text>
-                        <p>
-                          {" "}
-                          <span>Name: </span> {element.displayName}
-                        </p>
-                        <p>
-                          <span>Price: </span>
-                          {element.booking_price}
-                        </p>
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
+                      alt={element.displayName}
+                      className="image"
+                    ></img>
+                  </div>
+                  <div className="business_info">
+                    <p>Business Name: {element.displayName}</p>
+                    <p>City: {element.city} </p>
+                    <p>Price: {element.booking_price} </p>
+                    <p>
+                      Opening Time: {element.opening_time} &nbsp; &nbsp; &nbsp;
+                      Closing Time: {element.closing_time}
+                    </p>
+                    <Button onClick={()=>{
+                      history.push(`/business/${element.business_id}`)
+                    }}>Go to business</Button>
+                  </div>
+                  <div className="business_desc">
+                    <span>{element.description}</span>
+                  </div>
+                  <div className="location">
+                    <ShowMap width={'20vw'} height={'30vh'} />
+                  </div>
                 </div>
               </>
             );
           })}
         </div>
       ) : (
+        ""
+      )}
+      {!userBusiness && kay === "business" ? (
         <div className="noBusiness">
           <Button
-                id="addBusinessButton"
-                onClick={() => {
-                  history.push(`/profile/addBusiness`);
-                }}
-              >
-                Add a business
-              </Button>
+            id="addBusinessButton"
+            onClick={() => {
+              history.push(`/profile/addBusiness`);
+            }}
+          >
+            Add a business
+          </Button>
         </div>
+      ) : (
+        ""
       )}
     </>
   );
