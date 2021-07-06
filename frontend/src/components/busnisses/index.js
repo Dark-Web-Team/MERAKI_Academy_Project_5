@@ -264,7 +264,7 @@ export default function Busnisses() {
         <div className="parent">
           <div className="gallery">
 
-            <Splide options={primaryOptions} ref={primaryRef}>
+            <Splide className="asasa" options={primaryOptions} ref={primaryRef}>
               {pictures.map((elem, i) => {
                 return (
                   <SplideSlide>
