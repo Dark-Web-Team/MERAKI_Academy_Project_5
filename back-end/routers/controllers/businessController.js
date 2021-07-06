@@ -36,7 +36,10 @@ const addBusiness = (req, res) => {
       console.log(err);
       return res.send(err);
     }
-    res.status(201).json("created successfully");
+    res.status(201).json({
+      conformation : "created successfully" ,
+      id : result.insertId
+    });
   });
 };
 
