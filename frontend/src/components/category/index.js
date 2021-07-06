@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./category.css";
+import "./card.css";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import ShowRating from "./ShowRating";
@@ -39,7 +40,7 @@ const Category = () => {
       const category_businesses = await axios.get(
         `http://localhost:5000/business/type/${type}/${page}`
       );
-      
+
       if (category_businesses.data.length === 8) {
         setIsThereNextPage(true);
       } else {
@@ -150,38 +151,66 @@ const Category = () => {
       <div className="businesses">
         {businesses.map((elem, i) => {
           return (
-            <Card
+            <div
+              class="card"
               key={i}
-              style={{ width: `18rem` }}
-              className="businessCard bg-dark text-white box"
-              id="businessCard"
               onClick={(e) => {
                 history.push(`/business/${elem.business_id}`);
               }}
             >
-              <Card.Img variant="top" src={elem.main_img} />
-              <Card.Body>
-                <Card.Title>{elem.displayName}</Card.Title>
-                <Card.Title>Price:{elem.booking_price}</Card.Title>
-                <Card.Title>
-                  {" "}
-                  <ShowRating rate={elem.average_rating} />
-                </Card.Title>
-                <Card.Subtitle> </Card.Subtitle>
-              </Card.Body>
-            </Card>
+              <span
+                class="card-header"
+                style={{ backgroundImage: `url(${elem.main_img})` }}
+              >
+                <span class="card-title" >
+                  <h3>{elem.displayName}</h3>
+                </span>
+              </span>
+
+              <span class="card-summary">
+                Price: {elem.booking_price}
+                <br />
+                City: {elem.city}
+                <ShowRating rate={elem.average_rating} />
+              </span>
+            </div>
+
+            // <Card
+            //   key={i}
+            //   style={{ width: `18rem` }}
+            //   className="businessCard bg-dark text-white box"
+            //   id="businessCard"
+            //   onClick={(e) => {
+            //     history.push(`/business/${elem.business_id}`);
+            //   }}
+            // >
+            //   <Card.Img variant="top" src={elem.main_img} />
+            //   <Card.Body>
+            //     <Card.Title>{elem.displayName}</Card.Title>
+            //     <Card.Title>Price:{elem.booking_price}</Card.Title>
+            //     <Card.Title>
+            //       {" "}
+            //       <ShowRating rate={elem.average_rating} />
+            //     </Card.Title>
+            //     <Card.Subtitle> </Card.Subtitle>
+            //   </Card.Body>
+            // </Card>
           );
         })}
       </div>
       <div className="paginationButtons">
-       {page>1 ?  <a
-          href="#"
-          className="pagination"
-          id="previous"
-          onClick={() => previousPage()}
-        >
-          ❮
-        </a>:""}
+        {page > 1 ? (
+          <a
+            href="#"
+            className="pagination"
+            id="previous"
+            onClick={() => previousPage()}
+          >
+            ❮
+          </a>
+        ) : (
+          ""
+        )}
         {isThereNextPage ? (
           <a
             href="#"

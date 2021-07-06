@@ -149,7 +149,8 @@ const Navigation = () => {
           onChange(e.target.innerText)}}
         theme={theme}
       />
-          <Button variant="outline-info" onClick={()=>{
+      &nbsp;&nbsp;
+          <Button className = 'searchButton' style={{ padding: '0', width: '60px' ,  height:'30px',fontSize:'small'}} onClick={()=>{
             history.push(`/search/${search}`)
           }}>Search</Button>
         </Form>

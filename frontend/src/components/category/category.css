@@ -3,12 +3,14 @@
     display: grid;
     grid-template-columns: repeat(4,1fr);
     flex-wrap: wrap;
-    width: 98vw;
-    justify-content: center;
+    width: 100vw;
+    justify-content: space-around;
+ margin-left: 10px;
 }
 
 #businessCard{
     margin-top: 7%;
+    
 }
 
 .businessCard:hover{
