@@ -20,9 +20,12 @@
   margin-top: 2%;
   margin-bottom: 4%; }
 .information {
-  width: 30%;
-  
-
+  width: 35%;
+}
+.information #Button-Reserve
+{
+  margin: 10px 10px 10px 0;
+    width: 200px;
 }
 
 .city-info span ,.price span 
@@ -53,6 +56,7 @@
 {
   display: flex;
   justify-content: space-around;
+  margin-top: 10px;
 }
 .rate-container > div
 {
@@ -88,7 +92,7 @@
 .price ,.city-info
 {
   font-size: 18px;
-  margin-left: 25px;
+  margin: 0 0 10px 25px;
 
 }
 .parent_comment-chat
@@ -104,6 +108,12 @@
     width: 45%;
     margin: auto;
 
+  }
+
+  .information-map
+  {
+    margin-top: 25px;
+    margin-bottom: 50px;
   }
 
   
