@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 import "./add_business.css";
 import Alert from "react-bootstrap/Alert";
+import Map from './../googleMap/index'
 
 const AddBusiness = () => {
   const [displayName, setDisplayName] = useState("");
@@ -18,6 +19,7 @@ const AddBusiness = () => {
   const [errMessage, setErrMessage] = useState("");
   const [errPresent, setErrPresent] = useState(false);
   const [businessCheck, setBusinessCheck] = useState('Please enter your business name')
+  const [marker, setMarker] = useState([]);
 
   const user_id = useSelector(state => state.login.user_id)
 
@@ -47,13 +49,16 @@ const AddBusiness = () => {
           type,
           main_img,
           owner_id: user_id,
+          lat:marker[0].lat,
+          lng:marker[0].lng
         }
       );
       console.log(addConfirm.data);
       if (addConfirm.data.code === `ER_DUP_ENTRY`){
         setBusinessCheck(`business name already exists`);
       }
-    } catch (err) {
+    }
+     catch (err) {
       console.log(err.response);
       setErrPresent(true);
       setErrMessage(err.response.data);
@@ -191,6 +196,7 @@ const AddBusiness = () => {
               Please enter a brief description of your business.
             </Form.Control.Feedback>
           </Form.Group>
+          <Map  marker = {marker} setMarker = {setMarker} />
           <Button variant="primary" type="submit" onClick={handleSubmit}>
             Submit
           </Button>
@@ -206,6 +212,7 @@ const AddBusiness = () => {
             </div>
           )}
         </Form>
+       
       </div>
     </>
   );

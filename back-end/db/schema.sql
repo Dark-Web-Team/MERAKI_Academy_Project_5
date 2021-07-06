@@ -39,6 +39,8 @@ CREATE TABLE businesses (
    number_rating INT ,
    opening_time VARCHAR(255),
    closing_time VARCHAR(255),
+   lat FLOAT(50),
+   lng FLOAT(50),
    is_deleted TINYINT DEFAULT 0,
    PRIMARY KEY (business_id)
 
