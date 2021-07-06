@@ -17,7 +17,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-sea-green.min.css";
-import Map from './../googleMap/index';
+import ShowMap from './../googleMap/showMap';
 
 
 export default function Busnisses() {
@@ -101,6 +101,7 @@ export default function Busnisses() {
     }
   };
 
+  
   const getUserrate = () => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_SERVER}rating/${id}`, {
@@ -404,7 +405,7 @@ export default function Busnisses() {
                 </Modal.Body>
               </Modal>
             </>
-            <Map />
+            <ShowMap lat = {business.lat} lng = {business.lng} />
    
           </div>
         </div>

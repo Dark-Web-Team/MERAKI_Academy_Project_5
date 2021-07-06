@@ -38,16 +38,16 @@ import React from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 
-function Map() {
+function Map({marker , setMarker}) {
 
-    const [marker, setMarker] = React.useState([]);
+ 
     const [center, setCenter] = React.useState({
       lat: 32.060662,
       lng: 36.093064,
     });
 
   const containerStyle = {
-    width: "400px",
+    width: "550px",
     height: "400px",
   };
 
@@ -92,5 +92,6 @@ function Map() {
     </div>
   );
 }
+
 
 export default Map;

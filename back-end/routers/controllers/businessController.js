@@ -12,9 +12,11 @@ const addBusiness = (req, res) => {
     description,
     opening_time,
     closing_time,
+    lat,
+    lng
   } = req.body;
   const query =
-    "INSERT INTO businesses (type, displayName, city, owner_id, booking_price,average_rating,number_rating,main_img,description, opening_time, closing_time) VALUES (?,?,?,?,?,0,0,?,?,?,?)";
+    "INSERT INTO businesses (type, displayName, city, owner_id, booking_price,average_rating,number_rating,main_img,description, opening_time, closing_time, lat, lng) VALUES (?,?,?,?,?,0,0,?,?,?,?,?,?)";
   const businessData = [
     type,
     displayName,
@@ -25,6 +27,8 @@ const addBusiness = (req, res) => {
     description,
     opening_time,
     closing_time,
+    lat,
+    lng
   ];
 
   connection.query(query, businessData, (err, result) => {
