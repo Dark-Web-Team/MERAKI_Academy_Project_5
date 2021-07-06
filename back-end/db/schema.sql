@@ -28,7 +28,7 @@ CREATE TABLE users(
 CREATE TABLE businesses (
    business_id INT AUTO_INCREMENT NOT NULL,
    type varchar(255) NOT NULL,  
-   displayName varchar(255) NOT NULL UNIQUE,
+   displayName varchar(5000) NOT NULL UNIQUE,
    description VARCHAR(255),
    main_img varchar(2550),
    city varchar(255) NOT NULL, 
