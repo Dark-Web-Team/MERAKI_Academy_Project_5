@@ -2,3 +2,9 @@
     margin: auto;
     width: 100%;
 }
+.searchButton{
+ width: 60px;
+    text-align: center;
+  
+    padding: 0;
+}

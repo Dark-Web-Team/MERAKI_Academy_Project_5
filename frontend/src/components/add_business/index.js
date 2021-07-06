@@ -55,7 +55,7 @@ const AddBusiness = () => {
           lng:marker[0].lng
         }
       );
-
+console.log(addConfirm);
       if (addConfirm.status === 201 ){
         history.push(`/business/${addConfirm.data.id}`)
       }
