@@ -69,3 +69,30 @@ float: left;
   margin-top: 2%;
 }
 
+.inf_business{
+  display: grid;
+  grid-template-columns: repeat(4,1fr 1fr 2fr 1fr);
+ 
+  gap: 23px;
+}
+
+.image{
+  width: 23vw;
+  height: 30vh
+}
+
+.business_info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20vw;
+  
+}
+
+.business_desc{
+  display: flex;
+  align-items: center;
+  width: 31vw;
+ 
+  max-height: 30vh;
+}
