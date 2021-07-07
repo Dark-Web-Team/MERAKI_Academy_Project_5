@@ -47,6 +47,11 @@
 
 .search-nav-bar  {
     display: flex;
+    margin: auto;
+}
+.web-name-app
+{
+  margin: auto;
 }
 
 
