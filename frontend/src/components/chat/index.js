@@ -58,7 +58,8 @@ function Chat({ roomId, userId }) {
 
     socket.emit("send_message", messageContent); //raise event
     setMessageList([...messageList, messageContent.content]);
-    console.log(messageList);
+    var elem = document.getElementById('containar-all-chat');
+    elem.scrollTop = elem.scrollHeight;
     axios.post(
       `${process.env.REACT_APP_BACKEND_SERVER}chat/${roomId}`,
       {chat_content:message , user_name:state.user_name },
@@ -85,8 +86,8 @@ function Chat({ roomId, userId }) {
 
   return (
     <>
-      {enterRoom ? <div className="containar-all-chat" >
-        <div className=".chat-content-all ">
+      {enterRoom ? <div className="containar-all-chat" id="containar-all-chat" >
+        <div className="chat-content-all">
         {messageList.map((val, i) => {
           return (<>
             <div className="chat-info1">
