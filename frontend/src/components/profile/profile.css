@@ -69,16 +69,24 @@ float: left;
   margin-top: 2%;
 }
 
+.main_business{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .inf_business{
   display: grid;
-  grid-template-columns: repeat(4,1fr 1fr 2fr 1fr);
- 
-  gap: 23px;
+  grid-template-columns: repeat(3,1fr);
+  justify-content: center;
+  align-items:center;
+  width: 98vw;
 }
 
 .image{
-  width: 23vw;
-  height: 30vh
+  width: 70vw;
+  height: 70vh
 }
 
 .business_info{
@@ -92,7 +100,6 @@ float: left;
 .business_desc{
   display: flex;
   align-items: center;
-  width: 31vw;
- 
-  max-height: 30vh;
+  width: 35vw;
+  max-height: 40vh;
 }
