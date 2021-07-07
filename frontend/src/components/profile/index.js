@@ -6,19 +6,22 @@ import axios from "axios";
 import "./profile.css";
 import { useSelector } from "react-redux";
 import ShowMap from "../googleMap/showMap";
+import Footer from "./../footer/index";
 
 export default function Profile() {
   const [userInfo, setUserInfo] = useState("");
   const [userReservations, setUserReservations] = useState([]);
   const [userBusiness, setUserBusiness] = useState([]);
   const [kay, setKay] = useState("profile");
-
+  const [role, setRole] = useState("");
   const history = useHistory();
 
   const token = useSelector((state) => state.login.token);
 
   useEffect(() => {
     if (token) {
+      const ownerConformation = jwt.decode(token);
+      setRole(ownerConformation.role);
       axios
         .get(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
           headers: {
@@ -70,11 +73,13 @@ export default function Profile() {
       >
         <Tab eventKey="profile" title="Profile"></Tab>
         <Tab eventKey="reservation" title="reservation"></Tab>
-        <Tab eventKey="business" title="My Business"></Tab>
+        {role === "owner" && (
+          <Tab eventKey="business" title="My Business"></Tab>
+        )}
       </Tabs>
 
       {userInfo && kay === "profile" ? (
-        <div key = {500} className="profile-information">
+        <div key={500} className="profile-information">
           <p id="your-information">Profile Info</p>
           <div className="user-info">
             <div className="info">
@@ -156,7 +161,12 @@ export default function Profile() {
                     <span>{element.description}</span>
                   </div>
                   <div className="location">
-                    <ShowMap width={"23vw"} height={"31.75vh"} lat={element.lat} lng={element.lng}/>
+                    <ShowMap
+                      width={"23vw"}
+                      height={"31.75vh"}
+                      lat={element.lat}
+                      lng={element.lng}
+                    />
                   </div>
                 </div>
               </>
