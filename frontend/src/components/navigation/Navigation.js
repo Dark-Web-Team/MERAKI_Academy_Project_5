@@ -94,7 +94,7 @@ const Navigation = () => {
       <div className = "cxcxc">
 
         <div className="web-name-app">
-        our web 
+        <p id="booking" > Booking<p id="online">Dark-Web </p></p>
         </div>
 
       <div className = "search-nav-bar">
@@ -113,9 +113,10 @@ const Navigation = () => {
         theme={theme}
       /></div>
       <div>
-      <Button variant="outline-info" onClick={()=>{
+      &nbsp;&nbsp;&nbsp;
+      <Button  style={{textAlign: 'center' , paddingTop: '-20'}} className = 'searchButton' variant="dark" onClick={()=>{
             history.push(`/search/${search}`)
-          }}>Search</Button>
+          }} >Search</Button>
       </div>
         </div>
         
@@ -126,15 +127,15 @@ const Navigation = () => {
       </label>
       
       <ul >
-        <li><Link to="/">Home</Link></li>
-        {!state.token ?<li><Link to="/login">Login</Link></li> :""}
-        {state.token ?<li><Link to="/profile">profile</Link></li> :""}
+        <li><Link to="/"  style={{textDecoration:"none"}}>Home</Link></li>
+        {!state.token ?<li><Link to="/login" style={{textDecoration:"none"}}>Login</Link></li> :""}
+        {state.token ?<li><Link to="/profile" style={{textDecoration:"none"}}>profile</Link></li> :""}
         {state.token ?<li><Link onClick={() => {
                 localStorage.removeItem('token');
                 dispatch(setToken(""));
                 history.push("/")
               }}
-               >Sign Out</Link></li> :""}   
+                style={{textDecoration:"none"}}>Sign Out</Link></li> :""}   
       </ul>
       </div>
       
