@@ -125,7 +125,7 @@ const Navigation = () => {
         <FaBars />
       </label>
       
-      <ul>
+      <ul >
         <li><Link to="/">Home</Link></li>
         {!state.token ?<li><Link to="/login">Login</Link></li> :""}
         {state.token ?<li><Link to="/profile">profile</Link></li> :""}
