@@ -21,7 +21,20 @@
   }
   .ul-navbar {
       display: flex;
+     
   }
+  #booking {
+    float: left;
+    font-family: "Mukta", sans-serif;
+    font-size: 30px;
+  }
+  #online {
+    float: left;
+    font-family: "Mukta", sans-serif;
+    font-size: 30px;
+    color: rgb(255, 255, 255);
+  }
+  
   label.logo{
     color: white;
     font-size: 35px;
@@ -48,11 +61,15 @@
 
 .search-nav-bar  {
     display: flex;
-    margin: auto;
+    padding-top: 30px ;
+}
+.searchButton{
+ height: 30px;
+padding-top: 2;
 }
 .web-name-app
 {
-  margin: auto;
+ padding: 20px ;
 }
 
 
