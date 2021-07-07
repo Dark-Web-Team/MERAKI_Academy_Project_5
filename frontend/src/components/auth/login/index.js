@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -26,6 +26,10 @@ const Login = () => {
   const lastVisited = useSelector((state) => state.lastVisited.path);
   const [errMessage, setErrMessage] = useState("");
   const [errPresent, setErrPresent] = useState(false);
+  const flection = ()=>{
+
+    history.push("/signUp")
+  }
   const handleLogin = () => {
     axios
       .post(`${process.env.REACT_APP_BACKEND_SERVER}login`, {
@@ -49,9 +53,6 @@ const Login = () => {
       });
   };
 
-  // document.querySelector('.img__btn').addEventListener('click', function() {
-  //   document.querySelector('.cont').classList.toggle('s--signup');
-  // });
 
   return (
     <>
@@ -152,7 +153,7 @@ const Login = () => {
                   If you already has an account, just sign in. We've missed you!
                 </p>
               </div>
-              <div class="img__btn">
+              <div class="img__btn" onClick={flection}>
                 <span class="m--up">Sign Up</span>
                 <span class="m--in">Sign In</span>
               </div>
@@ -170,6 +171,9 @@ const Login = () => {
               <label>
                 <span>Password</span>
                 <input type="password" />
+              </label>
+              <label>
+                
               </label>
               <button type="button" class="submit">
                 Sign Up

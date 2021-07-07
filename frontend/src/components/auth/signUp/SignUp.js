@@ -78,7 +78,7 @@ export default function SignUp() {
 
   return (
     <div className="sign-up-container">
-      <p className="login_text">SignUp</p>
+      
       <Form
       className = "input-sign-up-container"
         noValidate validated={validated} onSubmit={register}
@@ -184,9 +184,9 @@ export default function SignUp() {
             Please choose a city.
           </Form.Control.Feedback>
         </Form.Group>
-        <Button className="singUpButton" type="submit" >
+        <button className="singUpButton" type="submit" >
           Sing Up
-        </Button>
+        </button>
         
       </Form>
       {errMessage ? (
