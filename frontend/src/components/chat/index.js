@@ -4,6 +4,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import {AiOutlineSend} from 'react-icons/ai'
 import {Button} from "react-bootstrap";
+import {FaUserCircle} from "react-icons/fa"
 import "./chat.css";
 
 let socket;
@@ -74,18 +75,27 @@ function Chat({ roomId, userId }) {
 	})
   };
 
+  /*<div class="container">
+  <sup>loay</sup>
+  <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+  <p>Hello. How are you today?</p>
+  <span class="time-right">11:00</span>
+</div>
+ */
+
   return (
     <>
-      {enterRoom ? <div>
-        <div className="chat-conant">
+      {enterRoom ? <div className="containar-all-chat" >
+        <div className=".chat-content-all ">
         {messageList.map((val, i) => {
           return (<>
             <div className="chat-info1">
-            <p className="chat-name" key={i}>
+            <FaUserCircle  size={30} />
+            <sup  key={i}>
               {val.user_name} 
-            </p>
+            </sup>
             <p className="chat-content" key={i}>{val.chat_content}</p>
-            <p className="chat-date" key={i} >{val.date}</p>
+            <span className="time-right" key={i} >{val.date}</span>
             </div>
             </>
           );

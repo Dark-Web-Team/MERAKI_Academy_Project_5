@@ -1,34 +1,51 @@
-.chat-conant 
+.containar-all-chat
+{
+    background-image: url("https://thumbs.dreamstime.com/b/mobile-apps-pattern-white-background-50171276.jpg");
+
+
+
+}
+.chat-content-all 
 {
     height:400px;
-    width: 90%;
     overflow-y: scroll; 
+
     
 }
 
 .input-chat input
 {
-    width: 80%;
+    width: 75%;
 }
 
 .chat-info1
 {
-    /* box-shadow: 20px 20px 20px 10px #1741bd; */
-    border-bottom: 2px solid rgb(228, 222, 222);
-    margin-top: 30px;
+    border: 2px solid #dedede;
+    background-color:white;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px 0 20px 0 ;
 
 
 }
-.chat-name
+
+.chat-info1 sup
 {
-    font-size: 20px;
-    font-weight: bold;
-    font-family: "Mukta", sans-serif;  
+    margin-left: 5px;
 }
+
+.time-right {
+    float: right;
+    color:black;
+    font-size: 13px;
+  }
+  
+
 
 .chat-content
 {
     margin-left: 15px;
+    margin-top: 15px;
 }
  .chat-date
 {
