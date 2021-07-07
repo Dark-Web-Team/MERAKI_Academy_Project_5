@@ -29,7 +29,7 @@ export default function Profile() {
           setUserInfo(result.data);
         })
         .catch((err) => {
-          console.log(err.response.data);
+          console.log(err.response);
         });
       axios
         .get(`${process.env.REACT_APP_BACKEND_SERVER}reservations`, {
@@ -74,7 +74,7 @@ export default function Profile() {
       </Tabs>
 
       {userInfo && kay === "profile" ? (
-        <div className="profile-information">
+        <div key = {500} className="profile-information">
           <p id="your-information">Profile Info</p>
           <div className="user-info">
             <div className="info">
@@ -119,41 +119,78 @@ export default function Profile() {
       )}
       {userReservations && kay === "reservation" ? (
         <div>
-          {userReservations.map((element) => {
+          {userReservations.map((element, i) => {
+            console.log(userReservations);
             let date = element.reservation_date;
             date = date.split("T")[0].split("-").reverse().join("-");
             return (
               <>
-                <div className="inf_reservation">
-                  <Card>
-                    <Card.Img
-                      className="reservation-imag"
-                      variant="top"
+                <div key={i} className="Resinf_business">
+                  <div className="business_img">
+                    <img
                       src={element.main_img}
-                    />
-                    <Card.Body>
-                      <Card.Text>
-                        <p>
-                          {" "}
-                          <span>Name: </span> {element.displayName}
-                        </p>
-                        <p>
-                          <span>Price: </span>
-                          {element.booking_price}
-                        </p>
-                        <p>
-                          <span>Date: </span>
-                          {date}
-                        </p>
-                        <p>
-                          <span>Time: </span>
-                          {element.reservation_time}
-                        </p>
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
+                      alt={element.displayName}
+                      className="Resimage"
+                    ></img>
+                  </div>
+                  <div className="business_info">
+                    <p>Business Name: {element.displayName}</p>
+                    <p>Price: {element.booking_price} </p>
+                    <p>
+                      <span>Date: </span>
+                      {date}
+                    </p>
+                    <p>
+                      <span>Time: </span>
+                      {element.reservation_time}
+                    </p>
+                    <Button
+                      onClick={() => {
+                        history.push(`/business/${element.business_id}`);
+                      }}
+                    >
+                      Go to business
+                    </Button>
+                  </div>
+                  <div className="Resbusiness_desc">
+                    <span>{element.description}</span>
+                  </div>
+                  <div className="location">
+                    <ShowMap width={"23vw"} height={"31.75vh"} lat={element.lat} lng={element.lng}/>
+                  </div>
                 </div>
               </>
+              // <>
+              //   <div className="inf_reservation">
+              //     <Card>
+              //       <Card.Img
+              //         className="reservation-imag"
+              //         variant="top"
+              //         src={element.main_img}
+              //       />
+              //       <Card.Body>
+              //         <Card.Text>
+              //           <p>
+              //             {" "}
+              //             <span>Name: </span> {element.displayName}
+              //           </p>
+              //           <p>
+              //             <span>Price: </span>
+              //             {element.booking_price}
+              //           </p>
+              //           <p>
+              //             <span>Date: </span>
+              //             {date}
+              //           </p>
+              //           <p>
+              //             <span>Time: </span>
+              //             {element.reservation_time}
+              //           </p>
+              //         </Card.Text>
+              //       </Card.Body>
+              //     </Card>
+              //   </div>
+              // </>
             );
           })}
         </div>
@@ -195,7 +232,12 @@ export default function Profile() {
                       <span>{element.description}</span>
                     </div>
                     <div className="location">
-                      <ShowMap width={"30vw"} height={"40vh"} lat={element.lat} lng={element.lng} />
+                      <ShowMap
+                        width={"30vw"}
+                        height={"40vh"}
+                        lat={element.lat}
+                        lng={element.lng}
+                      />
                     </div>
                   </div>
                 </div>

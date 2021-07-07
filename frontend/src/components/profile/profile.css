@@ -83,10 +83,21 @@ float: left;
   align-items:center;
   width: 98vw;
 }
+.Resinf_business{
+  display: grid;
+  grid-template-columns: repeat(3,1fr 1fr 2fr 1fr);
+  gap: 23px;
+  border-bottom: solid black ;
+  margin-top:5px ;
+}
 
 .image{
   width: 70vw;
   height: 70vh
+}
+.Resimage{
+  width: 23vw;
+  height: 31.75vh
 }
 
 .business_info{
@@ -101,5 +112,11 @@ float: left;
   display: flex;
   align-items: center;
   width: 35vw;
+  max-height: 40vh;
+}
+.Resbusiness_desc{
+  display: flex;
+  align-items: center;
+  width: 27vw;
   max-height: 40vh;
 }
