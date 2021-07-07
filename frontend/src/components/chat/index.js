@@ -76,13 +76,10 @@ function Chat({ roomId, userId }) {
 	})
   };
 
-  /*<div class="container">
-  <sup>loay</sup>
-  <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
-  <p>Hello. How are you today?</p>
-  <span class="time-right">11:00</span>
-</div>
- */
+  ////////////////
+
+
+  /////////////////
 
   return (
     <>
