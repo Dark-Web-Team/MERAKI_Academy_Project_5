@@ -18,6 +18,7 @@ import jwt from "jsonwebtoken";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Search_results from "./components/search_results/index";
 import PaymentConfirm from "./components/payment_confirmed"
+import Footer from "./components/footer/index";
 
 require("dotenv").config();
 
@@ -46,7 +47,7 @@ const App = () => {
       <Route exact path="/search/:search" component={Search_results} />
       <Route exact path="/payment/:busnisses_id" component={Payment} />
       <Route exact path="/paymentConfirmed" component={PaymentConfirm} />
-
+     
     </div>
   );
 };
