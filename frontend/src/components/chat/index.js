@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useRef } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -13,6 +13,7 @@ const CONNECTION_PORT = "http://localhost:5000";
 socket = io(CONNECTION_PORT);
 
 function Chat({ roomId, userId }) {
+  const messageEl = useRef(null);
   const [enterRoom, setEnterRoom] = useState(false)
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
@@ -24,6 +25,19 @@ function Chat({ roomId, userId }) {
 
     };
   });
+
+  useEffect(() => {
+    if (messageEl.current) {
+      messageEl.current.addEventListener('DOMNodeInserted', event => {
+        const { currentTarget: target } = event;
+        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+      });
+    }
+  }, [messageEl.current])
+
+
+
+
   useEffect(() => {
     if (enterRoom ){
       socket = io(CONNECTION_PORT);
@@ -35,14 +49,20 @@ function Chat({ roomId, userId }) {
       }).catch((err)=>{
 		console.log(err);
 	})
+  setTimeout(()=>{
+    var element = document.getElementById("addddaaass");
+    element.scroll({ top: element.scrollHeight, behavior: 'smooth' });
+  }
+    ,50)
+  
+
+
     }
   }, [enterRoom]);
 
   socket.on("receive_message", (data) => {
     setMessageList([...messageList, data]);
   });
-
-  // useEffect(() => {}, [messageList]);
 
   const sendMessage = () => {
     const messageContent = {
@@ -58,8 +78,6 @@ function Chat({ roomId, userId }) {
 
     socket.emit("send_message", messageContent); //raise event
     setMessageList([...messageList, messageContent.content]);
-    var elem = document.getElementById('containar-all-chat');
-    elem.scrollTop = elem.scrollHeight;
     axios.post(
       `${process.env.REACT_APP_BACKEND_SERVER}chat/${roomId}`,
       {chat_content:message , user_name:state.user_name },
@@ -84,10 +102,15 @@ function Chat({ roomId, userId }) {
 </div>
  */
 
+
+  
+
+
+
   return (
     <>
-      {enterRoom ? <div className="containar-all-chat" id="containar-all-chat" >
-        <div className="chat-content-all">
+      {enterRoom ? <div className="containar-all-chat" id="containar-all-chat"   >
+        <div className="chat-content-all" id="addddaaass" ref={messageEl}  >
         {messageList.map((val, i) => {
           return (<>
             <div className="chat-info1">
@@ -100,10 +123,12 @@ function Chat({ roomId, userId }) {
             </div>
             </>
           );
-        })}
+        })
+        }
+        
       </div>
       <div className="input-chat">
-        <input
+        <input   
         id = "textArea-chat"
           type="text"
           placeholder="Write your message here ..."
@@ -122,6 +147,8 @@ function Chat({ roomId, userId }) {
       </div>:<div className="join-chat">
         <Button className="join-chat-button" onClick={(e)=>{setEnterRoom(true)}} > Join The Chat  </Button>
         </div>}
+        
+        
     </>
   );
 }
