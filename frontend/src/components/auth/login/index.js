@@ -108,7 +108,7 @@ const Login = () => {
             <h2>Welcome back,</h2>
             <label>
               <span>Email</span>
-              <input
+              <input className="input-login"
                 type="email"
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -117,15 +117,15 @@ const Login = () => {
             </label>
             <label>
               <span>Password</span>
-              <input
-                type="password"
+              <input className="input-login"
+                type="password" 
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
               />
             </label>
             <p class="forgot-pass">Forgot password?</p>
-            <button type="button" class="submit" onClick={handleLogin}>
+            <button type="button" className="submit-login" onClick={handleLogin}>
               Sign In
             </button>
             {errPresent && (

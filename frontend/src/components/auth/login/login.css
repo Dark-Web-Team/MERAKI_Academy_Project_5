@@ -40,7 +40,7 @@
   
   
   
- .login input, .login button {
+  .input-login, .submit-login {
     border: none;
     outline: none;
     background: none;
@@ -56,7 +56,7 @@
   .cont {
     overflow: hidden;
     position: relative;
-    width: 100%;
+    width: 900px;
     height: 550px;
     margin: 0 auto 100px;
     background: #fff;
@@ -238,7 +238,7 @@
     color: #cfcfcf;
   }
   
-  .submit {
+  .submit-login {
     margin-top: 40px;
     margin-bottom: 20px;
     background: #d4af7a;
