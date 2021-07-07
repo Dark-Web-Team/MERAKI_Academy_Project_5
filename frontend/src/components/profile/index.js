@@ -166,7 +166,7 @@ export default function Profile() {
           {userBusiness.map((element, i) => {
             return (
               <>
-                <div key={i} className="inf_business">
+                <div key={i} className="main_business">
                   <div className="business_img">
                     <img
                       src={element.main_img}
@@ -174,23 +174,29 @@ export default function Profile() {
                       className="image"
                     ></img>
                   </div>
-                  <div className="business_info">
-                    <p>Business Name: {element.displayName}</p>
-                    <p>City: {element.city} </p>
-                    <p>Price: {element.booking_price} </p>
-                    <p>
-                      Opening Time: {element.opening_time} &nbsp; &nbsp; &nbsp;
-                      Closing Time: {element.closing_time}
-                    </p>
-                    <Button onClick={()=>{
-                      history.push(`/business/${element.business_id}`)
-                    }}>Go to business</Button>
-                  </div>
-                  <div className="business_desc">
-                    <span>{element.description}</span>
-                  </div>
-                  <div className="location">
-                    <ShowMap width={'20vw'} height={'30vh'} />
+                  <div className="inf_business">
+                    <div className="business_info">
+                      <p>Business Name: {element.displayName}</p>
+                      <p>City: {element.city} </p>
+                      <p>Price: {element.booking_price} </p>
+                      <p>
+                        Opening Time: {element.opening_time} &nbsp; &nbsp;
+                        &nbsp; Closing Time: {element.closing_time}
+                      </p>
+                      <Button
+                        onClick={() => {
+                          history.push(`/business/${element.business_id}`);
+                        }}
+                      >
+                        Go to business
+                      </Button>
+                    </div>
+                    <div className="business_desc">
+                      <span>{element.description}</span>
+                    </div>
+                    <div className="location">
+                      <ShowMap width={"30vw"} height={"40vh"} lat={element.lat} lng={element.lng} />
+                    </div>
                   </div>
                 </div>
               </>
@@ -200,7 +206,7 @@ export default function Profile() {
       ) : (
         ""
       )}
-      {!userBusiness && kay === "business" ? (
+      {userBusiness.length === 0 && kay === "business" ? (
         <div className="noBusiness">
           <Button
             id="addBusinessButton"
