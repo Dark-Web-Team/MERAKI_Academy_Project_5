@@ -10,7 +10,7 @@
     font-family: montserrat;
   }
   .navbar-container{
-    background: #0082e6;
+    background: #184e77;
     height: 80px;
     width: 100%;
   }
@@ -74,10 +74,7 @@ padding-top: 2;
 
 
 
-  a.active,a:hover{
-    background: #1b9bff;
-    transition: .5s;
-  }
+  
   .checkbtn{
     font-size: 30px;
     color: white;
@@ -122,14 +119,20 @@ padding-top: 2;
     nav ul li a{
       font-size: 20px;
     }
-    a:hover,a.active{
-      background: none;
-      color: #0082e6;
-    }
+    
     #check:checked ~ ul{
       left: 0;
     }
   }
+
+  nav ul li a:hover {
+    color: white;
+    transition: .5s;
+    background: #008CBA;
+  }
+
+
+
   section{
     /* background: url(bg1.jpg) no-repeat; */
     background-size: cover;
