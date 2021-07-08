@@ -413,7 +413,7 @@ export default function Busnisses() {
                       setStartDate(date);
                     }}
                   />
-                  <TimeSelect busnisses_id={id} date={reservationDate} />
+                  <TimeSelect busnisses_id={id} date={reservationDate} opening_time={business.opening_time}  closing_time={business.closing_time} />
                 </Modal.Body>
               </Modal>
             </>

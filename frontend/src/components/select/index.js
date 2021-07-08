@@ -8,18 +8,27 @@ import {setReservation} from "../../reducers/reservation"
 
 
 
-export default function TimeSelect({date,busnisses_id}) {
-  const [time6pm, setTime6pm] = useState(true);
-  const [time7pm, setTime7pm] = useState(true);
-  const [time8pm, setTime8pm] = useState(true);
-  const [time9pm, setTime9pm] = useState(true);
-  const [time10pm, setTime10pm] = useState(true);
-  const [time11pm, setTime11pm] = useState(true);
+export default function TimeSelect({date,busnisses_id,opening_time,closing_time}) {
+  opening_time = parseInt(opening_time.split(" ")[0])
+  if (opening_time === 12 ){
+    opening_time = 0
+  }
+  closing_time = parseInt(closing_time.split(" ")[0])
+  const [time12pm, setTime12pm] = useState(false);
+  const [time1pm, setTime1pm] = useState(false);
+  const [time2pm, setTime2pm] = useState(false);
+  const [time3pm, setTime3pm] = useState(false);
+  const [time4pm, setTime4pm] = useState(false);
+  const [time5pm, setTime5pm] = useState(false);
+  const [time6pm, setTime6pm] = useState(false);
+  const [time7pm, setTime7pm] = useState(false);
+  const [time8pm, setTime8pm] = useState(false);
+  const [time9pm, setTime9pm] = useState(false);
+  const [time10pm, setTime10pm] = useState(false);
+  const [time11pm, setTime11pm] = useState(false);
   const [userTime, setUserTime] = useState("");
   const history = useHistory();
   const dispatch = useDispatch();
-
-
   const state = useSelector((state) => {
     return {
       token: state.login.token,
@@ -40,18 +49,70 @@ export default function TimeSelect({date,busnisses_id}) {
   };
 
   useEffect(() => {
-    setTime6pm(true)
-    setTime7pm(true)
-    setTime8pm(true)
-    setTime9pm(true)
-    setTime10pm(true)
-    setTime11pm(true)
+    for (let i = opening_time; i <closing_time ; i++) {
+      console.log("i",i);
+      if (i=== 0){
+        setTime12pm(true)
+      }
+      if (i=== 1){
+        setTime1pm(true)
+      }
+      if (i=== 2){
+        setTime2pm(true)
+      }
+      if (i=== 3){
+        setTime3pm(true)
+      }
+      if (i=== 4){
+        setTime4pm(true)
+      }
+      if (i=== 5){
+        setTime5pm(true)
+      }
+      if (i=== 6){
+        setTime6pm(true)
+      }
+      if (i=== 7){
+        setTime7pm(true)
+      }
+      if (i=== 8){
+        setTime8pm(true)
+      }
+      if (i=== 9){
+        setTime9pm(true)
+      }
+      if (i=== 10){
+        setTime10pm(true)
+      }
+      if (i=== 11){
+        setTime11pm(true)
+      }
+      
+    }
 
         
     axios
       .get(`http://localhost:5000/reservations/${busnisses_id}/${date}`)
       .then((result) => {
         result.data.forEach((element) => {
+          if (element.reservation_time === "12pm - 1pm") {
+            setTime12pm(false);
+          }
+          if (element.reservation_time === "1pm - 2pm") {
+            setTime1pm(false);
+          }
+          if (element.reservation_time === "2pm - 3pm") {
+            setTime2pm(false);
+          }
+          if (element.reservation_time === "3pm - 4pm") {
+            setTime3pm(false);
+          }
+          if (element.reservation_time === "4pm - 5pm") {
+            setTime4pm(false);
+          }
+          if (element.reservation_time === "5pm - 6pm") {
+            setTime5pm(false);
+          }
           if (element.reservation_time === "6pm - 7pm") {
             setTime6pm(false);
           }
@@ -85,6 +146,12 @@ export default function TimeSelect({date,busnisses_id}) {
         }}
       >
         <option value = "" >Select a time...</option>
+        {time12pm ? <option value="12pm - 1pm">12pm - 1pm</option> : ""}
+        {time1pm ? <option value="1pm - 2pm">1pm - 2pm</option> : ""}
+        {time2pm ? <option value="2pm - 3pm">2pm - 3pm</option> : ""}
+        {time3pm ? <option value="3pm - 4pm">3pm - 4pm</option> : ""}
+        {time4pm ? <option value="4pm - 5pm">4pm - 5pm</option> : ""}
+        {time5pm ? <option value="5pm - 6pm">5pm - 6pm</option> : ""}
         {time6pm ? <option value="6pm - 7pm">6pm - 7pm</option> : ""}
         {time7pm ? <option value="7pm - 8pm">7pm - 8pm</option> : ""}
         {time8pm ? <option value="8pm - 9pm">8pm - 9pm</option> : ""}
@@ -94,7 +161,7 @@ export default function TimeSelect({date,busnisses_id}) {
       </FormControl>
       {userTime ? <Button className="singUpButton"onClick={()=>{
             dispatch(setReservation( date,userTime));
-           
+            // handileRes()
             history.push(`/payment/${busnisses_id}`)
           }}>
       reservation
