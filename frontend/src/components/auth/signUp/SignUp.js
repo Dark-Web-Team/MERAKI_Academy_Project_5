@@ -76,9 +76,10 @@ export default function SignUp() {
   }
   
 
-  return (
+  return ( <>
     <div className="sign-up-container">
       
+      <div className="sign-up-ch1">
       <Form
       className = "input-sign-up-container"
         noValidate validated={validated} onSubmit={register}
@@ -198,10 +199,16 @@ export default function SignUp() {
         ) : (
           ""
         )}
-
-<p className="signUp_text">
+        <p className="signUp_text">
             Already have an account ? <Link to="/login">Sign in</Link>
           </p>
-    </div>
+      </div>
+      <div className="sign-up-ch2">
+        {/* <img src="https://i.pinimg.com/236x/8b/74/c2/8b74c2d58bc3f8ed8f9ba1dc88df58df.jpg"  /> */}
+      </div>
+      </div>
+
+          </>
+    
   );
 }
