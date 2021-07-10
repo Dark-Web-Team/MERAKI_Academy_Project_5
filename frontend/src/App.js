@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route ,Switch} from "react-router-dom";
 import Navigation from "./components/navigation/Navigation";
 import Home from "./components/home";
 import SignUp from "./components/auth/signUp/SignUp";
@@ -12,6 +12,7 @@ import AddBusiness from "./components/add_business";
 import AboutUs from "./components/aboutUs";
 import Payment from "./components/payment"
 import TimeSelect from "./components/select"
+import NotFound from "./components/Page404"
 import { useDispatch } from "react-redux";
 import { setToken } from "./reducers/login";
 import jwt from "jsonwebtoken";
@@ -35,6 +36,7 @@ const App = () => {
   return (
     <div className="App">
       <Navigation />
+      <Switch >
       <Route exact path="/" component={Home} />
       <Route exact path="/signUp" component={SignUp} />
       <Route exact path="/login" component={Login} />
@@ -47,6 +49,9 @@ const App = () => {
       <Route exact path="/search/:search" component={Search_results} />
       <Route exact path="/payment/:busnisses_id" component={Payment} />
       <Route exact path="/paymentConfirmed" component={PaymentConfirm} />
+      <Route path="/" component={NotFound} />
+      </Switch>
+      
      
     </div>
   );

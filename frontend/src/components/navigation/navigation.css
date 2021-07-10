@@ -10,7 +10,7 @@
     font-family: montserrat;
   }
   .navbar-container{
-    background: #184e77;
+    background: #0B2148;
     height: 80px;
     width: 100%;
   }
@@ -21,12 +21,14 @@
   }
   .ul-navbar {
       display: flex;
+      margin-right: 25px;
      
   }
   #booking {
     float: left;
     font-family: "Mukta", sans-serif;
     font-size: 30px;
+    color: #FFCB39;
   }
   #online {
     float: left;
@@ -126,9 +128,8 @@ padding-top: 2;
   }
 
   nav ul li a:hover {
-    color: white;
     transition: .5s;
-    background: #008CBA;
+    color: #FFCB39;
   }
 
 

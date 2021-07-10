@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import {  useHistory,Link  } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {FaBars} from "react-icons/fa"
+import {FcSearch} from "react-icons/fc"
 import { setToken } from "../../reducers/login";
 import axios from "axios";
 import {
@@ -114,9 +115,12 @@ const Navigation = () => {
       /></div>
       <div>
       &nbsp;&nbsp;&nbsp;
-      <Button  style={{textAlign: 'center' , paddingTop: '-20'}} className = 'searchButton' variant="dark" onClick={()=>{
+      {/* <Button  style={{textAlign: 'center' , paddingTop: '-20'}} className = 'searchButton' variant="dark" onClick={()=>{
             history.push(`/search/${search}`)
-          }} >Search</Button>
+          }} >Search</Button> */}
+          <FcSearch size={30} onClick={()=>{
+            history.push(`/search/${search}`)
+          }}/>
       </div>
         </div>
         
