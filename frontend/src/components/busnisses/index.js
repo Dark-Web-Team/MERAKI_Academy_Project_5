@@ -344,9 +344,10 @@ export default function Busnisses() {
               </div>
           
             <>
-              <Button id="Button-Reserve" variant="primary" onClick={handleShow}>
+            {business.owner_id !== state.user_id ?  <Button id="Button-Reserve" variant="primary" onClick={handleShow}>
                 Reserve
-              </Button>
+              </Button> : ""}
+             
               <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                   <Modal.Title>Modal heading</Modal.Title>
