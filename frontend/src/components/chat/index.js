@@ -109,6 +109,19 @@ function Chat({ roomId, userId }) {
       {enterRoom ? <div className="containar-all-chat" id="containar-all-chat"   >
         <div className="chat-content-all" id="addddaaass" ref={messageEl}  >
         {messageList.map((val, i) => {
+          if (val.user_id === state.user_id ){
+            return   (<>
+              <div className="chat-info2">
+              <FaUserCircle  size={30} />
+              <sup  key={i}>
+                {val.user_name} 
+              </sup>
+              <p className="chat-content" key={i}>{val.chat_content}</p>
+              <span className="time-right2" key={i} >{val.date}</span>
+              </div>
+              </>
+            );
+          }else {
           return (<>
             <div className="chat-info1">
             <FaUserCircle  size={30} />
@@ -120,7 +133,7 @@ function Chat({ roomId, userId }) {
             </div>
             </>
           );
-        })
+        }})
         }
         
       </div>
