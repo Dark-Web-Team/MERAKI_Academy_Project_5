@@ -238,9 +238,17 @@ export default function Profile() {
                         Go to business
                       </Button>
                     </div>
-                    <div className="business_desc">
-                      <span>{element.description}</span>
+                    
+                   
+                  </div>
+                </div>
+                <div className = "pareants-map-desc">
+                
+                  <div className="business_desc">
+                       <h2>description</h2>
+                      <p>{element.description}</p>
                     </div>
+
                     <div className="location">
                       <ShowMap
                         width={"30vw"}
@@ -249,7 +257,7 @@ export default function Profile() {
                         lng={element.lng}
                       />
                     </div>
-                  </div>
+
                 </div>
               </>
             );
