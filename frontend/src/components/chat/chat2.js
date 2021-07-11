@@ -12,7 +12,7 @@ const CONNECTION_PORT = "http://localhost:5000";
 
 socket = io(CONNECTION_PORT);
 
-function Chat({ roomId, userId }) {
+function Chat2({ roomId }) {
   const messageEl = useRef(null);
   const [enterRoom, setEnterRoom] = useState(false)
   const [message, setMessage] = useState("");
@@ -43,7 +43,7 @@ function Chat({ roomId, userId }) {
       socket = io(CONNECTION_PORT);
     socket.emit("join_room", roomId);
     axios
-      .get(`${process.env.REACT_APP_BACKEND_SERVER}chat/${roomId}`)
+      .get(`${process.env.REACT_APP_BACKEND_SERVER}chat/userChat/${roomId}`)
       .then((result) => {
 		setMessageList(result.data)
       }).catch((err)=>{
@@ -58,7 +58,7 @@ function Chat({ roomId, userId }) {
 
 
     }
-  }, [enterRoom]);
+  }, [enterRoom,state.token]);
 
   socket.on("receive_message", (data) => {
     setMessageList([...messageList, data]);
@@ -79,7 +79,7 @@ function Chat({ roomId, userId }) {
     socket.emit("send_message", messageContent); //raise event
     setMessageList([...messageList, messageContent.content]);
     axios.post(
-      `${process.env.REACT_APP_BACKEND_SERVER}chat/${roomId}`,
+      `${process.env.REACT_APP_BACKEND_SERVER}chat/userChat/${roomId}`,
       {chat_content:message , user_name:state.user_name },
       {
         headers: {
@@ -87,6 +87,7 @@ function Chat({ roomId, userId }) {
         },
       }
     ).then(result=>{
+        console.log("result",result.data);
       document.getElementById("textArea-chat").value = "";
       setMessage("")
     	}).catch((err)=>{
@@ -163,4 +164,4 @@ function Chat({ roomId, userId }) {
   );
 }
 
-export default Chat;
+export default Chat2;

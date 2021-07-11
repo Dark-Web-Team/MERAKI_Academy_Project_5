@@ -79,9 +79,53 @@ const getPrivateChat = (req, res) => {
   });
 };
 
+const addChat2 = (req, res) => {
+  const {roomId} = req.params
+  const { user_id } = req.token;
+  const { chat_content, user_name } = req.body;
+  const date = Date().slice(0, 24).split(2021).reverse().join(" ");
+  const query = `INSERT INTO chat2 (chat_content,user_name, user_id,roomId,date) VALUES (?,?,?,?,?);`;
+  const data = [chat_content,user_name, user_id , roomId,date];
+  db.query(query, data, (err, result) => {
+    if (err) {
+      res.send(err);
+      return;
+    }
+    newId = result.insertId;
+    const query_2 = `SELECT * FROM chat2 WHERE chat_id=?;`;
+    const data = [newId];
+    db.query(query_2, data, (err, response) => {
+      if (err) {
+        res.send(err);
+        return;
+      }
+      res.status(201).json(response);
+    });
+  });
+};
+
+const getAllChat2 = (req, res) => {
+  const {roomId} = req.params
+  const query = `SELECT * FROM chat2 WHERE roomId=?;`;
+  const data = [roomId];
+  db.query(query, data, (err, result) => {
+    if (err) {
+      res.send(err);
+      return;
+    }
+    res.status(200).json(result);
+  });
+};
+
+
+
+
+
 module.exports = {
   addChat,
   getAllChat,
   addPrivateChat,
   getPrivateChat,
+  addChat2,
+  getAllChat2
 };
