@@ -2,7 +2,7 @@ import React, { useState, useEffect , useRef } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import Chat from "../chat/index"
+import Chat2 from "../chat/chat2"
 import {AiOutlineSend} from 'react-icons/ai'
 import {Button} from "react-bootstrap";
 import {FaUserCircle} from "react-icons/fa"
@@ -83,7 +83,7 @@ function PrivateChat() {
        })}
    </div>
    {enterRoom !==0 ? <div>
-   < Chat roomId ={enterRoom}  userId = {state.user_id} />
+   < Chat2 roomId ={enterRoom}  userId = {state.user_id} />
    </div> :""}
     </>
   );
