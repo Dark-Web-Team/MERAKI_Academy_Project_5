@@ -5,7 +5,6 @@ import axios from "axios";
 import Rating from "../rating/rating";
 import Chat from "../chat"
 import "./style.css";
-import ImageGallery from "react-image-gallery";
 import ShowRating from "../category/ShowRating";
 import TimeSelect from "../select";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -17,6 +16,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-sea-green.min.css";
 import ShowMap from './../googleMap/showMap';
+import io from "socket.io-client";
+let socket;
+const CONNECTION_PORT = "http://localhost:5000";
+
+socket = io(CONNECTION_PORT);
+
 
 
 export default function Busnisses() {
@@ -253,10 +258,39 @@ export default function Busnisses() {
     getUserrate();
   }, [staePrimaryRef, info,state.token]);
 
+const chatWhitOnwer = ()=>{
+  socket = io(CONNECTION_PORT);
+  socket.emit("join_userList", business.owner_id);
+  const messageContent = {
+    roomId : business.owner_id,
+    content: {
+      user1_id: business.owner_id ,
+      user2_id:state.user_id
+    },
+  };
+  
+  axios.post(`${process.env.REACT_APP_BACKEND_SERVER}chat/userChat`,{
+    user2_id: business.owner_id
+  },
+  {
+      headers: {
+        authorization: "Bearer " + state.token,
+      }
+    }
+  ).then(result=>{
+    if (result.status === 201 ){
+      socket.emit("send_message_req", messageContent);
+    }
+    history.push("/chat")
+    }).catch((err)=>{
+  console.log(err);
+})
 
+}
 
   return (
     <>
+    <button  onClick ={chatWhitOnwer} >chat with owner</button>
       {business ? (
         <div>
          <h1 className="header">{business.displayName}</h1>
@@ -421,14 +455,14 @@ export default function Busnisses() {
             <div className="information-map">
             <ShowMap lat = {business.lat} lng = {business.lng} />
             </div>
-   
+            
           </div>
         </div>
         </div>
       ) : (
         ""
       )}
-
+      
       <div className="parent_comment-chat">
       <div className="comments">
 
