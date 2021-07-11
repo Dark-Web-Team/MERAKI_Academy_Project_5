@@ -5,6 +5,8 @@ import { useParams, useHistory, useLocation } from "react-router";
 import { useDispatch } from "react-redux";
 import { setPath } from "../../reducers/lastVisited";
 import ShowRating from "../category/ShowRating";
+import './card.css';
+import './search_results.css';
 
 const Search_results = ()=>{
     const history = useHistory();
@@ -43,51 +45,32 @@ const Search_results = ()=>{
     <div className="businesses">
         {results.map((elem, i) => {
           return (
-            <Card
+            <div
+              class="card"
               key={i}
-              style={{ width: `18rem` }}
-              className="businessCard bg-dark text-white box"
-              id="businessCard"
               onClick={(e) => {
                 history.push(`/business/${elem.business_id}`);
               }}
             >
-              <Card.Img variant="top" src={elem.main_img} />
-              <Card.Body>
-                <Card.Title>{elem.displayName}</Card.Title>
-                <Card.Title>Price:{elem.booking_price}</Card.Title>
-                <Card.Title>
-                  {" "}
-                  <ShowRating rate={elem.average_rating} />
-                </Card.Title>
-                <Card.Subtitle> </Card.Subtitle>
-              </Card.Body>
-            </Card>
+              <span
+                class="card-header"
+                style={{ backgroundImage: `url(${elem.main_img})` }}
+              >
+                <span class="card-title" >
+                  <h3>{elem.displayName}</h3>
+                </span>
+              </span>
+
+              <span class="card-summary">
+                Price: {elem.booking_price}
+                <br />
+                City: {elem.city}
+                <ShowRating rate={elem.average_rating} />
+              </span>
+            </div>
           );
         })}
       </div>
-      {/* <div className="paginationButtons">
-       {page>1 ?  <a
-          href="#"
-          className="pagination"
-          id="previous"
-          onClick={() => previousPage()}
-        >
-          ❮
-        </a>:""}
-        {isThereNextPage ? (
-          <a
-            href="#"
-            className="pagination"
-            id="next"
-            onClick={() => nextPage()}
-          >
-            ❯
-          </a>
-        ) : (
-          ""
-        )}
-      </div> */}
       {errMessage}
     </>)
 }
