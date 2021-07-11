@@ -114,6 +114,17 @@ CREATE TABLE chat(
     PRIMARY KEY (chat_id)
 );
 
+CREATE TABLE privateChat(
+    id INT AUTO_INCREMENT NOT NULL,
+    user1_id INT, 
+    FOREIGN KEY (user1_id) REFERENCES users(user_id),
+    user2_id INT, 
+    roomId  INT UNIQUE NOT NULL,
+    FOREIGN KEY (user2_id) REFERENCES users(user_id),
+    is_deleted TINYINT DEFAULT 0,
+    PRIMARY KEY (id)
+);
+
 
 
 INSERT INTO roles (role) VALUES ('user');

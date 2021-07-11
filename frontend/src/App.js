@@ -11,7 +11,7 @@ import Busnisses from "./components/busnisses/index";
 import AddBusiness from "./components/add_business";
 import AboutUs from "./components/aboutUs";
 import Payment from "./components/payment"
-import TimeSelect from "./components/select"
+import PrivateChat from "./components/chat/one-one-chat"
 import NotFound from "./components/Page404"
 import { useDispatch } from "react-redux";
 import { setToken } from "./reducers/login";
@@ -49,6 +49,7 @@ const App = () => {
       <Route exact path="/search/:search" component={Search_results} />
       <Route exact path="/payment/:busnisses_id" component={Payment} />
       <Route exact path="/paymentConfirmed" component={PaymentConfirm} />
+      <Route exact path="/chat" component={PrivateChat}/>
       <Route path="/" component={NotFound} />
       </Switch>
       
