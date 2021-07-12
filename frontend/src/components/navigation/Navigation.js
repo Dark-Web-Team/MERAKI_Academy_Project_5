@@ -134,6 +134,7 @@ const Navigation = () => {
         <li><Link to="/"  style={{textDecoration:"none"}}>Home</Link></li>
         {!state.token ?<li><Link to="/login" style={{textDecoration:"none"}}>Login</Link></li> :""}
         {state.token ?<li><Link to="/profile" style={{textDecoration:"none"}}>profile</Link></li> :""}
+        {state.token ?<li><Link to="/chat" style={{textDecoration:"none"}}>Chat</Link></li> :""}
         {state.token ?<li><Link onClick={() => {
                 localStorage.removeItem('token');
                 dispatch(setToken(""));
