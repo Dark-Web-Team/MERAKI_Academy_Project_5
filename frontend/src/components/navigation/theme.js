@@ -28,8 +28,8 @@ const theme = {
     suggestionsContainerOpen: {
       display: 'block',
       position: 'absolute',
-      top: 51,
-      width: 280,
+      top: 35,
+      width: 240,
       border: '1px solid #aaa',
       backgroundColor: '#fff',
       fontFamily: 'Helvetica, sans-serif',
@@ -37,9 +37,10 @@ const theme = {
       fontSize: 16,
       borderBottomLeftRadius: 4,
       borderBottomRightRadius: 4,
-      zIndex: 2
+      zIndex: 15
     },
     suggestionsList: {
+      display:'grid',
       margin: 0,
       padding: 0,
       listStyleType: 'none',
