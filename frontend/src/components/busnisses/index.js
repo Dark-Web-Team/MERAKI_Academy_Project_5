@@ -254,7 +254,6 @@ export default function Busnisses() {
 
   console.log("business",business);
   const chatWhitOnwer = () => {
-    console.log("bhfbhffbhf",);
 
     socket = io(CONNECTION_PORT);
     socket.emit("join_userList", business.owner_id);
@@ -281,7 +280,6 @@ export default function Busnisses() {
         }
       )
       .then((result) => {
-        console.log(result);
         if (result.status === 201) {
           socket.emit("send_message_req", messageContent);
         }
