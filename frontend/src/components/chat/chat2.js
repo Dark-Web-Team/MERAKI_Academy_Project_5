@@ -14,7 +14,6 @@ socket = io(CONNECTION_PORT);
 
 function Chat2({ roomId }) {
   const messageEl = useRef(null);
-  const [enterRoom, setEnterRoom] = useState(false)
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const state = useSelector((state) => {
@@ -39,9 +38,9 @@ function Chat2({ roomId }) {
 
 
   useEffect(() => {
-    if (enterRoom ){
+   
       socket = io(CONNECTION_PORT);
-    socket.emit("join_room", roomId);
+    socket.emit("join_userList", roomId);
     axios
       .get(`${process.env.REACT_APP_BACKEND_SERVER}chat/userChat/${roomId}`)
       .then((result) => {
@@ -57,11 +56,16 @@ function Chat2({ roomId }) {
   
 
 
-    }
-  }, [enterRoom,state.token]);
+   
+  }, [roomId]);
 
-  socket.on("receive_message", (data) => {
+  socket.on("receive_message_req", (data) => {
+    console.log("data",data);
     setMessageList([...messageList, data]);
+       messageEl.current.addEventListener('DOMNodeInserted', event => {
+        const { currentTarget: target } = event;
+        target.scroll({ top: target.scrollHeight});
+      });
   });
 
   const sendMessage = () => {
@@ -76,7 +80,7 @@ function Chat2({ roomId }) {
       },
     };
 
-    socket.emit("send_message", messageContent); //raise event
+    socket.emit("send_message_req", messageContent); //raise event
     setMessageList([...messageList, messageContent.content]);
     axios.post(
       `${process.env.REACT_APP_BACKEND_SERVER}chat/userChat/${roomId}`,
@@ -107,7 +111,7 @@ function Chat2({ roomId }) {
 
   return (
     <>
-      {enterRoom ? <div className="containar-all-chat" id="containar-all-chat"   >
+      <div className="containar-all-chat" id="containar-all-chat"   >
         <div className="chat-content-all" id="addddaaass" ref={messageEl}  >
         {messageList.map((val, i) => {
           if (val.user_id === state.user_id ){
@@ -155,9 +159,7 @@ function Chat2({ roomId }) {
         < AiOutlineSend color="green" size={30} onClick={sendMessage}  />
        
       </div>
-      </div>:<div className="join-chat">
-        <Button className="join-chat-button" onClick={(e)=>{setEnterRoom(true)}} > Join The Chat  </Button>
-        </div>}
+      </div>
         
         
     </>

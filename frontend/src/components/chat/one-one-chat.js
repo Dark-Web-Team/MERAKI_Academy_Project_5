@@ -29,15 +29,6 @@ function PrivateChat() {
     };
   });
 
-  useEffect(() => {
-    if (messageEl.current) {
-      messageEl.current.addEventListener('DOMNodeInserted', event => {
-        const { currentTarget: target } = event;
-        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
-      });
-    }
-  }, [messageEl.current])
-
   socket = io(CONNECTION_PORT);
   socket.emit("join_userList", state.user_id);
 
@@ -72,9 +63,11 @@ function PrivateChat() {
     <>
    <div>
        {roomList.map((val,i)=>{
-           return (<> <div onClick ={()=>{
-            console.log(val.roomId);
+         console.log("caht"+i, `     ${val.roomId}`);
+           return (<> <div key={i} onClick ={()=>{
+             console.log("join",val.roomId );
             setEnterRoom(val.roomId)
+            console.log("enterRoom",enterRoom);
          }}   > 
            <p>{val.user1_id   }</p>
            <p>{val.user2_id   }</p>

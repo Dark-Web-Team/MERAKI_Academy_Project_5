@@ -56,7 +56,7 @@ const io = socket(server, {
 io.on("connection", (socket) => {
   socket.on("join_room", (data) => {
     socket.join(data);
-    console.log("user joined Room:", data);
+    
   });
 
   socket.on("send_message", (data) => {
@@ -64,12 +64,12 @@ io.on("connection", (socket) => {
   });
   socket.on("join_userList", (data) => {
     socket.join(data);
-    console.log("user joined his Room:", data);
+    
   });
 
   socket.on("send_message_req", (data) => {
-    console.log(data);
     socket.to(data.roomId).emit("receive_message_req", data.content);
+    console.log("data.content",data.content);
   });
 
   socket.on("disconnect", () => {
