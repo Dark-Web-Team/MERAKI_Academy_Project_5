@@ -71,6 +71,8 @@ function PrivateChat() {
          }}   > 
            <p>{val.user1_id   }</p>
            <p>{val.user2_id   }</p>
+           <p>{val.user1_name   }</p>
+           <p>{val.user2_name   }</p>
            </div>
            </>)
        })}

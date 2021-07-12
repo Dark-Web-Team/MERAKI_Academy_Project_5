@@ -121,6 +121,8 @@ CREATE TABLE privateChat(
     user2_id INT, 
     roomId  INT UNIQUE NOT NULL,
     FOREIGN KEY (user2_id) REFERENCES users(user_id),
+    user1_name  VARCHAR(255) NOT NULL,
+    user2_name  VARCHAR(255) NOT NULL,
     is_deleted TINYINT DEFAULT 0,
     PRIMARY KEY (id)
 );

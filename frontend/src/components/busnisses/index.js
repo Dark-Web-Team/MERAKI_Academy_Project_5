@@ -50,6 +50,7 @@ export default function Busnisses() {
     return {
       token: state.login.token,
       user_id: state.login.user_id,
+      user_name : state.login.user_name
     };
   });
 
@@ -251,7 +252,10 @@ export default function Busnisses() {
     getUserrate();
   }, [staePrimaryRef, info, state.token]);
 
+  console.log("business",business);
   const chatWhitOnwer = () => {
+    console.log("bhfbhffbhf",);
+
     socket = io(CONNECTION_PORT);
     socket.emit("join_userList", business.owner_id);
     const messageContent = {
@@ -259,6 +263,8 @@ export default function Busnisses() {
       content: {
         user1_id: business.owner_id,
         user2_id: state.user_id,
+        user1_name : business.userName ,
+        user2_name : state.user_name
       },
     };
 
@@ -275,10 +281,11 @@ export default function Busnisses() {
         }
       )
       .then((result) => {
+        console.log(result);
         if (result.status === 201) {
           socket.emit("send_message_req", messageContent);
         }
-        history.push("/chat");
+        // history.push("/chat");
       })
       .catch((err) => {
         console.log(err);
