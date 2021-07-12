@@ -9,7 +9,7 @@ import {AiFillFacebook,AiFillTwitterCircle,AiFillYoutube} from 'react-icons/ai'
 import {GrInstagram} from 'react-icons/gr'
 
 import "./home.css"
-
+import "./style.css"
 
 const slideImages = [
     "http://ar.move2turkey.com/wp-content/uploads//2020/04/Istanbul-Ataturk-Olympic-Stadium-UEFA-Champions-League-Final-20202.jpg",
@@ -67,8 +67,35 @@ export default function Home() {
         </Slide> */}
       </div>
 
-      <div className= "parintcatgory" >
-          <div className="ch" onClick={()=>{
+     
+
+
+  <div class="crd-grid">
+   
+    <div class="crd" onClick={()=>{
+        history.push("/category/sport")
+      }} >
+       
+      <div class="crd__background" style={{"backgroundImage": `url(${'https://images.unsplash.com/photo-1557177324-56c542165309?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'})`}}></div>
+      <div class="crd__content">
+        <h3 class="crd__heading">Sports</h3>
+      </div>
+    </div>
+   
+    <div class="crd" onClick={()=>{
+        history.push("/category/entertainment")
+      }} >
+
+      <div class="crd__background" style={{"backgroundImage": `url(${'https://images.unsplash.com/photo-1557187666-4fd70cf76254?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'})`}}></div>
+      <div class="crd__content">
+       
+        <h3 class="crd__heading">Entertainment</h3>
+      </div>
+    </div>
+  
+    </div>
+   
+          {/* <div className="ch" onClick={()=>{
         history.push("/category/sport")
       }} >
               <img src ='https://mediaassets.wtxl.com/wtxl.com/content/tncms/assets/v3/editorial/7/c9/7c9aef76-82df-11e2-b688-001a4bcf6878/5131619d5b5fa.image.jpg'/>
@@ -84,48 +111,11 @@ export default function Home() {
           <div className="overlay">
          <div className="text"></div>
          </div>
-          </div>
+          </div> */}
         
-      </div>
+      
 
-      <div className = "footer">
-
-        <div className="footerparent">
-
-        <div className="footerch">
-          <p>Contact Us</p>
-          <p id="numper_email">055450500</p>
-          <p id="numper_email">Dark-Web@Dark-Web.com</p>
-          </div>
-          <div className="footerch">
-          <p>Our servies</p>
-
-          <ul>
-            <li >Home</li>
-            <Link  to="/about_us" style={{ textDecoration: 'none', color: "white" }}> About Us </Link>
-          </ul>
-
-          
-        </div>
-        <div className="footerch">
-        <p id="text_booking">Dark-Web Booking</p>
-        <div className = "iconsparant">
-
-        < AiFillFacebook className="icons"/>
-        <GrInstagram className="icons"/>
-        <AiFillTwitterCircle className="icons"/>
-        <AiFillYoutube className="icons"/>
-        </div>
-
-          
-        </div>
-        
-
-        </div>
-
-
-      </div>
-
+    
      
         </>
         
