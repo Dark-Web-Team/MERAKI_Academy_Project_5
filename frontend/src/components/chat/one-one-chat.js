@@ -63,7 +63,7 @@ function PrivateChat() {
     <>
    <div>
        {roomList.map((val,i)=>{
-         console.log("caht"+i, `     ${val.roomId}`);
+         console.log("val",val);
            return (<> <div key={i} onClick ={()=>{
              console.log("join",val.roomId );
             setEnterRoom(val.roomId)
@@ -71,6 +71,8 @@ function PrivateChat() {
          }}   > 
            <p>{val.user1_id   }</p>
            <p>{val.user2_id   }</p>
+           <p>{val.user1_name   }</p>
+           <p>{val.user2_name   }</p>
            </div>
            </>)
        })}
