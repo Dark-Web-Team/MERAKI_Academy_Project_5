@@ -52,7 +52,7 @@ const App = () => {
       <Route exact path="/chat" component={PrivateChat}/>
       <Route path="/" component={NotFound} />
       </Switch>
-      
+      <Footer />
      
     </div>
   );

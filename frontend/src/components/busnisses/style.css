@@ -2,12 +2,13 @@
   width: 95%;
   margin: auto;
   border-bottom: gray 2px solid;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(1, 2fr 1fr);
   justify-content: space-between;
   background-color: #ffffff;
 }
 .gallery {
-  width: 60%;
+  width: auto;
     /* border-right: gray 2px solid; */
 
 }
@@ -18,9 +19,11 @@
 .gallery > div {
   padding: 0;
   margin-top: 2%;
-  margin-bottom: 4%; }
+  margin-bottom: 4%; 
+}
+
 .information {
-  width: 35%;
+  width: auto;
 }
 .information #Button-Reserve
 {
@@ -29,14 +32,14 @@
 }
 
 .city-info span ,.price span 
-
 {
   font-weight: bold;
 }
 
 
 .header {
-  margin: 15px 0 0 20%;
+  text-align: left;
+  margin: 15px 0 0 2.5%;
 
 }
 
@@ -92,12 +95,13 @@
 .price ,.city-info
 {
   font-size: 18px;
-  margin: 0 0 10px 25px;
+  margin: 0 0 10px 0;
 
 }
 .parent_comment-chat
   {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     justify-content: space-around;
     height: 500px;
     
@@ -105,7 +109,7 @@
 
   .parent_comment-chat > div
   {
-    width: 45%;
+    width: 90%;
     margin: auto;
 
   }
@@ -172,4 +176,33 @@
       float: right;
   }
 
-  
+  .business-chat-reserve{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+@media screen and (max-width:750px) {
+  .parent{
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }  
+  .parent_comment-chat{
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  .comments{
+    display: grid;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .containers{
+    width: 90vw;
+  }
+}
