@@ -70,7 +70,7 @@ export default function AboutUs (){
              </div>
              <div className="card_chelren">
                 <Card style={{ width: '20rem' }}>
-  <Card.Img variant="top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Steve_Jobs_Headshot_2010-CROP2.jpg/1200px-Steve_Jobs_Headshot_2010-CROP2.jpg" />
+  <Card.Img variant="top" src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.6435-9/137228544_3532653123528378_7616780502827546260_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=0debeb&_nc_eui2=AeG41YuVLrvLIC0cBob42Qta0NZYniBPW9rQ1lieIE9b2ooKOpF86YPSU6Rp7-UgudXqYyqU0GynaHsfOD192bwE&_nc_ohc=T43UiMtMLN4AX-w7809&_nc_ht=scontent-hbe1-1.xx&oh=7b79099390ee649805b089313bdef8b5&oe=60F0F90E" />
   <Card.Body>
     <Card.Title>Card Title</Card.Title>
     <Card.Text>

@@ -80,7 +80,7 @@
     background-color: rgba(255, 255, 255, 0);
   }
   .card .card-title {
-    background: #007bff;
+    background: #0b2148;
     padding: 3.5% 0 2.5% 0;
     color: white;
     font-family: "Roboto Condensed", sans-serif;
@@ -135,7 +135,7 @@
     box-shadow: rgba(0, 0, 0, 0.45) 0px 0px 20px 0px;
   }
   .card:hover .card-title, .card:focus .card-title {
-    background: #007bff;
+    background: #0b2148;
   }
   .card:hover .card-meta, .card:focus .card-meta {
     max-height: 1em;

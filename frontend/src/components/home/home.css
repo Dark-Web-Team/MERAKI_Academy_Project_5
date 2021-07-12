@@ -19,7 +19,7 @@
 .parintcatgory{
   
     display:grid;
-    grid-template-columns: 50% 50% ;
+    grid-template-columns: 50% 49% ;
     height: calc(315px - 10px);
      justify-content:center;
      gap: 1%;
