@@ -1,46 +1,42 @@
 .parent {
-  width: 95%;
+  width: 97%;
   margin: auto;
   border-bottom: gray 2px solid;
   display: grid;
-  grid-template-columns: repeat(1, 2fr 1fr);
-  justify-content: space-between;
+  grid-template-columns: 67% 33%;
+  grid-column-gap: 2%;
+  /* justify-content: space-between; */
   background-color: #ffffff;
 }
 .gallery {
   width: auto;
-    /* border-right: gray 2px solid; */
-
+  /* border-right: gray 2px solid; */
 }
-.gallery button
-{
+.gallery button {
   box-shadow: none;
 }
 .gallery > div {
   padding: 0;
   margin-top: 2%;
-  margin-bottom: 4%; 
+  margin-bottom: 4%;
 }
 
 .information {
   width: auto;
 }
-.information #Button-Reserve
-{
+.information #Button-Reserve {
   margin: 10px 10px 10px 0;
-    width: 200px;
+  width: 200px;
 }
 
-.city-info span ,.price span 
-{
+.city-info span,
+.price span {
   font-weight: bold;
 }
-
 
 .header {
   text-align: left;
   margin: 15px 0 0 2.5%;
-
 }
 
 .description {
@@ -55,14 +51,12 @@
   font-size: 14px;
 }
 
-.rate-container
-{
+.rate-container {
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
 }
-.rate-container > div
-{
+.rate-container > div {
   width: 40%;
 }
 
@@ -72,59 +66,55 @@
   font-weight: bold;
 }
 
-.rate
-{
+.rate {
   margin-top: 16px;
 }
+.block {
+  display: grid;
+  grid-template-columns: 50% 50%;
 
-.FaStar sup 
-{
+  padding: 0%;
+  margin: 2% 2% 2% 2%;
+}
+.calender {
+  width: 90%;
+}
+.FaStar sup {
   font-size: 18px;
   margin-left: 10px;
   font-weight: bold;
 }
-.rate sub
-{
-
+.rate sub {
   font-size: 13px;
   margin-left: 33px;
   font-weight: bold;
-
 }
 
-.price ,.city-info
-{
+.price,
+.city-info {
   font-size: 18px;
   margin: 0 0 10px 0;
-
 }
-.parent_comment-chat
-  {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: space-around;
-    height: 500px;
-    
-  }
+.parent_comment-chat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-around;
+  height: 500px;
+}
 
-  .parent_comment-chat > div
-  {
-    width: 90%;
-    margin: auto;
+.parent_comment-chat > div {
+  width: 90%;
+  margin: auto;
+}
 
-  }
+.information-map {
+  margin-top: 25px;
+  margin-bottom: 50px;
+}
 
-  .information-map
-  {
-    margin-top: 25px;
-    margin-bottom: 50px;
-  }
-
-  
- .comment
- {
-   border-bottom: 2px solid rgb(211, 206, 202);
- }
+.comment {
+  border-bottom: 2px solid rgb(211, 206, 202);
+}
 .comments h1 {
   margin-top: 10px;
   font-size: 20px;
@@ -143,66 +133,63 @@
   right: 0px;
 }
 
-.input-commet
-{
+.input-commet {
   margin-top: 30px;
 }
 
 .profilePic_2 {
-    padding-left: 3px;
-    padding-top: 3px;
-    width: 30px;
-    height: 30px;
-    border-radius: 35px;
-  }
-  .commenter span{
-    font-size: 20px;
-    font-weight: bold;
-    font-family: "Mukta", sans-serif;
-    padding-left:  15px ;
-    margin-top: 5px;
-  }
-  
-  
-  .answer {
-    font-size: 18px;
-    font-family: "Mukta", sans-serif;
-    word-break: break-word;  
-    margin-left: 40px;
-  }
-  .delete{
-      cursor: pointer;
-      font-size: 20px;
-      float: right;
-  }
+  padding-left: 3px;
+  padding-top: 3px;
+  width: 30px;
+  height: 30px;
+  border-radius: 35px;
+}
+.commenter span {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Mukta", sans-serif;
+  padding-left: 15px;
+  margin-top: 5px;
+}
 
-  .business-chat-reserve{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    align-items: center;
-  }
+.answer {
+  font-size: 18px;
+  font-family: "Mukta", sans-serif;
+  word-break: break-word;
+  margin-left: 40px;
+}
+.delete {
+  cursor: pointer;
+  font-size: 20px;
+  float: right;
+}
 
+.business-chat-reserve {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+}
 
-@media screen and (max-width:750px) {
-  .parent{
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-  }  
-  .parent_comment-chat{
+@media screen and (max-width: 750px) {
+  .parent {
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
   }
+  .parent_comment-chat {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
 
-  .comments{
+  .comments {
     display: grid;
     justify-content: center;
     text-align: center;
   }
 
-  .containers{
+  .containers {
     width: 90vw;
   }
 }

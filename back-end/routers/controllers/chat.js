@@ -40,14 +40,14 @@ const getAllChat = (req, res) => {
 const addPrivateChat = (req, res) => {
   let roomId
   const { user_id } = req.token;
-  const { user2_id } = req.body;
+  const { user2_id ,user1_name ,user2_name } = req.body;
   if (user_id > user2_id ){
     roomId = Number(`${user_id}1500${user2_id}`)
   }else{
     roomId = Number(`${user2_id}1500${user_id}`)
   }
-  const query = `INSERT INTO privateChat (user1_id,user2_id,roomId) VALUES (?,?,?);`;
-  const data = [ user2_id , user_id,roomId];
+  const query = `INSERT INTO privateChat (user1_id,user2_id,roomId,user1_name ,user2_name) VALUES (?,?,?,?,?);`;
+  const data = [ user2_id , user_id,roomId,user1_name,user2_name];
   db.query(query, data, (err, result) => {
     if (err) {
       res.send(err);
