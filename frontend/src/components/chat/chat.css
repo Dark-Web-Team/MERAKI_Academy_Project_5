@@ -108,8 +108,11 @@ margin: auto;
 margin-top: 80px;
 min-height: 70vh;
 
-
-
+}
+.chat2-user-info
+{
+    border-bottom: 2px solid rgb(190, 190, 192);
+    padding-top: 20px;
 }
 .parant-to-One-chat .ch1-to-One-chat
 {
@@ -119,9 +122,10 @@ min-height: 70vh;
 
    
 } 
- .ch1-to-One-chat #p-onetoone
+ .ch1-to-One-chat #span-onetoone
 {
-    border-bottom: 2px solid rgb(190, 190, 192);
+    
+    padding-left: 20px;
 }
 .parant-to-One-chat .ch2-to-One-chat
 {
