@@ -3,6 +3,14 @@ import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaBars } from "react-icons/fa";
 import { FcSearch } from "react-icons/fc";
+import {AiOutlineHome} from 'react-icons/ai'
+import {FcHome} from "react-icons/fc"
+import {CgProfile} from "react-icons/cg"
+import {RiLoginBoxFill,RiLoginBoxLine} from "react-icons/ri"
+import {IoLogOutOutline} from "react-icons/io5"
+import {BsChatDots} from "react-icons/bs"
+
+
 import { setToken } from "../../reducers/login";
 import axios from "axios";
 import "./navigation.css";
@@ -119,49 +127,41 @@ const Navigation = () => {
 
             <ul>
               <li>
-                <Link to="/" style={{ textDecoration: "none" }}>
-                  Home
-                </Link>
+                <AiOutlineHome  className="navbar-icon-FA" size={35} color="white" onClick={()=>{history.push("/")}} />
+                <FcHome size={35} />
               </li>
               {!state.token ? (
                 <li>
-                  <Link to="/login" style={{ textDecoration: "none" }}>
-                    Login
-                  </Link>
+                  <RiLoginBoxLine  className="navbar-icon-FA"  size={35} color="white" onClick={()=>{history.push("/login")}}  />
                 </li>
               ) : (
                 ""
               )}
               {state.token ? (
                 <li>
-                  <Link to="/profile" style={{ textDecoration: "none" }}>
-                    profile
-                  </Link>
+                 <CgProfile  className="navbar-icon-FA" size={35} color="white" onClick={()=>{history.push("/profile")}} />
                 </li>
               ) : (
                 ""
               )}
               {state.token ? (
                 <li>
-                  <Link to="/chat" style={{ textDecoration: "none" }}>
-                    Chat
-                  </Link>
+                  <BsChatDots className="navbar-icon-FA" size={35} color="white" onClick={()=>{history.push("/chat")}}  />
                 </li>
               ) : (
                 ""
               )}
               {state.token ? (
                 <li>
-                  <Link
+                  <IoLogOutOutline  className="navbar-icon-FA" size={35} color="white" 
                     onClick={() => {
                       localStorage.removeItem("token");
                       dispatch(setToken(""));
                       history.push("/");
                     }}
                     style={{ textDecoration: "none" }}
-                  >
-                    Sign Out
-                  </Link>
+                  />
+                    
                 </li>
               ) : (
                 ""
