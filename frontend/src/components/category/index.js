@@ -116,7 +116,7 @@ const Category = () => {
   }, [priceRange, city, page]);
 
   return (
-    <div>
+    <div className = 'category_Page'>
       <div className="filter_section">
         <Form style={{ width: "15vw" }}>
           <Form.Control

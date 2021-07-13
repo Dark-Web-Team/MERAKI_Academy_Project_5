@@ -12,7 +12,9 @@
     margin-top: 7%;
     
 }
-
+.category_Page{
+    min-height: 85vh;
+}
 .businessCard:hover{
     cursor: pointer;
 }
