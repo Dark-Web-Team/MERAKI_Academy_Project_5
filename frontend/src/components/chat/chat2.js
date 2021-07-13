@@ -148,7 +148,6 @@ function Chat2({ roomId }) {
           );
         }})
         }
-        {pick_emoji ? <Picker pickerStyle={{ width: '90%' }} onEmojiClick={onEmojiClick} /> :''}
       </div>
       <div className="input-chat">
         <input   
@@ -168,7 +167,7 @@ function Chat2({ roomId }) {
           if (pick_emoji){setPick_emoji(false)}else{setPick_emoji(true)}
         }} />
         < AiOutlineSend color="green" cursor="pointer" size={32} onClick={sendMessage}  />
-        
+        {pick_emoji ? <Picker pickerStyle={{ width: '90%' }} onEmojiClick={onEmojiClick} /> :''}
       </div>
       </div>
         
