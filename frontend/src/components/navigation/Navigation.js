@@ -25,14 +25,13 @@ const Navigation = () => {
   const [value, setValue] = useState("");
   const [suggestion, setSuggestion] = useState([]);
   const [businesses, setBusinesses] = useState([]);
+  const [checked, setChecked] = useState(false)
 
   const state = useSelector((state) => {
     return {
       token: state.login.token,
     };
   });
-
-  const business = [{ name: `sports` }, { name: `entertainment` }];
 
   const getSuggestions = (value) => {
     const inputValue = value.trim().toLowerCase();
@@ -120,33 +119,41 @@ const Navigation = () => {
           </div>
 
           <div className="ul-navbar">
-            <input type="checkbox" id="check" />
-            <label for="check" class="checkbtn">
+            <input type="checkbox" id="check" checked={checked} onChange={()=>{setChecked(!checked)}} />
+            <label for="check" class="checkbtn" onChange={()=>{setChecked(!checked)}} > 
               <FaBars />
             </label>
 
             <ul>
               <li>
-                <AiOutlineHome  title="Home"  className="navbar_icon-FA" size={35} color="white" onClick={()=>{history.push("/")}} />
+                <AiOutlineHome  title="Home"  className="navbar_icon-FA" size={35} color="white" onClick={()=>{
+                  setChecked(false)
+                  history.push("/")}} />
                 
               </li>
               {!state.token ? (
                 <li>
-                  <RiLoginBoxLine  title="Login" className="navbar_icon-FA"  size={35} color="white" onClick={()=>{history.push("/login")}}  />
+                  <RiLoginBoxLine  title="Login" className="navbar_icon-FA"  size={35} color="white" onClick={()=>{
+                    setChecked(false)
+                    history.push("/login")}}  />
                 </li>
               ) : (
                 ""
               )}
               {state.token ? (
                 <li>
-                 <CgProfile title="Profile"  className="navbar_icon-FA" size={35} color="white" onClick={()=>{history.push("/profile")}} />
+                 <CgProfile title="Profile"  className="navbar_icon-FA" size={35} color="white" onClick={()=>{
+                   setChecked(false)
+                   history.push("/profile")}} />
                 </li>
               ) : (
                 ""
               )}
               {state.token ? (
                 <li>
-                  <BsChatDots title="Chat"  className="navbar_icon-FA" size={35} color="white" onClick={()=>{history.push("/chat")}}  />
+                  <BsChatDots title="Chat"  className="navbar_icon-FA" size={35} color="white" onClick={()=>{
+                    setChecked(false)
+                    history.push("/chat")}}  />
                 </li>
               ) : (
                 ""
@@ -155,6 +162,7 @@ const Navigation = () => {
                 <li>
                   <IoLogOutOutline title="Signout"   className="navbar_icon-FA" size={35} color="white" 
                     onClick={() => {
+                      setChecked(false)
                       localStorage.removeItem("token");
                       dispatch(setToken(""));
                       history.push("/");
