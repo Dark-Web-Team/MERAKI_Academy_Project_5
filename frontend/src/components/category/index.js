@@ -5,7 +5,6 @@ import { useParams, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import ShowRating from "./ShowRating";
 import axios from "axios";
-import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { setPath } from "../../reducers/lastVisited";
 
@@ -70,7 +69,7 @@ const Category = () => {
         }
         setBusinesses(filterResult.data);
       } catch (error) {
-        console.log(error);
+        throw error;
       }
       return;
     }
@@ -116,7 +115,7 @@ const Category = () => {
   }, [priceRange, city, page]);
 
   return (
-    <div className = 'category_Page'>
+    <div className="category_Page">
       <div className="filter_section">
         <Form style={{ width: "15vw" }}>
           <Form.Control
@@ -144,7 +143,6 @@ const Category = () => {
             <option value="zarqa">Zarqa</option>
             <option value="amman">Amman</option>
             <option value="irbid">Irbid</option>
-            {/* <option value="10000">All Prices</option> */}
           </Form.Control>
         </Form>
       </div>
@@ -162,7 +160,7 @@ const Category = () => {
                 class="card-header"
                 style={{ backgroundImage: `url(${elem.main_img})` }}
               >
-                <span class="card-title" >
+                <span class="card-title">
                   <h3>{elem.displayName}</h3>
                 </span>
               </span>
@@ -174,27 +172,6 @@ const Category = () => {
                 <ShowRating rate={elem.average_rating} />
               </span>
             </div>
-
-            // <Card
-            //   key={i}
-            //   style={{ width: `18rem` }}
-            //   className="businessCard bg-dark text-white box"
-            //   id="businessCard"
-            //   onClick={(e) => {
-            //     history.push(`/business/${elem.business_id}`);
-            //   }}
-            // >
-            //   <Card.Img variant="top" src={elem.main_img} />
-            //   <Card.Body>
-            //     <Card.Title>{elem.displayName}</Card.Title>
-            //     <Card.Title>Price:{elem.booking_price}</Card.Title>
-            //     <Card.Title>
-            //       {" "}
-            //       <ShowRating rate={elem.average_rating} />
-            //     </Card.Title>
-            //     <Card.Subtitle> </Card.Subtitle>
-            //   </Card.Body>
-            // </Card>
           );
         })}
       </div>

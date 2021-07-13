@@ -76,19 +76,3 @@ io.on("connection", (socket) => {
     console.log("User disconnected");
   });
 });
-
-// io.on("connection", (socket) => {
-//   socket.on("join_userList", (data) => {
-//     socket.join(data);
-//     console.log("user joined his Room:", data);
-//   });
-
-//   socket.on("send_message_req", (data) => {
-//     console.log(data);
-//     socket.to(data.roomId).emit("receive_message_req", data.content);
-//   });
-
-//   socket.on("disconnect", () => {
-//     console.log("User disconnected");
-//   });
-// });

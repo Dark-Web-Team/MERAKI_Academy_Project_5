@@ -1,10 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Slide } from "react-slideshow-image";
-import { Link } from "react-router-dom";
 import CitiesSlider from "./../slider/slider";
 import "react-slideshow-image/dist/styles.css";
-import { Card, Button } from "react-bootstrap";
 import {
   AiFillFacebook,
   AiFillTwitterCircle,
@@ -55,21 +52,6 @@ export default function Home() {
     <>
       <div className="slide-container">
         <CitiesSlider slides={slides} />
-        {/* <Slide>
-          <div className="each-slide">
-            <div className="imageSlider" style={{'backgroundImage': `url(${slideImages[0]})`}}>
-              
-            </div>
-          </div>
-          <div className="each-slide">
-            <div className ="imageSlider" style={{'backgroundImage': `url(${slideImages[1]})`}}>
-            </div>
-          </div>
-          <div className="each-slide">
-            <div className="imageSlider" style={{'backgroundImage': `url(${slideImages[2]})`}}>
-            </div>
-          </div>
-        </Slide> */}
       </div>
       <div className="blg">
         <div class="blog-card web">
@@ -80,10 +62,7 @@ export default function Home() {
               A practical guide to speeding up your website loading-times
             </p>
             <div class="post-detail">
-              <span class="icn">
-             
-              </span>
-              
+              <span class="icn"></span>
             </div>
           </div>
           <div class="horizontal"></div>
@@ -99,10 +78,7 @@ export default function Home() {
               is how and where such tools might gain further traction.
             </p>
             <div class="post-detail">
-              <span class="icn">
-               
-              </span>
-              
+              <span class="icn"></span>
             </div>
           </div>
           <div class="horizontal"></div>
@@ -118,10 +94,7 @@ export default function Home() {
                 />
               </div>
               <div class="contnt">
-                <div class="titel">
-                  Lorem Ipsum, dizgi ve baskı{" "}
-                  
-                </div>
+                <div class="titel">Lorem Ipsum, dizgi ve baskı </div>
                 <div class="rounded"></div>
 
                 <p>
@@ -149,10 +122,7 @@ export default function Home() {
                 />
               </div>
               <div class="contnt">
-                <div class="titel">
-                  Lorem Ipsum, dizgi ve baskı{" "}
-                 
-                </div>
+                <div class="titel">Lorem Ipsum, dizgi ve baskı </div>
                 <div class="rounded"></div>
 
                 <p>
@@ -205,24 +175,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* <div className="ch" onClick={()=>{
-        history.push("/category/sport")
-      }} >
-              <img src ='https://mediaassets.wtxl.com/wtxl.com/content/tncms/assets/v3/editorial/7/c9/7c9aef76-82df-11e2-b688-001a4bcf6878/5131619d5b5fa.image.jpg'/>
-              <div className="overlay">
-         <div className="text"></div>
-         </div>
-
-          </div>
-          <div className="ch" onClick={()=>{
-        history.push("/category/entertainment")
-      }} >
-          <img src ='http://www.genesisgujarat.com/img/Entertainment.jpg'/> 
-          <div className="overlay">
-         <div className="text"></div>
-         </div>
-          </div> */}
     </>
   );
 }
