@@ -1,10 +1,11 @@
 .parent {
-  width: 95%;
+  width: 97%;
   margin: auto;
   border-bottom: gray 2px solid;
   display: grid;
-  grid-template-columns: repeat(1, 2fr 1fr);
-  justify-content: space-between;
+  grid-template-columns: 67% 33%;
+  grid-column-gap: 2%;
+  /* justify-content: space-between; */
   background-color: #ffffff;
 }
 .gallery {
