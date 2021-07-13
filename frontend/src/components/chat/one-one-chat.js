@@ -61,7 +61,8 @@ function PrivateChat() {
 
   return (
     <>
-   <div>
+    <div className="parant-to-One-chat">
+   <div className="ch1-to-One-chat">
        {roomList.map((val,i)=>{
          console.log("val",val);
            return (<> <div key={i} onClick ={()=>{
@@ -69,17 +70,22 @@ function PrivateChat() {
             setEnterRoom(val.roomId)
             console.log("enterRoom",enterRoom);
          }}   > 
+
            <p>{val.user1_id   }</p>
            <p>{val.user2_id   }</p>
            <p>{val.user1_name   }</p>
            <p>{val.user2_name   }</p>
+
+           
+
            </div>
            </>)
        })}
    </div>
-   {enterRoom !==0 ? <div>
+   {enterRoom !==0 ? <div className="ch2-to-One-chat">
    < Chat2 roomId ={enterRoom}  userId = {state.user_id} />
    </div> :""}
+   </div>
     </>
   );
 }
