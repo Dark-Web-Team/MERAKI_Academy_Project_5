@@ -19,7 +19,7 @@
     width: 100%;
   }
 
-  .cxcxc {
+  .navbar-content {
       display: flex;
       justify-content: space-between;
   }
@@ -94,7 +94,7 @@ padding-top: 2;
   #check{
     display: none;
   }
-  @media (max-width: 1230px){
+  @media (max-width: 910px){
     label.logo{
       font-size: 30px;
       /* padding-left: 50px; */
@@ -103,7 +103,7 @@ padding-top: 2;
       font-size: 16px;
     }
   }
-  @media (max-width: 1130px){
+  @media (max-width: 900px){
     .checkbtn{
       display: block;
     }
@@ -120,11 +120,16 @@ padding-top: 2;
     }
     nav ul li{
       display: block;
-      margin: 50px 0;
+      margin-top: 5%;
+      /* margin: 50px 0; */
+      /* margin-right: 25px; */
+      
       line-height: 30px;
     }
     nav ul li a{
       font-size: 20px;
+      margin-right: 25px;
+
     }
     
     #check:checked ~ ul{
@@ -147,4 +152,9 @@ padding-top: 2;
 
   .navbar-icon-FA {
     cursor: pointer;
+  }
+
+  .navbar_icon-FA{
+    cursor: pointer;
+    margin-left: 25px ;
   }
