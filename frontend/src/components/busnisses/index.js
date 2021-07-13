@@ -383,9 +383,9 @@ export default function Busnisses() {
                   )}
                 </div>
               </div>
-              <div className="business-chat-reserve">
                 <>
                   {business.owner_id !== state.user_id ? (
+                    <div className="business-chat-reserve">
                     <Button
                       id="Button-Reserve"
                       variant="primary"
@@ -394,6 +394,10 @@ export default function Busnisses() {
                     >
                       Reserve
                     </Button>
+                    <Button onClick={chatWhitOnwer} className="business-button">
+                    chat with owner
+                  </Button>
+                  </div>
                   ) : (
                     ""
                   )}
@@ -478,9 +482,6 @@ export default function Busnisses() {
                     </Modal.Body>
                   </Modal>
                 </>
-                <Button onClick={chatWhitOnwer} className="business-button">
-                  chat with owner
-                </Button>
               </div>
               <div className="information-map">
                 <ShowMap
@@ -488,7 +489,6 @@ export default function Busnisses() {
                   lng={business.lng}
                   width={"inherit"}
                 />
-              </div>
             </div>
           </div>
         </div>
