@@ -68,8 +68,8 @@ function PrivateChat() {
            return (<> <div className="chat2-user-info" key={i} onClick ={()=>{
             setEnterRoom(val.roomId)}}>
               <FaUserCircle  size={30} />
-              {state.user_id !== val.user1_id ? <p>{val.user1_name   }</p> :""  }
-              {state.user_id !== val.user2_id ? <p>{val.user2_name   }</p> :""  }
+              {state.user_id !== val.user1_id ? <span id="span-onetoone">{val.user1_name   }</span> :""  }
+              {state.user_id !== val.user2_id ? <span id="span-onetoone">{val.user2_name   }</span> :""  }
            </div>
            </>)
        })}
