@@ -123,7 +123,7 @@ export default function Profile() {
         ""
       )}
       {userReservations && kay === "reservation" ? (
-        <div>
+        <div className = 'reservation_Container'>
           {userReservations.map((element, i) => {
             console.log(userReservations);
             let date = element.reservation_date;
@@ -209,7 +209,7 @@ export default function Profile() {
       )}
 
       {userBusiness && kay === "business" ? (
-        <div>
+        <div className = 'user_Business'>
           {userBusiness.map((element, i) => {
             return (
               <>

@@ -3,6 +3,13 @@
     margin: auto;
     margin-top: 5%;
     align-items: center;
+    min-height: 85vh;
+}
+.reservation_Container{
+  min-height: 85vh;
+}
+.user_Business{
+  min-height: 85vh;
 }
 
 .information-edit{
