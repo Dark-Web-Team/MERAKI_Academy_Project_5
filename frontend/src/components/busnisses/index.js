@@ -271,6 +271,8 @@ export default function Busnisses() {
         `${process.env.REACT_APP_BACKEND_SERVER}chat/userChat`,
         {
           user2_id: business.owner_id,
+          user1_name : business.userName,
+          user2_name : state.user_name
         },
         {
           headers: {
