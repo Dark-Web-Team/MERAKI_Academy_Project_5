@@ -27,7 +27,7 @@ const Search_results = () => {
   }, [search]);
 
   return (
-    <>
+    <div className="search-businesses-container">
       <div className="businesses">
         {results.map((elem, i) => {
           return (
@@ -58,7 +58,7 @@ const Search_results = () => {
         })}
       </div>
       {errMessage}
-    </>
+    </div>
   );
 };
 

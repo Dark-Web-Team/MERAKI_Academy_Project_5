@@ -3,8 +3,9 @@ import io from "socket.io-client";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import {AiOutlineSend} from 'react-icons/ai'
-import {Button} from "react-bootstrap";
+import Picker from 'emoji-picker-react';
 import {FaUserCircle} from "react-icons/fa"
+import {HiEmojiHappy} from "react-icons/hi"
 import "./chat.css";
 
 let socket;
@@ -16,6 +17,8 @@ function Chat2({ roomId }) {
   const messageEl = useRef(null);
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+  const [chosenEmoji, setChosenEmoji] = useState(null);
+  const [pick_emoji, setPick_emoji] = useState(false)
   const state = useSelector((state) => {
     return {
       token: state.login.token,
@@ -100,7 +103,12 @@ function Chat2({ roomId }) {
   };
 
   ////////////////
+  const onEmojiClick = (event, emojiObject) => {
+    setChosenEmoji(emojiObject);
 
+    document.getElementById("textArea-chat").value =message +  emojiObject.emoji ;
+    setMessage(message +  emojiObject.emoji)
+  };
 
   /////////////////
 
@@ -140,7 +148,7 @@ function Chat2({ roomId }) {
           );
         }})
         }
-        
+        {pick_emoji ? <Picker pickerStyle={{ width: '90%' }} onEmojiClick={onEmojiClick} /> :''}
       </div>
       <div className="input-chat">
         <input   
@@ -156,8 +164,11 @@ function Chat2({ roomId }) {
           }}
           
         />
-        < AiOutlineSend color="green" size={30} onClick={sendMessage}  />
-       
+        <HiEmojiHappy  size={32} cursor="pointer"  onClick={()=>{
+          if (pick_emoji){setPick_emoji(false)}else{setPick_emoji(true)}
+        }} />
+        < AiOutlineSend color="green" cursor="pointer" size={32} onClick={sendMessage}  />
+        
       </div>
       </div>
         
