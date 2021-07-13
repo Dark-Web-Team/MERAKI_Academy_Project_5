@@ -67,17 +67,20 @@ export default function Profile() {
 
   return (
     <>
+    <div className="Tabs-nav">
       <Tabs
         id="uncontrolled-tab-example"
         activeKey={kay}
         onSelect={(k) => setKay(k)}
       >
+        
         <Tab eventKey="profile" title="Profile"></Tab>
         <Tab eventKey="reservation" title="reservation"></Tab>
         {role === "owner" && (
           <Tab eventKey="business" title="My Business"></Tab>
         )}
       </Tabs>
+      </div>
 
       {userInfo && kay === "profile" ? (
         <div >
@@ -203,7 +206,7 @@ export default function Profile() {
                     ></img>
                   </div>
                   <div className="business_info">
-                    <p>Business Name: {element.displayName}</p>
+                    <p> Business Name:{element.displayName}</p>
                     <p>Price: {element.booking_price} </p>
                     <p>
                       <span>Date: </span>
@@ -287,9 +290,9 @@ export default function Profile() {
                   </div>
                   <div className="inf_business">
                     <div className="business_info">
-                      <p>Business Name: {element.displayName}</p>
-                      <p>City: {element.city} </p>
-                      <p>Price: {element.booking_price} </p>
+                      <p className="business_info-p">Business Name: {element.displayName}</p>
+                      <p className="business_info-p">City: {element.city} </p>
+                      <p className="business_info-p">Price: {element.booking_price} </p>
                       <p>
                         Opening Time: {element.opening_time} &nbsp; &nbsp;
                         &nbsp; Closing Time: {element.closing_time}

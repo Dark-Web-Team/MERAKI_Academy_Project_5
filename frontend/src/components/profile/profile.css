@@ -99,6 +99,7 @@ float: left;
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin: 30px 0 15px 25px; 
 }
 .business_desc
 {
@@ -132,11 +133,22 @@ float: left;
 }
 
 .business_info{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 20vw;
+  width: 100%;
+  margin-left: 25px;
+  margin-top: 50px;
   
+}
+
+.business_info .business_info-p 
+{
+  font-size: 28px;
+  
+}
+.business_info Button
+{
+  width: 250px;
+  float: right;
+  margin-right: 20px;
 }
 
 
@@ -145,4 +157,8 @@ float: left;
   align-items: center;
   width: 27vw;
   max-height: 40vh;
+}
+.Tabs-nav
+{
+  margin:5px 0 15px 35px ;
 }
