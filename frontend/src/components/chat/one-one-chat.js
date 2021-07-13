@@ -65,7 +65,7 @@ function PrivateChat() {
    <div className="ch1-to-One-chat">
        {roomList.map((val,i)=>{
          console.log("val",val);
-           return (<> <div key={i} onClick ={()=>{
+           return (<> <div className="chat2-user-info" key={i} onClick ={()=>{
             setEnterRoom(val.roomId)}}>
               <FaUserCircle  size={30} />
               {state.user_id !== val.user1_id ? <p>{val.user1_name   }</p> :""  }

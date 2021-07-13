@@ -105,14 +105,18 @@ display: flex;
 /* justify-content: space-around; */
 width: 80%;
 margin: auto;
-min-height: 80vh;
+margin-top: 80px;
+min-height: 70vh;
+
+
 
 }
 .parant-to-One-chat .ch1-to-One-chat
 {
-    width: 30%;
+    width: 25%;
     margin-top: 50px;
     margin-bottom: 20px;
+
    
 } 
  .ch1-to-One-chat #p-onetoone
@@ -121,11 +125,21 @@ min-height: 80vh;
 }
 .parant-to-One-chat .ch2-to-One-chat
 {
-    width: 70%;
-    background-image: url("https://thumbs.dreamstime.com/b/mobile-apps-pattern-white-background-50171276.jpg");
+    width: 74%;
+    /* background-image: url("https://thumbs.dreamstime.com/b/mobile-apps-pattern-white-background-50171276.jpg"); */
+
 }
 
 
+.containar-all-chat-2 {
+        background-image: url("https://thumbs.dreamstime.com/b/mobile-apps-pattern-white-background-50171276.jpg");
+        width: 100%;
 
+}
+
+.chat2-user-info {
+    cursor: pointer;
+    margin-top: 40px;
+}
 
 

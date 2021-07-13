@@ -111,7 +111,7 @@ function Chat2({ roomId }) {
 
   return (
     <>
-      <div className="containar-all-chat" id="containar-all-chat"   >
+      <div className="containar-all-chat-2" id="containar-all-chat-2"   >
         <div className="chat-content-all" id="addddaaass" ref={messageEl}  >
         {messageList.map((val, i) => {
           if (val.user_id === state.user_id ){
