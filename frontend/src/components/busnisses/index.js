@@ -70,7 +70,6 @@ export default function Busnisses() {
       arr = picture.data.map((elem, i) => {
         return elem.image;
       });
-      console.log(arr);
       setPictures(arr);
     } catch (error) {
       setErrMessage(error.data);
@@ -138,7 +137,7 @@ export default function Busnisses() {
           }
         })
         .catch((err) => {
-          console.log(err);
+          throw err;
         });
     } else {
       history.push("/login");
@@ -164,7 +163,7 @@ export default function Busnisses() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   };
 
@@ -192,7 +191,7 @@ export default function Busnisses() {
         }
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   };
   //-----------------------------------------------------
@@ -252,7 +251,6 @@ export default function Busnisses() {
     getUserrate();
   }, [staePrimaryRef, info, state.token]);
 
-  console.log("business", business);
   const chatWhitOnwer = () => {
     socket = io(CONNECTION_PORT);
     socket.emit("join_userList", business.owner_id);
@@ -271,8 +269,8 @@ export default function Busnisses() {
         `${process.env.REACT_APP_BACKEND_SERVER}chat/userChat`,
         {
           user2_id: business.owner_id,
-          user1_name : business.userName,
-          user2_name : state.user_name
+          user1_name: business.userName,
+          user2_name: state.user_name,
         },
         {
           headers: {
@@ -287,7 +285,7 @@ export default function Busnisses() {
         // history.push("/chat");
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   };
 

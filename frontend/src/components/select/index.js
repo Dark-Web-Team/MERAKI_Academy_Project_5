@@ -52,7 +52,6 @@ export default function TimeSelect({
 
   useEffect(() => {
     for (let i = opening_time; i < closing_time; i++) {
-      console.log("i", i);
       if (i === 0) {
         setTime12pm(true);
       }
@@ -134,7 +133,7 @@ export default function TimeSelect({
         });
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   }, [date]);
   return (

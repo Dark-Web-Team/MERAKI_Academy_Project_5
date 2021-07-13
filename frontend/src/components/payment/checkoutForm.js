@@ -119,8 +119,7 @@ const CheckoutForm = ({ businessId }) => {
           console.log(err);
         });
 
-        history.push('/paymentConfirmed')
-
+      history.push("/paymentConfirmed");
     }
   };
 

@@ -45,10 +45,8 @@ const Login = () => {
         history.push("/");
       })
       .catch((err) => {
-        console.log(err.response);
         setErrPresent(true);
         setErrMessage(err.response.data);
-        console.log("errMessage", errMessage);
         throw err;
       });
   };
@@ -56,53 +54,6 @@ const Login = () => {
 
   return (
     <>
-      {/* <div className="login">
-        <Container className="loginArea">
-          <p className="login_text">Login</p> <br />
-          <InputGroup
-            className="mb-3"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          >
-            <FormControl
-              placeholder="Enter username"
-              aria-label="Username"
-              aria-describedby="basic-addon1"
-            />
-          </InputGroup>
-          <InputGroup
-            className="mb-3"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          >
-            <FormControl
-              placeholder="Enter password"
-              aria-label="Password"
-              aria-describedby="basic-addon1"
-              type="password"
-            />
-          </InputGroup>
-          <Button onClick={handleLogin} size="lg">
-            Sign in
-          </Button>
-          {errPresent && (
-            <div>
-              <br />{" "}
-              <Alert
-                variant="danger"
-                style={{ width: "35vw", textAlign: "center" }}
-              >
-                {errMessage}
-              </Alert>
-            </div>
-          )}
-          <p className="signUp_text">
-            Don't have an account ? <Link to="/signUp">Sign Up</Link>
-          </p>
-        </Container>
-      </div> */}
       <div className="login">
         <div class="cont">
           <div class="form sign-in">

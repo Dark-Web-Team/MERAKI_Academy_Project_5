@@ -1,56 +1,16 @@
-// import React from 'react'
-// import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-
-
-// function Map({lat,lng}) {
-//     const containerStyle = {
-//         width: '400px',
-//         height: '400px'
-//       };
-      
-//       const position = {
-//         lat: lat,
-//         lng: lng
-//       };
-      
-//       const onLoad = marker => {
-//           console.log('marker: ', marker)
-//         }
-//   return (
-//     <LoadScript
-//     googleMapsApiKey="AIzaSyCKGYO8byfTrwrbLGw7zy8HdrQFh1SYPKo"
-//   >
-//     <GoogleMap
-//       mapContainerStyle={containerStyle}
-//       center={position}
-//       zoom={15}
-//     >
-//       <Marker  onLoad={onLoad} position={position}   />
-
-//       </GoogleMap>
-//     </LoadScript>
-//   )
-// }
-
-// export default Map
-
 import React from "react";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
-
-function Map({marker , setMarker}) {
-
- 
-    const [center, setCenter] = React.useState({
-      lat: 32.060662,
-      lng: 36.093064,
-    });
+function Map({ marker, setMarker }) {
+  const [center, setCenter] = React.useState({
+    lat: 32.060662,
+    lng: 36.093064,
+  });
 
   const containerStyle = {
     width: "550px",
     height: "400px",
   };
-
 
   const libraries = ["places"];
   const { isLoaded, loadError } = useLoadScript({
@@ -60,7 +20,7 @@ function Map({marker , setMarker}) {
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
- 
+
   return (
     <div>
       <GoogleMap
@@ -68,7 +28,7 @@ function Map({marker , setMarker}) {
         center={center}
         zoom={12}
         onClick={(e) => {
-          setCenter({ lat: e.latLng.lat(), lng: e.latLng.lng()});
+          setCenter({ lat: e.latLng.lat(), lng: e.latLng.lng() });
           setMarker(() => [
             {
               lat: e.latLng.lat(),
@@ -84,7 +44,6 @@ function Map({marker , setMarker}) {
             position={{
               lat: marker.lat,
               lng: marker.lng,
-             
             }}
           />
         ))}
@@ -92,6 +51,5 @@ function Map({marker , setMarker}) {
     </div>
   );
 }
-
 
 export default Map;

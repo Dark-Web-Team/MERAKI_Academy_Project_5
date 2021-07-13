@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {  useHistory } from "react-router-dom";
-
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -55,7 +54,6 @@ const AddBusiness = () => {
           lng:marker[0].lng
         }
       );
-console.log(addConfirm);
       if (addConfirm.status === 201 ){
         history.push(`/business/${addConfirm.data.id}`)
       }
@@ -66,7 +64,6 @@ console.log(addConfirm);
       }
     }
      catch (err) {
-      console.log(err.response);
       setErrPresent(true);
       setErrMessage(err.response.data);
     }
