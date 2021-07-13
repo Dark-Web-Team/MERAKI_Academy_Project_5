@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-var cron = require('node-cron');
+var cron = require("node-cron");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -10,21 +10,18 @@ const transporter = nodemailer.createTransport({
 });
 
 const Transporter = (req, res) => {
-  const { time , date} = req.body;
-  let month = parseInt(date.slice(5,7))
-  let day  = parseInt(date.slice(8,10))
-  if (day-1 === 0){
-    month = month -1 
-    day = 30 
-
-  }else {
-    day = day-1
+  const { time, date } = req.body;
+  let month = parseInt(date.slice(5, 7));
+  let day = parseInt(date.slice(8, 10));
+  if (day - 1 === 0) {
+    month = month - 1;
+    day = 30;
+  } else {
+    day = day - 1;
   }
 
+  const to = req.token.email;
 
-
-  const to = req.token.email
-  
   const mailOptions = {
     from: "bookingwebsitee@gmail.com",
     to: to,
@@ -54,13 +51,13 @@ const Transporter = (req, res) => {
 
     BookingWebsite team`,
   };
-  
+
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error);
     } else {
-      res.json('email sent successfully');
-    //   console.log("Email sent: " + info.response);
+      res.json("email sent successfully");
+      //   console.log("Email sent: " + info.response);
     }
   });
 
@@ -68,14 +65,9 @@ const Transporter = (req, res) => {
     transporter.sendMail(mailOptionsRemind, function (error, info) {
       if (error) {
         console.log(error);
-      } 
+      }
     });
   });
-  
-
-
-
-
 };
 
 module.exports = {

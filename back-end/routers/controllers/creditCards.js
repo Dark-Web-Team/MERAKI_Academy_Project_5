@@ -8,7 +8,7 @@ const AddCreditCard = (req, res) => {
   db.query(query, data, (err, result) => {
     if (err) {
       res.send(err);
-      return
+      return;
     }
     newId = result.insertId;
     const query_2 = `SELECT * FROM creditCards WHERE card_id=?;`;
@@ -22,16 +22,16 @@ const AddCreditCard = (req, res) => {
   });
 };
 const getCreditCardByUser = (req, res) => {
-    const { user_id } = req.token; 
-    const query = `SELECT * FROM creditCards WHERE user_id=?;`
-    const data =[user_id]
-    db.query(query,data,(err,result)=>{
-      if (err) {
-        res.send(err);
-        return
-      }
-        res.status(200).json(result)
-    })
+  const { user_id } = req.token;
+  const query = `SELECT * FROM creditCards WHERE user_id=?;`;
+  const data = [user_id];
+  db.query(query, data, (err, result) => {
+    if (err) {
+      res.send(err);
+      return;
+    }
+    res.status(200).json(result);
+  });
 };
 
 module.exports = {

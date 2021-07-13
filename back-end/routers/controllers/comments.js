@@ -26,32 +26,31 @@ const addComment = (req, res) => {
 
 const getComments = (req, res) => {
   const business_id = req.params.business_id;
-  const query = `SELECT * FROM comments INNER JOIN users ON comments.commenter = users.user_id WHERE business_id = ? AND comments.is_deleted = 0;`
+  const query = `SELECT * FROM comments INNER JOIN users ON comments.commenter = users.user_id WHERE business_id = ? AND comments.is_deleted = 0;`;
   const id = [business_id];
 
   db.query(query, id, (err, result) => {
     if (err) {
-      console.log(err);
       return res.send(err);
     }
     res.status(200).json(result);
   });
 };
 
-const deleteComment = (req,res)=>{
+const deleteComment = (req, res) => {
   const comment_id = req.params.comment_id;
   const query = `UPDATE comments 
   SET  is_deleted = 1
    WHERE comment_id = ?`;
   const arr = [comment_id];
-  db.query(query,arr,(err,result)=>{
+  db.query(query, arr, (err, result) => {
     if (err) {
       res.send(err);
-      return
+      return;
     }
-    res.status(200).json(result)
-  })
-}
+    res.status(200).json(result);
+  });
+};
 
 module.exports = {
   addComment,

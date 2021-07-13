@@ -1,5 +1,4 @@
 const connection = require("../../db/db");
-const businessRouter = require("../routes/businessRouter");
 
 const addBusiness = (req, res) => {
   const {
@@ -33,7 +32,6 @@ const addBusiness = (req, res) => {
 
   connection.query(query, businessData, (err, result) => {
     if (err) {
-      console.log(err);
       return res.send(err);
     }
     res.status(201).json({
@@ -73,16 +71,13 @@ const updateBusiness = (req, res) => {
 
   connection.query(query, updateData, (err, result) => {
     if (err) {
-      console.log(err);
       return res.send(err);
     }
     const query_2 =
       "SELECT * FROM businesses LEFT JOIN users ON businesses.owner_id = users.user_id WHERE owner_id =?";
     const owner_id = [req.token.user_id];
-    console.log(req.token.user_id);
     connection.query(query_2, owner_id, (err, result) => {
       if (err) {
-        console.log(err);
         return res.send(err);
       }
 
@@ -97,7 +92,6 @@ const deleteBusiness = (req, res) => {
   const deleteData = [business_id];
   connection.query(query, deleteData, (err, result) => {
     if (err) {
-      console.log(err);
       return res.send(err);
     }
     res.status(200).json("deleted successfully");
@@ -111,7 +105,6 @@ const getBusinessByType = (req, res) => {
 
   connection.query(query, businessType, (err, result) => {
     if (err) {
-      console.log(err);
       return res.send(err);
     }
     res.status(200).json(result);
@@ -140,7 +133,6 @@ const getBusinessById = (req, res) => {
 
   connection.query(query, id, (err, result) => {
     if (err) {
-      console.log(err);
       return res.send(err);
     }
     res.status(200).json(result);
@@ -154,7 +146,6 @@ const getBusinessByUserId = (req, res) => {
 
   connection.query(query, id, (err, result) => {
     if (err) {
-      console.log(err);
       return res.send(err);
     }
     res.status(200).json(result);
@@ -169,7 +160,6 @@ const getBusinessByTypeByPrice = (req, res) => {
 
   connection.query(query, parameters, (err, result) => {
     if (err) {
-      console.log(err);
       return res.send(err);
     }
     res.status(200).json(result);
@@ -184,7 +174,6 @@ const getBusinessByTypeByPriceByCity = (req, res) => {
 
   connection.query(query, parameters, (err, result) => {
     if (err) {
-      console.log(err);
       return res.send(err);
     }
     res.status(200).json(result);
@@ -199,7 +188,6 @@ const getBusinessByCity = (req, res) => {
 
   connection.query(query, parameters, (err, result) => {
     if (err) {
-      console.log(err);
       return res.send(err);
     }
     res.status(200).json(result);
@@ -213,7 +201,6 @@ const searchBusinessByName = (req, res) => {
 
   connection.query(query, nameSearched, (err, result) => {
     if (err) {
-      console.log(err);
       return res.send(err);
     }
     res.status(200).json(result);

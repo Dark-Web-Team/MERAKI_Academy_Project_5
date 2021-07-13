@@ -282,7 +282,7 @@ export default function Busnisses() {
         if (result.status === 201) {
           socket.emit("send_message_req", messageContent);
         }
-        // history.push("/chat");
+        history.push("/chat");
       })
       .catch((err) => {
         throw err;

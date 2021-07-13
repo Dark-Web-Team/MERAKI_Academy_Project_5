@@ -1,4 +1,3 @@
-const { response } = require("express");
 const db = require("../../db/db");
 
 const addRating = (req, res) => {
@@ -10,7 +9,7 @@ const addRating = (req, res) => {
   db.query(queryBuss, dataBuss, (err, result) => {
     if (err) {
       res.send(err);
-      return
+      return;
     }
     let newRate =
       (result[0].average_rating * result[0].number_rating + rate) /
@@ -23,21 +22,21 @@ const addRating = (req, res) => {
     db.query(queryUpdate, dataUpdate, (err, response) => {
       if (err) {
         res.send(err);
-        return
+        return;
       }
       const query = `INSERT INTO rating  (rate,user_id,business_id) VALUES (?,?,?);`;
       const data = [rate, user_id, business_id];
       db.query(query, data, (err, result2) => {
         if (err) {
           res.send(err);
-          return
+          return;
         }
         const queryShow = `SELECT * FROM businesses where business_id=?;`;
         const dataShow = [business_id];
         db.query(queryShow, dataShow, (err, responseShow) => {
           if (err) {
             res.send(err);
-            return
+            return;
           }
           res.status(201).json(responseShow);
         });
@@ -49,19 +48,19 @@ const addRating = (req, res) => {
 const getUserRating = (req, res) => {
   const business_id = JSON.parse(req.params.business_id);
   const { user_id } = req.token;
-  const query = `SELECT * FROM rating where user_id=? AND business_id=? `
-  const data =[user_id,business_id]
-  db.query(query,data,(err,result)=>{
+  const query = `SELECT * FROM rating where user_id=? AND business_id=? `;
+  const data = [user_id, business_id];
+  db.query(query, data, (err, result) => {
     if (err) {
       res.send(err);
-      return
+      return;
     }
-    if (result.length){
-          res.status(200).json(result);
-    }else{
+    if (result.length) {
+      res.status(200).json(result);
+    } else {
       res.status(404).json("not found");
     }
-  })
+  });
 };
 
 module.exports = {
