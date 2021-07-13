@@ -150,29 +150,55 @@ console.log(addConfirm);
           <Form.Group>
             <Form.Label>Opening Time</Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Enter Opening Time"
+              as="select"
               onChange={(e) => {
                 setOpeningTime(e.target.value);
               }}
               required
-            />
+            >
+              <option value="12 pm">12:00 PM</option>
+              <option value="1 pm">1:00 PM</option>
+              <option value="2 pm">2:00 PM</option>
+              <option value="3 pm">3:00 PM</option>
+              <option value="4 pm">4:00 PM</option>
+              <option value="5 pm">5:00 PM</option>
+              <option value="6 pm">6:00 PM</option>
+              <option value="7 pm">7:00 PM</option>
+              <option value="8 pm">8:00 PM</option>
+              <option value="9 pm">9:00 PM</option>
+              <option value="10 pm">10:00 PM</option>
+              <option value="11 pm">11:00 PM</option>
+              <option value="12 am">12:00 AM</option>
+            </Form.Control>
             <Form.Control.Feedback type="invalid">
-              Please enter an opening time.
+              Please choose an opening time.
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
             <Form.Label>Closing Time</Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Enter Closing Time"
+              as="select"
               onChange={(e) => {
                 setClosingTime(e.target.value);
               }}
               required
-            />
+            >
+              <option value="12 pm">12:00 PM</option>
+              <option value="1 pm">1:00 PM</option>
+              <option value="2 pm">2:00 PM</option>
+              <option value="3 pm">3:00 PM</option>
+              <option value="4 pm">4:00 PM</option>
+              <option value="5 pm">5:00 PM</option>
+              <option value="6 pm">6:00 PM</option>
+              <option value="7 pm">7:00 PM</option>
+              <option value="8 pm">8:00 PM</option>
+              <option value="9 pm">9:00 PM</option>
+              <option value="10 pm">10:00 PM</option>
+              <option value="11 pm">11:00 PM</option>
+              <option value="12 am">12:00 AM</option>
+            </Form.Control>
             <Form.Control.Feedback type="invalid">
-              Please enter a closing time.
+              Please choose a closing time.
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group>
