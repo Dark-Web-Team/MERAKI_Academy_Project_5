@@ -50,7 +50,7 @@ export default function Busnisses() {
     return {
       token: state.login.token,
       user_id: state.login.user_id,
-      user_name : state.login.user_name
+      user_name: state.login.user_name,
     };
   });
 
@@ -252,9 +252,8 @@ export default function Busnisses() {
     getUserrate();
   }, [staePrimaryRef, info, state.token]);
 
-  console.log("business",business);
+  console.log("business", business);
   const chatWhitOnwer = () => {
-
     socket = io(CONNECTION_PORT);
     socket.emit("join_userList", business.owner_id);
     const messageContent = {
@@ -262,8 +261,8 @@ export default function Busnisses() {
       content: {
         user1_id: business.owner_id,
         user2_id: state.user_id,
-        user1_name : business.userName ,
-        user2_name : state.user_name
+        user1_name: business.userName,
+        user2_name: state.user_name,
       },
     };
 
@@ -401,10 +400,11 @@ export default function Busnisses() {
 
                   <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                      <Modal.Title>Modal heading</Modal.Title>
+                      <Modal.Title>Reservation</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body className="block">
                       <DatePicker
+                        className="calender"
                         selected={startDate}
                         dateFormat="yyyy/MM/dd"
                         onChange={(date) => {
