@@ -13,7 +13,7 @@ const addBusiness = (req, res) => {
     opening_time,
     closing_time,
     lat,
-    lng
+    lng,
   } = req.body;
   const query =
     "INSERT INTO businesses (type, displayName, city, owner_id, booking_price,average_rating,number_rating,main_img,description, opening_time, closing_time, lat, lng) VALUES (?,?,?,?,?,0,0,?,?,?,?,?,?)";
@@ -28,7 +28,7 @@ const addBusiness = (req, res) => {
     opening_time,
     closing_time,
     lat,
-    lng
+    lng,
   ];
 
   connection.query(query, businessData, (err, result) => {
@@ -37,8 +37,8 @@ const addBusiness = (req, res) => {
       return res.send(err);
     }
     res.status(201).json({
-      conformation : "created successfully" ,
-      id : result.insertId
+      conformation: "created successfully",
+      id: result.insertId,
     });
   });
 };
@@ -105,11 +105,10 @@ const deleteBusiness = (req, res) => {
 };
 
 const getBusinessByType = (req, res) => {
-  const {type, page} = req.params;
+  const { type, page } = req.params;
   const query = "SELECT * FROM businesses WHERE type=? LIMIT 8 OFFSET ?";
-  const businessType = [type,((page-1)*8)];
+  const businessType = [type, (page - 1) * 8];
 
-  
   connection.query(query, businessType, (err, result) => {
     if (err) {
       console.log(err);
@@ -121,7 +120,22 @@ const getBusinessByType = (req, res) => {
 
 const getBusinessById = (req, res) => {
   const business_id = req.params.id;
-  const query = "SELECT * FROM businesses WHERE business_id = ?";
+  const query = `SELECT  businesses.business_id , businesses.type , businesses.displayName ,
+  businesses.description ,
+  businesses.main_img ,
+  businesses.city ,
+  businesses.owner_id ,
+  businesses.booking_price ,
+  businesses.average_rating ,
+  businesses.number_rating ,
+  businesses.opening_time ,
+  businesses.closing_time ,
+  businesses.lat ,
+  businesses.lng ,
+  businesses.is_deleted ,
+  users.displayName AS userName  FROM businesses
+    LEFT JOIN users ON businesses.owner_id = users.user_id
+    WHERE business_id = ?;`;
   const id = [business_id];
 
   connection.query(query, id, (err, result) => {
@@ -148,10 +162,10 @@ const getBusinessByUserId = (req, res) => {
 };
 
 const getBusinessByTypeByPrice = (req, res) => {
-  const { type, lowPrice, highPrice,page } = req.params;
+  const { type, lowPrice, highPrice, page } = req.params;
   const query =
     "SELECT * FROM businesses WHERE type=? AND booking_price BETWEEN ? AND ? LIMIT 8 OFFSET ?";
-  const parameters = [type, lowPrice, highPrice,(page-1)*8];
+  const parameters = [type, lowPrice, highPrice, (page - 1) * 8];
 
   connection.query(query, parameters, (err, result) => {
     if (err) {
@@ -163,10 +177,10 @@ const getBusinessByTypeByPrice = (req, res) => {
 };
 
 const getBusinessByTypeByPriceByCity = (req, res) => {
-  const { type, lowPrice, highPrice, city,page } = req.params;
+  const { type, lowPrice, highPrice, city, page } = req.params;
   const query =
     "SELECT * FROM businesses WHERE type=? AND city=? AND booking_price BETWEEN ? AND ? LIMIT 8 OFFSET ?";
-  const parameters = [type, city, lowPrice, highPrice,(page-1)*8];
+  const parameters = [type, city, lowPrice, highPrice, (page - 1) * 8];
 
   connection.query(query, parameters, (err, result) => {
     if (err) {
@@ -181,7 +195,7 @@ const getBusinessByCity = (req, res) => {
   const { type, city, page } = req.params;
   const query =
     "SELECT * FROM businesses WHERE type=? AND city=? LIMIT 8 OFFSET ?";
-  const parameters = [type, city,(page-1)*8];
+  const parameters = [type, city, (page - 1) * 8];
 
   connection.query(query, parameters, (err, result) => {
     if (err) {
@@ -192,20 +206,19 @@ const getBusinessByCity = (req, res) => {
   });
 };
 
-const searchBusinessByName = (req,res)=>{
-  const {name} = req.params;
-  const query = 'SELECT * FROM businesses WHERE displayName LIKE ?'
-  const nameSearched = [`%${name}%`]
+const searchBusinessByName = (req, res) => {
+  const { name } = req.params;
+  const query = "SELECT * FROM businesses WHERE displayName LIKE ?";
+  const nameSearched = [`%${name}%`];
 
-  connection.query(query,nameSearched,(err,result)=>{
+  connection.query(query, nameSearched, (err, result) => {
     if (err) {
       console.log(err);
       return res.send(err);
     }
     res.status(200).json(result);
-  })
-}
-
+  });
+};
 
 module.exports = {
   addBusiness,

@@ -3,12 +3,12 @@ import axios from "axios";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import "./payment.css";
-import {  Form } from "react-bootstrap";
+import {  Button } from "react-bootstrap";
 import { FaCcVisa, FaCreditCard } from "react-icons/fa";
 import { GiPayMoney } from "react-icons/gi";
 import { FaCcApplePay } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from './checkoutForm';
@@ -27,6 +27,8 @@ export default function Payment() {
   const [pay, setPay] = useState(false);
   const { busnisses_id } = useParams();
   const [saveCard, setSaveCard] = useState(false);
+
+  const history = useHistory()
 
 
 
@@ -104,106 +106,38 @@ export default function Payment() {
     */
   return (
     <>
-      <div className="h4">
-        <h4>enter your credit Card details to continue with your payment</h4>
-      </div>
-      {/* <div className="parant-payment">
-        <div className="cardchldren">
-          <Cards
-            number={number}
-            name={name}
-            expiry={expiry}
-            cvc={cvc}
-            focused={focused}
-          />
-        </div>
-
-        <Form className="payment-input">
-          <Form.Group>
-            <Form.Control
-              type='text'
-              name="number"
-              placeholder="number"
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-              onChange={(e) => {
-                setNumber(e.target.value);
-              }}
-              onFocus={(e) => {
-                setFocused(e.target.name);
-              }}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control
-              type='text'
-              name="name"
-              placeholder="Name"
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
-              onFocus={(e) => {
-                setFocused(e.target.name);
-              }}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control
-              type='text'
-              name="expiry"
-              placeholder="MM/YY expiry"
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-              onChange={(e) => {
-                setExpiry(e.target.value);
-              }}
-              onFocus={(e) => {
-                setFocused(e.target.name);
-              }}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control
-              type='text'
-              name="cvc"
-              placeholder="Cvc"
-              aria-label="Large"
-              aria-describedby="inputGroup-sizing-sm"
-              onChange={(e) => {
-                setCvc(e.target.value);
-              }}
-              onFocus={(e) => {
-                setFocused(e.target.name);
-              }}
-            />
-            <Form.Group>
-              <Form.Check type="checkbox" label="Save Credit Card" onChange={()=>{
-                console.log(saveCard)
-                setSaveCard(!saveCard)
-              }} />
-            </Form.Group>
-          </Form.Group>
-        </Form>
-      </div> */}
-
-      {/* <div className="button">
-        <button onClick={reservation}>Confirm Payment</button>
-      </div> */}
-      <div className='parant-payment'>
-      <div className='online_payment'>
-            <Elements stripe = {promise}>
+      {state.reservation_date ?
+        <div>
+          {" "}
+          <div className="h4">
+            <h4>
+              enter your credit Card details to continue with your payment
+            </h4>
+          </div>
+          <div className="parant-payment">
+            <div className="online_payment">
+              <Elements stripe={promise}>
                 <CheckoutForm businessId={busnisses_id} />
-            </Elements>
+              </Elements>
+            </div>
+          </div>
+          <div className="iconspayment">
+            <FaCcVisa className="icons" />
+            <FaCreditCard className="icons" />
+            <GiPayMoney className="icons" />
+            <FaCcApplePay className="icons" />
+          </div>
         </div>
+        : <div className="donateConfirm">
+        <div className="midBox">
+        <p className="text1">Something went wrong with your request</p>
+        <p className='text2'>It happens to the best of us</p>
+        <Button variant="outline-info" size="lg" onClick={()=>{history.goBack()}}>
+            Go Back
+        </Button>
         </div>
-      <div className="iconspayment">
-        <FaCcVisa className="icons" />
-        <FaCreditCard className="icons" />
-        <GiPayMoney className="icons" />
-        <FaCcApplePay className="icons" />
-      </div>
+    </div>
+      }
     </>
   );
 }

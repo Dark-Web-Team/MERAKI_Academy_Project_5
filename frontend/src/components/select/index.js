@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { FormControl, Button } from "react-bootstrap";
-import {  useHistory  } from "react-router-dom";
-import {setReservation} from "../../reducers/reservation"
+import { FormControl, Button, Modal } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { setReservation } from "../../reducers/reservation";
+import "./select.css";
 
-
-
-
-export default function TimeSelect({date,busnisses_id,opening_time,closing_time}) {
-  opening_time = parseInt(opening_time.split(" ")[0])
-  if (opening_time === 12 ){
-    opening_time = 0
+export default function TimeSelect({
+  date,
+  busnisses_id,
+  opening_time,
+  closing_time,
+}) {
+  opening_time = parseInt(opening_time.split(" ")[0]);
+  if (opening_time === 12) {
+    opening_time = 0;
   }
-  closing_time = parseInt(closing_time.split(" ")[0])
+  closing_time = parseInt(closing_time.split(" ")[0]);
   const [time12pm, setTime12pm] = useState(false);
   const [time1pm, setTime1pm] = useState(false);
   const [time2pm, setTime2pm] = useState(false);
@@ -36,7 +39,6 @@ export default function TimeSelect({date,busnisses_id,opening_time,closing_time}
   });
 
   const handileRes = () => {
-    
     axios.post(
       `http://localhost:5000/reservations/${busnisses_id}`,
       { reservation_date: date, reservation_time: userTime },
@@ -49,48 +51,46 @@ export default function TimeSelect({date,busnisses_id,opening_time,closing_time}
   };
 
   useEffect(() => {
-    for (let i = opening_time; i <closing_time ; i++) {
-      console.log("i",i);
-      if (i=== 0){
-        setTime12pm(true)
+    for (let i = opening_time; i < closing_time; i++) {
+      console.log("i", i);
+      if (i === 0) {
+        setTime12pm(true);
       }
-      if (i=== 1){
-        setTime1pm(true)
+      if (i === 1) {
+        setTime1pm(true);
       }
-      if (i=== 2){
-        setTime2pm(true)
+      if (i === 2) {
+        setTime2pm(true);
       }
-      if (i=== 3){
-        setTime3pm(true)
+      if (i === 3) {
+        setTime3pm(true);
       }
-      if (i=== 4){
-        setTime4pm(true)
+      if (i === 4) {
+        setTime4pm(true);
       }
-      if (i=== 5){
-        setTime5pm(true)
+      if (i === 5) {
+        setTime5pm(true);
       }
-      if (i=== 6){
-        setTime6pm(true)
+      if (i === 6) {
+        setTime6pm(true);
       }
-      if (i=== 7){
-        setTime7pm(true)
+      if (i === 7) {
+        setTime7pm(true);
       }
-      if (i=== 8){
-        setTime8pm(true)
+      if (i === 8) {
+        setTime8pm(true);
       }
-      if (i=== 9){
-        setTime9pm(true)
+      if (i === 9) {
+        setTime9pm(true);
       }
-      if (i=== 10){
-        setTime10pm(true)
+      if (i === 10) {
+        setTime10pm(true);
       }
-      if (i=== 11){
-        setTime11pm(true)
+      if (i === 11) {
+        setTime11pm(true);
       }
-      
     }
 
-        
     axios
       .get(`http://localhost:5000/reservations/${busnisses_id}/${date}`)
       .then((result) => {
@@ -140,12 +140,13 @@ export default function TimeSelect({date,busnisses_id,opening_time,closing_time}
   return (
     <div>
       <FormControl
+        className="TimeSelect"
         as="select"
         onChange={(e) => {
           setUserTime(e.target.value);
         }}
       >
-        <option value = "" >Select a time...</option>
+        <option value="">Select a time...</option>
         {time12pm ? <option value="12pm - 1pm">12pm - 1pm</option> : ""}
         {time1pm ? <option value="1pm - 2pm">1pm - 2pm</option> : ""}
         {time2pm ? <option value="2pm - 3pm">2pm - 3pm</option> : ""}
@@ -159,13 +160,21 @@ export default function TimeSelect({date,busnisses_id,opening_time,closing_time}
         {time10pm ? <option value="10pm - 11pm">10pm - 11pm</option> : ""}
         {time11pm ? <option value="11pm - 12pm">11pm - 12pm</option> : ""}
       </FormControl>
-      {userTime ? <Button className="singUpButton"onClick={()=>{
-            dispatch(setReservation( date,userTime));
-            // handileRes()
-            history.push(`/payment/${busnisses_id}`)
-          }}>
-      reservation
-      </Button> :""}
+      {userTime ? (
+        <Modal.Footer>
+          <Button
+            onClick={() => {
+              dispatch(setReservation(date, userTime));
+              // handileRes()
+              history.push(`/payment/${busnisses_id}`);
+            }}
+          >
+            reservation
+          </Button>
+        </Modal.Footer>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

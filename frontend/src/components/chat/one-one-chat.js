@@ -64,14 +64,20 @@ function PrivateChat() {
     <div className="parant-to-One-chat">
    <div className="ch1-to-One-chat">
        {roomList.map((val,i)=>{
-         console.log("caht"+i, `     ${val.roomId}`);
+         console.log("val",val);
            return (<> <div key={i} onClick ={()=>{
              console.log("join",val.roomId );
             setEnterRoom(val.roomId)
             console.log("enterRoom",enterRoom);
          }}   > 
-           <p id="p-onetoone">{val.user1_id   }</p>
-           <p id="p-onetoone">{val.user2_id   }</p>
+
+           <p>{val.user1_id   }</p>
+           <p>{val.user2_id   }</p>
+           <p>{val.user1_name   }</p>
+           <p>{val.user2_name   }</p>
+
+           
+
            </div>
            </>)
        })}

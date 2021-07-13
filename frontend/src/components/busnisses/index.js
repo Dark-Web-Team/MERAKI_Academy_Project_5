@@ -50,6 +50,7 @@ export default function Busnisses() {
     return {
       token: state.login.token,
       user_id: state.login.user_id,
+      user_name: state.login.user_name,
     };
   });
 
@@ -251,6 +252,7 @@ export default function Busnisses() {
     getUserrate();
   }, [staePrimaryRef, info, state.token]);
 
+  console.log("business", business);
   const chatWhitOnwer = () => {
     socket = io(CONNECTION_PORT);
     socket.emit("join_userList", business.owner_id);
@@ -259,6 +261,8 @@ export default function Busnisses() {
       content: {
         user1_id: business.owner_id,
         user2_id: state.user_id,
+        user1_name: business.userName,
+        user2_name: state.user_name,
       },
     };
 
@@ -267,6 +271,8 @@ export default function Busnisses() {
         `${process.env.REACT_APP_BACKEND_SERVER}chat/userChat`,
         {
           user2_id: business.owner_id,
+          user1_name : business.userName,
+          user2_name : state.user_name
         },
         {
           headers: {
@@ -278,7 +284,7 @@ export default function Busnisses() {
         if (result.status === 201) {
           socket.emit("send_message_req", messageContent);
         }
-        history.push("/chat");
+        // history.push("/chat");
       })
       .catch((err) => {
         console.log(err);
@@ -379,9 +385,9 @@ export default function Busnisses() {
                   )}
                 </div>
               </div>
-              <div className="business-chat-reserve">
-                <>
-                  {business.owner_id !== state.user_id ? (
+              <>
+                {business.owner_id !== state.user_id ? (
+                  <div className="business-chat-reserve">
                     <Button
                       id="Button-Reserve"
                       variant="primary"
@@ -390,93 +396,90 @@ export default function Busnisses() {
                     >
                       Reserve
                     </Button>
-                  ) : (
-                    ""
-                  )}
+                    <Button onClick={chatWhitOnwer} className="business-button">
+                      chat with owner
+                    </Button>
+                  </div>
+                ) : (
+                  ""
+                )}
 
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <DatePicker
-                        selected={startDate}
-                        dateFormat="yyyy/MM/dd"
-                        onChange={(date) => {
-                          let array = date
-                            .toString()
-                            .split(" ")
-                            .splice(1, 3)
-                            .reverse();
-                          const array_move = (arr, old_index, new_index) => {
-                            if (new_index >= arr.length) {
-                              let k = new_index - arr.length + 1;
-                              while (k--) {
-                                arr.push(undefined);
-                              }
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Reservation</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body className="block">
+                    <DatePicker
+                      className="calender"
+                      selected={startDate}
+                      dateFormat="yyyy/MM/dd"
+                      onChange={(date) => {
+                        let array = date
+                          .toString()
+                          .split(" ")
+                          .splice(1, 3)
+                          .reverse();
+                        const array_move = (arr, old_index, new_index) => {
+                          if (new_index >= arr.length) {
+                            let k = new_index - arr.length + 1;
+                            while (k--) {
+                              arr.push(undefined);
                             }
-                            arr.splice(
-                              new_index,
-                              0,
-                              arr.splice(old_index, 1)[0]
-                            );
-                            return arr;
-                          };
-                          let orgArr = array_move(array, 1, 2);
-                          if (orgArr[1] === "Jan") {
-                            orgArr[1] = "01";
                           }
-                          if (orgArr[1] === "Feb") {
-                            orgArr[1] = "02";
-                          }
-                          if (orgArr[1] === "Mar") {
-                            orgArr[1] = "03";
-                          }
-                          if (orgArr[1] === "Apr") {
-                            orgArr[1] = "04";
-                          }
-                          if (orgArr[1] === "May") {
-                            orgArr[1] = "05";
-                          }
-                          if (orgArr[1] === "Jun") {
-                            orgArr[1] = "06";
-                          }
-                          if (orgArr[1] === "Jul") {
-                            orgArr[1] = "07";
-                          }
-                          if (orgArr[1] === "Aug") {
-                            orgArr[1] = "08";
-                          }
-                          if (orgArr[1] === "Sep") {
-                            orgArr[1] = "09";
-                          }
-                          if (orgArr[1] === "Oct") {
-                            orgArr[1] = "10";
-                          }
-                          if (orgArr[1] === "Nov") {
-                            orgArr[1] = "11";
-                          }
-                          if (orgArr[1] === "Dec") {
-                            orgArr[1] = "12";
-                          }
-                          orgArr = orgArr.join("-");
-                          setReservationDate(orgArr);
-                          setStartDate(date);
-                        }}
-                      />
-                      <TimeSelect
-                        busnisses_id={id}
-                        date={reservationDate}
-                        opening_time={business.opening_time}
-                        closing_time={business.closing_time}
-                      />
-                    </Modal.Body>
-                  </Modal>
-                </>
-                <Button onClick={chatWhitOnwer} className="business-button">
-                  chat with owner
-                </Button>
-              </div>
+                          arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+                          return arr;
+                        };
+                        let orgArr = array_move(array, 1, 2);
+                        if (orgArr[1] === "Jan") {
+                          orgArr[1] = "01";
+                        }
+                        if (orgArr[1] === "Feb") {
+                          orgArr[1] = "02";
+                        }
+                        if (orgArr[1] === "Mar") {
+                          orgArr[1] = "03";
+                        }
+                        if (orgArr[1] === "Apr") {
+                          orgArr[1] = "04";
+                        }
+                        if (orgArr[1] === "May") {
+                          orgArr[1] = "05";
+                        }
+                        if (orgArr[1] === "Jun") {
+                          orgArr[1] = "06";
+                        }
+                        if (orgArr[1] === "Jul") {
+                          orgArr[1] = "07";
+                        }
+                        if (orgArr[1] === "Aug") {
+                          orgArr[1] = "08";
+                        }
+                        if (orgArr[1] === "Sep") {
+                          orgArr[1] = "09";
+                        }
+                        if (orgArr[1] === "Oct") {
+                          orgArr[1] = "10";
+                        }
+                        if (orgArr[1] === "Nov") {
+                          orgArr[1] = "11";
+                        }
+                        if (orgArr[1] === "Dec") {
+                          orgArr[1] = "12";
+                        }
+                        orgArr = orgArr.join("-");
+                        setReservationDate(orgArr);
+                        setStartDate(date);
+                      }}
+                    />
+                    <TimeSelect
+                      busnisses_id={id}
+                      date={reservationDate}
+                      opening_time={business.opening_time}
+                      closing_time={business.closing_time}
+                    />
+                  </Modal.Body>
+                </Modal>
+              </>
               <div className="information-map">
                 <ShowMap
                   lat={business.lat}
