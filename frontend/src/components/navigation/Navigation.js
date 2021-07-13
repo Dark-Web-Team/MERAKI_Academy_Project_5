@@ -87,7 +87,7 @@ const Navigation = () => {
 
           <div className="search-nav-bar">
             <div>
-              <Autosuggest
+              <Autosuggest 
                 suggestions={suggestion}
                 onSuggestionsFetchRequested={(e) => {
                   onSuggestionsFetchRequested(e);
@@ -110,7 +110,7 @@ const Navigation = () => {
             </div>
             <div>
               &nbsp;&nbsp;&nbsp;
-              <FcSearch
+              <FcSearch  title="Search" className ="navbar-icon-FA"
                 size={30}
                 onClick={() => {
                   history.push(`/search/${search}`);
@@ -127,33 +127,33 @@ const Navigation = () => {
 
             <ul>
               <li>
-                <AiOutlineHome  className="navbar-icon-FA" size={35} color="white" onClick={()=>{history.push("/")}} />
-                <FcHome size={35} />
+                <AiOutlineHome  title="Home"  className="navbar-icon-FA" size={35} color="white" onClick={()=>{history.push("/")}} />
+                
               </li>
               {!state.token ? (
                 <li>
-                  <RiLoginBoxLine  className="navbar-icon-FA"  size={35} color="white" onClick={()=>{history.push("/login")}}  />
+                  <RiLoginBoxLine  title="Login" className="navbar-icon-FA"  size={35} color="white" onClick={()=>{history.push("/login")}}  />
                 </li>
               ) : (
                 ""
               )}
               {state.token ? (
                 <li>
-                 <CgProfile  className="navbar-icon-FA" size={35} color="white" onClick={()=>{history.push("/profile")}} />
+                 <CgProfile title="Profile"  className="navbar-icon-FA" size={35} color="white" onClick={()=>{history.push("/profile")}} />
                 </li>
               ) : (
                 ""
               )}
               {state.token ? (
                 <li>
-                  <BsChatDots className="navbar-icon-FA" size={35} color="white" onClick={()=>{history.push("/chat")}}  />
+                  <BsChatDots title="Chat"  className="navbar-icon-FA" size={35} color="white" onClick={()=>{history.push("/chat")}}  />
                 </li>
               ) : (
                 ""
               )}
               {state.token ? (
                 <li>
-                  <IoLogOutOutline  className="navbar-icon-FA" size={35} color="white" 
+                  <IoLogOutOutline title="Signout"   className="navbar-icon-FA" size={35} color="white" 
                     onClick={() => {
                       localStorage.removeItem("token");
                       dispatch(setToken(""));
