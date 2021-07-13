@@ -78,7 +78,7 @@ const Navigation = () => {
     <div className="nav-container">
       <nav className="navbar-container">
         <div className="cxcxc">
-          <div className="web-name-app">
+          <div className="web-name-app" onClick={()=>{history.push("/")}} >
             <p id="booking">
               {" "}
               -Booking<p id="online">Dark-Web </p>
