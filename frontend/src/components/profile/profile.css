@@ -99,6 +99,7 @@ float: left;
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin: 30px 0 15px 25px; 
 }
 .business_desc
 {
@@ -138,7 +139,7 @@ float: left;
   
 }
 
-.business_info p 
+.business_info .business_info-p 
 {
   font-size: 28px;
   

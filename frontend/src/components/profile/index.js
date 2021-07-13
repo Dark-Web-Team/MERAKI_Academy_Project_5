@@ -290,9 +290,9 @@ export default function Profile() {
                   </div>
                   <div className="inf_business">
                     <div className="business_info">
-                      <p>Business Name: {element.displayName}</p>
-                      <p>City: {element.city} </p>
-                      <p>Price: {element.booking_price} </p>
+                      <p className="business_info-p">Business Name: {element.displayName}</p>
+                      <p className="business_info-p">City: {element.city} </p>
+                      <p className="business_info-p">Price: {element.booking_price} </p>
                       <p>
                         Opening Time: {element.opening_time} &nbsp; &nbsp;
                         &nbsp; Closing Time: {element.closing_time}
