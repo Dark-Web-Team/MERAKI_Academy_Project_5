@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { Button, Tabs, Tab, Card } from "react-bootstrap";
 import axios from "axios";
 import "./profile.css";
+import "./Profile2.css";
 import { useSelector } from "react-redux";
 import ShowMap from "../googleMap/showMap";
 import Footer from "./../footer/index";
@@ -79,36 +80,36 @@ export default function Profile() {
       </Tabs>
 
       {userInfo && kay === "profile" ? (
-        <div key={500} className="profile-information">
-          <p id="your-information">Profile Info</p>
-          <div className="user-info">
-            <div className="info">
-              <p>
-                <span> Full Name: </span>
-                {userInfo[0].displayName}
-              </p>
-              <p>
-                <span>age: </span>
-                {userInfo[0].age}
-              </p>
+        <div >
+          
 
-              <p>
-                {" "}
-                <span>Email: </span>
-                {userInfo[0].email}
-              </p>
-              <p>
-                {" "}
-                <span>Gender:</span> {userInfo[0].gender}
-              </p>
-              <p>
-                {" "}
-                <span>city:</span> {userInfo[0].city}
-              </p>
-            </div>
-            <div>
-              {" "}
-              <Button
+	<section class="profile_container">
+		<div class="profile_img_section">
+			<img class="profile_img-LG" src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.6435-9/137228544_3532653123528378_7616780502827546260_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=0debeb&_nc_eui2=AeG41YuVLrvLIC0cBob42Qta0NZYniBPW9rQ1lieIE9b2ooKOpF86YPSU6Rp7-UgudXqYyqU0GynaHsfOD192bwE&_nc_ohc=T43UiMtMLN4AX-w7809&_nc_ht=scontent-hbe1-1.xx&oh=7b79099390ee649805b089313bdef8b5&oe=60F0F90E" />
+		
+		</div>
+
+		<div class="profile_desc_section">
+			<h2 className = 'H2'>{userInfo[0].displayName}</h2>
+			<h3  className = 'H3'> {userInfo[0].email}</h3>
+      <div class="interests">
+				<span class="interests_item">{userInfo[0].gender}</span>
+				
+        <span class="interests_item">Age ... {userInfo[0].age}</span>
+			</div>
+			<p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      
+      <ul>
+			<li>
+				<div class="link_img_wrapper">
+					<img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/round-pushpin_1f4cd.png" alt=""/>
+				</div>
+				<p>{userInfo[0].city}</p>
+			</li>
+	</ul>
+		
+		</div>
+    <Button
                 id="editButton"
                 onClick={() => {
                   history.push("edit-profile");
@@ -116,9 +117,72 @@ export default function Profile() {
               >
                 edit profile
               </Button>
-            </div>
-          </div>
+	</section>
+
+	{/* <div class="info">
+		<ul>
+			<li>
+				<div class="link_img_wrapper">
+					<img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/round-pushpin_1f4cd.png" alt=""/>
+				</div>
+				<p>{userInfo[0].city}</p>
+			</li>
+			<li>
+				<div class="link_img_wrapper">
+					<img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/speaking-head_1f5e3-fe0f.png" alt=""/>
+				</div>
+				<p>Korean, English</p>
+			</li>
+			<li>
+				<div class="link_img_wrapper">
+					<img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/samsung/265/globe-with-meridians_1f310.png" alt=""/>
+				</div>
+				<p>sandbox.kr/samsantech</p>
+			</li>
+		</ul>
+	</div> */}
+ 
         </div>
+        // <div key={500} className="profile-information">
+        //   <p id="your-information">Profile Info</p>
+        //   <div className="user-info">
+        //     <div className="info">
+        //       <p>
+        //         <span> Full Name: </span>
+        //         {userInfo[0].displayName}
+        //       </p>
+        //       <p>
+        //         <span>age: </span>
+        //         {userInfo[0].age}
+        //       </p>
+
+        //       <p>
+        //         {" "}
+        //         <span>Email: </span>
+        //         {userInfo[0].email}
+        //       </p>
+        //       <p>
+        //         {" "}
+        //         <span>Gender:</span> {userInfo[0].gender}
+        //       </p>
+        //       <p>
+        //         {" "}
+        //         <span>city:</span> {userInfo[0].city}
+        //       </p>
+        //     </div>
+        //     <div>
+        //       {" "}
+        //       <Button
+        //         id="editButton"
+        //         onClick={() => {
+        //           history.push("edit-profile");
+        //         }}
+        //       >
+        //         edit profile
+        //       </Button>
+        //     </div>
+        //   </div>
+        // </div>
       ) : (
         ""
       )}
