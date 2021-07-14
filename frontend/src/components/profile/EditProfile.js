@@ -77,7 +77,7 @@ export default function EditProfile() {
     <div className="profile-information">
       {userInfo ? (
         <div className="your-information">
-          <p className="login_text">Edit Your Info..</p> <br />
+          <p className="login_text" style ={{fontFamily:'Arial, Helvetica, sans-serif'}}>Edit Your Info...</p> <br />
           <h3 className="email-edit-info">
           Email : {userInfo[0].email}
           </h3>

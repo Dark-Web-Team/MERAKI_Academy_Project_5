@@ -52,8 +52,10 @@ float: left;
 }
 
 .noBusiness{
+  min-height: 70vh;
   width: 100vw;
-  height: 87vh;
+ 
+ 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,6 +143,7 @@ float: left;
 
 .business_info .business_info-p 
 {
+  font-family:Arial, Helvetica, sans-serif;
   font-size: 28px;
   
 }
