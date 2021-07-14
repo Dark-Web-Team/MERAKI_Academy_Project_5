@@ -346,7 +346,7 @@ export default function Busnisses() {
                 ""
               )}
               <h2>Description</h2>
-              <p className="description">{business.description}</p>
+              <div className="description">{business.description}</div>
             </div>
             <div className="information">
               <p className="city-info">

@@ -23,6 +23,7 @@
 
 .information {
   width: auto;
+  margin-top: 19px;
 }
 .information #Button-Reserve {
   margin: 10px 10px 10px 0;
@@ -45,6 +46,8 @@
   margin-bottom: 12px;
   letter-spacing: 0.3px;
   line-height: 24px;
+  overflow-y: scroll;
+  max-height: 200px;
 }
 .rate {
   font-family: "proxima-nova", Verdana, sans-serif;
@@ -114,6 +117,11 @@
 
 .comment {
   border-bottom: 2px solid rgb(211, 206, 202);
+}
+.comments{
+  height:400px; 
+  overflow-y: scroll;
+  margin-top: 30px;
 }
 .comments h1 {
   margin-top: 10px;
