@@ -22,6 +22,7 @@ export default function SignUp() {
   const [conformPass, setConformPass] = useState("");
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
+  const [user_image, setUserImage] = useState("https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg");
   const [role_id, setRole_id] = useState(0);
   const [errMessage, setErrMessage] = useState("");
   const [emailErr, setEmailErr] = useState("please enter an email");
@@ -49,6 +50,7 @@ export default function SignUp() {
             password,
             age,
             gender,
+            user_image,
             role_id,
           })
           .then((result) => {

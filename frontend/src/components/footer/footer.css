@@ -110,10 +110,11 @@
    .footerch ul  li:hover {
      color: wheat;
    }
-   #text_booking 
-   {
-     
-     font-size: 30px;
+   #text_DarkWeb 
+{
+    font-family: "Mukta", sans-serif;
+    font-size: 30px;
+   
      margin-top: 50px;
    }
  
@@ -130,6 +131,11 @@
      margin-left: 30px;
      cursor: pointer;
  
+   }
+   #text_Booking{
+    font-family: "Mukta", sans-serif;
+    font-size: 30px;
+     color: #ffc300;
    }
  
    

@@ -20,6 +20,7 @@ CREATE TABLE users(
     password VARCHAR(255),
     age INT(3),
     gender VARCHAR(255),
+    user_image VARCHAR(2550),
     role_id INT,
     FOREIGN KEY (role_id) REFERENCES roles(role_id),
     is_deleted TINYINT DEFAULT 0,

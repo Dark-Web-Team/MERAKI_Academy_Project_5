@@ -15,6 +15,7 @@ export default function EditProfile() {
   const [password, setPassword] = useState("");
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
+  const [user_image, setUser_image] = useState("");
   const [role_id, setRole_id] = useState(0);
   const [Info, setInfo] = useState(false);
 
@@ -45,6 +46,7 @@ export default function EditProfile() {
           setPassword(result.data[0].password);
           setAge(result.data[0].age);
           setGender(result.data[0].gender);
+          setUser_image(result.data[0].user_image);
           setRole_id(result.data[0].role_id);
         })
         .catch((err) => {
@@ -57,7 +59,7 @@ export default function EditProfile() {
     axios
       .put(
         `${process.env.REACT_APP_BACKEND_SERVER}users`,
-        { displayName, city, email, age, gender, role_id },
+        { displayName, city, email, age, gender,user_image, role_id },
         {
           headers: {
             authorization: "Bearer " + state.token,
@@ -136,6 +138,16 @@ export default function EditProfile() {
             <option value="male">male</option>
             <option value="female">female</option>
           </FormControl>
+          <FormControl
+            className="editForm"
+            placeholder={`Your profile pic : ${userInfo[0].user_image}`}
+            type="text"
+            aria-label="Large"
+            aria-describedby="inputGroup-sizing-sm"
+            onChange={(e) => {
+              setUser_image(e.target.value);
+            }}
+          />
           <div className="sign-up-button">
             <Button className="singUpButton" onClick={updateInfo}>
               Update Your Info

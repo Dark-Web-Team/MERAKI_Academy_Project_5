@@ -125,14 +125,14 @@ ul {
   padding: 0px;
 }
 
-/* li {
+.location_inProfile {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-bottom: 5px;
-} */
+}
 
-li p {
+.location_inProfile p {
   margin-left: 30px;
   color: rgba(34, 34, 34, 0.5);
 }

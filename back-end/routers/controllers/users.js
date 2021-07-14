@@ -4,12 +4,12 @@ const jwt = require("jsonwebtoken");
 const axios = require("axios");
 
 const createUser = async (req, res) => {
-  let { displayName, city, email, password, age, gender, role_id } = req.body;
+  let { displayName, city, email, password, age, gender, user_image, role_id } = req.body;
   let newId;
   const hashedPassword = await bcrypt.hash(password, 10);
   password = hashedPassword;
-  const query = `INSERT INTO users  (displayName, city, email, password, age, gender, role_id) VALUES (?,?,?,?,?,?,?);`;
-  const arr = [displayName, city, email, password, age, gender, role_id];
+  const query = `INSERT INTO users  (displayName, city, email, password, age, gender, user_image , role_id) VALUES (?,?,?,?,?,?,?,?);`;
+  const arr = [displayName, city, email, password, age, gender,user_image, role_id];
   /*
   try {
     const emailVerify = await axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=85bb4133d00746f2b831ee6f33f157b0&email=${email}`)
@@ -55,12 +55,12 @@ const getUser = (req, res) => {
 
 const updateUser = async (req, res) => {
   const { user_id } = req.token;
-  const { displayName, city, email, age, gender, role_id } = req.body;
+  const { displayName, city, email, age, gender, user_image, role_id } = req.body;
 
   const query = `UPDATE users 
-  SET displayName = ?, city =  ? , email = ? , age =  ? , gender = ? , role_id = ? 
+  SET displayName = ?, city =  ? , email = ? , age =  ? , gender = ? ,user_image = ? , role_id = ? 
    WHERE user_id = ?`;
-  const arr = [displayName, city, email, age, gender, role_id, user_id];
+  const arr = [displayName, city, email, age, gender, user_image,role_id, user_id];
   db.query(query, arr, (err, result) => {
     if (err) {
       res.send(err);
