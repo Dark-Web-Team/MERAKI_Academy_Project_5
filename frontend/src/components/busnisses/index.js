@@ -346,7 +346,7 @@ export default function Busnisses() {
                 ""
               )}
               <h2>Description</h2>
-              <p className="description">{business.description}</p>
+              <div className="description">{business.description}</div>
             </div>
             <div className="information">
               <p className="city-info">
@@ -496,6 +496,7 @@ export default function Busnisses() {
         <div className="comments">
           <h1>Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
           <div className="containers">
+            <div className="rcroll-forComment-b">
             {commints.map((element) => {
               return (
                 <div className="comment">
@@ -523,6 +524,7 @@ export default function Busnisses() {
                 </div>
               );
             })}
+            </div>
             <div className="input-commet">
               <Form>
                 <Form.Group controlId="exampleForm.ControlTextarea1">

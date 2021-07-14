@@ -10,12 +10,12 @@ const Footer = () => {
   return (
     <div className="footer">
         <div className="footerch">
-          <p>Contact Us</p>
-          <p id="numper_email">055450500</p>
-          <p id="numper_email">Dark-Web@Dark-Web.com</p>
+          <p style = {{ fontFamily: '"Mukta", sans-serif'}}>Contact Us</p>
+          <p style = {{ fontFamily: '"Mukta", sans-serif'}} id="numper_email">055450500</p>
+          <p style = {{ fontFamily: '"Mukta", sans-serif'}} id="numper_email">Dark-Web@Dark-Web.com</p>
         </div>
         <div className="footerch">
-          <p>Our servies</p>
+          <p style = {{ fontFamily: '"Mukta", sans-serif'}}>Our servies</p>
 
           <ul>
             <li>Home</li>

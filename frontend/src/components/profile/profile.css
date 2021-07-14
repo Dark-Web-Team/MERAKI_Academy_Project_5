@@ -52,8 +52,10 @@ float: left;
 }
 
 .noBusiness{
+  min-height: 70vh;
   width: 100vw;
-  height: 87vh;
+ 
+ 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,9 +80,9 @@ float: left;
 
 .main_business{
   display: flex;
-  /* flex-direction: column; */
+ 
   justify-content: center;
-  /* align-items: center; */
+ 
 }
 
 .business_img 
@@ -104,7 +106,7 @@ float: left;
 .business_desc
 {
   width: 60%;
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-left: 25px;
 }
 .location
@@ -141,6 +143,7 @@ float: left;
 
 .business_info .business_info-p 
 {
+  font-family:Arial, Helvetica, sans-serif;
   font-size: 28px;
   
 }

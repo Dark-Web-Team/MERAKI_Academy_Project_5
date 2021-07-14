@@ -67,130 +67,63 @@ export default function Profile() {
 
   return (
     <>
-    <div className="Tabs-nav">
-      <Tabs
-        id="uncontrolled-tab-example"
-        activeKey={kay}
-        onSelect={(k) => setKay(k)}
-      >
-        
-        <Tab eventKey="profile" title="Profile"></Tab>
-        <Tab eventKey="reservation" title="reservation"></Tab>
-        {role === "owner" && (
-          <Tab eventKey="business" title="My Business"></Tab>
-        )}
-      </Tabs>
+      <div className="Tabs-nav">
+        <Tabs
+          id="uncontrolled-tab-example"
+          activeKey={kay}
+          onSelect={(k) => setKay(k)}
+        >
+          <Tab eventKey="profile" title="Profile"></Tab>
+          <Tab eventKey="reservation" title="reservation"></Tab>
+          {role === "owner" && (
+            <Tab eventKey="business" title="My Business"></Tab>
+          )}
+        </Tabs>
       </div>
 
       {userInfo && kay === "profile" ? (
-        <div >
-          
+        <div>
+          <section class="profile_container">
+            <div class="profile_img_section">
+              <img class="profile_img-LG" src={userInfo[0].user_image} />
+            </div>
 
-	<section class="profile_container">
-		<div class="profile_img_section">
-			<img class="profile_img-LG" src={userInfo[0].user_image} />
-		
-		</div>
+            <div class="profile_desc_section">
+              <h2 className="H2">{userInfo[0].displayName}</h2>
+              <h3 className="H3">{userInfo[0].email}</h3>
+              <div class="interests">
+                <span class="interests_item">{userInfo[0].gender}</span>
+              </div>
+              <span class="interests_item">Age ... {userInfo[0].age}</span>
 
-		<div class="profile_desc_section">
-			<h2 className = 'H2'>{userInfo[0].displayName}</h2>
-			<h3  className = 'H3'> {userInfo[0].email}</h3>
-      <div class="interests">
-				<span class="interests_item">{userInfo[0].gender}</span>
-				
-        <span class="interests_item">Age ... {userInfo[0].age}</span>
-			</div>
-			<p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-      
-      <ul>
-			<li className = 'location_inProfile'>
-				<div class="link_img_wrapper">
-					<img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/round-pushpin_1f4cd.png" alt=""/>
-				</div>
-				<p>{userInfo[0].city}</p>
-			</li>
-	</ul>
-		
-		</div>
-    <Button
-                id="editButton"
-                onClick={() => {
-                  history.push("edit-profile");
-                }}
-              >
-                edit profile
-              </Button>
-	</section>
-
-	{/* <div class="info">
-		<ul>
-			<li>
-				<div class="link_img_wrapper">
-					<img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/round-pushpin_1f4cd.png" alt=""/>
-				</div>
-				<p>{userInfo[0].city}</p>
-			</li>
-			<li>
-				<div class="link_img_wrapper">
-					<img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/speaking-head_1f5e3-fe0f.png" alt=""/>
-				</div>
-				<p>Korean, English</p>
-			</li>
-			<li>
-				<div class="link_img_wrapper">
-					<img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/samsung/265/globe-with-meridians_1f310.png" alt=""/>
-				</div>
-				<p>sandbox.kr/samsantech</p>
-			</li>
-		</ul>
-	</div> */}
- 
+              <ul>
+                <li className="location_inProfile">
+                  <div class="link_img_wrapper">
+                    <img
+                      class="link_img"
+                      src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/round-pushpin_1f4cd.png"
+                      alt=""
+                    />
+                  </div>
+                  <p>{userInfo[0].city}</p>
+                </li>
+              </ul>
+            </div>
+            <Button
+              id="editButton"
+              onClick={() => {
+                history.push("edit-profile");
+              }}
+            >
+              edit profile
+            </Button>
+          </section>
         </div>
-        // <div key={500} className="profile-information">
-        //   <p id="your-information">Profile Info</p>
-        //   <div className="user-info">
-        //     <div className="info">
-        //       <p>
-        //         <span> Full Name: </span>
-        //         {userInfo[0].displayName}
-        //       </p>
-        //       <p>
-        //         <span>age: </span>
-        //         {userInfo[0].age}
-        //       </p>
-
-        //       <p>
-        //         {" "}
-        //         <span>Email: </span>
-        //         {userInfo[0].email}
-        //       </p>
-        //       <p>
-        //         {" "}
-        //         <span>Gender:</span> {userInfo[0].gender}
-        //       </p>
-        //       <p>
-        //         {" "}
-        //         <span>city:</span> {userInfo[0].city}
-        //       </p>
-        //     </div>
-        //     <div>
-        //       {" "}
-        //       <Button
-        //         id="editButton"
-        //         onClick={() => {
-        //           history.push("edit-profile");
-        //         }}
-        //       >
-        //         edit profile
-        //       </Button>
-        //     </div>
-        //   </div>
-        // </div>
       ) : (
         ""
       )}
       {userReservations && kay === "reservation" ? (
-        <div className = 'reservation_Container'>
+        <div className="reservation_Container">
           {userReservations.map((element, i) => {
             console.log(userReservations);
             let date = element.reservation_date;
@@ -237,37 +170,6 @@ export default function Profile() {
                   </div>
                 </div>
               </>
-              // <>
-              //   <div className="inf_reservation">
-              //     <Card>
-              //       <Card.Img
-              //         className="reservation-imag"
-              //         variant="top"
-              //         src={element.main_img}
-              //       />
-              //       <Card.Body>
-              //         <Card.Text>
-              //           <p>
-              //             {" "}
-              //             <span>Name: </span> {element.displayName}
-              //           </p>
-              //           <p>
-              //             <span>Price: </span>
-              //             {element.booking_price}
-              //           </p>
-              //           <p>
-              //             <span>Date: </span>
-              //             {date}
-              //           </p>
-              //           <p>
-              //             <span>Time: </span>
-              //             {element.reservation_time}
-              //           </p>
-              //         </Card.Text>
-              //       </Card.Body>
-              //     </Card>
-              //   </div>
-              // </>
             );
           })}
         </div>
@@ -275,8 +177,8 @@ export default function Profile() {
         ""
       )}
 
-      {userBusiness && kay === "business" ? (
-        <div className = 'user_Business'>
+      {userBusiness.length!==0 && kay === "business" ? (
+        <div className="user_Business">
           {userBusiness.map((element, i) => {
             return (
               <>
@@ -290,10 +192,25 @@ export default function Profile() {
                   </div>
                   <div className="inf_business">
                     <div className="business_info">
-                      <p className="business_info-p">Business Name: {element.displayName}</p>
-                      <p className="business_info-p">City: {element.city} </p>
-                      <p className="business_info-p">Price: {element.booking_price} </p>
-                      <p>
+                      <p className="business_info-p">
+                         {element.displayName}
+                      </p>
+                      <p className="business_info-p">
+                        Price: {element.booking_price}JD
+                      </p>
+                      <li className="location_inProfile">
+                  <div class="link_img_wrapper">
+                    <img
+                      class="link_img"
+                      src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/round-pushpin_1f4cd.png"
+                      alt=""
+                    />
+                  </div>
+                  <span className="business_info-p"> {element.city} </span>
+                </li>
+                     
+                     
+                      <p style={{fontFamily:'Arial, Helvetica, sans-serif'}}>
                         Opening Time: {element.opening_time} &nbsp; &nbsp;
                         &nbsp; Closing Time: {element.closing_time}
                       </p>
@@ -305,27 +222,24 @@ export default function Profile() {
                         Go to business
                       </Button>
                     </div>
-                    
-                   
                   </div>
                 </div>
-                <div className = "pareants-map-desc">
-                
+                <div className="pareants-map-desc">
                   <div className="business_desc">
-                       <h2>description</h2>
-                      <p>{element.description}</p>
-                    </div>
+                    <h2>description</h2>
+                    <p>{element.description}</p>
+                  </div>
 
-                    <div className="location">
-                      <ShowMap
-                        width={"30vw"}
-                        height={"40vh"}
-                        lat={element.lat}
-                        lng={element.lng}
-                      />
-                    </div>
-
+                  <div className="location">
+                    <ShowMap
+                      width={"30vw"}
+                      height={"40vh"}
+                      lat={element.lat}
+                      lng={element.lng}
+                    />
+                  </div>
                 </div>
+                
               </>
             );
           })}

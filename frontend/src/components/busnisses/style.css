@@ -23,6 +23,7 @@
 
 .information {
   width: auto;
+  margin-top: 19px;
 }
 .information #Button-Reserve {
   margin: 10px 10px 10px 0;
@@ -45,6 +46,8 @@
   margin-bottom: 12px;
   letter-spacing: 0.3px;
   line-height: 24px;
+  overflow-y: auto;
+  max-height: 200px;
 }
 .rate {
   font-family: "proxima-nova", Verdana, sans-serif;
@@ -115,6 +118,15 @@
 .comment {
   border-bottom: 2px solid rgb(211, 206, 202);
 }
+.comments{
+  height:550px; 
+ 
+  margin-top: 30px;
+}
+.rcroll-forComment-b {
+  height: 220px;  
+  overflow-y: auto;
+}
 .comments h1 {
   margin-top: 10px;
   font-size: 20px;
@@ -124,7 +136,11 @@
 }
 .comment {
   width: 90%;
+  margin-top: 15px;
+  
+  
 }
+
 
 .comment2 {
   width: 20px;
@@ -191,5 +207,6 @@
 
   .containers {
     width: 90vw;
+    
   }
 }
