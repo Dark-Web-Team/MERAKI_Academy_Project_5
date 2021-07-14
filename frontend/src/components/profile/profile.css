@@ -104,7 +104,7 @@ float: left;
 .business_desc
 {
   width: 60%;
-  overflow-y: scroll;
+  overflow-y: auto;
   margin-left: 25px;
 }
 .location
