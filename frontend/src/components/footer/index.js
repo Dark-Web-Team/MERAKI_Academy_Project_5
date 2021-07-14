@@ -1,7 +1,11 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-import {AiFillFacebook,AiFillTwitterCircle,AiFillYoutube} from 'react-icons/ai'
-import {GrInstagram} from 'react-icons/gr'
+import { Link } from "react-router-dom";
+import {
+  AiFillFacebook,
+  AiFillTwitterCircle,
+  AiFillYoutube,
+} from "react-icons/ai";
+import { GrInstagram } from "react-icons/gr";
 const Footer = () => {
   return (
     <div className="footer">
@@ -26,7 +30,23 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footerch">
-          <p id="text_booking">Dark-Web Booking</p>
+          <p
+            style={{
+              fontFamily: '"Mukta", sans-serif',
+              fontSize: "30px",
+            }}
+          >
+            Dark-Web
+            <span
+              style={{
+                fontFamily: '"Mukta", sans-serif',
+                fontSize: "30px",
+                color: " #ffc300",
+              }}
+            >
+              -Booking
+            </span>
+          </p>
           <div className="iconsparant">
             <AiFillFacebook className="icons" />
             <GrInstagram className="icons" />

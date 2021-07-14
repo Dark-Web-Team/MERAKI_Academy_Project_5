@@ -88,7 +88,7 @@ export default function Profile() {
 
 	<section class="profile_container">
 		<div class="profile_img_section">
-			<img class="profile_img-LG" src="https://scontent-hbe1-1.xx.fbcdn.net/v/t1.6435-9/137228544_3532653123528378_7616780502827546260_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=0debeb&_nc_eui2=AeG41YuVLrvLIC0cBob42Qta0NZYniBPW9rQ1lieIE9b2ooKOpF86YPSU6Rp7-UgudXqYyqU0GynaHsfOD192bwE&_nc_ohc=T43UiMtMLN4AX-w7809&_nc_ht=scontent-hbe1-1.xx&oh=7b79099390ee649805b089313bdef8b5&oe=60F0F90E" />
+			<img class="profile_img-LG" src={userInfo[0].user_image} />
 		
 		</div>
 
@@ -103,7 +103,7 @@ export default function Profile() {
 			<p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
       
       <ul>
-			<li>
+			<li className = 'location_inProfile'>
 				<div class="link_img_wrapper">
 					<img class="link_img" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/round-pushpin_1f4cd.png" alt=""/>
 				</div>
