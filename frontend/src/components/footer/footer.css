@@ -1,147 +1,123 @@
-.slide-container{
-    width: 100%; 
-    margin-top: 2%;
- 
- }
- 
- .each-slide {
-     height: 500px;
-     width: 100%;
- }
- 
- .imageSlider{
-     height: 100vh;
-     width:100%; 
-     background-size: cover;
-    
- }
- 
- .parintcatgory{
-     display: grid;
-     grid-template-columns: 30% 30%  30%  ;
-      justify-content:space-around;
-      margin-top: 2%;
-     
- 
- }
- .ch {
-     position: relative;
- 
- }
- .ch img{
-     width: 100%;
-     display: block;
-     height: auto;
- }
- .overlay {
-     position: absolute;
-     top: 0;
-     bottom: 0;
-     left: 0;
-     right: 0;
-     height: 100%;
-     width: 100%;
-     opacity: 0;
-     transition: .5s ease;
-     background-color: #008CBA;
-   }
- 
-   .ch:hover .overlay {
-     opacity: 0.3;
-   }
- 
-   .text {
-     color: white;
-     font-size: 20px;
-     position: absolute;
-     top: 67%;
-     left: 50%;
-     -webkit-transform: translate(-50%, -50%);
-     -ms-transform: translate(-50%, -50%);
-     transform: translate(-50%, -50%);
-     text-align: center;
-     font-size: 30px;
-   }
- 
-   .footer 
-   {
-     height: 200px;
-     background-color: #131921 ;
-     margin-top: 10px;
-    
-   }
- 
-   .footerparent{
-     display: flex;
-     justify-content: space-around;
-   }
-   .footerparent > div {
-     width: 30%;
-     
-   }
-   .footerch p {
-     color:white;
-     text-align: center;
-     font-weight: bold;
-     font-size: 20px;
-     margin-top: 20px;
-   }
-   #numper_email{
-     font-size: 15px;
-     color: white;
-   }
- 
-   .footerch ul 
-   {
-     text-align: center;
-     padding: 0;
- 
- 
-   }
-   .footerch ul  li 
-   {
-     list-style-type: none ;
-     color: white;
-     cursor: pointer;
- 
-   }
- 
-    
-   .footerch ul  li:hover {
-     color: wheat;
-   }
-   #text_DarkWeb 
-{
-    font-family: "Mukta", sans-serif;
-    font-size: 30px;
-   
-     margin-top: 50px;
-   }
- 
-   .iconsparant
-   {
-     text-align: center;
-     margin-top: 25px;
-   }
- 
-   .icons 
-   {
-     font-size: 30px;
-     color: white;
-     margin-left: 30px;
-     cursor: pointer;
- 
-   }
-   #text_Booking{
-    font-family: "Mukta", sans-serif;
-    font-size: 30px;
-     color: #ffc300;
-   }
- 
-   
- 
-   
- 
- 
- 
- 
+.slide-container {
+  width: 100%;
+  margin-top: 2%;
+}
+
+.each-slide {
+  height: 500px;
+  width: 100%;
+}
+
+.imageSlider {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+}
+
+.parintcatgory {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  justify-content: space-around;
+  margin-top: 2%;
+}
+.ch {
+  position: relative;
+}
+.ch img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: #008cba;
+}
+
+.ch:hover .overlay {
+  opacity: 0.3;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 67%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 30px;
+}
+
+.footer {
+  height: 200px;
+  background-color: #131921;
+  margin-top: 10px;
+}
+
+.footerparent {
+  display: flex;
+  justify-content: space-around;
+}
+.footerparent > div {
+  width: 30%;
+}
+.footerch p {
+  font-family: "Mukta", sans-serif;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 20px;
+}
+#numper_email {
+  font-family: "Mukta", sans-serif;
+  font-size: 15px;
+  color: white;
+}
+
+.footerch ul {
+  text-align: center;
+  padding: 0;
+}
+.footerch ul li {
+  list-style-type: none;
+  color: white;
+  cursor: pointer;
+}
+
+.footerch ul li:hover {
+  color: wheat;
+}
+#text_DarkWeb {
+  font-family: "Mukta", sans-serif;
+  font-size: 30px;
+
+  margin-top: 50px;
+}
+
+.iconsparant {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.icons {
+  font-size: 30px;
+  color: white;
+  margin-left: 30px;
+  cursor: pointer;
+}
+#text_Booking {
+  font-family: "Mukta", sans-serif;
+  font-size: 30px;
+  color: #ffc300;
+}

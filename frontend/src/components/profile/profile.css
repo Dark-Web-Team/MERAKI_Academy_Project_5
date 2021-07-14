@@ -78,9 +78,9 @@ float: left;
 
 .main_business{
   display: flex;
-  /* flex-direction: column; */
+ 
   justify-content: center;
-  /* align-items: center; */
+ 
 }
 
 .business_img 
