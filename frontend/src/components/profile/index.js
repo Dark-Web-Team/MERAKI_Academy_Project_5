@@ -98,9 +98,9 @@ export default function Profile() {
       <div class="interests">
 				<span class="interests_item">{userInfo[0].gender}</span>
 				
-        <span class="interests_item">Age ... {userInfo[0].age}</span>
+        
 			</div>
-			<p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <span class="interests_item">Age ... {userInfo[0].age}</span>
       
       <ul>
 			<li className = 'location_inProfile'>
