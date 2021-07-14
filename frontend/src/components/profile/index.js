@@ -90,7 +90,7 @@ export default function Profile() {
 
             <div class="profile_desc_section">
               <h2 className="H2">{userInfo[0].displayName}</h2>
-              <h3 className="H3"> {userInfo[0].email}</h3>
+              <h3 className="H3">{userInfo[0].email}</h3>
               <div class="interests">
                 <span class="interests_item">{userInfo[0].gender}</span>
               </div>
@@ -177,7 +177,7 @@ export default function Profile() {
         ""
       )}
 
-      {userBusiness && kay === "business" ? (
+      {userBusiness.length!==0 && kay === "business" ? (
         <div className="user_Business">
           {userBusiness.map((element, i) => {
             return (
@@ -193,13 +193,24 @@ export default function Profile() {
                   <div className="inf_business">
                     <div className="business_info">
                       <p className="business_info-p">
-                        Business Name: {element.displayName}
+                         {element.displayName}
                       </p>
-                      <p className="business_info-p">City: {element.city} </p>
                       <p className="business_info-p">
-                        Price: {element.booking_price}{" "}
+                        Price: {element.booking_price}JD
                       </p>
-                      <p>
+                      <li className="location_inProfile">
+                  <div class="link_img_wrapper">
+                    <img
+                      class="link_img"
+                      src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/271/round-pushpin_1f4cd.png"
+                      alt=""
+                    />
+                  </div>
+                  <span className="business_info-p"> {element.city} </span>
+                </li>
+                     
+                     
+                      <p style={{fontFamily:'Arial, Helvetica, sans-serif'}}>
                         Opening Time: {element.opening_time} &nbsp; &nbsp;
                         &nbsp; Closing Time: {element.closing_time}
                       </p>
@@ -228,6 +239,7 @@ export default function Profile() {
                     />
                   </div>
                 </div>
+                
               </>
             );
           })}
