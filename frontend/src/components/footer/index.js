@@ -9,7 +9,6 @@ import { GrInstagram } from "react-icons/gr";
 const Footer = () => {
   return (
     <div className="footer">
-      <div className="footerparent">
         <div className="footerch">
           <p>Contact Us</p>
           <p id="numper_email">055450500</p>
@@ -54,7 +53,6 @@ const Footer = () => {
             <AiFillYoutube className="icons" />
           </div>
         </div>
-      </div>
     </div>
   );
 };

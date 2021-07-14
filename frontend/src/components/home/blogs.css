@@ -151,3 +151,21 @@
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   transition: all 350ms linear;
 }
+
+@media screen and (max-width:550px) and (min-width:360px) {
+  .blg{
+    grid-template-columns: 1fr;
+  }
+  
+}
+
+@media screen and (max-width:360px) {
+  .blg{
+    grid-template-columns: 1fr;
+  }
+
+  .blog-card .content-mask{
+    width: 85%;
+    padding: 0.75em 0 ;
+  }
+}

@@ -65,17 +65,13 @@
  
    .footer 
    {
-     height: 200px;
      background-color: #131921 ;
      margin-top: 10px;
-    
-   }
- 
-   .footerparent{
      display: flex;
      justify-content: space-around;
    }
-   .footerparent > div {
+ 
+   .footer > div {
      width: 30%;
      
    }
@@ -137,11 +133,12 @@
     font-size: 30px;
      color: #ffc300;
    }
- 
-   
- 
-   
- 
- 
- 
- 
+
+   @media screen and (max-width:360px) {
+    .footer{
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-content: center;
+      align-items: center;
+    }
+  }
