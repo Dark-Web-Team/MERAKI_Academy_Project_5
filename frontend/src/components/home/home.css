@@ -67,15 +67,11 @@
   min-height: 200px;
   background-color: #0b2148;
   margin-top: 1%;
-}
-
-.footerparent {
   display: flex;
   justify-content: space-around;
 }
-.footerparent > div {
-  width: 30%;
-}
+
+
 .footerch p {
   color: white;
   text-align: center;
@@ -119,3 +115,11 @@
 }
 
 
+@media screen and (max-width:360px) {
+  .footer{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    align-items: center;
+  }
+}
