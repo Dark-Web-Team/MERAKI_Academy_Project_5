@@ -18,7 +18,13 @@ const Footer = () => {
           <p style = {{ fontFamily: '"Mukta", sans-serif'}}>Our servies</p>
 
           <ul>
-            <li>Home</li>
+          <Link
+              to="/"
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              {" "}
+              Home{" "}
+            </Link><br/>
             <Link
               to="/about_us"
               style={{ textDecoration: "none", color: "white" }}

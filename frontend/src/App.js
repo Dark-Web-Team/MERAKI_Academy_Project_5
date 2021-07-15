@@ -20,7 +20,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Search_results from "./components/search_results/index";
 import PaymentConfirm from "./components/payment_confirmed";
 import Footer from "./components/footer/index";
-
+import "./App.css";
 require("dotenv").config();
 
 const App = () => {
