@@ -16,7 +16,7 @@ function ShowMap({ lat, lng, width = "400px", height = "400px" }) {
     console.log("marker: ", marker);
   };
   return (
-    <LoadScript googleMapsApiKey="AIzaSyCKGYO8byfTrwrbLGw7zy8HdrQFh1SYPKo">
+    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
       <GoogleMap mapContainerStyle={containerStyle} center={position} zoom={15}>
         <Marker onLoad={onLoad} position={position} />
       </GoogleMap>

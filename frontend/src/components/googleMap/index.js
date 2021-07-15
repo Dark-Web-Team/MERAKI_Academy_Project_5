@@ -14,7 +14,7 @@ function Map({ marker, setMarker }) {
 
   const libraries = ["places"];
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCKGYO8byfTrwrbLGw7zy8HdrQFh1SYPKo",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY ,
     libraries,
   });
 
