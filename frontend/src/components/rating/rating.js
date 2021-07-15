@@ -33,7 +33,7 @@ export default function Rating({ id, thisToken, setInfo }) {
                     setRating(ratingValue);
                   axios
                     .post(
-                      `http://localhost:5000/rating/${id}`,
+                      `${process.env.REACT_APP_BACKEND_SERVER}rating/${id}`,
                       {
                         rate: ratingValue,
                       },
