@@ -1,5 +1,4 @@
 .sign-up-container {
-
   width: 70%;
   margin: auto;
   margin-top: 20px;
@@ -71,4 +70,25 @@
 
 .errMessage {
   width: 50%;
+}
+
+
+
+@media screen and (max-width:760px) {
+  .sign-up-container{
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  }
+   .sign-up-ch2 {
+    height: 60vh;
+    width: 100%;
+  }
+  .input-sign-up-container {
+    width: 100%;
+  }
+  .singUpButton {
+    width: 90%;
+  }
 }

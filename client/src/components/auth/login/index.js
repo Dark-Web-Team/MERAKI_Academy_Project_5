@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
@@ -26,10 +26,9 @@ const Login = () => {
   const lastVisited = useSelector((state) => state.lastVisited.path);
   const [errMessage, setErrMessage] = useState("");
   const [errPresent, setErrPresent] = useState(false);
-  const flection = ()=>{
-
-    history.push("/signUp")
-  }
+  const flection = () => {
+    history.push("/signUp");
+  };
   const handleLogin = () => {
     axios
       .post(`${process.env.REACT_APP_BACKEND_SERVER}login`, {
@@ -51,7 +50,6 @@ const Login = () => {
       });
   };
 
-
   return (
     <>
       <div className="login">
@@ -60,7 +58,8 @@ const Login = () => {
             <h2>Welcome back,</h2>
             <label>
               <span>Email</span>
-              <input className="input-login"
+              <input
+                className="input-login"
                 type="email"
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -69,28 +68,38 @@ const Login = () => {
             </label>
             <label>
               <span>Password</span>
-              <input className="input-login"
-                type="password" 
+              <input
+                className="input-login"
+                type="password"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
               />
             </label>
             <p class="forgot-pass">Forgot password?</p>
-            <button type="button" className="submit-login" onClick={handleLogin}>
+            <button
+              type="button"
+              className="submit-login"
+              onClick={handleLogin}
+            >
               Sign In
             </button>
             {errPresent && (
-            <div className="errMessage">
-              <br />{" "}
-              <Alert
-                variant="danger"
-                style={{ width: "35vw", textAlign: "center" }}
-              >
-                {errMessage}
-              </Alert>
+              <div className="errMessage">
+                <br />{" "}
+                <Alert
+                  variant="danger"
+                  style={{ width: "35vw", textAlign: "center" }}
+                >
+                  {errMessage}
+                </Alert>
+              </div>
+            )}
+            <div className="div-signInNow_text">
+              <p className="signInNow_text">
+                New here? <Link to="/signUp">Sign Up</Link>
+              </p>
             </div>
-          )}
           </div>
           <div class="sub-cont">
             <div class="img">
@@ -123,9 +132,7 @@ const Login = () => {
                 <span>Password</span>
                 <input type="password" />
               </label>
-              <label>
-                
-              </label>
+              <label></label>
               <button type="button" class="submit">
                 Sign Up
               </button>
