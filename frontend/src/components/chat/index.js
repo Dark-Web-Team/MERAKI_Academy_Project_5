@@ -1,4 +1,5 @@
 import React, { useState, useEffect , useRef } from "react";
+import {  useHistory } from "react-router-dom";
 import io from "socket.io-client";
 import axios from "axios";
 import Picker from 'emoji-picker-react';
@@ -21,6 +22,7 @@ function Chat({ roomId, userId }) {
   const [enterRoom, setEnterRoom] = useState(false)
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+  const history = useHistory()
   const state = useSelector((state) => {
     return {
       token: state.login.token,
@@ -167,7 +169,13 @@ function Chat({ roomId, userId }) {
         
       </div>
       </div>:<div className="join-chat">
-        <Button className="join-chat-button" onClick={(e)=>{setEnterRoom(true)}} > Join The Chat  </Button>
+        <Button className="join-chat-button" onClick={(e)=>{
+          if (state.token){
+            setEnterRoom(true)
+          }else{
+            history.push("/login")
+          }
+        }} > Join The Chat  </Button>
         </div>}
         
         
