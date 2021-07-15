@@ -69,6 +69,8 @@
 .footer > div {
   width: 30%;
 }
+
+
 .footerch p {
   font-family: "Mukta", sans-serif;
   color: white;
@@ -76,6 +78,7 @@
   font-weight: bold;
   font-size: 20px;
   margin-top: 20px;
+  cursor: pointer;
 }
 #numper_email {
   font-family: "Mukta", sans-serif;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import {
   AiFillFacebook,
   AiFillTwitterCircle,
@@ -7,6 +7,7 @@ import {
 } from "react-icons/ai";
 import { GrInstagram } from "react-icons/gr";
 const Footer = () => {
+  const history = useHistory()
   return (
     <div className="footer">
         <div className="footerch">
@@ -35,6 +36,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footerch">
+          <div className="web-page-nameORLogo" onClick={()=>{history.push("/")}}>
           <p
             style={{
               fontFamily: '"Mukta", sans-serif',
@@ -52,6 +54,7 @@ const Footer = () => {
               -Booking
             </span>
           </p>
+          </div>
           <div className="iconsparant">
             <AiFillFacebook className="icons" />
             <GrInstagram className="icons" />
