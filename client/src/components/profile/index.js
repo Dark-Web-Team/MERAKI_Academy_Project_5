@@ -122,7 +122,7 @@ export default function Profile() {
       ) : (
         ""
       )}
-      {userReservations && kay === "reservation" ? (
+      {kay === "reservation" && userReservations.length !==0  ? (
         <div className="reservation_Container">
           {userReservations.map((element, i) => {
             console.log(userReservations);
@@ -176,7 +176,12 @@ export default function Profile() {
       ) : (
         ""
       )}
-
+      {kay === "reservation" && userReservations.length ===0  ? (
+        <div className="reservation_Container">
+          <div className="no-reservation_Container">
+            <h3 id="text-for-no-reservation" >You don't have any previous reservations yet!!</h3>
+          </div>
+        </div>):""}
       {userBusiness.length!==0 && kay === "business" ? (
         <div className="user_Business">
           {userBusiness.map((element, i) => {

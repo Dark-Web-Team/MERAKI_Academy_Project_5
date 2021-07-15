@@ -1,13 +1,14 @@
 
 .nav-container{
     padding: 0;
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; */
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
 	  position: sticky;
 	  top: 0;
     z-index:25;
+    /* height: 100%; */
 
   }
   body{

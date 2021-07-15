@@ -125,8 +125,8 @@ function Chat2({ roomId }) {
           if (val.user_id === state.user_id ){
             return   (<>
               <div className="chat-info2">
-              <FaUserCircle  size={30} />
-              <sup  key={i}>
+              <FaUserCircle id="FaUserCircle" size={30} />
+              <sup className="nameFaUserCircle" key={i}>
                 {val.user_name} 
               </sup>
               <p className="chat-content" key={i}>{val.chat_content}</p>
@@ -137,8 +137,8 @@ function Chat2({ roomId }) {
           }else {
           return (<>
             <div className="chat-info1">
-            <FaUserCircle  size={30} />
-            <sup  key={i}>
+            <FaUserCircle id="FaUserCircle" size={30} />
+            <sup className="nameFaUserCircle" key={i}>
               {val.user_name} 
             </sup>
             <p className="chat-content" key={i}>{val.chat_content}</p>
