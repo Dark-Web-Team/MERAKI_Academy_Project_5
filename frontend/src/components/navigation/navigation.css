@@ -158,3 +158,29 @@ padding-top: 2;
     cursor: pointer;
     margin-left: 25px ;
   }
+
+  @media screen and (max-width:680px) and (min-width:360px) {
+    .web-name-app{
+      display: none;
+    }
+
+    .search-nav-bar{
+      margin-left: 20px;
+    }
+
+  }
+
+  @media screen and (max-width:360px) {
+    .web-name-app{
+      display: none;
+    }
+
+    .search-nav-bar{
+      margin-left: 0px;
+    }
+
+    .nav-container{
+      width: 100vw;
+    }
+    
+  }
