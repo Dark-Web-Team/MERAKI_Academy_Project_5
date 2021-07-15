@@ -18,7 +18,7 @@ import "@splidejs/splide/dist/css/themes/splide-sea-green.min.css";
 import ShowMap from "./../googleMap/showMap";
 import io from "socket.io-client";
 let socket;
-const CONNECTION_PORT = "http://localhost:5000";
+const CONNECTION_PORT = process.env.REACT_APP_BACKEND_SERVER;
 
 socket = io(CONNECTION_PORT);
 
