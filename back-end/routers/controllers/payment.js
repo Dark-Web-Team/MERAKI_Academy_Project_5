@@ -14,9 +14,6 @@ const makePayment = async (req, res) => {
       amount: result[0].booking_price * 100,
       currency: "usd",
     });
-
-    console.log(paymentIntent);
-
     res.send({
       clientSecret: paymentIntent.client_secret,
     });
