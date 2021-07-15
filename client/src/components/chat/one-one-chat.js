@@ -9,7 +9,7 @@ import {FaUserCircle} from "react-icons/fa"
 import "./chat.css";
 
 let socket;
-const CONNECTION_PORT = "http://localhost:5000";
+const CONNECTION_PORT = process.env.REACT_APP_BACKEND_SERVER;
 
 socket = io(CONNECTION_PORT);
 
