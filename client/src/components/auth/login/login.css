@@ -286,4 +286,31 @@
 .icon-link--twitter {
   left: auto;
   right: 5px;
+} 
+
+.signInNow_text {
+  display: none;
+}
+
+
+
+@media screen and (max-width:650px) {
+  .cont{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+  }
+  .form { 
+    width: 310px;
+  }
+
+  .signInNow_text {
+    display: block;
+  }
+  .div-signInNow_text{
+    width: 60%;
+    margin: auto;
+    margin-top: 5%
+  }
 }
