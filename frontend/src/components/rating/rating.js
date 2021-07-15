@@ -1,11 +1,21 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import { FaStar } from "react-icons/fa";
 import axios from "axios";
 import "./rating.css";
+import { useDispatch, useSelector } from "react-redux";
+
 
 export default function Rating({ id, thisToken, setInfo }) {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
+  const history = useHistory()
+  const state = useSelector((state) => {
+    return {
+      token: state.login.token,
+    };
+  });
   return (
     <div>
       <div className="rating">
@@ -19,7 +29,8 @@ export default function Rating({ id, thisToken, setInfo }) {
                 name="rating"
                 value={ratingValue}
                 onClick={() => {
-                  setRating(ratingValue);
+                  if (state.token){
+                    setRating(ratingValue);
                   axios
                     .post(
                       `http://localhost:5000/rating/${id}`,
@@ -38,6 +49,9 @@ export default function Rating({ id, thisToken, setInfo }) {
                     .catch((err) => {
                       console.log(err);
                     });
+                  }else{
+                    history.push("/login")
+                  }
                 }}
               />
               <FaStar

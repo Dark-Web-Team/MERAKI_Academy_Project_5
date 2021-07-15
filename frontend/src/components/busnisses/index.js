@@ -252,7 +252,8 @@ export default function Busnisses() {
   }, [staePrimaryRef, info, state.token]);
 
   const chatWhitOnwer = () => {
-    socket = io(CONNECTION_PORT);
+    if (state.token){
+      socket = io(CONNECTION_PORT);
     socket.emit("join_userList", business.owner_id);
     const messageContent = {
       roomId: business.owner_id,
@@ -287,6 +288,9 @@ export default function Busnisses() {
       .catch((err) => {
         throw err;
       });
+    }else{
+      history.push('/login')
+    }
   };
 
   return (
