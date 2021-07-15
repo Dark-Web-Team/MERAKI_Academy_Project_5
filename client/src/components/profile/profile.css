@@ -163,5 +163,18 @@ float: left;
 }
 .Tabs-nav
 {
-  margin:5px 0 15px 35px ;
+  margin:18px 0 15px 35px ;
+}
+
+.no-reservation_Container {
+    
+  margin-top: 4%;
+}
+
+#text-for-no-reservation{
+font-weight: 200;
+font-size: 22px;
+font-family: Georgia, 'Times New Roman', Times, serif;
+text-align: center;
+
 }

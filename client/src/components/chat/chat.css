@@ -52,10 +52,6 @@
     font-size: 13px;
   }
 
-.chat-info1 sup
-{
-    margin-left: 5px;
-}
 
 .time-right {
     float: right;
@@ -70,12 +66,19 @@
     margin-left: 15px;
     margin-top: 15px;
 }
+#FaUserCircle {
+    margin-top: -18px;
+}
+.nameFaUserCircle {
+    font-size: 18px;
+    margin-left: 10px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
  .chat-date
 {
     font-size: 13px;
     margin-right: 5px;
     float: right;
-    
 }
 
 .join-chat{
@@ -160,3 +163,4 @@ div::-webkit-scrollbar  {
   div::-webkit-scrollbar-thumb:hover {
     background: #0B2148; 
   }
+  
