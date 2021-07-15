@@ -66,7 +66,9 @@ export default function Busnisses() {
   let arr;
   const getimages = async () => {
     try {
-      const picture = await axios.get(`http://localhost:5000/image/${id}`);
+      const picture = await axios.get(
+        `${process.env.REACT_APP_BACKEND_SERVER}image/${id}`
+      );
       arr = picture.data.map((elem, i) => {
         return elem.image;
       });
@@ -252,44 +254,44 @@ export default function Busnisses() {
   }, [staePrimaryRef, info, state.token]);
 
   const chatWhitOnwer = () => {
-    if (state.token){
+    if (state.token) {
       socket = io(CONNECTION_PORT);
-    socket.emit("join_userList", business.owner_id);
-    const messageContent = {
-      roomId: business.owner_id,
-      content: {
-        user1_id: business.owner_id,
-        user2_id: state.user_id,
-        user1_name: business.userName,
-        user2_name: state.user_name,
-      },
-    };
-
-    axios
-      .post(
-        `${process.env.REACT_APP_BACKEND_SERVER}chat/userChat`,
-        {
-          user2_id: business.owner_id,
+      socket.emit("join_userList", business.owner_id);
+      const messageContent = {
+        roomId: business.owner_id,
+        content: {
+          user1_id: business.owner_id,
+          user2_id: state.user_id,
           user1_name: business.userName,
           user2_name: state.user_name,
         },
-        {
-          headers: {
-            authorization: "Bearer " + state.token,
+      };
+
+      axios
+        .post(
+          `${process.env.REACT_APP_BACKEND_SERVER}chat/userChat`,
+          {
+            user2_id: business.owner_id,
+            user1_name: business.userName,
+            user2_name: state.user_name,
           },
-        }
-      )
-      .then((result) => {
-        if (result.status === 201) {
-          socket.emit("send_message_req", messageContent);
-        }
-        history.push("/chat");
-      })
-      .catch((err) => {
-        throw err;
-      });
-    }else{
-      history.push('/login')
+          {
+            headers: {
+              authorization: "Bearer " + state.token,
+            },
+          }
+        )
+        .then((result) => {
+          if (result.status === 201) {
+            socket.emit("send_message_req", messageContent);
+          }
+          history.push("/chat");
+        })
+        .catch((err) => {
+          throw err;
+        });
+    } else {
+      history.push("/login");
     }
   };
 
@@ -501,33 +503,33 @@ export default function Busnisses() {
           <h1>Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
           <div className="containers">
             <div className="rcroll-forComment-b">
-            {commints.map((element) => {
-              return (
-                <div className="comment">
-                  <div className="commenter">
-                    <FaUserCircle class="profilePic_2" />
+              {commints.map((element) => {
+                return (
+                  <div className="comment">
+                    <div className="commenter">
+                      <FaUserCircle class="profilePic_2" />
 
-                    <span>{element.displayName}</span>
-                    {state.user_id == element.user_id ? (
-                      <AiOutlineDelete
-                        className="delete"
-                        onClick={() => {
-                          deleteComment(element.comment_id);
-                        }}
-                      >
-                        delete comment
-                      </AiOutlineDelete>
-                    ) : (
-                      ""
-                    )}
+                      <span>{element.displayName}</span>
+                      {state.user_id == element.user_id ? (
+                        <AiOutlineDelete
+                          className="delete"
+                          onClick={() => {
+                            deleteComment(element.comment_id);
+                          }}
+                        >
+                          delete comment
+                        </AiOutlineDelete>
+                      ) : (
+                        ""
+                      )}
 
-                    <p class="answer">{element.comment}</p>
+                      <p class="answer">{element.comment}</p>
+                    </div>
+
+                    <div className="comment2"></div>
                   </div>
-
-                  <div className="comment2"></div>
-                </div>
-              );
-            })}
+                );
+              })}
             </div>
             <div className="input-commet">
               <Form>
