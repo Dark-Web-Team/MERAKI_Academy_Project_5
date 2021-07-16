@@ -351,9 +351,10 @@ export default function Busnisses() {
               ) : (
                 ""
               )}
-            </div>
-            <h2>Description</h2>
+              <h2>Description</h2>
             <div className="description">{business.description}</div>
+            </div>
+            
             <div className="information">
               <p className="city-info">
                 <span>City :</span> {business.city}
@@ -485,11 +486,7 @@ export default function Busnisses() {
                 </Modal>
               </>
               <div className="information-map">
-                <ShowMap
-                  lat={business.lat}
-                  lng={business.lng}
-                  width={"97%"}
-                />
+                <ShowMap lat={business.lat} lng={business.lng} width={"97%"} />
               </div>
             </div>
           </div>
@@ -507,7 +504,11 @@ export default function Busnisses() {
                 <li key={i}>
                   <div className="comment-main-level">
                     <div className="comment-avatar">
-                      <img src={element.user_image} alt="" style={{width:'65px', height:'65px'}} ></img>
+                      <img
+                        src={element.user_image}
+                        alt=""
+                        style={{ width: "65px", height: "65px" }}
+                      ></img>
                     </div>
                     <div class="comment-box">
                       <div class="comment-head">
@@ -529,46 +530,28 @@ export default function Busnisses() {
                       </div>
                       <div class="comment-content">{element.comment}</div>
                     </div>
-                    {/* <span>{element.displayName}</span>
-                    {state.user_id == element.user_id ? (
-                      <AiOutlineDelete
-                        className="delete"
-                        onClick={() => {
-                          deleteComment(element.comment_id);
-                        }}
-                      >
-                        delete comment
-                      </AiOutlineDelete>
-                    ) : (
-                      ""
-                    )}
-
-                    <p class="answer">{element.comment}</p>
-
-                    <div className="comment2"></div> */}
                   </div>
                 </li>
               );
             })}
           </ul>
-        
 
-        <div className="input-commet">
-          <Form>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
-              <Form.Control
-                as="textarea"
-                rows={4}
-                onChange={(e) => {
-                  setUserComment(e.target.value);
-                }}
-              />
-            </Form.Group>
-          </Form>
-          <Button className="singUpButton" onClick={addComment}>
-            add Comment
-          </Button>
-        </div>
+          <div className="input-commet">
+            <Form>
+              <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Control
+                  as="textarea"
+                  rows={4}
+                  onChange={(e) => {
+                    setUserComment(e.target.value);
+                  }}
+                />
+              </Form.Group>
+            </Form>
+            <Button className="singUpButton" onClick={addComment}>
+              add Comment
+            </Button>
+          </div>
         </div>
         <div className="chat">
           <Chat roomId={id} userId={state.user_id} />
