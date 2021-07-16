@@ -352,8 +352,9 @@ export default function Busnisses() {
                 ""
               )}
               <h2>Description</h2>
-              <div className="description">{business.description}</div>
+            <div className="description">{business.description}</div>
             </div>
+            
             <div className="information">
               <p className="city-info">
                 <span>City :</span> {business.city}
@@ -485,11 +486,7 @@ export default function Busnisses() {
                 </Modal>
               </>
               <div className="information-map">
-                <ShowMap
-                  lat={business.lat}
-                  lng={business.lng}
-                  width={"inherit"}
-                />
+                <ShowMap lat={business.lat} lng={business.lng} width={"97%"} />
               </div>
             </div>
           </div>
@@ -499,57 +496,63 @@ export default function Busnisses() {
       )}
 
       <div className="parent_comment-chat">
-        <div className="comments">
+        <div className="comments-container">
           <h1>Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-          <div className="containers">
-            <div className="rcroll-forComment-b">
-              {commints.map((element) => {
-                return (
-                  <div className="comment">
-                    <div className="commenter">
-                      <FaUserCircle class="profilePic_2" />
-
-                      <span>{element.displayName}</span>
-                      {state.user_id == element.user_id ? (
-                        <AiOutlineDelete
-                          className="delete"
-                          onClick={() => {
-                            deleteComment(element.comment_id);
-                          }}
-                        >
-                          delete comment
-                        </AiOutlineDelete>
-                      ) : (
-                        ""
-                      )}
-
-                      <p class="answer">{element.comment}</p>
+          <ul id="comments-list" className="comments-list">
+            {commints.map((element, i) => {
+              return (
+                <li key={i}>
+                  <div className="comment-main-level">
+                    <div className="comment-avatar">
+                      <img
+                        src={element.user_image}
+                        alt=""
+                        style={{ width: "65px", height: "65px" }}
+                      ></img>
                     </div>
-
-                    <div className="comment2"></div>
+                    <div class="comment-box">
+                      <div class="comment-head">
+                        <h6 class="comment-name by-author">
+                          {element.displayName}
+                        </h6>
+                        {state.user_id == element.user_id ? (
+                          <AiOutlineDelete
+                            className="delete"
+                            onClick={() => {
+                              deleteComment(element.comment_id);
+                            }}
+                          >
+                            delete comment
+                          </AiOutlineDelete>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                      <div class="comment-content">{element.comment}</div>
+                    </div>
                   </div>
-                );
-              })}
-            </div>
-            <div className="input-commet">
-              <Form>
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                  <Form.Control
-                    as="textarea"
-                    rows={4}
-                    onChange={(e) => {
-                      setUserComment(e.target.value);
-                    }}
-                  />
-                </Form.Group>
-              </Form>
-              <Button className="singUpButton" onClick={addComment}>
-                add Comment
-              </Button>
-            </div>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="input-commet">
+            <Form>
+              <Form.Group controlId="exampleForm.ControlTextarea1">
+                <Form.Control
+                  as="textarea"
+                  rows={4}
+                  onChange={(e) => {
+                    setUserComment(e.target.value);
+                  }}
+                />
+              </Form.Group>
+            </Form>
+            <Button className="singUpButton" onClick={addComment}>
+              add Comment
+            </Button>
           </div>
         </div>
-
         <div className="chat">
           <Chat roomId={id} userId={state.user_id} />
         </div>
