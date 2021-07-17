@@ -297,6 +297,7 @@ export default function Busnisses() {
 
   return (
     <>
+    {business ? <>
       {business ? (
         <div>
           <h1 className="header">{business.displayName}</h1>
@@ -557,6 +558,15 @@ export default function Busnisses() {
           <Chat roomId={id} userId={state.user_id} />
         </div>
       </div>
+    </>:
+    <div className="loading-body">
+      <div className="loader">
+  <div className="inner one"></div>
+  <div className="inner two"></div>
+  <div className="inner three"></div>
+</div>
+    </div>
+}
     </>
   );
 }
