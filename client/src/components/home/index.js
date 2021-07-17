@@ -56,7 +56,6 @@ export default function Home() {
       <div className="blg">
         <div class="blog-card web">
           <div class="content-mask">
-            <span class="categery">Web</span>
             <h1 className="hhh">Improving Website Performance</h1>
             <p className="parag">
               A practical guide to speeding up your website loading-times
@@ -69,7 +68,6 @@ export default function Home() {
         </div>
         <div class="blog-card python">
           <div class="content-mask">
-            <span class="python categery">Booking</span>
             <h1 className="hhh">Booking Website</h1>
             <p>
               The ocean freight industry saw considerable progress in 2019

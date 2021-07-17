@@ -37,7 +37,7 @@ const theme = {
       fontSize: 16,
       borderBottomLeftRadius: 4,
       borderBottomRightRadius: 4,
-      zIndex: 15
+      zIndex: 105
     },
     suggestionsList: {
       display:'grid',
