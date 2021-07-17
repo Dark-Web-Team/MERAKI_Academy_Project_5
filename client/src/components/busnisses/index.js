@@ -297,276 +297,292 @@ export default function Busnisses() {
 
   return (
     <>
-    {business ? <>
       {business ? (
-        <div>
-          <h1 className="header">{business.displayName}</h1>
-          <div className="parent">
-            <div className="gallery">
-              <Splide
-                className="asasa"
-                options={primaryOptions}
-                ref={primaryRef}
-              >
-                {pictures.map((elem, i) => {
-                  return (
-                    <SplideSlide>
-                      <img width="900" height="450" src={elem} />
-                    </SplideSlide>
-                  );
-                })}
-              </Splide>
-              <Splide options={secondaryOptions} ref={secondaryRef}>
-                {pictures.map((elem, i) => {
-                  return (
-                    <SplideSlide>
-                      <img src={elem} />
-                    </SplideSlide>
-                  );
-                })}
-              </Splide>
-              {errMessage}
+        <>
+          {business ? (
+            <div className="business-main-container">
+              <h1 className="header">{business.displayName}</h1>
+              <div className="parent">
+                <div className="gallery">
+                  <Splide
+                    className="asasa"
+                    options={primaryOptions}
+                    ref={primaryRef}
+                  >
+                    {pictures.map((elem, i) => {
+                      return (
+                        <SplideSlide>
+                          <img width="900" height="450" src={elem} />
+                        </SplideSlide>
+                      );
+                    })}
+                  </Splide>
+                  <Splide options={secondaryOptions} ref={secondaryRef}>
+                    {pictures.map((elem, i) => {
+                      return (
+                        <SplideSlide>
+                          <img src={elem} />
+                        </SplideSlide>
+                      );
+                    })}
+                  </Splide>
+                  {errMessage}
 
-              {business.owner_id === state.user_id ? (
-                <div>
-                  <Button onClick={handleShow2}> add photo </Button>
-                  <Modal show={show2} onHide={handleClose2}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Add Photo</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <FormControl
-                        placeholder="add link for photo "
-                        type="text"
-                        aria-label="Large"
-                        aria-describedby="inputGroup-sizing-sm"
-                        type="text"
-                        onChange={(e) => {
-                          setOwnerImage(e.target.value);
-                        }}
-                      />
-                      <Button onClick={addPhotoToBusiness}> add photo </Button>
-                    </Modal.Body>
-                  </Modal>
-                </div>
-              ) : (
-                ""
-              )}
-              <h2>Description</h2>
-            <div className="description">{business.description}</div>
-            </div>
-            
-            <div className="information">
-              <p className="city-info">
-                <span>City :</span> {business.city}
-              </p>
-              <p className="price">
-                <span>Price :</span> {business.booking_price} JD
-              </p>
-
-              <div className="rate-container">
-                <div className="rate">
-                  <div className="FaStar">
-                    <FaStar size={26} />
-                    <sup>{business.average_rating} / 5 </sup>
-                  </div>
-                  <div>
-                    <sub> from {business.number_rating} users</sub>
-                  </div>
-                </div>
-                <div className="user-rating">
-                  {!userRate ? (
-                    <>
-                      <p> Rate this </p>
-                      <Rating
-                        id={id}
-                        thisToken={state.token}
-                        setInfo={setInfo}
-                      />
-                    </>
+                  {business.owner_id === state.user_id ? (
+                    <div>
+                      <Button onClick={handleShow2}> add photo </Button>
+                      <Modal show={show2} onHide={handleClose2}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>Add Photo</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          <FormControl
+                            placeholder="add link for photo "
+                            type="text"
+                            aria-label="Large"
+                            aria-describedby="inputGroup-sizing-sm"
+                            type="text"
+                            onChange={(e) => {
+                              setOwnerImage(e.target.value);
+                            }}
+                          />
+                          <Button onClick={addPhotoToBusiness}>
+                            {" "}
+                            add photo{" "}
+                          </Button>
+                        </Modal.Body>
+                      </Modal>
+                    </div>
                   ) : (
-                    <>
-                      <p>Your rate</p> <ShowRating rate={userRate} />
-                    </>
+                    ""
                   )}
+                  <h2>Description</h2>
+                  <div className="description">{business.description}</div>
+                </div>
+
+                <div className="information">
+                  <p className="city-info">
+                    <span>City :</span> {business.city}
+                  </p>
+                  <p className="price">
+                    <span>Price :</span> {business.booking_price} JD
+                  </p>
+
+                  <div className="rate-container">
+                    <div className="rate">
+                      <div className="FaStar">
+                        <FaStar size={26} />
+                        <sup>{business.average_rating} / 5 </sup>
+                      </div>
+                      <div>
+                        <sub> from {business.number_rating} users</sub>
+                      </div>
+                    </div>
+                    <div className="user-rating">
+                      {!userRate ? (
+                        <>
+                          <p> Rate this </p>
+                          <Rating
+                            id={id}
+                            thisToken={state.token}
+                            setInfo={setInfo}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <p>Your rate</p> <ShowRating rate={userRate} />
+                        </>
+                      )}
+                    </div>
+                  </div>
+                  <>
+                    {business.owner_id !== state.user_id ? (
+                      <div className="business-chat-reserve">
+                        <Button
+                          id="Button-Reserve"
+                          variant="primary"
+                          onClick={handleShow}
+                          className="business-button"
+                        >
+                          Reserve
+                        </Button>
+                        <Button
+                          onClick={chatWhitOnwer}
+                          className="business-button"
+                        >
+                          chat with owner
+                        </Button>
+                      </div>
+                    ) : (
+                      ""
+                    )}
+
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Reservation</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body className="block">
+                        <DatePicker
+                          className="calender"
+                          selected={startDate}
+                          dateFormat="yyyy/MM/dd"
+                          onChange={(date) => {
+                            let array = date
+                              .toString()
+                              .split(" ")
+                              .splice(1, 3)
+                              .reverse();
+                            const array_move = (arr, old_index, new_index) => {
+                              if (new_index >= arr.length) {
+                                let k = new_index - arr.length + 1;
+                                while (k--) {
+                                  arr.push(undefined);
+                                }
+                              }
+                              arr.splice(
+                                new_index,
+                                0,
+                                arr.splice(old_index, 1)[0]
+                              );
+                              return arr;
+                            };
+                            let orgArr = array_move(array, 1, 2);
+                            if (orgArr[1] === "Jan") {
+                              orgArr[1] = "01";
+                            }
+                            if (orgArr[1] === "Feb") {
+                              orgArr[1] = "02";
+                            }
+                            if (orgArr[1] === "Mar") {
+                              orgArr[1] = "03";
+                            }
+                            if (orgArr[1] === "Apr") {
+                              orgArr[1] = "04";
+                            }
+                            if (orgArr[1] === "May") {
+                              orgArr[1] = "05";
+                            }
+                            if (orgArr[1] === "Jun") {
+                              orgArr[1] = "06";
+                            }
+                            if (orgArr[1] === "Jul") {
+                              orgArr[1] = "07";
+                            }
+                            if (orgArr[1] === "Aug") {
+                              orgArr[1] = "08";
+                            }
+                            if (orgArr[1] === "Sep") {
+                              orgArr[1] = "09";
+                            }
+                            if (orgArr[1] === "Oct") {
+                              orgArr[1] = "10";
+                            }
+                            if (orgArr[1] === "Nov") {
+                              orgArr[1] = "11";
+                            }
+                            if (orgArr[1] === "Dec") {
+                              orgArr[1] = "12";
+                            }
+                            orgArr = orgArr.join("-");
+                            setReservationDate(orgArr);
+                            setStartDate(date);
+                          }}
+                        />
+                        <TimeSelect
+                          busnisses_id={id}
+                          date={reservationDate}
+                          opening_time={business.opening_time}
+                          closing_time={business.closing_time}
+                        />
+                      </Modal.Body>
+                    </Modal>
+                  </>
+                  <div className="information-map">
+                    <ShowMap
+                      lat={business.lat}
+                      lng={business.lng}
+                      width={"97%"}
+                    />
+                  </div>
                 </div>
               </div>
-              <>
-                {business.owner_id !== state.user_id ? (
-                  <div className="business-chat-reserve">
-                    <Button
-                      id="Button-Reserve"
-                      variant="primary"
-                      onClick={handleShow}
-                      className="business-button"
-                    >
-                      Reserve
-                    </Button>
-                    <Button onClick={chatWhitOnwer} className="business-button">
-                      chat with owner
-                    </Button>
-                  </div>
-                ) : (
-                  ""
-                )}
+            </div>
+          ) : (
+            ""
+          )}
 
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Reservation</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body className="block">
-                    <DatePicker
-                      className="calender"
-                      selected={startDate}
-                      dateFormat="yyyy/MM/dd"
-                      onChange={(date) => {
-                        let array = date
-                          .toString()
-                          .split(" ")
-                          .splice(1, 3)
-                          .reverse();
-                        const array_move = (arr, old_index, new_index) => {
-                          if (new_index >= arr.length) {
-                            let k = new_index - arr.length + 1;
-                            while (k--) {
-                              arr.push(undefined);
-                            }
-                          }
-                          arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-                          return arr;
-                        };
-                        let orgArr = array_move(array, 1, 2);
-                        if (orgArr[1] === "Jan") {
-                          orgArr[1] = "01";
-                        }
-                        if (orgArr[1] === "Feb") {
-                          orgArr[1] = "02";
-                        }
-                        if (orgArr[1] === "Mar") {
-                          orgArr[1] = "03";
-                        }
-                        if (orgArr[1] === "Apr") {
-                          orgArr[1] = "04";
-                        }
-                        if (orgArr[1] === "May") {
-                          orgArr[1] = "05";
-                        }
-                        if (orgArr[1] === "Jun") {
-                          orgArr[1] = "06";
-                        }
-                        if (orgArr[1] === "Jul") {
-                          orgArr[1] = "07";
-                        }
-                        if (orgArr[1] === "Aug") {
-                          orgArr[1] = "08";
-                        }
-                        if (orgArr[1] === "Sep") {
-                          orgArr[1] = "09";
-                        }
-                        if (orgArr[1] === "Oct") {
-                          orgArr[1] = "10";
-                        }
-                        if (orgArr[1] === "Nov") {
-                          orgArr[1] = "11";
-                        }
-                        if (orgArr[1] === "Dec") {
-                          orgArr[1] = "12";
-                        }
-                        orgArr = orgArr.join("-");
-                        setReservationDate(orgArr);
-                        setStartDate(date);
+          <div className="parent_comment-chat">
+            <div className="comments-container">
+              <h1>Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+              <ul id="comments-list" className="comments-list">
+                {commints.map((element, i) => {
+                  return (
+                    <li key={i}>
+                      <div className="comment-main-level">
+                        <div className="comment-avatar">
+                          <img
+                            src={element.user_image}
+                            alt=""
+                            style={{ width: "65px", height: "65px" }}
+                          ></img>
+                        </div>
+                        <div class="comment-box">
+                          <div class="comment-head">
+                            <h6 class="comment-name by-author">
+                              {element.displayName}
+                            </h6>
+                            {state.user_id == element.user_id ? (
+                              <AiOutlineDelete
+                                className="delete"
+                                onClick={() => {
+                                  deleteComment(element.comment_id);
+                                }}
+                              >
+                                delete comment
+                              </AiOutlineDelete>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                          <div class="comment-content">{element.comment}</div>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="input-commet">
+                <Form>
+                  <Form.Group controlId="exampleForm.ControlTextarea1">
+                    <Form.Control
+                      as="textarea"
+                      rows={4}
+                      onChange={(e) => {
+                        setUserComment(e.target.value);
                       }}
                     />
-                    <TimeSelect
-                      busnisses_id={id}
-                      date={reservationDate}
-                      opening_time={business.opening_time}
-                      closing_time={business.closing_time}
-                    />
-                  </Modal.Body>
-                </Modal>
-              </>
-              <div className="information-map">
-                <ShowMap lat={business.lat} lng={business.lng} width={"97%"} />
+                  </Form.Group>
+                </Form>
+                <Button className="singUpButton" onClick={addComment}>
+                  add Comment
+                </Button>
               </div>
             </div>
+            <div className="chat">
+              <Chat roomId={id} userId={state.user_id} />
+            </div>
           </div>
-        </div>
+        </>
       ) : (
-        ""
-      )}
-
-      <div className="parent_comment-chat">
-        <div className="comments-container">
-          <h1>Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-          <ul id="comments-list" className="comments-list">
-            {commints.map((element, i) => {
-              return (
-                <li key={i}>
-                  <div className="comment-main-level">
-                    <div className="comment-avatar">
-                      <img
-                        src={element.user_image}
-                        alt=""
-                        style={{ width: "65px", height: "65px" }}
-                      ></img>
-                    </div>
-                    <div class="comment-box">
-                      <div class="comment-head">
-                        <h6 class="comment-name by-author">
-                          {element.displayName}
-                        </h6>
-                        {state.user_id == element.user_id ? (
-                          <AiOutlineDelete
-                            className="delete"
-                            onClick={() => {
-                              deleteComment(element.comment_id);
-                            }}
-                          >
-                            delete comment
-                          </AiOutlineDelete>
-                        ) : (
-                          ""
-                        )}
-                      </div>
-                      <div class="comment-content">{element.comment}</div>
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-
-          <div className="input-commet">
-            <Form>
-              <Form.Group controlId="exampleForm.ControlTextarea1">
-                <Form.Control
-                  as="textarea"
-                  rows={4}
-                  onChange={(e) => {
-                    setUserComment(e.target.value);
-                  }}
-                />
-              </Form.Group>
-            </Form>
-            <Button className="singUpButton" onClick={addComment}>
-              add Comment
-            </Button>
+        <div className="loading-body">
+          <div className="loader">
+            <div className="inner one"></div>
+            <div className="inner two"></div>
+            <div className="inner three"></div>
           </div>
         </div>
-        <div className="chat">
-          <Chat roomId={id} userId={state.user_id} />
-        </div>
-      </div>
-    </>:
-    <div className="loading-body">
-      <div className="loader">
-  <div className="inner one"></div>
-  <div className="inner two"></div>
-  <div className="inner three"></div>
-</div>
-    </div>
-}
+      )}
     </>
   );
 }
