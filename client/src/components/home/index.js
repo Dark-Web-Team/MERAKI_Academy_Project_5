@@ -23,30 +23,23 @@ const slideImages = [
 export default function Home() {
   const history = useHistory();
   const slides = [
+    
     {
-      city: "Paris",
-      country: "France",
-      img: "https://www.fcbarcelona.com/photo-resources/2020/02/24/3f1215ed-07e8-47ef-b2c7-8a519f65b9cd/mini_UP3_20200105_FCB_VIS_View_1a_Empty.jpg?width=1200&height=750",
+      city: "Amman",
+      country: "",
+      img: "https://manofmany.com/wp-content/uploads/2021/03/8-spots-for-the-best-paintball-in-sydney-ultimate-paintball.jpeg",
     },
     {
-      city: "Singapore",
-      img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/singapore.jpg",
+      city: "Zarqa",
+      country: "",
+      img: "https://s3.us-east-2.amazonaws.com/delnee.customers/18db94ce418052f77a3a3e54345f420e7aee7d44.",
     },
     {
-      city: "Prague",
-      country: "Czech Republic",
-      img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/prague.jpg",
+      city: "Irbid",
+      country: "",
+      img: "https://manofmany.com/wp-content/uploads/2021/03/8-spots-for-the-best-paintball-in-sydney-die-hard-indoor-paintball.jpeg",
     },
-    {
-      city: "Amsterdam",
-      country: "Netherlands",
-      img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/amsterdam.jpg",
-    },
-    {
-      city: "Moscow",
-      country: "Russia",
-      img: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/moscow.jpg",
-    },
+    
   ];
   return (
     <>
