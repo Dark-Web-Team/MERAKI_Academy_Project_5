@@ -13,7 +13,10 @@
     
 }
 .category_Page{
-    min-height: 85vh;
+    /* width: 70vh; */
+    height: 120vh;
+    /* min-height: 85vh; */
+    overflow-x: hidden;
 }
 .businessCard:hover{
     cursor: pointer;
@@ -49,9 +52,9 @@
 }
 
 .paginationButtons{
-    margin-top: 4%;
-    position: relative;
-    left: 46vw;
+    margin-top: 2%;
+    /* position: relative;
+    left: 46vw; */
 }
 
 .pagination{

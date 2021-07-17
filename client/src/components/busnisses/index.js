@@ -498,6 +498,7 @@ export default function Busnisses() {
 
       <div className="parent_comment-chat">
         <div className="comments-container">
+          <div className="comment-scroll-down">
           <h1>Comments&nbsp;&nbsp;&nbsp;&nbsp;</h1>
           <ul id="comments-list" className="comments-list">
             {commints.map((element, i) => {
@@ -536,7 +537,7 @@ export default function Busnisses() {
               );
             })}
           </ul>
-
+          </div>
           <div className="input-commet">
             <Form>
               <Form.Group controlId="exampleForm.ControlTextarea1">

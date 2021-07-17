@@ -464,3 +464,9 @@
 	  transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
 	}
   }
+
+
+  .comment-scroll-down {
+	  height: 550px;
+	  overflow-y: auto;
+  }

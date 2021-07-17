@@ -227,7 +227,7 @@ const AddBusiness = () => {
             </Form.Control.Feedback>
           </Form.Group>
           <Map  marker = {marker} setMarker = {setMarker} />
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
+          <Button className="add-b-button" variant="primary" type="submit" onClick={handleSubmit}>
             Submit
           </Button>
           {errPresent && (
