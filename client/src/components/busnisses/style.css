@@ -478,3 +478,8 @@ text-transform: uppercase;
 	  transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
 	}
   }
+
+  .scroll-comment-con {
+	  height: 550px;
+	  overflow-y: auto;
+  }
