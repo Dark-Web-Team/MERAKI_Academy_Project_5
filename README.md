@@ -7,7 +7,7 @@
 
 ---
 
-<p align="center"> Few lines describing your project.
+<p align="center"> A website where you can browse different businesses and book that place on a certain date for a certain period of time
     <br> 
 </p>
 
@@ -22,6 +22,8 @@
 
 The idea of this project came because of the lack of such websites in the area. So this website serves as a connection ring between users who want to book places providing sports/entertainment services and business owners who provide those services near them.
 
+The user can view different business based on category, or search for specific business based on price or city to his preference, as well as chat with the business owner and pay for the booking online using credit card
+
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -31,19 +33,35 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them.
 
 ```
-Give examples
+1- Git hub account
+2- Visual Studio Code
+3- Git Bash
+4- MYSQL
+5- install NodeJS to Visual Studio Code
 ```
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running.
 
-Say what the step will be
+#### **Step 1:**
+Clone the repo [https://github.com/Dark-Web-Team/MERAKI_Academy_Project_5] using Git bash.
 
 ```
-Give the example
+Git clone https://github.com/Dark-Web-Team/MERAKI_Academy_Project_5
+```
+#### **Step 2:**
+install all the packages in the root file and the client file using the terminal with the following command
+```
+npm i
 ```
 
+#### Step 3: 
+run the following command inside the db file
+
+```
+mysql -u <schema.sql> -p
+```
 And repeat
 
 ```
@@ -58,7 +76,7 @@ Add notes about how to use the system.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
+- [MYSQL](https://www.mysql.com/) - Database
 - [Express JS](https://expressjs.com/) - Server Framework
 - [React JS](https://https://reactjs.org/) - Web Framework
 - [Node JS](https://nodejs.org/en/) - Server Environment
