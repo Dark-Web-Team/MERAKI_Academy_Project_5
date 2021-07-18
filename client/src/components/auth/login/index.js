@@ -31,7 +31,7 @@ const Login = () => {
   };
   const handleLogin = () => {
     axios
-      .post(`${process.env.REACT_APP_BACKEND_SERVER}login`, {
+      .post(`/login`, {
         email,
         password,
       })
