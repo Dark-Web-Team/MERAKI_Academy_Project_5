@@ -59,7 +59,7 @@ function Chat({ roomId, userId }) {
     var element = document.getElementById("addddaaass");
     element.scroll({ top: element.scrollHeight, behavior: 'smooth' });
   }
-    ,50)
+    ,500)
   
 
 
