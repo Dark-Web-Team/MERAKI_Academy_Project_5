@@ -33,7 +33,7 @@ export default function EditProfile() {
   useEffect(() => {
     if (state.token) {
       axios
-        .get(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
+        .get(`/users`, {
           headers: {
             authorization: "Bearer " + state.token,
           },
@@ -58,7 +58,7 @@ export default function EditProfile() {
   const updateInfo = () => {
     axios
       .put(
-        `${process.env.REACT_APP_BACKEND_SERVER}users`,
+        `/users`,
         { displayName, city, email, age, gender,user_image, role_id },
         {
           headers: {

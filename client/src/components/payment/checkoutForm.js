@@ -27,7 +27,7 @@ const CheckoutForm = ({ businessId }) => {
 
   useEffect(() => {
     axios
-      .post(`${process.env.REACT_APP_BACKEND_SERVER}create-payment-intent`, {
+      .post(`/create-payment-intent`, {
         business_id: Number(businessId),
       })
       .then((response) => {

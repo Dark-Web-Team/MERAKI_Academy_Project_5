@@ -67,7 +67,7 @@ export default function Busnisses() {
   const getimages = async () => {
     try {
       const picture = await axios.get(
-        `${process.env.REACT_APP_BACKEND_SERVER}image/${id}`
+        `/image/${id}`
       );
       arr = picture.data.map((elem, i) => {
         return elem.image;
@@ -81,7 +81,7 @@ export default function Busnisses() {
   const getDetails = async () => {
     try {
       const details = await axios.get(
-        `${process.env.REACT_APP_BACKEND_SERVER}business/id/${id}`
+        `/business/id/${id}`
       );
       setBusiness(details.data[0]);
     } catch (error) {
@@ -92,7 +92,7 @@ export default function Busnisses() {
   const getCommit = async () => {
     try {
       const details = await axios.get(
-        `${process.env.REACT_APP_BACKEND_SERVER}comments/${id}`
+        `/comments/${id}`
       );
       setCommints(details.data);
     } catch (error) {
@@ -102,7 +102,7 @@ export default function Busnisses() {
 
   const getUserrate = () => {
     axios
-      .get(`${process.env.REACT_APP_BACKEND_SERVER}rating/${id}`, {
+      .get(`/rating/${id}`, {
         headers: {
           authorization: "Bearer " + state.token,
         },

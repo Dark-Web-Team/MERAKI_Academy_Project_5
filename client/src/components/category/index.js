@@ -37,7 +37,7 @@ const Category = () => {
     dispatch(setPath(location.pathname));
     try {
       const category_businesses = await axios.get(
-        process.env.REACT_APP_BACKEND_SERVER + `business/type/${type}/${page}`
+        `/business/type/${type}/${page}`
       );
 
       if (category_businesses.data.length === 8) {

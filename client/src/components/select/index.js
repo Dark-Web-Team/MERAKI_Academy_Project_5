@@ -40,7 +40,7 @@ export default function TimeSelect({
 
   const handileRes = () => {
     axios.post(
-      `${process.env.REACT_APP_BACKEND_SERVER}reservations/${busnisses_id}`,
+      `/reservations/${busnisses_id}`,
       { reservation_date: date, reservation_time: userTime },
       {
         headers: {
@@ -91,7 +91,7 @@ export default function TimeSelect({
     }
 
     axios
-      .get(`${process.env.REACT_APP_BACKEND_SERVER}reservations/${busnisses_id}/${date}`)
+      .get(`/reservations/${busnisses_id}/${date}`)
       .then((result) => {
         result.data.forEach((element) => {
           if (element.reservation_time === "12pm - 1pm") {

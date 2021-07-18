@@ -19,7 +19,7 @@ const Search_results = () => {
     dispatch(setPath(location.pathname));
     try {
       const searchResult = await axios.get(
-        `${process.env.REACT_APP_BACKEND_SERVER}business/search/${search}`
+        `/business/search/${search}`
       );
       console.log("results", searchResult);
       setResults(searchResult.data);

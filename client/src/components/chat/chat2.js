@@ -45,7 +45,7 @@ function Chat2({ roomId }) {
       socket = io(CONNECTION_PORT);
     socket.emit("join_userList", roomId);
     axios
-      .get(`${process.env.REACT_APP_BACKEND_SERVER}chat/userChat/${roomId}`)
+      .get(`/chat/userChat/${roomId}`)
       .then((result) => {
 		setMessageList(result.data)
       }).catch((err)=>{
@@ -86,7 +86,7 @@ function Chat2({ roomId }) {
     socket.emit("send_message_req", messageContent); //raise event
     setMessageList([...messageList, messageContent.content]);
     axios.post(
-      `${process.env.REACT_APP_BACKEND_SERVER}chat/userChat/${roomId}`,
+      `/chat/userChat/${roomId}`,
       {chat_content:message , user_name:state.user_name },
       {
         headers: {
