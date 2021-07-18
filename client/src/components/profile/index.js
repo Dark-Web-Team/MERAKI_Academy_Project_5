@@ -24,7 +24,7 @@ export default function Profile() {
       const ownerConformation = jwt.decode(token);
       setRole(ownerConformation.role);
       axios
-        .get(`${process.env.REACT_APP_BACKEND_SERVER}users`, {
+        .get(`/users`, {
           headers: {
             authorization: "Bearer " + token,
           },
@@ -36,7 +36,7 @@ export default function Profile() {
           console.log(err.response);
         });
       axios
-        .get(`${process.env.REACT_APP_BACKEND_SERVER}reservations`, {
+        .get(`/reservations`, {
           headers: {
             authorization: "Bearer " + token,
           },
@@ -50,7 +50,7 @@ export default function Profile() {
         });
 
       axios
-        .get(`${process.env.REACT_APP_BACKEND_SERVER}business/user`, {
+        .get(`/business/user`, {
           headers: {
             authorization: "Bearer " + token,
           },

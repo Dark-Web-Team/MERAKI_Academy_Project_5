@@ -39,7 +39,7 @@ const AddBusiness = () => {
     
     try {
       const addConfirm = await axios.post(
-        `${process.env.REACT_APP_BACKEND_SERVER}business`,
+        `/business`,
         {
           displayName,
           description,

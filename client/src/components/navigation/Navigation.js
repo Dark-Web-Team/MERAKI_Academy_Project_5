@@ -67,7 +67,7 @@ const Navigation = () => {
   useEffect(async () => {
     try {
       const searchResult = await axios.get(
-        `${process.env.REACT_APP_BACKEND_SERVER}business/search/${search}`
+        `/business/search/${search}`
       );
       setBusinesses(searchResult.data);
     } catch (error) {}

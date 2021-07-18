@@ -43,7 +43,7 @@ export default function SignUp() {
     if (form.checkValidity()) {
       if (password === conformPass) {
         axios
-          .post(process.env.REACT_APP_BACKEND_SERVER + "users", {
+          .post("/users", {
             displayName,
             city,
             email,
