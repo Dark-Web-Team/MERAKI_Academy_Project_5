@@ -10,7 +10,7 @@ const createUser = async (req, res) => {
   password = hashedPassword;
   const query = `INSERT INTO users  (displayName, city, email, password, age, gender, user_image , role_id) VALUES (?,?,?,?,?,?,?,?);`;
   const arr = [displayName, city, email, password, age, gender,user_image, role_id];
-  /*
+  
   try {
     const emailVerify = await axios.get(`https://emailvalidation.abstractapi.com/v1/?api_key=85bb4133d00746f2b831ee6f33f157b0&email=${email}`)
     if (emailVerify.data.deliverability === 'UNDELIVERABLE'){
@@ -21,7 +21,7 @@ const createUser = async (req, res) => {
         res.send(error);
         return
   }
-*/
+
   db.query(query, arr, (err, result) => {
     if (err) {
       res.status(403).json(err);
